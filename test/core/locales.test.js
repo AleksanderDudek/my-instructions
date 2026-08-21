@@ -18,21 +18,27 @@ test("English is the default and every locale declares an endonym", () => {
   }
 });
 
+/* The assertions name no language beyond English. Which locales have shipped
+   changes as translations land, and a test that hard-codes today's list fails
+   for the wrong reason tomorrow. */
+const OTHER = LOCALES.find((l) => l.tag !== DEFAULT_LOCALE).tag;
+
 test("a stored preference wins over the browser", () => {
-  assert.equal(resolveLocale("pl", ["de-DE", "en-GB"]), "pl");
+  assert.equal(resolveLocale(OTHER, ["en-GB"]), OTHER);
 });
 
 test("an unsupported stored preference is ignored rather than obeyed", () => {
-  assert.equal(resolveLocale("fr", ["de-DE"]), "de");
+  // "zz" is not a language this app speaks; the browser decides instead.
+  assert.equal(resolveLocale("zz", [`${OTHER}-XX`]), OTHER);
 });
 
-test("the browser is matched by prefix, so de-AT counts as German", () => {
-  assert.equal(resolveLocale(null, ["de-AT"]), "de");
-  assert.equal(resolveLocale(null, ["es-419"]), "es");
+test("the browser is matched by prefix, so a regional tag still counts", () => {
+  assert.equal(resolveLocale(null, [`${OTHER}-XX`]), OTHER);
+  assert.equal(resolveLocale(null, ["en-GB"]), "en");
 });
 
 test("the first browser language this app speaks wins", () => {
-  assert.equal(resolveLocale(null, ["fr-FR", "pl-PL", "de-DE"]), "pl");
+  assert.equal(resolveLocale(null, ["fr-FR", `${OTHER}-XX`, "en-GB"]), OTHER);
 });
 
 test("a reader with no recognisable language gets English", () => {
@@ -42,6 +48,6 @@ test("a reader with no recognisable language gets English", () => {
 });
 
 test("isSupported is exact, not prefix-based", () => {
-  assert.equal(isSupported("pl"), true);
-  assert.equal(isSupported("pl-PL"), false);
+  assert.equal(isSupported(OTHER), true);
+  assert.equal(isSupported(`${OTHER}-XX`), false);
 });

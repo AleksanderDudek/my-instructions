@@ -163,15 +163,16 @@ test("a token encoded under one locale re-scores identically under another", asy
   // Item ids are language-free, which is what lets two people who do not read
   // the same language hand each other a result.
   const spec = registry.get("love-languages");
-  const pl = await makeCtx("pl");
-  const de = await makeCtx("de");
+  const other = LOCALES.find((l) => l.tag !== DEFAULT_LOCALE).tag;
+  const theirs = await makeCtx(other);
+  const mine = await makeCtx(DEFAULT_LOCALE);
 
   const answers = Object.fromEntries(
-    spec.form(pl.instrument(spec).t, "pl").items.map((item, n) => [item.id, (n % 5) + 1]));
+    spec.form(theirs.instrument(spec).t, other).items.map((item, n) => [item.id, (n % 5) + 1]));
 
   const token = encode({ instrumentId: spec.id, instrumentVersion: spec.version, answers }, "Ola");
   const { decode } = await import("../../src/core/share.js");
-  const decoded = decode(token, de.t);
+  const decoded = decode(token, mine.t);
 
   assert.deepEqual(spec.score(decoded.answers), spec.score(answers));
 });

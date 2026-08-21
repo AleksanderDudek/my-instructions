@@ -7,11 +7,15 @@
  * a computed path would bundle to a module that is not there.
  */
 
+/**
+ * Shipped languages, in the order the picker shows them. A locale joins this
+ * list when its message files are complete — the parity test fails on any gap,
+ * so listing a language before it is finished turns the whole suite red rather
+ * than shipping a half-translated page.
+ */
 const LOCALES = [
   { tag: "en", label: "English", endonym: "English" },
   { tag: "pl", label: "Polish", endonym: "Polski" },
-  { tag: "es", label: "Spanish", endonym: "Español" },
-  { tag: "de", label: "German", endonym: "Deutsch" },
 ];
 
 const DEFAULT_LOCALE = "en";

@@ -35,6 +35,13 @@
  *   instructions(result, t) -> [{ channel, title, body }]  the shareable lines
  *   compare(a, b) -> optional; two results, one reading. The seed of the
  *                    friend-to-friend feature.
+ *   sensitive    optional; marks an instrument whose result is nobody's
+ *                business by default. Forces a private default that no
+ *                migration can override, and makes the app warn once before
+ *                a first share.
+ *   maxAudience  optional; the widest audience the sharing page may offer.
+ *                "friends" means public is not on the menu at all, rather
+ *                than being on the menu and discouraged.
  */
 
 const FAMILIES = new Set(["questionnaire", "profiler"]);
@@ -44,6 +51,22 @@ const CHANNELS = ["communication", "affection", "work", "conflict", "energy", "r
 const channelKey = (channel) => `channel.${channel}`;
 
 const REQUIRED = ["id", "version", "family", "glyph", "minutes", "messages", "form", "score", "view", "instructions"];
+
+/** Widest audience an instrument permits, narrowest first. */
+const AUDIENCE_ORDER = ["private", "friends", "public"];
+
+/**
+ * What the sharing page is allowed to offer for one instrument.
+ *
+ * A declared ceiling is a different thing from a default. A default is where
+ * a setting starts and can be moved; a ceiling is an option that never
+ * appears. For an instrument about somebody's sex life, "public" should not
+ * be a button that exists and is discouraged.
+ */
+function audiencesFor(spec) {
+  const ceiling = AUDIENCE_ORDER.indexOf(spec?.maxAudience ?? "public");
+  return AUDIENCE_ORDER.slice(0, (ceiling < 0 ? AUDIENCE_ORDER.length - 1 : ceiling) + 1);
+}
 
 /**
  * Validation renders no words, so it needs no language. An identity `t`
@@ -62,6 +85,12 @@ function validate(spec) {
     if (typeof spec[k] !== "function") throw new TypeError(`${where}: "${k}" must be a function`);
   }
   if (spec.compare != null && typeof spec.compare !== "function") throw new TypeError(`${where}: "compare" must be a function`);
+  if (spec.maxAudience != null && !AUDIENCE_ORDER.includes(spec.maxAudience)) {
+    throw new TypeError(`${where}: maxAudience must be one of ${AUDIENCE_ORDER.join(", ")}`);
+  }
+  if (spec.sensitive && spec.maxAudience === "public") {
+    throw new TypeError(`${where}: a sensitive instrument must not permit a public audience`);
+  }
 
   if (typeof spec.messages?.en !== "function") throw new TypeError(`${where}: messages.en must be a loader function`);
 
@@ -135,4 +164,4 @@ function createRegistry() {
   };
 }
 
-export { createRegistry, validate, CHANNELS, channelKey, FAMILIES, ITEM_TIERS, identity };
+export { createRegistry, validate, CHANNELS, channelKey, FAMILIES, ITEM_TIERS, audiencesFor, identity };

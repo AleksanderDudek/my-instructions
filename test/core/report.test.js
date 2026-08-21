@@ -178,3 +178,67 @@ test("an expired token is refused, and one with no expiry never expires", () => 
   const undated = encodeReport({ registry, profile, runs, sharing, audience: "friends" });
   assert.doesNotThrow(() => decodeReport(undated, registry, t, made + 3650 * day));
 });
+
+test("an instrument's audience ceiling is enforced at the encoder, not just the page", async () => {
+  const { encodeReport, decodeReport } = await import("../../src/core/report.js");
+
+  const sensitive = {
+    id: "tender",
+    maxAudience: "friends",
+    form: () => ({ kind: "items", items: [{ id: "a", kind: "likert", scale: "x", prompt: "a" }] }),
+  };
+  const fakeRegistry = { get: (id) => (id === "tender" ? sensitive : null) };
+  const args = {
+    registry: fakeRegistry,
+    profile: {},
+    runs: [{ instrumentId: "tender", instrumentVersion: 1, answers: { a: 4 } }],
+    // A sharing map that says public — as it would if somebody edited storage,
+    // or if it were migrated from a build before the ceiling existed.
+    sharing: { "run.tender": "public" },
+  };
+
+  assert.deepEqual(
+    decodeReport(encodeReport({ ...args, audience: "public" }), fakeRegistry).runs, [],
+    "a friends-ceiling instrument reached a public link");
+
+  assert.equal(
+    decodeReport(encodeReport({ ...args, audience: "friends" }), fakeRegistry).runs.length, 1,
+    "and it should still travel to the audience it does permit");
+});
+
+test("choice answers survive packing, and a wide bank falls back rather than misaligning", async () => {
+  // The packing assumed one character per answer, which is true of a Likert
+  // point and false of a choice whose value is a word. Packing "unhurried"
+  // into one slot shifted every item after it, so the receiver decoded a
+  // plausible wrong result rather than an error — the worst failure shape
+  // available. Both instruments with choice items were affected.
+  const couple = registry.get("couple-conversations");
+  const items = couple.form((key) => key).items;
+  const given = Object.fromEntries(items.map((item, n) => [
+    item.id,
+    item.kind === "likert" ? (n % 5) + 1 : item.options[n % item.options.length].value,
+  ]));
+
+  const back = unpackAnswers(couple, packAnswers(couple, given));
+
+  const shareable = items.filter((item) => item.tier !== "private");
+  for (const item of shareable) {
+    assert.equal(back[item.id], given[item.id], `${item.id} did not survive the round trip`);
+  }
+  assert.equal(Object.keys(back).length, shareable.length, "an item was lost or invented");
+});
+
+test("a multi-answer bank is packed as JSON rather than badly", () => {
+  const wide = {
+    id: "wide",
+    form: () => ({
+      kind: "items",
+      items: [
+        { id: "a", kind: "likert", scale: "x", prompt: "a" },
+        { id: "m", kind: "multi", prompt: "m", options: [{ value: "x", label: "x" }, { value: "y", label: "y" }] },
+      ],
+    }),
+  };
+  const given = { a: 3, m: ["x", "y"] };
+  assert.deepEqual(unpackAnswers(wide, packAnswers(wide, given)), given);
+});

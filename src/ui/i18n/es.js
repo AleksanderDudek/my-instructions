@@ -202,6 +202,7 @@ export default {
   "sharing.unset": "sin definir",
   "sharing.cardCount": "{count, plural, one{# línea} other{# líneas}}",
   "sharing.audienceFor": "Público para {element}",
+  "sharing.sensitiveNote": "privado salvo que lo cambies; para esto no se ofrece la opción pública",
   "sharing.linksHeading": "Tus enlaces",
   "sharing.linkCount": "{count, plural, one{# elemento incluido} other{# elementos incluidos}}",
   "sharing.explain.friends": "Todo lo marcado para amistades, más todo lo público. Envíaselo a alguien a quien le contarías cosas.",

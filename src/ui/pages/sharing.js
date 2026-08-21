@@ -1,5 +1,6 @@
 import { html, join } from "../../core/html.js";
 import { AUDIENCES, elementsFor, reportLink } from "../../core/report.js";
+import { audiencesFor } from "../../core/registry.js";
 
 /**
  * One place to decide who sees what.
@@ -37,6 +38,10 @@ async function rowsFor(ctx) {
       label: it("title"),
       value: t("sharing.cardCount", { count: spec.instructions(run.result, it).length }),
       glyph: spec.glyph,
+      // An instrument may narrow what the page is allowed to offer for it.
+      // The buttons that are missing here are missing on purpose.
+      audiences: audiencesFor(spec),
+      sensitive: Boolean(spec.sensitive),
     });
   }
   return rows;
@@ -67,9 +72,10 @@ async function sharingPage(ctx) {
       <div class="run-table">
         ${join(rows.map((row) => html`<div class="run-row" data-element="${row.id}">
           <span class="run-name">${row.glyph ? html`<span class="test-glyph">${row.glyph}</span>` : ""}${row.label}
-            <span class="label muted"> ${row.value}</span></span>
+            <span class="label muted"> ${row.value}</span>
+            ${row.sensitive ? html`<span class="label muted"> · ${t("sharing.sensitiveNote")}</span>` : ""}</span>
           <span class="vis-row small" role="group" aria-label="${t("sharing.audienceFor", { element: row.label })}">
-            ${join(AUDIENCES.map((audience) => html`<button type="button"
+            ${join((row.audiences ?? AUDIENCES).map((audience) => html`<button type="button"
               class="vis-btn${(sharing[row.id] ?? "private") === audience ? " on" : ""}"
               data-element="${row.id}" data-audience="${audience}">${t(`audience.${audience}`)}</button>`))}
           </span>

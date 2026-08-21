@@ -56,24 +56,60 @@ const privateIdsOf = (spec) =>
 const BLANK = "-";
 
 /**
+ * Whether an instrument's answers fit the one-character-per-item format.
+ *
+ * The packing assumes every answer is a single character, which is true of a
+ * Likert point and false of a choice whose value is a word. A `choice` still
+ * packs if its options are indexable in one digit — the index is stable
+ * because it comes from the instrument's own option order — and a `multi`
+ * does not pack at all, because one item holds several answers.
+ *
+ * When anything in the bank fails that test the whole instrument falls back to
+ * JSON. A partly packed string would misalign every item after the first wide
+ * one, which is the kind of bug that produces a plausible wrong result rather
+ * than an error.
+ */
+const packable = (item) =>
+  item.kind === "likert" || (item.kind === "choice" && (item.options?.length ?? 0) <= 10);
+
+const codecFor = (spec) => {
+  const items = spec.form((key) => key).items;
+  if (!items || !items.every(packable)) return null;
+  return items;
+};
+
+/**
  * Likert answers as one character each, in the instrument's own item order.
  * A profiler has no items — dates and names do not pack — so its answers stay
  * JSON, which is the honest fallback rather than a clever one.
  */
 function packAnswers(spec, answers) {
-  const order = orderOf(spec);
-  if (!order) return JSON.stringify(answers);
+  const items = codecFor(spec);
+  if (!items) {
+    // The wide path still has to honour the private tier.
+    const withheld = privateIdsOf(spec);
+    return JSON.stringify(Object.fromEntries(
+      Object.entries(answers).filter(([id]) => !withheld.has(id))));
+  }
+
   const withheld = privateIdsOf(spec);
-  return order.map((id) => (withheld.has(id) || answers[id] == null ? BLANK : String(answers[id]))).join("");
+  return items.map((item) => {
+    if (withheld.has(item.id) || answers[item.id] == null) return BLANK;
+    if (item.kind === "likert") return String(answers[item.id]);
+    const index = item.options.findIndex((o) => o.value === answers[item.id]);
+    return index < 0 ? BLANK : String(index);
+  }).join("");
 }
 
 function unpackAnswers(spec, packed) {
-  const order = orderOf(spec);
-  if (!order) return JSON.parse(packed);
+  const items = codecFor(spec);
+  if (!items) return JSON.parse(packed);
   const out = {};
-  order.forEach((id, i) => {
+  items.forEach((item, i) => {
     const ch = packed[i];
-    if (ch && ch !== BLANK) out[id] = Number(ch);
+    if (!ch || ch === BLANK) return;
+    out[item.id] = item.kind === "likert" ? Number(ch) : item.options[Number(ch)]?.value;
+    if (out[item.id] === undefined) delete out[item.id];
   });
   return out;
 }
@@ -116,6 +152,13 @@ function encodeReport({ registry, profile = {}, runs = [], sharing = {}, audienc
   for (const run of runs) {
     if (!allowed.has(`run.${run.instrumentId}`)) continue;
     const spec = registry.get(run.instrumentId);
+
+    // Defence in depth. The sharing page does not offer an audience an
+    // instrument forbids, but the sharing map is just stored JSON and this is
+    // the only place that has to be right. A ceiling enforced only in the UI
+    // is a ceiling until somebody edits localStorage.
+    if (spec && !atLeast(spec.maxAudience ?? "public", audience)) continue;
+
     payload.r.push({
       i: run.instrumentId,
       v: run.instrumentVersion,

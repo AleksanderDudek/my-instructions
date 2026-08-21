@@ -204,6 +204,7 @@ export default {
   "sharing.unset": "nicht gesetzt",
   "sharing.cardCount": "{count, plural, one{# Zeile} other{# Zeilen}}",
   "sharing.audienceFor": "Publikum für {element}",
+  "sharing.sensitiveNote": "privat, bis du es änderst; öffentlich wird hier nicht angeboten",
   "sharing.linksHeading": "Deine Links",
   "sharing.linkCount": "{count, plural, one{# Element enthalten} other{# Elemente enthalten}}",
   "sharing.explain.friends": "Alles, was für Freunde markiert ist, plus alles Öffentliche. Schick das jemandem, dem du Dinge erzählen würdest.",

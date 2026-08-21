@@ -211,6 +211,7 @@ export default {
   "sharing.unset": "not set",
   "sharing.cardCount": "{count, plural, one{# line} other{# lines}}",
   "sharing.audienceFor": "Audience for {element}",
+  "sharing.sensitiveNote": "private unless you change it; public is not offered for this one",
   "sharing.linksHeading": "Your links",
   "sharing.linkCount": "{count, plural, one{# element included} other{# elements included}}",
   "sharing.explain.friends": "Everything marked friends, plus everything marked public. Send this to someone you would tell things to.",

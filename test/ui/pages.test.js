@@ -35,13 +35,21 @@ const render = async (page, ctx, params = {}, query = new URLSearchParams()) => 
   return str(body);
 };
 
+/** A plausible answer for one profiler field, honouring its own default. */
+function answerFor(f) {
+  if (f.kind === "multi") return [f.options[0].value];
+  if (f.value !== undefined) return f.value;
+  if (f.kind === "text") return "Ada";
+  return f.min ?? 1;
+}
+
 /** Fill a store with a completed run for every instrument. */
 async function completeAll(ctx) {
   for (const spec of registry.all()) {
     const form = spec.form(ctx.instrument(spec).t, ctx.locale);
     const answers = form.kind === "items"
       ? Object.fromEntries(form.items.map((i) => [i.id, form.scale.max]))
-      : Object.fromEntries(form.fields.map((f) => [f.id, f.kind === "text" ? "Ada" : f.value ?? f.min ?? 1]));
+      : Object.fromEntries(form.fields.map((f) => [f.id, answerFor(f)]));
     await ctx.store.saveRun({ instrumentId: spec.id, instrumentVersion: spec.version, answers, result: spec.score(answers) });
   }
 }

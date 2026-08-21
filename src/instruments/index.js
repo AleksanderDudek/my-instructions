@@ -14,8 +14,9 @@ import jungian from "./jungian/index.js";
 import attachment from "./attachment/index.js";
 import chronotype from "./chronotype/index.js";
 import conflictStyle from "./conflict-style/index.js";
+import workingStyle from "./working-style/index.js";
 
-const INSTRUMENTS = [loveLanguages, attachment, conflictStyle, enneagram, bigFive, hexaco, jungian, chronotype, numerology];
+const INSTRUMENTS = [loveLanguages, attachment, conflictStyle, enneagram, bigFive, hexaco, jungian, workingStyle, chronotype, numerology];
 
 const registry = createRegistry();
 for (const spec of INSTRUMENTS) registry.register(spec);

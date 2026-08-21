@@ -14,23 +14,25 @@
  *      have produced. That, not the raw sum, is what gets stored and compared.
  */
 
+/**
+ * Scales carry their shape here and their wording in the message tables. A
+ * point's meaning is not a detail of presentation — "Rarely me" and "Often me"
+ * have to divide the range the same way in every language, or the numbers stop
+ * being comparable across locales.
+ */
 const SCALES = {
-  agree5: {
-    min: 1, max: 5,
-    labels: ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
-    short: ["SD", "D", "—", "A", "SA"],
-  },
-  agree7: {
-    min: 1, max: 7,
-    labels: ["Strongly disagree", "Disagree", "Slightly disagree", "Neutral", "Slightly agree", "Agree", "Strongly agree"],
-    short: ["1", "2", "3", "4", "5", "6", "7"],
-  },
-  true5: {
-    min: 1, max: 5,
-    labels: ["Not me at all", "Rarely me", "Sometimes me", "Often me", "That is exactly me"],
-    short: ["1", "2", "3", "4", "5"],
-  },
+  agree5: { min: 1, max: 5, short: ["SD", "D", "—", "A", "SA"] },
+  agree7: { min: 1, max: 7, short: ["1", "2", "3", "4", "5", "6", "7"] },
+  true5: { min: 1, max: 5, short: ["1", "2", "3", "4", "5"] },
 };
+
+/** One scale with its labels resolved into the reader's language. */
+function scaleFor(name, t) {
+  const scale = SCALES[name];
+  if (!scale) throw new RangeError(`unknown scale: ${name}`);
+  const points = scale.max - scale.min + 1;
+  return { ...scale, name, labels: Array.from({ length: points }, (_, i) => t(`scale.${name}.${i}`)) };
+}
 
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 
@@ -104,13 +106,17 @@ function rank(scores) {
   });
 }
 
-/** Verbal band for a 1..100 score. Deliberately coarse — the precision is fake. */
+/**
+ * Verbal band for a 1..100 score, as a message key. Deliberately coarse — the
+ * precision is fake, and naming that in five buckets is more honest than a
+ * decimal place.
+ */
 function band(score) {
-  if (score >= 80) return "very high";
-  if (score >= 62) return "high";
-  if (score >= 39) return "moderate";
-  if (score >= 21) return "low";
-  return "very low";
+  if (score >= 80) return "band.veryHigh";
+  if (score >= 62) return "band.high";
+  if (score >= 39) return "band.moderate";
+  if (score >= 21) return "band.low";
+  return "band.veryLow";
 }
 
 /** Cronbach-style sanity check: did they tick the same box the whole way down? */
@@ -120,4 +126,4 @@ function straightlining(items, answers) {
   return new Set(given).size <= 1;
 }
 
-export { SCALES, clamp, flip, normalize, scoreLikert, shares, rank, band, straightlining };
+export { SCALES, scaleFor, clamp, flip, normalize, scoreLikert, shares, rank, band, straightlining };

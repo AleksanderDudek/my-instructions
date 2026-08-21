@@ -1,10 +1,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CNY, CUTS, FRIENDLY } from "../../src/instruments/numerology/data.js";
+import { ANIMALS, ELEMENTS, CNY, CUTS, FRIENDLY } from "../../src/instruments/numerology/data.js";
 import { cnyOf, zodiacYear, westernSign, daysIn } from "../../src/instruments/numerology/calendar.js";
 import { profile } from "../../src/instruments/numerology/compute.js";
 
-const animalOf = (d, m, y) => profile(d, m, y, "").animal[0];
+/* profile() returns indices rather than names — the chart has to mean the same
+   thing in every language — so the tests name them through the same table the
+   English message file was generated from. */
+const animalOf = (d, m, y) => ANIMALS[profile(d, m, y, "").animalIdx][0];
+const elementOf = (d, m, y) => ELEMENTS[profile(d, m, y, "").elementIdx];
+const polarityOf = (d, m, y) => profile(d, m, y, "").polarity;
 
 test("the Chinese New Year table covers 1900–2050 with plausible dates", () => {
   assert.equal(CNY.length, 151);
@@ -33,13 +38,12 @@ test("the animal turns at Chinese New Year, not on 1 January", () => {
 });
 
 test("stem element and polarity follow the ten-year cycle", () => {
-  const p = profile(8, 1, 1993, "");
-  assert.equal(p.element, "Water");
-  assert.equal(p.polarity, "Yang");        // lunar year 1992 is even
-  assert.equal(p.zodiacYear, 1992);
+  assert.equal(elementOf(8, 1, 1993), "Water");
+  assert.equal(polarityOf(8, 1, 1993), "yang");   // lunar year 1992 is even
+  assert.equal(profile(8, 1, 1993, "").zodiacYear, 1992);
 
-  assert.equal(profile(14, 6, 1990, "").element, "Metal");
-  assert.equal(profile(14, 6, 1990, "").animal[0], "Horse");
+  assert.equal(elementOf(14, 6, 1990), "Metal");
+  assert.equal(animalOf(14, 6, 1990), "Horse");
 });
 
 test("years outside the table fall back to an estimated boundary and say so", () => {

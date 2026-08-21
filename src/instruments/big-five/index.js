@@ -1,7 +1,7 @@
-import { html, join } from "../../core/html.js";
-import { SCALES, scoreLikert, band, straightlining } from "../../core/scoring.js";
+import { html } from "../../core/html.js";
+import { scaleFor, scoreLikert, band, straightlining } from "../../core/scoring.js";
 import { barsHTML, verdictHTML, factsHTML } from "../../ui/components/scorecard.js";
-import { FACTORS, ORDER, ITEMS } from "./items.js";
+import { GLYPHS, ORDER, ITEMS } from "./items.js";
 
 /**
  * Unlike the other two questionnaires, nothing here is ranked. The five
@@ -11,15 +11,14 @@ import { FACTORS, ORDER, ITEMS } from "./items.js";
  * enough from the middle to be worth telling someone about.
  */
 
-const scale = SCALES.agree5;
+const scale = scaleFor("agree5", (key) => key);
 const MARKED = 22; // distance from 50 at which a factor stops being unremarkable
 
 function score(answers) {
   const { scores, answered, total } = scoreLikert(ITEMS, answers, scale);
   const profile = ORDER.map((key) => {
     const s = scores[key];
-    const side = s >= 50 ? "high" : "low";
-    return { key, score: s, side, band: band(s), marked: Math.abs(s - 50) >= MARKED, ...FACTORS[key] };
+    return { key, score: s, side: s >= 50 ? "high" : "low", bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
   });
   return {
     scores, profile,
@@ -30,70 +29,104 @@ function score(answers) {
   };
 }
 
-const rows = (r) =>
-  r.profile.map((p) => ({ key: p.key, label: `${p.glyph} ${p.label}`, score: p.score, blurb: p.score >= 50 ? p.high : p.low }));
+const rows = (result, t) =>
+  result.profile.map((p) => ({
+    key: p.key,
+    label: `${GLYPHS[p.key]} ${t(`factor.${p.key}.label`)}`,
+    score: p.score,
+    blurb: t(`factor.${p.key}.${p.side}`),
+  }));
 
-function view(result) {
+function view(result, { t }) {
   const headline = result.marked.length
-    ? result.marked.map((p) => `${p.band} ${p.label.toLowerCase()}`).join(", ")
-    : "no factor far from the middle";
+    ? result.marked.map((p) => t("view.headlineItem", { band: t(p.bandKey), factor: t(`factor.${p.key}.inline`) })).join(", ")
+    : t("view.headlineFlat");
   return html`
     ${verdictHTML({
-      eyebrow: "Five factors",
+      t,
+      eyebrow: t("view.eyebrow"),
       title: headline,
-      body: result.flat
-        ? "Every factor lands near the centre. That is a real result and a common one — it describes someone whose behaviour is set more by situation than by disposition, and it makes you harder to predict from a profile than most people."
-        : "These five are designed to be independent, so read each on its own. A high score is not a better score; each end buys something and costs something.",
+      body: result.flat ? t("view.bodyFlat") : t("view.bodyMarked"),
     })}
-    ${barsHTML(rows(result))}
-    ${factsHTML(result.profile.map((p) => [p.label, `${p.score} — ${p.band}. ${p.score >= 50 ? p.high : p.low}`]))}
-    ${result.suspect ? html`<div class="note warn-note prose"><p>Every item got the same answer. Half of these questions are worded backwards on purpose, so an identical response to all forty produces a profile of five near-identical middling scores regardless of who you are. Worth retaking.</p></div>` : ""}
-    <div class="note prose">
-      <p>Of everything in this app, this is the part with actual research behind it — the five-factor structure replicates across languages and predicts real outcomes at modest effect sizes. Modest is the operative word. It describes tendencies over years, not what you will do on Thursday.</p>
-    </div>`;
+    ${barsHTML(rows(result, t))}
+    ${factsHTML(result.profile.map((p) => [
+      t(`factor.${p.key}.label`),
+      t("view.factValue", { score: p.score, band: t(p.bandKey), blurb: t(`factor.${p.key}.${p.side}`) }),
+    ]))}
+    ${result.suspect ? html`<div class="note warn-note prose"><p>${t("view.straightlining")}</p></div>` : ""}
+    <div class="note prose"><p>${t("view.researchNote")}</p></div>`;
 }
 
-function instructions(result) {
+/** Which channel of the instruction sheet a factor speaks to. */
+const CHANNEL = {
+  openness: "communication",
+  conscientiousness: "work",
+  extraversion: "energy",
+  agreeableness: "communication",
+  reactivity: "energy",
+};
+
+function instructions(result, t) {
   const cards = [];
   for (const p of result.marked) {
+    // Four whole titles rather than an assembled one: "Strongly high" is not
+    // "strongly" plus "high" in every language, and a title is short enough
+    // that four keys cost less than one that has to be built.
+    const strong = p.bandKey === "band.veryHigh" || p.bandKey === "band.veryLow";
+    const titleKey = strong
+      ? `instructions.title.very${p.side === "high" ? "High" : "Low"}`
+      : `instructions.title.${p.side}`;
     cards.push({
-      channel: p.key === "extraversion" || p.key === "reactivity" ? "energy" : p.key === "conscientiousness" ? "work" : "communication",
-      title: `${p.band === "very high" || p.band === "very low" ? "Strongly " : ""}${p.side} ${p.label.toLowerCase()}`,
-      body: p.ask[p.side],
+      channel: CHANNEL[p.key],
+      title: t(titleKey, { factor: t(`factor.${p.key}.inline`) }),
+      body: t(`factor.${p.key}.ask.${p.side}`),
     });
   }
-  if (!cards.length) {
-    cards.push({ channel: "rhythm", title: "Centre-weighted", body: "No factor of mine sits far from average. Read the situation rather than the profile — context moves me more than disposition does." });
-  }
+  if (!cards.length) cards.push({ channel: "rhythm", title: t("instructions.flatTitle"), body: t("instructions.flatBody") });
   return cards;
 }
 
-function compare(a, b, { nameA = "A", nameB = "B" } = {}) {
-  const gaps = ORDER.map((k) => ({ key: k, ...FACTORS[k], a: a.scores[k], b: b.scores[k], gap: Math.abs(a.scores[k] - b.scores[k]) }))
+function compare(a, b, { nameA = "A", nameB = "B", t }) {
+  const gaps = ORDER.map((k) => ({ key: k, a: a.scores[k], b: b.scores[k], gap: Math.abs(a.scores[k] - b.scores[k]) }))
     .sort((x, y) => y.gap - x.gap);
   const widest = gaps[0], closest = gaps[gaps.length - 1];
   const mean = Math.round(gaps.reduce((s, g) => s + g.gap, 0) / gaps.length);
   return html`
     ${verdictHTML({
-      eyebrow: "Trait distance",
-      title: `${mean} points apart on average`,
-      body: `The widest gap is ${widest.label.toLowerCase()} — ${nameA} at ${widest.a}, ${nameB} at ${widest.b}. That is the difference most likely to be experienced as a character flaw rather than a difference. The closest is ${closest.label.toLowerCase()}, where you will barely notice you agree.`,
+      t,
+      eyebrow: t("compare.eyebrow"),
+      title: t("compare.title", { mean }),
+      body: t("compare.body", {
+        widest: t(`factor.${widest.key}.inline`),
+        closest: t(`factor.${closest.key}.inline`),
+        nameA, nameB, widestA: widest.a, widestB: widest.b,
+      }),
     })}
-    ${factsHTML(gaps.map((g) => [g.label, `${nameA} ${g.a} · ${nameB} ${g.b} — ${g.gap} apart`]))}`;
+    ${factsHTML(gaps.map((g) => [
+      t(`factor.${g.key}.label`),
+      t("compare.factValue", { nameA, nameB, a: g.a, b: g.b, gap: g.gap }),
+    ]))}`;
 }
 
 export default {
   id: "big-five",
   version: 1,
   family: "questionnaire",
-  title: "Big Five",
-  tagline: "The five dimensions that survived a century of factor analysis.",
   glyph: "✦",
   minutes: 6,
-  framework: "Five-factor model (OCEAN)",
-  sourceNote:
-    "Original items on the public five-factor structure, half of them reverse-keyed. The IPIP public-domain markers can be substituted as pure data if you want the validated wording.",
   channels: ["communication", "work", "energy"],
-  form: () => ({ kind: "items", items: ITEMS, scale, shuffle: true, pageSize: 5 }),
+  messages: {
+    en: () => import("./i18n/en.js"),
+    pl: () => import("./i18n/pl.js"),
+    es: () => import("./i18n/es.js"),
+    de: () => import("./i18n/de.js"),
+  },
+  form: (t) => ({
+    kind: "items",
+    items: ITEMS.map((item) => ({ ...item, prompt: t(`item.${item.id}`) })),
+    scale: scaleFor("agree5", t),
+    shuffle: true,
+    pageSize: 5,
+  }),
   score, view, instructions, compare,
 };

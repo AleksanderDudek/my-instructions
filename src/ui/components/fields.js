@@ -45,9 +45,9 @@ function choiceHTML(item, value, index) {
   </fieldset>`;
 }
 
-function multiHTML(item, value, index) {
+function multiHTML(item, value, index, t) {
   const picked = new Set(Array.isArray(value) ? value : []);
-  const limit = item.max ? `Choose up to ${item.max}.` : "Choose any that apply.";
+  const limit = item.max ? t("runner.chooseUpTo", { max: item.max }) : t("runner.chooseAny");
   return html`<fieldset class="item" data-item="${item.id}" style="--i:${index}">
     <legend class="item-prompt"><span class="item-n num">${index + 1}</span>${item.prompt}<span class="item-hint">${limit}</span></legend>
     <div class="choices">
@@ -60,15 +60,15 @@ function multiHTML(item, value, index) {
   </fieldset>`;
 }
 
-function itemHTML(item, value, scale, index) {
+function itemHTML(item, value, scale, index, t) {
   if (item.kind === "likert") return likertHTML(item, value, scale, index);
   if (item.kind === "choice") return choiceHTML(item, value, index);
-  return multiHTML(item, value, index);
+  return multiHTML(item, value, index, t);
 }
 
 /* ══ profiler fields ══════════════════════════════════════════════ */
 
-function fieldHTML(field, value, error) {
+function fieldHTML(field, value, error, t) {
   const id = `f-${field.id}`;
   const v = value ?? field.value ?? "";
   let control;
@@ -89,7 +89,7 @@ function fieldHTML(field, value, error) {
       ${raw(field.kind === "number" ? 'inputmode="numeric"' : "")} autocomplete="off">`;
   }
   return html`<div class="field${error ? " bad" : ""}">
-    <label class="label" for="${id}">${field.label}${field.optional ? html`<span class="opt"> optional</span>` : ""}</label>
+    <label class="label" for="${id}">${field.label}${field.optional ? html`<span class="opt">${t("runner.optional")}</span>` : ""}</label>
     ${control}
     ${error ? html`<p class="warn" role="alert">${error}</p>` : ""}
   </div>`;

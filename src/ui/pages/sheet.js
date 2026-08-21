@@ -1,5 +1,5 @@
 import { html, join } from "../../core/html.js";
-import { CHANNELS, CHANNEL_LABEL } from "../../core/registry.js";
+import { CHANNELS, channelKey } from "../../core/registry.js";
 
 /**
  * The instruction sheet — the thing the whole app is for.
@@ -10,21 +10,22 @@ import { CHANNELS, CHANNEL_LABEL } from "../../core/registry.js";
  * to know how to talk to you.
  */
 async function sheetPage(ctx) {
-  const { registry, store } = ctx;
+  const { registry, store, t } = ctx;
   const runs = await store.runs();
   const profile = await store.profile();
 
   const cards = runs.flatMap((run) => {
     const spec = registry.get(run.instrumentId);
     if (!spec) return [];
-    return spec.instructions(run.result).map((c) => ({ ...c, from: spec.title, id: spec.id, visibility: run.visibility }));
+    const it = ctx.instrument(spec).t;
+    return spec.instructions(run.result, it).map((c) => ({ ...c, from: it("title"), id: spec.id, visibility: run.visibility }));
   });
 
   if (!cards.length) {
     return html`<div class="empty">
-      <h2>Nothing to say yet</h2>
-      <p class="prose">Your instruction sheet is assembled from the tests you have taken. Take one and it starts filling in.</p>
-      <p><a class="btn primary" href="#/tests">Open the catalogue</a></p></div>`;
+      <h2>${t("sheet.emptyTitle")}</h2>
+      <p class="prose">${t("sheet.emptyBody")}</p>
+      <p><a class="btn primary" href="#/tests">${t("sheet.emptyAction")}</a></p></div>`;
   }
 
   const byChannel = {};
@@ -34,18 +35,18 @@ async function sheetPage(ctx) {
 
   const body = html`<article class="sheet" id="sheet">
     <header class="page-head">
-      <h2>${profile.displayName ? `Instructions for ${profile.displayName}` : "Instructions for a person"}</h2>
+      <h2>${profile.displayName ? t("sheet.titleNamed", { name: profile.displayName }) : t("sheet.titleAnon")}</h2>
       ${profile.note ? html`<p class="prose lead">${profile.note}</p>` : ""}
-      <p class="prose muted">${cards.length} lines from ${runs.length} instrument${runs.length > 1 ? "s" : ""}. ${shownPublicly} would be visible to others; the rest are private.</p>
+      <p class="prose muted">${t("sheet.summary", { lines: cards.length, instruments: runs.length, shown: shownPublicly })}</p>
       <div class="hero-actions">
-        <button type="button" class="btn" id="print">Print or save as PDF</button>
-        <a class="btn" href="#/profile">Edit heading</a>
+        <button type="button" class="btn" id="print">${t("sheet.print")}</button>
+        <a class="btn" href="#/profile">${t("sheet.editHeading")}</a>
       </div>
     </header>
 
     ${join(CHANNELS.filter((ch) => byChannel[ch]).map((ch) => html`
       <section class="plate">
-        <div class="plate-head"><h2>${CHANNEL_LABEL[ch]}</h2><span class="rule"></span><span class="label">${byChannel[ch].length}</span></div>
+        <div class="plate-head"><h2>${t(channelKey(ch))}</h2><span class="rule"></span><span class="label">${byChannel[ch].length}</span></div>
         <div class="cards">
           ${join(byChannel[ch].map((c) => html`<div class="card pad instruction-card vis-${c.visibility}">
             <h4>${c.title}</h4>
@@ -56,12 +57,15 @@ async function sheetPage(ctx) {
       </section>`))}
 
     ${missing.length ? html`<section class="plate">
-      <div class="plate-head"><h2>Still blank</h2><span class="rule"></span></div>
+      <div class="plate-head"><h2>${t("sheet.blankHeading")}</h2><span class="rule"></span></div>
       <div class="test-list">
-        ${join(missing.map((s) => html`<a class="test-card new" href="#/test/${s.id}">
-          <span class="test-glyph">${s.glyph}</span>
-          <div class="test-body"><h3>${s.title}</h3><p>${s.tagline}</p></div>
-          <span class="test-state new">${s.minutes} min</span></a>`))}
+        ${join(missing.map((s) => {
+          const it = ctx.instrument(s).t;
+          return html`<a class="test-card new" href="#/test/${s.id}">
+            <span class="test-glyph">${s.glyph}</span>
+            <div class="test-body"><h3>${it("title")}</h3><p>${it("tagline")}</p></div>
+            <span class="test-state new">${t("common.minutes", { count: s.minutes })}</span></a>`;
+        }))}
       </div>
     </section>` : ""}
   </article>`;

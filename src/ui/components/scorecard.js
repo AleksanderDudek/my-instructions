@@ -28,12 +28,17 @@ function barsHTML(rows, { showShare = false } = {}) {
   </div>`;
 }
 
-/** The headline: one dominant scale, named and explained. */
-function verdictHTML({ eyebrow, title, score, body }) {
+/**
+ * The headline: one dominant scale, named and explained.
+ *
+ * `t` is needed only for the verbal band beside the score, so it is optional —
+ * a caller with no score to show does not have to supply one.
+ */
+function verdictHTML({ eyebrow, title, score, body, t = (key) => key }) {
   return html`<div class="verdict">
     <span class="label">${eyebrow}</span>
     <h3>${title}</h3>
-    ${score != null ? html`<p class="verdict-score num">${score}<span> / 100 · ${band(score)}</span></p>` : ""}
+    ${score != null ? html`<p class="verdict-score num">${score}<span> / 100 · ${t(band(score))}</span></p>` : ""}
     <p class="prose">${body}</p>
   </div>`;
 }

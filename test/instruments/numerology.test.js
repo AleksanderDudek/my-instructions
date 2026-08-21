@@ -1,6 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { dr, sumd, reduceMaster, profile, match } from "../../src/instruments/numerology/compute.js";
+import { longDate } from "../../src/instruments/numerology/view.js";
+import { ANIMALS } from "../../src/instruments/numerology/data.js";
+
+/** match() renders its notes through `t`; the keys are enough to assert on. */
+const t = (key, vars) => (vars ? `${key} ${Object.values(vars).join(" ")}` : key);
 
 test("the digital root reduces to 1–9 and never yields 0 from a sum", () => {
   assert.equal(dr(9), 9);
@@ -22,8 +27,10 @@ test("master numbers survive reduction; everything else collapses to one digit",
 
 test("8 January 1993 produces the documented chart", () => {
   const p = profile(8, 1, 1993, "");
-  assert.equal(p.pretty, "8 January 1993");
-  assert.equal(p.weekday, "Friday");
+  // Dates are formatted at render time by Intl rather than stored as words,
+  // so the chart itself carries only the parts that mean the same everywhere.
+  assert.equal(longDate(p, "en-GB"), "8 January 1993");
+  assert.equal(p.weekdayIndex, 5);   // Friday
 
   assert.deepEqual([p.A, p.B, p.C], [1, 8, 4]);          // MM=01, DD=08, YYYY=1993 → 22 → 4
   assert.deepEqual([p.rise1, p.rise2], [9, 3]);          // 1+8=9 ; 8+4=12 → 3
@@ -53,8 +60,8 @@ test("the square counts digits of DDMMYYYY and ignores zeros", () => {
 test("comparison is symmetric and bounded", () => {
   const a = profile(8, 1, 1993, "A");
   const b = profile(14, 6, 1990, "B");
-  assert.equal(match(a, b).total, match(b, a).total);
-  assert.equal(match(a, b).unionNum, match(b, a).unionNum);
+  assert.equal(match(a, b, t).total, match(b, a, t).total);
+  assert.equal(match(a, b, t).unionNum, match(b, a, t).unionNum);
 });
 
 test("comparison scores stay within 0–100 across a wide sample", () => {
@@ -62,7 +69,7 @@ test("comparison scores stay within 0–100 across a wide sample", () => {
                  [31, 12, 2049], [23, 1, 1993], [15, 8, 1975], [3, 11, 1988]];
   for (const A of dates) {
     for (const B of dates) {
-      const m = match(profile(...A, ""), profile(...B, ""));
+      const m = match(profile(...A, ""), profile(...B, ""), t);
       assert.ok(m.total >= 0 && m.total <= 100, `${A} vs ${B} scored ${m.total}`);
       assert.ok(m.parts.every((p) => p.v >= 0 && p.v <= p.max));
       assert.ok(typeof m.band === "string" && m.band.length > 0);
@@ -74,11 +81,13 @@ test("opposite animals score worse than allied animals", () => {
   const rat = profile(1, 6, 1996, "");      // Rat
   const horse = profile(1, 6, 2002, "");    // Horse — six signs opposite
   const dragon = profile(1, 6, 2000, "");   // Dragon — same triad as Rat
-  assert.equal(rat.animal[0], "Rat");
-  assert.equal(horse.animal[0], "Horse");
-  assert.equal(dragon.animal[0], "Dragon");
+  const animal = (p) => ANIMALS[p.animalIdx][0];
+  assert.equal(animal(rat), "Rat");
+  assert.equal(animal(horse), "Horse");
+  assert.equal(animal(dragon), "Dragon");
 
-  const clash = match(rat, horse).parts.find((p) => p.t === "Chinese zodiac").v;
-  const ally = match(rat, dragon).parts.find((p) => p.t === "Chinese zodiac").v;
+  const zodiacPart = (m) => m.parts.find((p) => p.t === "match.part.zodiac").v;
+  const clash = zodiacPart(match(rat, horse, t));
+  const ally = zodiacPart(match(rat, dragon, t));
   assert.ok(ally > clash, `ally ${ally} should beat clash ${clash}`);
 });

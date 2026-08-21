@@ -1,5 +1,6 @@
 import { html, join } from "../../core/html.js";
 import { VISIBILITY } from "../../core/store.js";
+import { LOCALES } from "../../core/locales.js";
 import { stateOf } from "./catalog.js";
 
 /**
@@ -12,57 +13,65 @@ import { stateOf } from "./catalog.js";
  * than faked.
  */
 async function profilePage(ctx) {
-  const { store, registry } = ctx;
+  const { store, registry, t, locale } = ctx;
   const profile = await store.profile();
   const runs = await store.runs();
 
   const body = html`<article class="profile" id="profile">
-    <header class="page-head"><h2>Your panel</h2>
-      <p class="prose">Everything below lives in this browser. Clearing site data deletes it; there is no copy anywhere else.</p>
+    <header class="page-head"><h2>${t("profile.heading")}</h2>
+      <p class="prose">${t("profile.lead")}</p>
     </header>
 
     <section class="plate">
-      <div class="plate-head"><h2>Heading</h2><span class="rule"></span><span class="label">what appears above your instructions</span></div>
+      <div class="plate-head"><h2>${t("profile.languageSection")}</h2><span class="rule"></span><span class="label">${t("profile.languageNote")}</span></div>
+      <div class="card pad">
+        <div class="vis-row" id="lang" role="group" aria-label="${t("app.language")}">
+          ${join(LOCALES.map((l) => html`<button type="button" class="vis-btn${l.tag === locale ? " on" : ""}" data-locale="${l.tag}" lang="${l.tag}">${l.endonym}</button>`))}
+        </div>
+      </div>
+    </section>
+
+    <section class="plate">
+      <div class="plate-head"><h2>${t("profile.headingSection")}</h2><span class="rule"></span><span class="label">${t("profile.headingNote")}</span></div>
       <form class="card pad fields" id="profile-form">
-        <div class="field"><label class="label" for="p-name">Display name</label>
-          <input id="p-name" name="displayName" type="text" value="${profile.displayName}" placeholder="How you want to be addressed" autocomplete="off"></div>
-        <div class="field"><label class="label" for="p-pron">Pronouns</label>
-          <input id="p-pron" name="pronouns" type="text" value="${profile.pronouns}" placeholder="Optional" autocomplete="off"></div>
-        <div class="field wide"><label class="label" for="p-note">Opening line</label>
-          <textarea id="p-note" name="note" rows="3" placeholder="One sentence at the top of your sheet. Optional.">${profile.note}</textarea></div>
-        <div class="field wide"><button type="button" class="btn primary" id="save-profile">Save</button>
+        <div class="field"><label class="label" for="p-name">${t("profile.displayName")}</label>
+          <input id="p-name" name="displayName" type="text" value="${profile.displayName}" placeholder="${t("profile.displayNamePlaceholder")}" autocomplete="off"></div>
+        <div class="field"><label class="label" for="p-pron">${t("profile.pronouns")}</label>
+          <input id="p-pron" name="pronouns" type="text" value="${profile.pronouns}" placeholder="${t("profile.pronounsPlaceholder")}" autocomplete="off"></div>
+        <div class="field wide"><label class="label" for="p-note">${t("profile.opening")}</label>
+          <textarea id="p-note" name="note" rows="3" placeholder="${t("profile.openingPlaceholder")}">${profile.note}</textarea></div>
+        <div class="field wide"><button type="button" class="btn primary" id="save-profile">${t("profile.save")}</button>
           <span class="warn" id="profile-msg" role="status"></span></div>
       </form>
     </section>
 
     <section class="plate">
-      <div class="plate-head"><h2>Results</h2><span class="rule"></span><span class="label">${runs.length} recorded</span></div>
+      <div class="plate-head"><h2>${t("profile.resultsSection")}</h2><span class="rule"></span><span class="label">${t("profile.resultsCount", { count: runs.length })}</span></div>
       ${runs.length ? html`<div class="run-table">
         ${join(runs.map((r) => {
           const spec = registry.get(r.instrumentId);
-          if (!spec) return html`<div class="run-row orphan"><span>${r.instrumentId}</span><span class="label">instrument no longer installed</span></div>`;
-          const state = stateOf(r, spec);
+          if (!spec) return html`<div class="run-row orphan"><span>${r.instrumentId}</span><span class="label">${t("profile.orphan")}</span></div>`;
+          const it = ctx.instrument(spec).t;
+          const state = stateOf(r, spec, locale);
           return html`<div class="run-row" data-id="${spec.id}">
-            <a class="run-name" href="#/test/${spec.id}/result"><span class="test-glyph">${spec.glyph}</span>${spec.title}</a>
-            <span class="label ${state.key}">${state.label}</span>
-            <span class="vis-row small" role="group" aria-label="Visibility for ${spec.title}">
-              ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${r.visibility === v ? " on" : ""}" data-vis="${v}" data-id="${spec.id}">${v}</button>`))}
+            <a class="run-name" href="#/test/${spec.id}/result"><span class="test-glyph">${spec.glyph}</span>${it("title")}</a>
+            <span class="label ${state.key}">${t(state.messageKey, state.vars)}</span>
+            <span class="vis-row small" role="group" aria-label="${t("profile.visFor", { test: it("title") })}">
+              ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${r.visibility === v ? " on" : ""}" data-vis="${v}" data-id="${spec.id}">${t(`vis.${v}`)}</button>`))}
             </span>
           </div>`;
         }))}
-      </div>` : html`<p class="prose muted">Nothing yet. <a href="#/tests">Take something.</a></p>`}
+      </div>` : html`<p class="prose muted">${t("profile.noResults")} <a href="#/tests">${t("profile.noResultsAction")}</a></p>`}
     </section>
 
     <section class="plate">
-      <div class="plate-head"><h2>Your data</h2><span class="rule"></span></div>
+      <div class="plate-head"><h2>${t("profile.dataSection")}</h2><span class="rule"></span></div>
       <div class="card pad">
-        <p class="prose">${store.durable
-          ? "Storage is working. Answers survive a reload."
-          : "This browser is refusing to store data — private mode, or storage disabled. The app still runs, but everything vanishes on reload."}</p>
+        <p class="prose">${store.durable ? t("profile.storageOk") : t("profile.storageBad")}</p>
         <div class="share-row">
-          <button type="button" class="btn" id="export">Export everything</button>
-          <label class="btn" for="import-file">Import a file<input type="file" id="import-file" accept="application/json" hidden></label>
-          <button type="button" class="btn danger" id="wipe">Delete everything</button>
+          <button type="button" class="btn" id="export">${t("profile.export")}</button>
+          <label class="btn" for="import-file">${t("profile.import")}<input type="file" id="import-file" accept="application/json" hidden></label>
+          <button type="button" class="btn danger" id="wipe">${t("profile.wipe")}</button>
         </div>
         <p class="warn" id="data-msg" role="status"></p>
       </div>
@@ -70,6 +79,16 @@ async function profilePage(ctx) {
   </article>`;
 
   function mount(root) {
+    // Changing language reloads rather than re-rendering in place. Every page
+    // holds strings resolved at render time, and a reload is one honest line
+    // against a re-render pass that would have to reach into seven of them.
+    root.querySelector("#lang").addEventListener("click", async (e) => {
+      const btn = e.target.closest("[data-locale]");
+      if (!btn || btn.dataset.locale === locale) return;
+      await store.saveSettings({ locale: btn.dataset.locale });
+      location.reload();
+    });
+
     root.querySelector("#save-profile").addEventListener("click", async () => {
       const form = root.querySelector("#profile-form");
       await store.saveProfile({
@@ -77,7 +96,7 @@ async function profilePage(ctx) {
         pronouns: form.pronouns.value.trim(),
         note: form.note.value.trim(),
       });
-      root.querySelector("#profile-msg").textContent = "Saved.";
+      root.querySelector("#profile-msg").textContent = t("profile.saved");
     });
 
     root.querySelector(".run-table")?.addEventListener("click", async (e) => {
@@ -103,7 +122,7 @@ async function profilePage(ctx) {
       if (!file) return;
       try {
         await store.importAll(JSON.parse(await file.text()));
-        msg.textContent = "Imported.";
+        msg.textContent = t("profile.imported");
         ctx.router.go("/profile", { replace: true });
         location.reload();
       } catch (err) {
@@ -114,7 +133,7 @@ async function profilePage(ctx) {
     root.querySelector("#wipe").addEventListener("click", async (e) => {
       if (e.target.dataset.armed !== "1") {
         e.target.dataset.armed = "1";
-        e.target.textContent = "Delete everything — click again";
+        e.target.textContent = t("profile.wipeConfirm");
         return;
       }
       await store.wipe();

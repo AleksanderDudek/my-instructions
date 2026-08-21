@@ -21,11 +21,17 @@ function encode(run, name = "") {
   return toB64Url(JSON.stringify({ v: VERSION, i: run.instrumentId, r: run.instrumentVersion, n: name, a: run.answers }));
 }
 
-function decode(token) {
+/**
+ * `t` is passed in rather than imported: this module is the boundary between
+ * two people's browsers, and it must stay usable from a test with no locale
+ * loaded. The identity default renders the key, which is wrong for a reader
+ * and exactly right for an assertion.
+ */
+function decode(token, t = (key) => key) {
   let data;
-  try { data = JSON.parse(fromB64Url(token)); } catch { throw new Error("That share link is not readable."); }
-  if (data?.v !== VERSION) throw new Error(`That link was made by a different version of the app (${data?.v}).`);
-  if (!data.i || typeof data.a !== "object") throw new Error("That share link is missing its answers.");
+  try { data = JSON.parse(fromB64Url(token)); } catch { throw new Error(t("error.shareUnreadable")); }
+  if (data?.v !== VERSION) throw new Error(t("error.shareVersion", { version: data?.v }));
+  if (!data.i || typeof data.a !== "object") throw new Error(t("error.shareMissing"));
   return { instrumentId: data.i, instrumentVersion: data.r ?? null, name: data.n ?? "", answers: data.a };
 }
 

@@ -1,7 +1,7 @@
 import { html, raw, esc } from "../../core/html.js";
 import { profile, match } from "./compute.js";
 import { daysIn } from "./calendar.js";
-import { NUM, MONTHS } from "./data.js";
+import { ELEMENTS } from "./data.js";
 import { pyramidSVG, squareHTML, identityHTML, meaningsHTML, duelCard } from "./view.js";
 
 /**
@@ -17,28 +17,34 @@ import { pyramidSVG, squareHTML, identityHTML, meaningsHTML, duelCard } from "./
  * whatsoever, and the copy says so rather than hedging.
  */
 
-const MONTH_OPTIONS = MONTHS.map((label, i) => ({ value: i + 1, label }));
+/** Month names come from the platform, so the picker follows the reader's locale. */
+function monthOptions(locale) {
+  const format = new Intl.DateTimeFormat(locale, { month: "long" });
+  return Array.from({ length: 12 }, (_, i) => ({ value: i + 1, label: format.format(new Date(2001, i, 1)) }));
+}
 
-function form() {
+function form(t, locale = "en") {
   return {
     kind: "fields",
     fields: [
-      { id: "name", kind: "text", label: "Name", placeholder: "Optional", optional: true },
-      { id: "day", kind: "number", label: "Day", min: 1, max: 31, value: 8 },
-      { id: "month", kind: "select", label: "Month", options: MONTH_OPTIONS, value: 1 },
-      { id: "year", kind: "number", label: "Year", min: 1900, max: 2050, value: 1993 },
+      { id: "name", kind: "text", label: t("form.name"), placeholder: t("form.namePlaceholder"), optional: true },
+      { id: "day", kind: "number", label: t("form.day"), min: 1, max: 31, value: 8 },
+      { id: "month", kind: "select", label: t("form.month"), options: monthOptions(locale), value: 1 },
+      { id: "year", kind: "number", label: t("form.year"), min: 1900, max: 2050, value: 1993 },
     ],
-    note: "The Chinese animal turns at Chinese New Year, not on 1 January — outside 1900–2050 that boundary is estimated at 4 February.",
+    note: t("form.note"),
   };
 }
 
 /** Field-level validation, run before `score`. Returns { fieldId: message }. */
-function validate(answers) {
+function validate(answers, t = (key) => key) {
   const errors = {};
   const d = Number(answers.day), m = Number(answers.month), y = Number(answers.year);
-  if (!Number.isInteger(y) || y < 1 || y > 3000) errors.year = "Enter a four-digit year.";
-  if (!Number.isInteger(d) || d < 1) errors.day = "Enter a day.";
-  else if (Number.isInteger(y) && Number.isInteger(m) && d > daysIn(m, y)) errors.day = `${MONTHS[m - 1]} ${y} has ${daysIn(m, y)} days.`;
+  if (!Number.isInteger(y) || y < 1 || y > 3000) errors.year = t("form.badYear");
+  if (!Number.isInteger(d) || d < 1) errors.day = t("form.badDay");
+  else if (Number.isInteger(y) && Number.isInteger(m) && d > daysIn(m, y)) {
+    errors.day = t("form.shortMonth", { month: new Intl.DateTimeFormat("en", { month: "long" }).format(new Date(2001, m - 1, 1)), year: y, days: daysIn(m, y) });
+  }
   return errors;
 }
 
@@ -47,22 +53,22 @@ function score(answers) {
   return { ...p, outOfRange: p.y < 1900 || p.y > 2050 };
 }
 
-function view(result) {
+function view(result, { t, locale = "en" }) {
   return html`
-    ${raw(identityHTML(result))}
+    ${raw(identityHTML(result, t, locale))}
     <section class="sub-plate">
-      <h4>The pyramid <span class="label">sums rise · differences fall</span></h4>
-      <div class="card pad">${raw(pyramidSVG(result))}</div>
+      <h4>${t("view.pyramidHeading")} <span class="label">${t("view.pyramidNote")}</span></h4>
+      <div class="card pad">${raw(pyramidSVG(result, t, locale))}</div>
     </section>
     <section class="sub-plate">
-      <h4>Square of nine <span class="label">occurrences in the date</span></h4>
-      <div class="card pad">${raw(squareHTML(result))}</div>
+      <h4>${t("view.squareHeading")} <span class="label">${t("view.squareNote")}</span></h4>
+      <div class="card pad">${raw(squareHTML(result, t))}</div>
     </section>
     <section class="sub-plate">
-      <h4>What the numbers carry <span class="label">1 – 9</span></h4>
-      ${raw(meaningsHTML(result))}
+      <h4>${t("view.meaningsHeading")} <span class="label">1 – 9</span></h4>
+      ${raw(meaningsHTML(result, t))}
     </section>
-    ${result.outOfRange ? html`<div class="note warn-note prose"><p>This date falls outside 1900–2050, so the Chinese New Year boundary is estimated at 4 February and the animal may be wrong by a few weeks.</p></div>` : ""}`;
+    ${result.outOfRange ? html`<div class="note warn-note prose"><p>${t("view.outOfRange")}</p></div>` : ""}`;
 }
 
 /**
@@ -73,24 +79,38 @@ function view(result) {
  * `rhythm`, the channel reserved for things that are true because the person
  * says so.
  */
-function instructions(result) {
-  const d = NUM[result.destiny.value];
+function instructions(result, t) {
+  const n = result.destiny.value;
   return [
-    { channel: "rhythm", title: `Destiny ${result.destiny.value} — ${d[0]}`, body: d[1] },
-    { channel: "rhythm", title: `${result.element} ${result.animal[0]}, ${result.sign}`, body: `${result.animal[2]} ${result.signBlurb}` },
+    {
+      channel: "rhythm",
+      title: t("instructions.destinyTitle", { number: n, name: t(`num.${n}.name`) }),
+      body: t(`num.${n}.blurb`),
+    },
+    {
+      channel: "rhythm",
+      title: t("instructions.signsTitle", {
+        element: t(`element.${ELEMENTS[result.elementIdx]}`),
+        animal: t(`animal.${result.animalIdx}.name`),
+        sign: t(`sign.${result.sign}.name`),
+      }),
+      body: `${t(`animal.${result.animalIdx}.blurb`)} ${t(`sign.${result.sign}.blurb`)}`,
+    },
   ];
 }
 
-function compare(a, b, { nameA, nameB } = {}) {
-  const m = match(a, b);
+function compare(a, b, { nameA, nameB, t, locale = "en" }) {
+  const m = match(a, b, t);
   const list = (arr) =>
-    arr.length ? arr.map((n) => `<span class="chip on">${n} ${esc(NUM[n][0].replace("The ", ""))}</span>`).join("") : `<span class="chip off">nothing the other lacks</span>`;
+    arr.length
+      ? arr.map((n) => `<span class="chip on">${n} ${esc(t(`num.${n}.inline`))}</span>`).join("")
+      : `<span class="chip off">${esc(t("compare.nothingToAdd"))}</span>`;
   return html`
-    <div class="duel">${raw(duelCard(a, "var(--brass)"))}${raw(duelCard(b, "var(--verdigris)"))}</div>
+    <div class="duel">${raw(duelCard(a, "var(--brass)", t, locale))}${raw(duelCard(b, "var(--verdigris)", t, locale))}</div>
     <div class="meter">
       <div class="meter-top">
-        <div><span class="label">Composite</span><br><strong class="num" id="score" data-total="${m.total}">0</strong><span class="num meter-of"> / 100</span></div>
-        <div class="meter-verdict"><span class="label">Verdict</span><br><span class="meter-band">${m.band}</span></div>
+        <div><span class="label">${t("compare.composite")}</span><br><strong class="num" id="score" data-total="${m.total}">0</strong><span class="num meter-of"> / 100</span></div>
+        <div class="meter-verdict"><span class="label">${t("compare.verdict")}</span><br><span class="meter-band">${m.band}</span></div>
       </div>
       <div class="meter-bar"><div class="meter-fill" id="fill" data-w="${m.total}"></div></div>
     </div>
@@ -103,23 +123,24 @@ function compare(a, b, { nameA, nameB } = {}) {
         </div>`).join(""))}
     </div>
     <div class="exchange">
-      <div><span class="label">${nameA || "First"} supplies</span><div class="chips">${raw(list(m.aFills))}</div></div>
-      <div><span class="label">${nameB || "Second"} supplies</span><div class="chips">${raw(list(m.bFills))}</div></div>
+      <div><span class="label">${t("compare.supplies", { name: nameA || t("compare.first") })}</span><div class="chips">${raw(list(m.aFills))}</div></div>
+      <div><span class="label">${t("compare.supplies", { name: nameB || t("compare.second") })}</span><div class="chips">${raw(list(m.bFills))}</div></div>
     </div>
-    <p class="prose">Their destiny numbers combine to <strong class="num accent">${m.unionNum}</strong> — <strong>${NUM[m.unionNum][0]}</strong>. ${NUM[m.unionNum][1]}</p>`;
+    <p class="prose">${t("compare.union", { number: m.unionNum, name: t(`num.${m.unionNum}.name`), blurb: t(`num.${m.unionNum}.blurb`) })}</p>`;
 }
 
 export default {
   id: "numerology",
   version: 1,
   family: "profiler",
-  title: "Numerology",
-  tagline: "A birth date, reduced. Zodiacs east and west, the destiny number, the pyramid, the square of nine.",
   glyph: "9",
   minutes: 1,
-  framework: "Pythagorean numerology, Chinese and Western zodiac",
-  sourceNote:
-    "Traditional systems, computed exactly as the traditions specify — including the Chinese New Year boundary that most software gets wrong. No part of it is empirically supported. It is here for the vocabulary, not the prediction.",
   channels: ["rhythm"],
+  messages: {
+    en: () => import("./i18n/en.js"),
+    pl: () => import("./i18n/pl.js"),
+    es: () => import("./i18n/es.js"),
+    de: () => import("./i18n/de.js"),
+  },
   form, validate, score, view, instructions, compare,
 };

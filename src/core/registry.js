@@ -13,15 +13,23 @@
  *
  * The contract:
  *
- *   id           stable slug; also the storage key and the URL segment
+ *   id           stable slug; also the storage key, the URL segment, and the
+ *                namespace its messages are loaded under
  *   version      bump when items or scoring change; stored beside every run so
  *                an old result can be shown as stale instead of silently wrong
  *   family       "questionnaire" | "profiler"
- *   title, tagline, glyph, minutes, framework, sourceNote
- *   form()       -> { kind:"items", items:[...] } | { kind:"fields", fields:[...] }
- *   score(answers) -> result object, free-form, stored verbatim
- *   view(result, ctx) -> html`` for the result page
- *   instructions(result) -> [{ channel, title, body }]  the shareable lines
+ *   glyph, minutes   presentation facts that carry no words
+ *   messages     { en: () => import("./i18n/en.js"), ... } one loader per
+ *                locale. Title, tagline, framework and source note live in
+ *                there with everything else the reader sees.
+ *   form(t, locale) -> { kind:"items", items:[...] } | { kind:"fields", fields:[...] }
+ *   score(answers) -> result object, free-form, stored verbatim. Takes no `t`
+ *                and returns no words: a result computed in Polish must be
+ *                identical to the same answers computed in English, or
+ *                comparing two people across languages is meaningless.
+ *   view(result, ctx) -> html`` for the result page; ctx.t is scoped to this
+ *                instrument
+ *   instructions(result, t) -> [{ channel, title, body }]  the shareable lines
  *   compare(a, b) -> optional; two results, one reading. The seed of the
  *                    friend-to-friend feature.
  */
@@ -29,16 +37,17 @@
 const FAMILIES = new Set(["questionnaire", "profiler"]);
 const CHANNELS = ["communication", "affection", "work", "conflict", "energy", "rhythm"];
 
-const CHANNEL_LABEL = {
-  communication: "How to talk to me",
-  affection: "How to show you care",
-  work: "How to work with me",
-  conflict: "When we clash",
-  energy: "What drains and restores me",
-  rhythm: "My grain",
-};
+/** Message key for a channel's heading. */
+const channelKey = (channel) => `channel.${channel}`;
 
-const REQUIRED = ["id", "version", "family", "title", "tagline", "form", "score", "view", "instructions"];
+const REQUIRED = ["id", "version", "family", "glyph", "minutes", "messages", "form", "score", "view", "instructions"];
+
+/**
+ * Validation renders no words, so it needs no language. An identity `t`
+ * returns its own key, which is enough to check that every item has *a*
+ * prompt without asserting anything about what the prompt says.
+ */
+const identity = (key) => key;
 
 function validate(spec) {
   const where = spec?.id ? `instrument "${spec.id}"` : "instrument";
@@ -51,7 +60,9 @@ function validate(spec) {
   }
   if (spec.compare != null && typeof spec.compare !== "function") throw new TypeError(`${where}: "compare" must be a function`);
 
-  const form = spec.form();
+  if (typeof spec.messages?.en !== "function") throw new TypeError(`${where}: messages.en must be a loader function`);
+
+  const form = spec.form(identity, "en");
   if (form.kind === "items") validateItems(spec, form.items);
   else if (form.kind === "fields") validateFields(spec, form.fields);
   else throw new TypeError(`${where}: form.kind must be "items" or "fields"`);
@@ -100,11 +111,11 @@ function createRegistry() {
     /** Grouped for the catalogue page, in registration order within each group. */
     groups() {
       return [
-        { family: "profiler", label: "Profilers", note: "Facts about you, read as a pattern.", items: this.byFamily("profiler") },
-        { family: "questionnaire", label: "Tests", note: "Questions you answer. Scored.", items: this.byFamily("questionnaire") },
+        { family: "profiler", labelKey: "catalog.group.profilers", noteKey: "catalog.group.profilersNote", items: this.byFamily("profiler") },
+        { family: "questionnaire", labelKey: "catalog.group.tests", noteKey: "catalog.group.testsNote", items: this.byFamily("questionnaire") },
       ].filter((g) => g.items.length);
     },
   };
 }
 
-export { createRegistry, validate, CHANNELS, CHANNEL_LABEL, FAMILIES };
+export { createRegistry, validate, CHANNELS, channelKey, FAMILIES, identity };

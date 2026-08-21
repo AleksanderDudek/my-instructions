@@ -1,6 +1,9 @@
 import { html, join, str } from "../core/html.js";
 import { createRouter } from "../core/router.js";
+import { createI18n } from "../core/i18n.js";
+import { DEFAULT_LOCALE, resolveLocale, loadMessages } from "../core/locales.js";
 import { makeStore, LocalAdapter } from "../core/store.js";
+import { makeContext } from "./context.js";
 import { registry } from "../instruments/index.js";
 import { homePage } from "./pages/home.js";
 import { catalogPage } from "./pages/catalog.js";
@@ -21,17 +24,37 @@ import { comparePage } from "./pages/compare.js";
  */
 
 const NAV = [
-  ["/", "Home"],
-  ["/tests", "Tests"],
-  ["/instructions", "My instructions"],
-  ["/profile", "Panel"],
+  ["/", "nav.home"],
+  ["/tests", "nav.tests"],
+  ["/instructions", "nav.instructions"],
+  ["/profile", "nav.panel"],
 ];
 
-function boot() {
+/**
+ * English is loaded alongside the reader's language and stands behind it. A
+ * key a translator has not reached yet then renders in English rather than
+ * leaving a hole in the page — a safety net, not a workflow: the parity test
+ * fails on any gap before a locale ships.
+ */
+async function loadLocale(store) {
+  const settings = await store.settings();
+  const preferred = globalThis.navigator?.languages ?? [globalThis.navigator?.language].filter(Boolean);
+  const locale = resolveLocale(settings.locale, preferred);
+  const instruments = registry.all();
+  const messages = await loadMessages(instruments, locale);
+  const fallbackMessages = locale === DEFAULT_LOCALE ? messages : await loadMessages(instruments, DEFAULT_LOCALE);
+  return createI18n({ locale, messages, fallbackMessages });
+}
+
+async function boot() {
   const store = makeStore(new LocalAdapter(globalThis.localStorage ?? {}));
+  const i18n = await loadLocale(store);
   const root = document.getElementById("view");
   const nav = document.getElementById("nav");
-  const ctx = { store, registry };
+  const ctx = makeContext({ store, registry, i18n });
+
+  document.documentElement.lang = i18n.locale;
+  document.title = i18n.t("app.title");
 
   let seq = 0;
   const router = createRouter({
@@ -46,16 +69,16 @@ function boot() {
       animate(root);
       if (!route.path.startsWith("/test/") || route.path.endsWith("/result")) scrollTo({ top: 0, behavior: "instant" });
     },
-    fallback: async () => html`<div class="empty"><h2>Nothing here</h2>
-      <p class="prose">That address does not correspond to a page.</p>
-      <p><a class="btn primary" href="#/">Go home</a></p></div>`,
+    fallback: async () => html`<div class="empty"><h2>${i18n.t("error.notFoundTitle")}</h2>
+      <p class="prose">${i18n.t("error.notFoundBody")}</p>
+      <p><a class="btn primary" href="#/">${i18n.t("common.goHome")}</a></p></div>`,
   });
   ctx.router = router;
 
   function paintNav(path) {
-    nav.innerHTML = str(join(NAV.map(([href, label]) => {
+    nav.innerHTML = str(join(NAV.map(([href, key]) => {
       const on = href === "/" ? path === "/" : path.startsWith(href);
-      return html`<a href="#${href}" class="${on ? "on" : ""}" ${on ? html`aria-current="page"` : ""}>${label}</a>`;
+      return html`<a href="#${href}" class="${on ? "on" : ""}" ${on ? html`aria-current="page"` : ""}>${i18n.t(key)}</a>`;
     })));
   }
 

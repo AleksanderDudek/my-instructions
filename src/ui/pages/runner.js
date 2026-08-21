@@ -29,15 +29,20 @@ function shuffled(ids, seed) {
 
 async function runnerPage(ctx, { id }) {
   const spec = ctx.registry.get(id);
-  if (!spec) return { body: html`<div class="empty"><h2>No such test</h2><p><a class="btn" href="#/tests">Back to the catalogue</a></p></div>` };
-  const form = spec.form();
-  return form.kind === "items" ? questionnaire(ctx, spec, form) : profiler(ctx, spec, form);
+  if (!spec) {
+    return { body: html`<div class="empty"><h2>${ctx.t("runner.noSuchTest")}</h2>
+      <p><a class="btn" href="#/tests">${ctx.t("runner.backToCatalogue")}</a></p></div>` };
+  }
+  const scoped = ctx.instrument(spec);
+  const form = spec.form(scoped.t, ctx.locale);
+  return form.kind === "items" ? questionnaire(ctx, scoped, spec, form) : profiler(ctx, scoped, spec, form);
 }
 
 /* ══ questionnaire ════════════════════════════════════════════════ */
 
-async function questionnaire(ctx, spec, form) {
-  const { store, router } = ctx;
+async function questionnaire(ctx, scoped, spec, form) {
+  const { store, router, t } = ctx;
+  const it = scoped.t;
   const existing = await store.run(spec.id);
   const draft = (await store.draft(spec.id)) ?? null;
 
@@ -57,9 +62,9 @@ async function questionnaire(ctx, spec, form) {
 
   const body = html`<article class="runner" id="runner" data-instrument="${spec.id}">
     <header class="runner-head">
-      <a class="back" href="#/tests">← All tests</a>
-      <h2>${spec.title}</h2>
-      <p class="prose">${spec.tagline}</p>
+      <a class="back" href="#/tests">${t("common.allTests")}</a>
+      <h2>${it("title")}</h2>
+      <p class="prose">${it("tagline")}</p>
     </header>
     <div id="runner-body"></div>
   </article>`;
@@ -72,18 +77,18 @@ async function questionnaire(ctx, spec, form) {
     return str(html`
       <div class="runner-progress">
         <div class="rp-bar"><i style="width:${Math.round((answered / order.length) * 100)}%"></i></div>
-        <span class="rp-count num">${answered} / ${order.length}</span>
+        <span class="rp-count num">${t("runner.count", { answered, total: order.length })}</span>
       </div>
       <form class="items" id="item-form">
-        ${join(slice.map((key, i) => itemHTML(byId.get(key), state.answers[key], form.scale, state.page * state.pageSize + i)))}
+        ${join(slice.map((key, i) => itemHTML(byId.get(key), state.answers[key], form.scale, state.page * state.pageSize + i, t)))}
       </form>
       <nav class="runner-nav">
-        <button type="button" class="btn" id="prev" ${raw(state.page === 0 ? "disabled" : "")}>Back</button>
-        <span class="rp-page label">Page ${state.page + 1} of ${pages}</span>
+        <button type="button" class="btn" id="prev" ${raw(state.page === 0 ? "disabled" : "")}>${t("common.back")}</button>
+        <span class="rp-page label">${t("runner.page", { page: state.page + 1, pages })}</span>
         ${last
           ? html`<button type="button" class="btn primary" id="finish" ${raw(answered < order.length ? "disabled" : "")}>
-              ${answered < order.length ? `${order.length - answered} left` : "See my result"}</button>`
-          : html`<button type="button" class="btn primary" id="next" ${raw(pageDone ? "" : "disabled")}>Next</button>`}
+              ${answered < order.length ? t("runner.remaining", { count: order.length - answered }) : t("runner.finish")}</button>`
+          : html`<button type="button" class="btn primary" id="next" ${raw(pageDone ? "" : "disabled")}>${t("runner.next")}</button>`}
       </nav>`);
   }
 
@@ -143,16 +148,17 @@ async function questionnaire(ctx, spec, form) {
 
 /* ══ profiler ═════════════════════════════════════════════════════ */
 
-async function profiler(ctx, spec, form) {
-  const { store, router } = ctx;
+async function profiler(ctx, scoped, spec, form) {
+  const { store, router, t } = ctx;
+  const it = scoped.t;
   const existing = await store.run(spec.id);
   const state = { values: { ...(existing?.answers ?? {}) }, errors: {} };
 
   const body = html`<article class="runner" id="runner" data-instrument="${spec.id}">
     <header class="runner-head">
-      <a class="back" href="#/tests">← All tests</a>
-      <h2>${spec.title}</h2>
-      <p class="prose">${spec.tagline}</p>
+      <a class="back" href="#/tests">${t("common.allTests")}</a>
+      <h2>${it("title")}</h2>
+      <p class="prose">${it("tagline")}</p>
     </header>
     <div id="runner-body"></div>
   </article>`;
@@ -160,11 +166,11 @@ async function profiler(ctx, spec, form) {
   function pageHTML() {
     return str(html`
       <form class="fields" id="field-form">
-        ${join(form.fields.map((f) => fieldHTML(f, state.values[f.id], state.errors[f.id])))}
+        ${join(form.fields.map((f) => fieldHTML(f, state.values[f.id], state.errors[f.id], t)))}
       </form>
       ${form.note ? html`<p class="note prose">${form.note}</p>` : ""}
       <nav class="runner-nav"><span></span><span></span>
-        <button type="button" class="btn primary" id="finish">See my result</button></nav>`);
+        <button type="button" class="btn primary" id="finish">${t("runner.finish")}</button></nav>`);
   }
 
   function read(root) {
@@ -180,7 +186,7 @@ async function profiler(ctx, spec, form) {
     host.addEventListener("click", async (e) => {
       if (!e.target.closest("#finish")) return;
       state.values = read(host);
-      state.errors = spec.validate ? spec.validate(state.values) : {};
+      state.errors = spec.validate ? spec.validate(state.values, it) : {};
       if (Object.keys(state.errors).length) { paint(); return; }
       await store.saveRun({
         instrumentId: spec.id,

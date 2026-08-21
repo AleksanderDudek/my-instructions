@@ -1,7 +1,7 @@
 import { html, join } from "../../core/html.js";
-import { SCALES, scoreLikert, shares, rank } from "../../core/scoring.js";
+import { scaleFor, scoreLikert, shares, rank } from "../../core/scoring.js";
 import { barsHTML, verdictHTML, factsHTML } from "../../ui/components/scorecard.js";
-import { LANGUAGES, ORDER, ITEMS } from "./items.js";
+import { GLYPHS, ORDER, ITEMS } from "./items.js";
 
 /**
  * Two numbers are reported for every language and they answer different
@@ -13,7 +13,7 @@ import { LANGUAGES, ORDER, ITEMS } from "./items.js";
  * tells them how much is at stake.
  */
 
-const scale = SCALES.true5;
+const scale = scaleFor("true5", (key) => key);
 
 function score(answers) {
   const { scores, answered, total } = scoreLikert(ITEMS, answers, scale);
@@ -28,51 +28,48 @@ function score(answers) {
   return { scores, shares: pct, ranked, primary, secondary, quiet, flat, answered, total };
 }
 
-const rows = (r) =>
-  r.ranked.map((x) => ({ key: x.key, label: LANGUAGES[x.key].label, score: x.score, share: x.share, blurb: LANGUAGES[x.key].blurb }));
+const rows = (result, t) =>
+  result.ranked.map((x) => ({ key: x.key, label: t(`lang.${x.key}.label`), score: x.score, share: x.share, blurb: t(`lang.${x.key}.blurb`) }));
 
-function view(result) {
-  const p = LANGUAGES[result.primary.key];
-  const s = LANGUAGES[result.secondary.key];
+function view(result, { t }) {
+  const p = result.primary.key;
+  const s = result.secondary.key;
   return html`
     ${verdictHTML({
-      eyebrow: "Primary language",
-      title: `${p.glyph} ${p.label}`,
+      t,
+      eyebrow: t("view.eyebrow"),
+      title: `${GLYPHS[p]} ${t(`lang.${p}.label`)}`,
       score: result.primary.score,
-      body: `${p.fed} ${p.starved}`,
+      body: `${t(`lang.${p}.fed`)} ${t(`lang.${p}.starved`)}`,
     })}
-    ${barsHTML(rows(result), { showShare: true })}
+    ${barsHTML(rows(result, t), { showShare: true })}
     ${factsHTML([
-      ["Primary", `${p.label} — ${result.primary.share}% of the mix`],
-      ["Secondary", `${s.label} — ${result.secondary.share}%`],
-      ["Quiet", result.quiet.length ? result.quiet.map((k) => LANGUAGES[k].label).join(", ") : "none — every language registers"],
-      ["Profile", result.flat ? "Even. No single channel dominates; consistency matters more than choosing right." : "Peaked. One channel carries most of the weight."],
+      [t("view.fact.primary"), t("view.fact.primaryValue", { label: t(`lang.${p}.label`), share: result.primary.share })],
+      [t("view.fact.secondary"), t("view.fact.secondaryValue", { label: t(`lang.${s}.label`), share: result.secondary.share })],
+      [t("view.fact.quiet"), result.quiet.length ? result.quiet.map((k) => t(`lang.${k}.label`)).join(", ") : t("view.fact.quietNone")],
+      [t("view.fact.profile"), result.flat ? t("view.fact.profileEven") : t("view.fact.profilePeaked")],
     ])}
     <div class="note prose">
-      <p>${result.flat
-        ? "Your five scores sit close together. That is not indecision — it means you read affection through several channels at once, and a partner who only ever uses one of them will feel like they are trying, and you will feel unmet. Both of you will be right."
-        : `Most of what reaches you comes through ${p.label.toLowerCase()}. Effort spent in the other four is not wasted, but it does not substitute.`}</p>
+      <p>${result.flat ? t("view.noteEven") : t("view.notePeaked", { language: t(`lang.${p}.inline`) })}</p>
     </div>`;
 }
 
-function instructions(result) {
-  const p = LANGUAGES[result.primary.key];
-  const s = LANGUAGES[result.secondary.key];
+function instructions(result, t) {
+  const p = result.primary.key;
+  const s = result.secondary.key;
   const out = [
-    { channel: "affection", title: `Lead with ${p.label.toLowerCase()}`, body: p.ask },
-    { channel: "affection", title: `Then ${s.label.toLowerCase()}`, body: s.ask },
-    { channel: "conflict", title: "How I read distance", body: p.starved },
+    { channel: "affection", title: t("instructions.leadWith", { language: t(`lang.${p}.inline`) }), body: t(`lang.${p}.ask`) },
+    { channel: "affection", title: t("instructions.then", { language: t(`lang.${s}.inline`) }), body: t(`lang.${s}.ask`) },
+    { channel: "conflict", title: t("instructions.distance"), body: t(`lang.${p}.starved`) },
   ];
   for (const key of result.quiet) {
     out.push({
       channel: "affection",
-      title: `${LANGUAGES[key].label} lands lightly`,
-      body: `Not an insult — just a channel I barely receive on. Effort here reads as effort, not as love. Spend it elsewhere.`,
+      title: t("instructions.quietTitle", { language: t(`lang.${key}.label`) }),
+      body: t("instructions.quietBody"),
     });
   }
-  if (result.flat) {
-    out.push({ channel: "affection", title: "No shortcuts", body: "My channels are evenly weighted. Consistency across all five beats intensity in one." });
-  }
+  if (result.flat) out.push({ channel: "affection", title: t("instructions.flatTitle"), body: t("instructions.flatBody") });
   return out;
 }
 
@@ -81,7 +78,7 @@ function instructions(result) {
  * scores — it is measured as *what each person needs that the other does not
  * naturally give*, which is asymmetric and therefore reported twice.
  */
-function compare(a, b, { nameA = "A", nameB = "B" } = {}) {
+function compare(a, b, { nameA = "A", nameB = "B", t }) {
   const gap = (mine, theirs) =>
     ORDER.map((k) => ({ key: k, need: mine.scores[k], theirShare: theirs.shares[k], deficit: mine.shares[k] - theirs.shares[k] }))
       .sort((x, y) => y.deficit - x.deficit);
@@ -90,20 +87,22 @@ function compare(a, b, { nameA = "A", nameB = "B" } = {}) {
   const overlap = a.primary.key === b.primary.key;
   const fit = Math.round(100 - ORDER.reduce((acc, k) => acc + Math.abs(a.shares[k] - b.shares[k]), 0) / 2);
 
+  const needsHTML = (needs) =>
+    join(needs.slice(0, 2).map((g) => html`<p class="prose">${t(`lang.${g.key}.label`)} — ${t(`lang.${g.key}.ask`)}</p>`));
+
   return html`
     ${verdictHTML({
-      eyebrow: "Language fit",
-      title: overlap ? "Same primary language" : `${LANGUAGES[a.primary.key].label} meets ${LANGUAGES[b.primary.key].label}`,
+      t,
+      eyebrow: t("compare.eyebrow"),
+      title: overlap
+        ? t("compare.sameTitle")
+        : t("compare.mixedTitle", { a: t(`lang.${a.primary.key}.label`), b: t(`lang.${b.primary.key}.label`) }),
       score: fit,
-      body: overlap
-        ? "You want the same currency. That makes fluency easy and blind spots identical — whatever you both under-use will simply never happen."
-        : "You do not natively speak each other's first language. This is the ordinary case and it is learnable; what it is not is automatic.",
+      body: overlap ? t("compare.sameBody") : t("compare.mixedBody"),
     })}
     <div class="exchange">
-      <div><span class="label">${nameA} most needs, and ${nameB} least offers</span>
-        ${join(aNeeds.slice(0, 2).map((g) => html`<p class="prose">${LANGUAGES[g.key].label} — ${LANGUAGES[g.key].ask}</p>`))}</div>
-      <div><span class="label">${nameB} most needs, and ${nameA} least offers</span>
-        ${join(bNeeds.slice(0, 2).map((g) => html`<p class="prose">${LANGUAGES[g.key].label} — ${LANGUAGES[g.key].ask}</p>`))}</div>
+      <div><span class="label">${t("compare.aNeeds", { a: nameA, b: nameB })}</span>${needsHTML(aNeeds)}</div>
+      <div><span class="label">${t("compare.aNeeds", { a: nameB, b: nameA })}</span>${needsHTML(bNeeds)}</div>
     </div>`;
 }
 
@@ -111,15 +110,22 @@ export default {
   id: "love-languages",
   version: 1,
   family: "questionnaire",
-  title: "Five Languages of Love",
-  tagline: "Which channel affection has to arrive on before it registers.",
   glyph: "♡",
   minutes: 6,
-  framework: "Chapman's five-category model",
-  sourceNote:
-    "The five categories are Gary Chapman's. The items are ours and are scored independently on 1–100, not forced against each other — so all five can be high, or none.",
   channels: ["affection", "conflict"],
-  form: () => ({ kind: "items", items: ITEMS, scale, shuffle: true, pageSize: 5 }),
+  messages: {
+    en: () => import("./i18n/en.js"),
+    pl: () => import("./i18n/pl.js"),
+    es: () => import("./i18n/es.js"),
+    de: () => import("./i18n/de.js"),
+  },
+  form: (t) => ({
+    kind: "items",
+    items: ITEMS.map((item) => ({ ...item, prompt: t(`item.${item.id}`) })),
+    scale: scaleFor("true5", t),
+    shuffle: true,
+    pageSize: 5,
+  }),
   score,
   view,
   instructions,

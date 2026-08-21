@@ -1,6 +1,6 @@
 import { html, join } from "../../core/html.js";
 import { VISIBILITY } from "../../core/store.js";
-import { CHANNEL_LABEL } from "../../core/registry.js";
+import { channelKey } from "../../core/registry.js";
 import { link } from "../../core/share.js";
 
 /**
@@ -10,62 +10,67 @@ import { link } from "../../core/share.js";
  */
 
 const VIS_NOTE = {
-  private: "Only you. Share links still work — sharing is an explicit act, not a setting.",
-  friends: "Visible to people you have connected with, once the network exists.",
-  public: "Visible on your public page, once the network exists.",
+  private: "result.visPrivate",
+  friends: "result.visFriends",
+  public: "result.visPublic",
 };
 
 async function resultPage(ctx, { id }) {
+  const { t, locale } = ctx;
   const spec = ctx.registry.get(id);
   const run = spec ? await ctx.store.run(id) : null;
   if (!spec || !run) {
-    return { body: html`<div class="empty"><h2>Nothing recorded yet</h2>
-      <p class="prose">You have not taken this one.</p>
-      <p><a class="btn primary" href="#/test/${id}">Take it</a></p></div>` };
+    return { body: html`<div class="empty"><h2>${t("result.emptyTitle")}</h2>
+      <p class="prose">${t("result.emptyBody")}</p>
+      <p><a class="btn primary" href="#/test/${id}">${t("result.emptyAction")}</a></p></div>` };
   }
 
+  const scoped = ctx.instrument(spec);
+  const it = scoped.t;
   const stale = run.instrumentVersion !== spec.version;
-  const cards = spec.instructions(run.result);
+  const cards = spec.instructions(run.result, it);
   const profile = await ctx.store.profile();
+  const retaken = run.firstCompletedAt !== run.completedAt;
+  const when = new Date(run.completedAt).toLocaleString(locale);
 
   const body = html`<article class="result" id="result">
     <header class="runner-head">
-      <a class="back" href="#/tests">← All tests</a>
-      <h2>${spec.title}</h2>
-      <p class="prose">Taken ${new Date(run.completedAt).toLocaleString()}${run.firstCompletedAt !== run.completedAt ? " · retaken" : ""}.</p>
+      <a class="back" href="#/tests">${t("common.allTests")}</a>
+      <h2>${it("title")}</h2>
+      <p class="prose">${t(retaken ? "result.takenRetaken" : "result.taken", { when })}</p>
     </header>
 
-    ${stale ? html`<div class="note warn-note prose"><p>This instrument has been revised since you took it (you have version ${run.instrumentVersion}, current is ${spec.version}). The scores below are the ones you got; retake to score against the current items.</p></div>` : ""}
+    ${stale ? html`<div class="note warn-note prose"><p>${t("result.stale", { had: run.instrumentVersion, now: spec.version })}</p></div>` : ""}
 
-    <section class="plate">${spec.view(run.result, ctx)}</section>
+    <section class="plate">${spec.view(run.result, scoped)}</section>
 
     <section class="plate">
-      <div class="plate-head"><h2>What this added</h2><span class="rule"></span><span class="label">to your instructions</span></div>
+      <div class="plate-head"><h2>${t("result.addedHeading")}</h2><span class="rule"></span><span class="label">${t("result.addedNote")}</span></div>
       <div class="cards">
         ${join(cards.map((c) => html`<div class="card pad instruction-card">
-          <span class="label">${CHANNEL_LABEL[c.channel] ?? c.channel}</span>
+          <span class="label">${t(channelKey(c.channel))}</span>
           <h4>${c.title}</h4><p class="prose">${c.body}</p></div>`))}
       </div>
     </section>
 
     <section class="plate">
-      <div class="plate-head"><h2>Visibility &amp; sharing</h2><span class="rule"></span></div>
+      <div class="plate-head"><h2>${t("result.visHeading")}</h2><span class="rule"></span></div>
       <div class="card pad">
-        <div class="vis-row" id="vis" role="group" aria-label="Who can see this result">
-          ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${run.visibility === v ? " on" : ""}" data-vis="${v}">${v}</button>`))}
+        <div class="vis-row" id="vis" role="group" aria-label="${t("result.visGroupLabel")}">
+          ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${run.visibility === v ? " on" : ""}" data-vis="${v}">${t(`vis.${v}`)}</button>`))}
         </div>
-        <p class="prose muted" id="vis-note">${VIS_NOTE[run.visibility]}</p>
+        <p class="prose muted" id="vis-note">${t(VIS_NOTE[run.visibility])}</p>
         <div class="share-row">
-          <button type="button" class="btn" id="copy-link">Copy a compare link</button>
-          <button type="button" class="btn" id="retake">Retake</button>
-          <button type="button" class="btn danger" id="clear">Delete this result</button>
+          <button type="button" class="btn" id="copy-link">${t("result.copyLink")}</button>
+          <button type="button" class="btn" id="retake">${t("result.retake")}</button>
+          <button type="button" class="btn danger" id="clear">${t("result.delete")}</button>
         </div>
-        <p class="prose muted">A compare link carries your answers, not your name unless you have set one. Whoever opens it sees the two readings side by side; nothing is uploaded.</p>
+        <p class="prose muted">${t("result.shareNote")}</p>
         <p class="warn" id="share-msg" role="status"></p>
       </div>
     </section>
 
-    <p class="source-note prose">${spec.sourceNote}</p>
+    <p class="source-note prose">${it("sourceNote")}</p>
   </article>`;
 
   function mount(root) {
@@ -74,15 +79,15 @@ async function resultPage(ctx, { id }) {
       if (!btn) return;
       await ctx.store.setVisibility(id, btn.dataset.vis);
       root.querySelectorAll(".vis-btn").forEach((b) => b.classList.toggle("on", b === btn));
-      root.querySelector("#vis-note").textContent = VIS_NOTE[btn.dataset.vis];
+      root.querySelector("#vis-note").textContent = t(VIS_NOTE[btn.dataset.vis]);
     });
 
-    root.querySelector("#copy-link").addEventListener("click", async (e) => {
+    root.querySelector("#copy-link").addEventListener("click", async () => {
       const msg = root.querySelector("#share-msg");
       const url = link(run, profile.displayName);
       try {
         await navigator.clipboard.writeText(url);
-        msg.textContent = "Link copied.";
+        msg.textContent = t("result.copied");
       } catch {
         // Clipboard access is denied in sandboxed frames; show the link instead
         // of failing silently, so the feature degrades to select-and-copy.
@@ -97,7 +102,7 @@ async function resultPage(ctx, { id }) {
     root.querySelector("#clear").addEventListener("click", async (e) => {
       if (e.target.dataset.armed !== "1") {
         e.target.dataset.armed = "1";
-        e.target.textContent = "Delete — click again to confirm";
+        e.target.textContent = t("result.deleteConfirm");
         return;
       }
       await ctx.store.clearRun(id);

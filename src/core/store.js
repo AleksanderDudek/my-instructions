@@ -89,6 +89,17 @@ function makeStore(adapter) {
     /** Called after any write, so the shell can re-render counts and badges. */
     subscribe(fn) { subs.add(fn); return () => subs.delete(fn); },
 
+    /** Application settings — today just the reader's language. */
+    async settings() {
+      return (await adapter.get("settings")) ?? { locale: null };
+    },
+    async saveSettings(patch) {
+      const next = { ...(await this.settings()), ...patch };
+      await adapter.set("settings", next);
+      announce();
+      return next;
+    },
+
     async profile() {
       return (await adapter.get("profile")) ?? { displayName: "", pronouns: "", note: "", createdAt: null };
     },

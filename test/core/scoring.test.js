@@ -64,10 +64,10 @@ test("ties share a rank and ranks stay ordered", () => {
   for (let i = 1; i < r.length; i++) assert.ok(r[i - 1].score >= r[i].score);
 });
 
-test("bands cover the whole 1..100 range without a gap", () => {
+test("bands cover the whole 1..100 range without a gap, as keys rather than words", () => {
   const seen = new Set();
   for (let i = 1; i <= 100; i++) seen.add(band(i));
-  assert.deepEqual([...seen].sort(), ["high", "low", "moderate", "very high", "very low"]);
+  assert.deepEqual([...seen].sort(), ["band.high", "band.low", "band.moderate", "band.veryHigh", "band.veryLow"]);
 });
 
 test("straightlining needs enough evidence before it accuses", () => {

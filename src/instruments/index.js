@@ -12,13 +12,14 @@ import bigFive from "./big-five/index.js";
 import hexaco from "./hexaco/index.js";
 import jungian from "./jungian/index.js";
 import attachment from "./attachment/index.js";
+import coupleConversations from "./couple-conversations/index.js";
 import chronotype from "./chronotype/index.js";
 import conflictStyle from "./conflict-style/index.js";
 import workingStyle from "./working-style/index.js";
 import riasec from "./riasec/index.js";
 import studyPractice from "./study-practice/index.js";
 
-const INSTRUMENTS = [loveLanguages, attachment, conflictStyle, enneagram, bigFive, hexaco, jungian, riasec, workingStyle, studyPractice, chronotype, numerology];
+const INSTRUMENTS = [loveLanguages, attachment, coupleConversations, conflictStyle, enneagram, bigFive, hexaco, jungian, riasec, workingStyle, studyPractice, chronotype, numerology];
 
 const registry = createRegistry();
 for (const spec of INSTRUMENTS) registry.register(spec);

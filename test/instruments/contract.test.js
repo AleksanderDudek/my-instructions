@@ -49,6 +49,13 @@ function answersFor(spec, seed = 1) {
   return out;
 }
 
+test("an unscored questionnaire is a legitimate shape, and at least one exists", () => {
+  // Stated as a test so the next person to add a scoring assumption to this
+  // file finds out here rather than by breaking a shipped instrument.
+  const unscored = registry.byFamily("questionnaire").filter((spec) => !spec.score({})?.scores);
+  assert.ok(unscored.length >= 1, "the contract permits a questionnaire that computes no scores");
+});
+
 test("at least one instrument of each family is installed", () => {
   assert.ok(registry.byFamily("questionnaire").length >= 1);
   assert.ok(registry.byFamily("profiler").length >= 1);
@@ -78,7 +85,9 @@ for (const spec of ALL) {
       assert.equal(form.scale.labels.length, form.scale.max - form.scale.min + 1, "a scale needs one label per point");
       for (const item of form.items) {
         assert.ok(item.prompt.trim().length > 10, `item ${item.id} has a stub prompt`);
-        assert.ok(item.prompt.trim().endsWith("."), `item ${item.id} should read as a statement`);
+        // A statement or a question — both are legitimate prompts. What is not
+        // legitimate is a fragment that trails off, which is what this catches.
+        assert.match(item.prompt.trim(), /[.?]$/, `item ${item.id} should read as a statement or a question`);
         assert.ok(!item.prompt.startsWith("item."), `item ${item.id} rendered its own key`);
       }
     }
@@ -139,8 +148,19 @@ for (const spec of ALL) {
   }
 }
 
+/**
+ * Not every questionnaire produces scored scales.
+ *
+ * The first eight instruments all did, and these checks quietly assumed it was
+ * part of the contract. It is not: couple-conversations is a questionnaire that
+ * records positions and computes no score at all, deliberately. So the scoring
+ * checks now key off whether an instrument actually produces `scores`, which is
+ * a property of what it does rather than of which family it declared.
+ */
+const scored = registry.byFamily("questionnaire").filter((spec) => spec.score({})?.scores);
+
 test("questionnaire scores all land inside 1..100", () => {
-  for (const spec of registry.byFamily("questionnaire")) {
+  for (const spec of scored) {
     for (let seed = 1; seed <= 25; seed++) {
       const { scores } = spec.score(answersFor(spec, seed));
       for (const [key, value] of Object.entries(scores)) {
@@ -150,8 +170,8 @@ test("questionnaire scores all land inside 1..100", () => {
   }
 });
 
-test("questionnaire banks are balanced — equal items per scale, reverse items in every block", () => {
-  for (const spec of registry.byFamily("questionnaire")) {
+test("scored questionnaire banks are balanced — equal items per scale, reverse items in every block", () => {
+  for (const spec of scored) {
     const { items } = spec.form(scoped(spec), "en");
     const per = {}, rev = {};
     for (const i of items) { per[i.scale] = (per[i.scale] ?? 0) + 1; if (i.reverse) rev[i.scale] = (rev[i.scale] ?? 0) + 1; }

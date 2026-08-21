@@ -21,6 +21,11 @@ const ENTRY = "src/main.js";
 
 const IMPORT_RE = /^\s*import\s+(?:([\s\S]*?)\s+from\s+)?["']([^"']+)["'];?\s*$/gm;
 const EXPORT_FROM_RE = /^\s*export\s+\{[\s\S]*?\}\s+from\s+["']([^"']+)["'];?\s*$/gm;
+/* Locales load lazily, so the graph has to follow `import("./i18n/pl.js")`
+   as well. Only literal specifiers are followed — a computed path cannot be
+   resolved by reading the source, and src/core/locales.js is written as a
+   table of literals for exactly that reason. */
+const DYNAMIC_IMPORT_RE = /\bimport\(\s*["']([^"']+)["']\s*\)/g;
 
 async function collect(entry) {
   const modules = new Map(); // path -> { code, deps: Map<specifier, path> }
@@ -40,10 +45,17 @@ async function collect(entry) {
     order.push(rel);
   }
 
+  /* Block comments come out first. src/core/registry.js documents the plugin
+     contract with a worked `import("./i18n/en.js")` in its header, and a
+     scanner that cannot tell code from prose goes looking for that file. */
+  const stripComments = (code) => code.replace(/\/\*[\s\S]*?\*\//g, "");
+
   function specifiers(code) {
     const out = new Set();
-    for (const m of code.matchAll(IMPORT_RE)) out.add(m[2]);
-    for (const m of code.matchAll(EXPORT_FROM_RE)) out.add(m[1]);
+    const source = stripComments(code);
+    for (const m of source.matchAll(IMPORT_RE)) out.add(m[2]);
+    for (const m of source.matchAll(EXPORT_FROM_RE)) out.add(m[1]);
+    for (const m of source.matchAll(DYNAMIC_IMPORT_RE)) out.add(m[1]);
     return out;
   }
 
@@ -58,6 +70,11 @@ async function collect(entry) {
 
 function transform(rel, { code, deps }) {
   let out = code;
+
+  // A dynamic import stays a promise so the call sites keep their `await`;
+  // the module itself is already in the bundle, so nothing is fetched.
+  out = out.replace(DYNAMIC_IMPORT_RE, (whole, spec) =>
+    deps.has(spec) ? `Promise.resolve(__require(${JSON.stringify(deps.get(spec))}))` : whole);
 
   out = out.replace(IMPORT_RE, (line, clause, spec) => {
     if (!clause) return `__require(${JSON.stringify(deps.get(spec))});`;

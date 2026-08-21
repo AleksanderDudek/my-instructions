@@ -116,8 +116,6 @@ export default {
   messages: {
     en: () => import("./i18n/en.js"),
     pl: () => import("./i18n/pl.js"),
-    es: () => import("./i18n/es.js"),
-    de: () => import("./i18n/de.js"),
   },
   form: (t) => ({
     kind: "items",

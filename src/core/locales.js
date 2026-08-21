@@ -20,11 +20,12 @@ const LOCALES = [
 
 const DEFAULT_LOCALE = "en";
 
+/* One entry per shipped locale, added alongside its message files. Every
+   specifier is a literal: tools/build.mjs resolves these by reading the
+   source, and a computed path would bundle to a module that is not there. */
 const SHELL = {
   en: () => import("../ui/i18n/en.js"),
   pl: () => import("../ui/i18n/pl.js"),
-  es: () => import("../ui/i18n/es.js"),
-  de: () => import("../ui/i18n/de.js"),
 };
 
 const isSupported = (tag) => LOCALES.some((l) => l.tag === tag);

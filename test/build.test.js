@@ -35,6 +35,20 @@ test("every module the entry needs is present in the registry", () => {
   assert.ok(declared.size >= 20, `only ${declared.size} modules bundled`);
 });
 
+test("lazily loaded locales are bundled, not left to be fetched", () => {
+  // In the browser a locale arrives by dynamic import, which is what keeps an
+  // English reader from downloading Polish. The single-file artifact has no
+  // server to fetch from, so the bundler follows those imports too and the
+  // call sites keep their `await` against an already-resolved promise.
+  const declared = new Set([...script.matchAll(/^  "([^"]+\.js)": function/gm)].map((m) => m[1]));
+  const locales = [...declared].filter((path) => /i18n\/[a-z]{2}\.js$/.test(path));
+  assert.ok(locales.length >= 2, `expected message files in the bundle, found ${locales.length}`);
+  // Comments come out first: registry.js documents the plugin contract with a
+  // worked import() in its header, and the bundler leaves prose alone.
+  const code = script.replace(/\/\*[\s\S]*?\*\//g, "");
+  assert.ok(!/\bimport\(/.test(code), "a dynamic import survived the transform");
+});
+
 test("dependencies are defined before the entry runs them", () => {
   // The registry is emitted in post-order, so a module's dependencies always
   // appear above it. That is what makes the four-line `__require` sufficient.

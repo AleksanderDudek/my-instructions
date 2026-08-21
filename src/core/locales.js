@@ -17,6 +17,7 @@ const LOCALES = [
   { tag: "en", label: "English", endonym: "English" },
   { tag: "pl", label: "Polish", endonym: "Polski" },
   { tag: "es", label: "Spanish", endonym: "Español" },
+  { tag: "de", label: "German", endonym: "Deutsch" },
 ];
 
 const DEFAULT_LOCALE = "en";
@@ -28,6 +29,7 @@ const SHELL = {
   en: () => import("../ui/i18n/en.js"),
   pl: () => import("../ui/i18n/pl.js"),
   es: () => import("../ui/i18n/es.js"),
+  de: () => import("../ui/i18n/de.js"),
 };
 
 const isSupported = (tag) => LOCALES.some((l) => l.tag === tag);

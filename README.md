@@ -11,6 +11,9 @@ Everything runs in the browser. No account, no server, no analytics, no build
 step, and no dependencies: `npm install` does nothing because there is nothing
 to install.
 
+Available in English, Polish, Spanish and German — the questions and the
+readings, not just the buttons.
+
 ```
 npm run dev      # http://localhost:5173
 npm test         # 98 tests, node:test, no framework

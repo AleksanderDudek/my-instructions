@@ -20,6 +20,8 @@ const { resultPage } = await import("../../src/ui/pages/result.js");
 const { sheetPage } = await import("../../src/ui/pages/sheet.js");
 const { profilePage } = await import("../../src/ui/pages/profile.js");
 const { comparePage } = await import("../../src/ui/pages/compare.js");
+const { sharingPage } = await import("../../src/ui/pages/sharing.js");
+const { reportPage } = await import("../../src/ui/pages/report.js");
 
 /**
  * The gate.
@@ -107,6 +109,8 @@ test("no page hard-codes a sentence — empty store", async () => {
   assertNoStrayProse(await render(catalogPage, ctx), "catalog");
   assertNoStrayProse(await render(sheetPage, ctx), "sheet");
   assertNoStrayProse(await render(profilePage, ctx), "profile");
+  assertNoStrayProse(await render(sharingPage, ctx), "sharing");
+  assertNoStrayProse(await render(reportPage, ctx), "report (no token)");
   for (const spec of instruments) {
     assertNoStrayProse(await render(runnerPage, ctx, { id: spec.id }), `runner:${spec.id}`);
     assertNoStrayProse(await render(resultPage, ctx, { id: spec.id }), `result:${spec.id}`);
@@ -127,6 +131,7 @@ test("no instrument hard-codes a sentence — every view, card and comparison", 
   assertNoStrayProse(await render(homePage, ctx), "home (populated)");
   assertNoStrayProse(await render(sheetPage, ctx), "sheet (populated)");
   assertNoStrayProse(await render(profilePage, ctx), "profile (populated)");
+  assertNoStrayProse(await render(sharingPage, ctx), "sharing (populated)");
 
   for (const spec of instruments) {
     assertNoStrayProse(await render(resultPage, ctx, { id: spec.id }), `result:${spec.id}`);

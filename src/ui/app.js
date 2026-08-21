@@ -12,6 +12,8 @@ import { resultPage } from "./pages/result.js";
 import { sheetPage } from "./pages/sheet.js";
 import { profilePage } from "./pages/profile.js";
 import { comparePage } from "./pages/compare.js";
+import { sharingPage } from "./pages/sharing.js";
+import { reportPage } from "./pages/report.js";
 
 /**
  * The shell.
@@ -27,6 +29,7 @@ const NAV = [
   ["/", "nav.home"],
   ["/tests", "nav.tests"],
   ["/instructions", "nav.instructions"],
+  ["/sharing", "nav.sharing"],
   ["/profile", "nav.panel"],
 ];
 
@@ -115,6 +118,8 @@ async function boot() {
     .add("/test/:id/result", resultPage)
     .add("/compare/:id", comparePage)
     .add("/instructions", sheetPage)
+    .add("/sharing", sharingPage)
+    .add("/report", reportPage)
     .add("/profile", profilePage);
 
   if (!store.durable) document.body.classList.add("ephemeral");

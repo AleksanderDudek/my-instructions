@@ -24,6 +24,8 @@ const { resultPage } = await import("../../src/ui/pages/result.js");
 const { sheetPage } = await import("../../src/ui/pages/sheet.js");
 const { profilePage } = await import("../../src/ui/pages/profile.js");
 const { comparePage } = await import("../../src/ui/pages/compare.js");
+const { sharingPage } = await import("../../src/ui/pages/sharing.js");
+const { reportPage } = await import("../../src/ui/pages/report.js");
 const { encode } = await import("../../src/core/share.js");
 
 
@@ -147,4 +149,51 @@ test("profile text is escaped, not interpreted", async () => {
     const html = await render(page, ctx);
     assert.ok(!html.includes("<script>alert"), "a script tag survived into the markup");
   }
+});
+
+/* ── sharing, end to end ──────────────────────────────────────────
+   The unit tests prove the token is filtered. This proves the page
+   built from that token cannot show what the token does not carry. */
+
+test("a public report renders public elements and cannot render the rest", async () => {
+  const ctx = await makeCtx();
+  await completeAll(ctx);
+  await ctx.store.saveProfile({ displayName: "Ada", pronouns: "she/her", note: "Handle with care." });
+
+  await ctx.store.setAudience("profile.name", "public");
+  await ctx.store.setAudience("profile.pronouns", "friends");
+  await ctx.store.setAudience("profile.note", "private");
+  await ctx.store.setAudience("run.big-five", "public");
+  await ctx.store.setAudience("run.enneagram", "friends");
+  for (const id of ["love-languages", "numerology", "hexaco", "jungian"]) {
+    await ctx.store.setAudience(`run.${id}`, "private");
+  }
+
+  const { encodeReport } = await import("../../src/core/report.js");
+  const args = {
+    registry,
+    profile: await ctx.store.profile(),
+    runs: await ctx.store.runs(),
+    sharing: await ctx.store.sharing(),
+  };
+
+  const publicHTML = await render(reportPage, ctx, {}, new URLSearchParams({ d: encodeReport({ ...args, audience: "public" }) }));
+  assert.ok(publicHTML.includes("Ada"), "the name was marked public and is missing");
+  assert.ok(!publicHTML.includes("she/her"), "a friends-only pronoun reached the public report");
+  assert.ok(!publicHTML.includes("Handle with care"), "a private note reached a report");
+
+  const friendsHTML = await render(reportPage, ctx, {}, new URLSearchParams({ d: encodeReport({ ...args, audience: "friends" }) }));
+  assert.ok(friendsHTML.includes("she/her"), "a friends element is missing from the friends report");
+  assert.ok(!friendsHTML.includes("Handle with care"), "a private note reached the friends report");
+  assert.ok(friendsHTML.length > publicHTML.length, "the friends report should carry more than the public one");
+});
+
+test("the sharing page lists every completed run and defaults to private", async () => {
+  const ctx = await makeCtx();
+  await completeAll(ctx);
+  const html = await render(sharingPage, ctx);
+  for (const spec of registry.all()) {
+    assert.ok(html.includes(`data-element="run.${spec.id}"`), `${spec.id} has no row on the sharing page`);
+  }
+  sane(html, "sharing");
 });

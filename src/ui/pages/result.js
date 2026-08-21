@@ -30,6 +30,9 @@ async function resultPage(ctx, { id }) {
   const stale = run.instrumentVersion !== spec.version;
   const cards = spec.instructions(run.result, it);
   const profile = await ctx.store.profile();
+  // One source of truth for audiences: the sharing map. The run still carries
+  // a `visibility` field for older data, and setAudience keeps it in step.
+  const audience = (await ctx.store.sharing())[`run.${id}`] ?? "private";
   const retaken = run.firstCompletedAt !== run.completedAt;
   const when = new Date(run.completedAt).toLocaleString(locale);
 
@@ -57,9 +60,10 @@ async function resultPage(ctx, { id }) {
       <div class="plate-head"><h2>${t("result.visHeading")}</h2><span class="rule"></span></div>
       <div class="card pad">
         <div class="vis-row" id="vis" role="group" aria-label="${t("result.visGroupLabel")}">
-          ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${run.visibility === v ? " on" : ""}" data-vis="${v}">${t(`vis.${v}`)}</button>`))}
+          ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${audience === v ? " on" : ""}" data-vis="${v}">${t(`vis.${v}`)}</button>`))}
         </div>
-        <p class="prose muted" id="vis-note">${t(VIS_NOTE[run.visibility])}</p>
+        <p class="prose muted" id="vis-note">${t(VIS_NOTE[audience])}</p>
+        <p class="prose muted"><a href="#/sharing">${t("result.manageSharing")}</a></p>
         <div class="share-row">
           <button type="button" class="btn" id="copy-link">${t("result.copyLink")}</button>
           <button type="button" class="btn" id="retake">${t("result.retake")}</button>
@@ -77,7 +81,7 @@ async function resultPage(ctx, { id }) {
     root.querySelector("#vis").addEventListener("click", async (e) => {
       const btn = e.target.closest("[data-vis]");
       if (!btn) return;
-      await ctx.store.setVisibility(id, btn.dataset.vis);
+      await ctx.store.setAudience(`run.${id}`, btn.dataset.vis);
       root.querySelectorAll(".vis-btn").forEach((b) => b.classList.toggle("on", b === btn));
       root.querySelector("#vis-note").textContent = t(VIS_NOTE[btn.dataset.vis]);
     });

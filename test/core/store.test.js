@@ -118,3 +118,36 @@ test("wipe leaves nothing behind", async () => {
   assert.deepEqual(await store.runs(), []);
   assert.equal((await store.profile()).displayName, "");
 });
+
+/* ── sharing ──────────────────────────────────────────────────────
+   One map, one place. The per-run `visibility` field predates it and
+   is kept in step so the badges elsewhere stay honest.               */
+
+test("sharing defaults to private and inherits any visibility already chosen", async () => {
+  const store = makeStore(new LocalAdapter(fakeStorage()));
+  await store.saveRun({ instrumentId: "big-five", instrumentVersion: 1, answers: {}, result: {} });
+  await store.setVisibility("big-five", "public");
+
+  const sharing = await store.sharing();
+  assert.equal(sharing["profile.name"], "private", "a name must not be shared until asked for");
+  assert.equal(sharing["profile.note"], "private");
+  assert.equal(sharing["run.big-five"], "public", "an existing choice was not carried over");
+});
+
+test("setting an audience persists it and keeps the run's own field in step", async () => {
+  const store = makeStore(new LocalAdapter(fakeStorage()));
+  await store.saveRun({ instrumentId: "enneagram", instrumentVersion: 1, answers: {}, result: {} });
+
+  await store.setAudience("run.enneagram", "friends");
+  await store.setAudience("profile.name", "public");
+
+  const sharing = await store.sharing();
+  assert.equal(sharing["run.enneagram"], "friends");
+  assert.equal(sharing["profile.name"], "public");
+  assert.equal((await store.run("enneagram")).visibility, "friends", "the run's field drifted");
+});
+
+test("an unknown audience is refused rather than stored", async () => {
+  const store = makeStore(new LocalAdapter(fakeStorage()));
+  await assert.rejects(() => store.setAudience("profile.name", "everyone"), RangeError);
+});

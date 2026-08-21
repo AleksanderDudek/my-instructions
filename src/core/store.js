@@ -89,6 +89,38 @@ function makeStore(adapter) {
     /** Called after any write, so the shell can re-render counts and badges. */
     subscribe(fn) { subs.add(fn); return () => subs.delete(fn); },
 
+    /**
+     * Who may see what, as one map from element id to audience.
+     *
+     * Stored settings win; anything unset falls back to the per-run
+     * `visibility` this app used before there was a sharing page, so an
+     * existing account keeps the choices it already made. Nothing is written
+     * on read — a migration that fires from a getter is a migration that
+     * fires in a test and surprises somebody.
+     */
+    async sharing() {
+      const stored = (await adapter.get("sharing")) ?? {};
+      const defaults = { "profile.name": "private", "profile.pronouns": "private", "profile.note": "private" };
+      for (const run of await this.runs()) defaults[`run.${run.instrumentId}`] = run.visibility ?? "private";
+      return { ...defaults, ...stored };
+    },
+    /** Set one element's audience. Runs keep their own field in step. */
+    async setAudience(elementId, audience) {
+      if (!VISIBILITY.includes(audience)) throw new RangeError(`unknown audience: ${audience}`);
+      const next = { ...((await adapter.get("sharing")) ?? {}), [elementId]: audience };
+      await adapter.set("sharing", next);
+      // Element ids are dotted (`run.big-five`); storage keys are colonned
+      // (`run:big-five`). They are deliberately different namespaces, so the
+      // translation between them happens here and nowhere else.
+      if (elementId.startsWith("run.")) {
+        const instrumentId = elementId.slice("run.".length);
+        const run = await this.run(instrumentId);
+        if (run) { run.visibility = audience; await adapter.set(`run:${instrumentId}`, run); }
+      }
+      announce();
+      return next;
+    },
+
     /** Application settings — today just the reader's language. */
     async settings() {
       return (await adapter.get("settings")) ?? { locale: null };

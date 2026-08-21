@@ -16,6 +16,7 @@ async function profilePage(ctx) {
   const { store, registry, t, locale } = ctx;
   const profile = await store.profile();
   const runs = await store.runs();
+  const sharing = await store.sharing();
 
   const body = html`<article class="profile" id="profile">
     <header class="page-head"><h2>${t("profile.heading")}</h2>
@@ -57,7 +58,7 @@ async function profilePage(ctx) {
             <a class="run-name" href="#/test/${spec.id}/result"><span class="test-glyph">${spec.glyph}</span>${it("title")}</a>
             <span class="label ${state.key}">${t(state.messageKey, state.vars)}</span>
             <span class="vis-row small" role="group" aria-label="${t("profile.visFor", { test: it("title") })}">
-              ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${r.visibility === v ? " on" : ""}" data-vis="${v}" data-id="${spec.id}">${t(`vis.${v}`)}</button>`))}
+              ${join(VISIBILITY.map((v) => html`<button type="button" class="vis-btn${(sharing[`run.${spec.id}`] ?? "private") === v ? " on" : ""}" data-vis="${v}" data-id="${spec.id}">${t(`vis.${v}`)}</button>`))}
             </span>
           </div>`;
         }))}
@@ -102,7 +103,7 @@ async function profilePage(ctx) {
     root.querySelector(".run-table")?.addEventListener("click", async (e) => {
       const btn = e.target.closest("[data-vis]");
       if (!btn) return;
-      await store.setVisibility(btn.dataset.id, btn.dataset.vis);
+      await store.setAudience(`run.${btn.dataset.id}`, btn.dataset.vis);
       btn.parentElement.querySelectorAll(".vis-btn").forEach((b) => b.classList.toggle("on", b === btn));
     });
 

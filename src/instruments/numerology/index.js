@@ -113,7 +113,7 @@ export default {
   id: "numerology",
   version: 1,
   family: "profiler",
-  title: "Ninefold Almanac",
+  title: "Numerology",
   tagline: "A birth date, reduced. Zodiacs east and west, the destiny number, the pyramid, the square of nine.",
   glyph: "9",
   minutes: 1,

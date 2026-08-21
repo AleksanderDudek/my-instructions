@@ -24,7 +24,7 @@ npm run build    # dist/my-instructions.html — the whole app in one file
 | **Five Languages of Love** | questionnaire | 40 | Each language scored 1–100 *independently*, plus its share of the mix |
 | **Enneagram** | questionnaire | 45 | Nine type scores, wing, centre, stress and growth lines, and how close the top two are |
 | **Big Five** | questionnaire | 40 | Five factor scores, reported separately because the factors are meant to be independent |
-| **Ninefold Almanac** | profiler | a birth date | Chinese and Western zodiac, destiny number, reduction pyramid, square of nine |
+| **Numerology** | profiler | a birth date | Chinese and Western zodiac, destiny number, reduction pyramid, square of nine |
 
 Each one contributes cards to the **instruction sheet** — the page the app
 exists to produce. Cards are grouped by *channel* (how to talk to me, how to

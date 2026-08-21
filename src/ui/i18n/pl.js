@@ -78,7 +78,7 @@ export default {
   "home.slotCount": "{count, plural, one{# wiersz} few{# wiersze} many{# wierszy} other{# wiersza}}",
   "home.howHeading": "Jak to działa",
   "home.how1Title": "Wybierz, co pasuje",
-  "home.how1Body": "Dziś cztery narzędzia, każde jako samodzielna wtyczka. Nowe pojawiają się w katalogu, a reszta aplikacji się nie zmienia.",
+  "home.how1Body": "Dziś {count, plural, one{# narzędzie} few{# narzędzia} many{# narzędzi} other{# narzędzia}}, każde jako samodzielna wtyczka. Nowe pojawiają się w katalogu, a reszta aplikacji się nie zmienia.",
   "home.how2Title": "Wszystko zostaje lokalnie",
   "home.how2Body": "Twoje odpowiedzi są w tej przeglądarce i nigdzie indziej. Bez konta, bez serwera, bez analityki. Całość możesz w każdej chwili wyeksportować do pliku.",
   "home.how3Title": "Decyduj, czym się dzielisz",

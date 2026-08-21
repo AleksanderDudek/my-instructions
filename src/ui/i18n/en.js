@@ -79,7 +79,7 @@ export default {
   "home.slotCount": "{count, plural, one{# line} other{# lines}}",
   "home.howHeading": "How it works",
   "home.how1Title": "Take what applies",
-  "home.how1Body": "Four instruments today, each a self-contained plugin. New ones appear in the catalogue without anything else changing.",
+  "home.how1Body": "{count, plural, one{# instrument today} other{# instruments today}}, each a self-contained plugin. New ones appear in the catalogue without anything else changing.",
   "home.how2Title": "Everything stays local",
   "home.how2Body": "Your answers are in this browser and nowhere else. No account, no server, no analytics. Export the lot as a file whenever you want.",
   "home.how3Title": "Choose what to share",

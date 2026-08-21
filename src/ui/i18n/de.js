@@ -78,7 +78,7 @@ export default {
   "home.slotCount": "{count, plural, one{# Zeile} other{# Zeilen}}",
   "home.howHeading": "So funktioniert es",
   "home.how1Title": "Nimm, was passt",
-  "home.how1Body": "Heute vier Instrumente, jedes ein eigenständiges Plugin. Neue tauchen im Katalog auf, ohne dass sich sonst etwas ändert.",
+  "home.how1Body": "Heute {count, plural, one{# Instrument} other{# Instrumente}}, jedes ein eigenständiges Plugin. Neue tauchen im Katalog auf, ohne dass sich sonst etwas ändert.",
   "home.how2Title": "Alles bleibt lokal",
   "home.how2Body": "Deine Antworten liegen in diesem Browser und sonst nirgends. Kein Konto, kein Server, keine Analyse. Exportiere jederzeit alles in eine Datei.",
   "home.how3Title": "Entscheide, was du teilst",

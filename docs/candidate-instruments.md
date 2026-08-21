@@ -259,6 +259,26 @@ the band cutoffs the way `band()` currently does.
 
 ---
 
+## Status
+
+All of the above that were worth building have been built, each as one folder
+with its own item bank and four languages:
+
+| Instrument | Shape | What it adds |
+|---|---|---|
+| `hexaco` | 36 items, 6 scales | Honesty–Humility, the factor Big Five cannot see |
+| `attachment` | 18 items, 2 dimensions | Anxiety × avoidance, reported as a position |
+| `jungian` | 40 items, 8 functions | The stack, with the four-letter code derived and temperament grouped |
+| `conflict-style` | 18 items, 2 concerns | Five modes as regions, plus the fallback mode |
+| `riasec` | 36 items, 6 interests | Three-letter code with hexagon consistency |
+| `chronotype` | 6 fields, profiler | Corrected mid-sleep and social jetlag |
+| `working-style` | 8 fields, profiler | Preferences, deliberately unscored |
+
+Not built, deliberately: the Big Five facet expansion (a second copy of an
+instrument already present, and it would drag facet-level scoring into
+`core/scoring.js` that nothing else needs), Grit, SD3, and any standalone
+temperament test.
+
 ## If only one gets built
 
 **IPIP-HEXACO-60**, then **attachment**, then **chronotype**.

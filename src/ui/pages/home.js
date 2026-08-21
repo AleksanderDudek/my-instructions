@@ -47,7 +47,7 @@ async function homePage(ctx) {
     <section class="plate">
       <div class="plate-head"><h2>${t("home.howHeading")}</h2><span class="rule"></span></div>
       <div class="how">
-        <div><span class="how-n num">1</span><h4>${t("home.how1Title")}</h4><p class="prose">${t("home.how1Body")}</p></div>
+        <div><span class="how-n num">1</span><h4>${t("home.how1Title")}</h4><p class="prose">${t("home.how1Body", { count: totalTests })}</p></div>
         <div><span class="how-n num">2</span><h4>${t("home.how2Title")}</h4><p class="prose">${t("home.how2Body")}</p></div>
         <div><span class="how-n num">3</span><h4>${t("home.how3Title")}</h4><p class="prose">${t("home.how3Body")}</p></div>
       </div>

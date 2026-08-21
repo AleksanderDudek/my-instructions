@@ -76,7 +76,7 @@ export default {
   "home.slotCount": "{count, plural, one{# línea} other{# líneas}}",
   "home.howHeading": "Cómo funciona",
   "home.how1Title": "Haz lo que te encaje",
-  "home.how1Body": "Hoy son cuatro instrumentos, cada uno un complemento independiente. Los nuevos aparecen en el catálogo sin que cambie nada más.",
+  "home.how1Body": "Hoy {count, plural, one{hay # instrumento} other{hay # instrumentos}}, cada uno un complemento independiente. Los nuevos aparecen en el catálogo sin que cambie nada más.",
   "home.how2Title": "Todo se queda en local",
   "home.how2Body": "Tus respuestas están en este navegador y en ningún otro sitio. Sin cuenta, sin servidor, sin analítica. Exporta el conjunto a un archivo cuando quieras.",
   "home.how3Title": "Decide qué compartes",

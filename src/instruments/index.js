@@ -10,8 +10,9 @@ import loveLanguages from "./love-languages/index.js";
 import enneagram from "./enneagram/index.js";
 import bigFive from "./big-five/index.js";
 import hexaco from "./hexaco/index.js";
+import jungian from "./jungian/index.js";
 
-const INSTRUMENTS = [loveLanguages, enneagram, bigFive, hexaco, numerology];
+const INSTRUMENTS = [loveLanguages, enneagram, bigFive, hexaco, jungian, numerology];
 
 const registry = createRegistry();
 for (const spec of INSTRUMENTS) registry.register(spec);

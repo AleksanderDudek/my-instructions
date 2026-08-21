@@ -162,6 +162,64 @@ because it is not a psychological construct; it is a set of preferences.
 
 ---
 
+## Jungian typology, and the temperament repos
+
+Reviewed on request. The three Jung repositories and the four temperament ones
+point at the same conclusion from two directions.
+
+### `openjung/core`
+
+Wraps **OEJTS 1.2** (Open Extended Jungian Type Scales) from Open
+Psychometrics: 32 bipolar semantic-differential items, eight per dichotomy,
+summed 8–40 and cut at 24/25. Its confidence and consistency layer is a good
+idea and we already do something like it in the Enneagram's margin.
+
+The repo itself carries **no licence**, so its code is not reusable; OEJTS
+underneath it is public domain.
+
+Two reasons not to copy the approach, both of which the codebase has already
+committed to elsewhere:
+
+1. **A bipolar axis is ipsative.** Scoring E against I on one scale locks the
+   two to a constant sum, so someone who genuinely runs both hard has to
+   donate one to the other. That is the objection written into
+   `love-languages/items.js` about Chapman's quiz and `enneagram/items.js`
+   about the RHETI.
+2. **The four-letter instrument is a trademark** with copyrighted items.
+   Jung's *Psychological Types* (1921) is public domain; what was built on top
+   of it is not.
+
+**Built instead:** `src/instruments/jungian/` measures the eight cognitive
+functions independently on 1–100, derives the stack by Jung's own type
+dynamics, and reports the four-letter code as a consequence with a confidence
+margin. `test/instruments/jungian.test.js` asserts the dynamics hold for every
+possible answer set rather than for three worked examples.
+
+### `felmonon/jungian-typology-assessment` and `kopiro/mbti`
+
+The first is MIT but is a full-stack SaaS — auth, Stripe, AI reports. A
+product, not an item bank. The second has no licence and is a small
+`index.html` + `script.js` showcase. Nothing structural to take from either.
+
+### The temperament repositories
+
+| Repo | Verdict |
+|---|---|
+| `vmitchell85/temperament-test` | MIT *repo*, but the content is Florence Littauer's *Personality Plus* adjective lists — a repository licence does not launder third-party content. The format is also ipsative: pick one of four per row. Copy neither the words nor the shape. |
+| `smileeric2000/Temperament-test-app` | No licence, no stars, nothing to take. |
+| `flatangle/flatlib` | MIT, 391 stars, a real traditional-astrology engine over Swiss Ephemeris. Good library, wrong shape: Python plus ephemeris data files, where this app has no dependencies and runs entirely in the browser. A natal chart needs a server or a shipped ephemeris. Worth knowing that our Western sign is sun-sign only, which is what flatlib would improve — but not at that price. |
+| `AbhishekKarmakar5/...MBTI-and-Keirsey` | No licence, and it is an ML classifier over the Kaggle MBTI dataset rather than an instrument. |
+
+**No standalone temperament test was built, on purpose.** Temperament is a
+*grouping of types*, not an independent measurement, and the classical four
+humours map roughly onto extraversion × neuroticism, which Big Five already
+measures. A separate questionnaire would be four more scales measuring what
+existing scales already measured.
+
+It is instead derived inside the Jungian folder: concrete types split on
+whether they settle or improvise, abstract types on whether they reason or
+interpret. The names are ours — Keirsey's four are his.
+
 ## GitHub sources worth reverse-engineering
 
 Read for structure and, where the licence permits, for data.

@@ -16,8 +16,9 @@ import chronotype from "./chronotype/index.js";
 import conflictStyle from "./conflict-style/index.js";
 import workingStyle from "./working-style/index.js";
 import riasec from "./riasec/index.js";
+import studyPractice from "./study-practice/index.js";
 
-const INSTRUMENTS = [loveLanguages, attachment, conflictStyle, enneagram, bigFive, hexaco, jungian, riasec, workingStyle, chronotype, numerology];
+const INSTRUMENTS = [loveLanguages, attachment, conflictStyle, enneagram, bigFive, hexaco, jungian, riasec, workingStyle, studyPractice, chronotype, numerology];
 
 const registry = createRegistry();
 for (const spec of INSTRUMENTS) registry.register(spec);

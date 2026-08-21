@@ -1,0 +1,14 @@
+{
+  "name": "ninefold-almanac",
+  "version": "1.0.0",
+  "description": "Birth-date numerology: Chinese and Western zodiac, destiny number, reduction pyramid, and the square of nine — for one person or two.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "test": "node --test",
+    "build": "node tools/build.mjs"
+  }
+}

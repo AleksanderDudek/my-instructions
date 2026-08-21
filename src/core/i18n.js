@@ -114,9 +114,23 @@ function createI18n({ locale = "en", messages = {}, fallbackMessages = messages,
     return format(pattern, vars ?? {}, locale);
   }
 
+  /** Does either table define this key? */
+  const defines = (key) => Object.hasOwn(messages, key) || Object.hasOwn(fallbackMessages, key);
+
   return {
     t,
     locale,
+    /**
+     * A `t` bound to one instrument's namespace.
+     *
+     * Instrument message files use bare keys and the loader namespaces them,
+     * so a folder never learns its own prefix. A key the instrument does not
+     * define falls through to the shared table, which is how `band.high` can
+     * be written once and used by every questionnaire.
+     */
+    scope(prefix) {
+      return { t: (key, vars) => t(defines(`${prefix}.${key}`) ? `${prefix}.${key}` : key, vars), locale };
+    },
     /** Whether the *active* locale defines this key, ignoring the fallback. */
     has: (key) => Object.hasOwn(messages, key),
     keys: () => Object.keys(messages),

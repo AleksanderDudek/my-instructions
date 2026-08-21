@@ -92,3 +92,28 @@ test("an unbalanced brace throws", () => {
 test("the locale is reported back", () => {
   assert.equal(createI18n({ locale: "pl", messages: pl, fallbackMessages: en }).locale, "pl");
 });
+
+/* ── scoping ──────────────────────────────────────────────────────
+   Instruments are plugins, so their message files use bare keys and
+   the loader namespaces them. A scoped `t` hides that: the folder
+   asks for "item.words1" and never learns its own prefix.          */
+
+test("a scoped t resolves the namespaced key first", () => {
+  const messages = { "love-languages.item.words1": "Scoped.", "item.words1": "Global." };
+  const { scope } = createI18n({ locale: "en", messages, fallbackMessages: messages });
+  assert.equal(scope("love-languages").t("item.words1"), "Scoped.");
+});
+
+test("a scoped t falls through to a shared key when the instrument has none", () => {
+  const messages = { "band.high": "High." };
+  const { scope } = createI18n({ locale: "en", messages, fallbackMessages: messages });
+  assert.equal(scope("big-five").t("band.high"), "High.");
+});
+
+test("a scoped t finds a namespaced key that only the fallback locale defines", () => {
+  const pl = { "pack.a": "Polski." };
+  const en = { "pack.a": "English.", "pack.b": "Only English." };
+  const { scope } = createI18n({ locale: "pl", messages: pl, fallbackMessages: en });
+  assert.equal(scope("pack").t("a"), "Polski.");
+  assert.equal(scope("pack").t("b"), "Only English.");
+});

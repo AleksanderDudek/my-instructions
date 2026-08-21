@@ -93,6 +93,7 @@ async function sharingPage(ctx) {
       </div>
       <p class="warn" id="sharing-msg" role="status"></p>
       <p class="prose muted">${t("sharing.absentNote")}</p>
+      <p class="prose muted">${t("sharing.expiryNote")}</p>
     </section>
   </article>`;
 

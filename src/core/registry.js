@@ -23,6 +23,9 @@
  *                locale. Title, tagline, framework and source note live in
  *                there with everything else the reader sees.
  *   form(t, locale) -> { kind:"items", items:[...] } | { kind:"fields", fields:[...] }
+ *                An item may carry tier:"private", which keeps its answer out
+ *                of every token; a form may carry optional:true, which lets a
+ *                reader move on without answering.
  *   score(answers) -> result object, free-form, stored verbatim. Takes no `t`
  *                and returns no words: a result computed in Polish must be
  *                identical to the same answers computed in English, or
@@ -70,6 +73,19 @@ function validate(spec) {
 }
 
 const ITEM_KINDS = new Set(["likert", "choice", "multi"]);
+
+/**
+ * Where an item's answer is allowed to travel.
+ *
+ * `shared` is the default and behaves as every item did before this existed.
+ * `private` means the answer informs the reader's own page and nothing else:
+ * it is stripped before any token is built, so it cannot reach a partner, a
+ * report or a link. Some questions are worth asking and not worth sending —
+ * whether someone has hidden a purchase, whether an argument has ever
+ * frightened them — and the honest way to ask them is to guarantee where the
+ * answer stops.
+ */
+const ITEM_TIERS = new Set(["shared", "private"]);
 function validateItems(spec, items) {
   if (!Array.isArray(items) || !items.length) throw new TypeError(`instrument "${spec.id}": form.items must be a non-empty array`);
   const seen = new Set();
@@ -81,6 +97,7 @@ function validateItems(spec, items) {
     if (!it.prompt) throw new TypeError(`instrument "${spec.id}": item "${it.id}" has no prompt`);
     if (it.kind === "likert" && !it.scale) throw new TypeError(`instrument "${spec.id}": likert item "${it.id}" needs a scale name`);
     if (it.kind !== "likert" && !Array.isArray(it.options)) throw new TypeError(`instrument "${spec.id}": item "${it.id}" needs options`);
+    if (it.tier != null && !ITEM_TIERS.has(it.tier)) throw new TypeError(`instrument "${spec.id}": item "${it.id}" has unknown tier "${it.tier}"`);
   }
 }
 
@@ -118,4 +135,4 @@ function createRegistry() {
   };
 }
 
-export { createRegistry, validate, CHANNELS, channelKey, FAMILIES, identity };
+export { createRegistry, validate, CHANNELS, channelKey, FAMILIES, ITEM_TIERS, identity };

@@ -73,7 +73,12 @@ async function questionnaire(ctx, scoped, spec, form) {
     const slice = order.slice(state.page * state.pageSize, (state.page + 1) * state.pageSize);
     const answered = order.filter((k) => state.answers[k] !== undefined).length;
     const last = state.page === pages - 1;
-    const pageDone = slice.every((k) => state.answers[k] !== undefined);
+    // An optional form never blocks. Requiring an answer is right for a scored
+    // scale, where a gap is a hole in the arithmetic, and wrong for anything
+    // asking about a marriage or a body — where "I would rather not" is a real
+    // answer and forcing one produces a false one.
+    const pageDone = form.optional || slice.every((k) => state.answers[k] !== undefined);
+    const canFinish = form.optional || answered === order.length;
     return str(html`
       <div class="runner-progress">
         <div class="rp-bar"><i style="width:${Math.round((answered / order.length) * 100)}%"></i></div>
@@ -86,8 +91,8 @@ async function questionnaire(ctx, scoped, spec, form) {
         <button type="button" class="btn" id="prev" ${raw(state.page === 0 ? "disabled" : "")}>${t("common.back")}</button>
         <span class="rp-page label">${t("runner.page", { page: state.page + 1, pages })}</span>
         ${last
-          ? html`<button type="button" class="btn primary" id="finish" ${raw(answered < order.length ? "disabled" : "")}>
-              ${answered < order.length ? t("runner.remaining", { count: order.length - answered }) : t("runner.finish")}</button>`
+          ? html`<button type="button" class="btn primary" id="finish" ${raw(canFinish ? "" : "disabled")}>
+              ${canFinish ? t("runner.finish") : t("runner.remaining", { count: order.length - answered })}</button>`
           : html`<button type="button" class="btn primary" id="next" ${raw(pageDone ? "" : "disabled")}>${t("runner.next")}</button>`}
       </nav>`);
   }

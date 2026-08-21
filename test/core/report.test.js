@@ -122,3 +122,59 @@ test("a run for an instrument this browser does not have is dropped, not fatal",
   });
   assert.deepEqual(decodeReport(token, registry).runs, []);
 });
+
+/* ── private-tier items ───────────────────────────────────────────
+   Some questions are worth asking and not worth sending. The
+   guarantee is enforced at the encoder, not left to each folder.   */
+
+test("an item marked private is stripped from every token", async () => {
+  const { privateIdsOf } = await import("../../src/core/report.js");
+
+  // A stand-in instrument rather than a real one, so the test states the rule
+  // instead of depending on which folder happens to use it today.
+  const withPrivate = {
+    id: "sensitive",
+    form: () => ({
+      kind: "items",
+      items: [
+        { id: "a", kind: "likert", scale: "x", prompt: "a" },
+        { id: "secret", kind: "likert", scale: "x", prompt: "secret", tier: "private" },
+        { id: "b", kind: "likert", scale: "x", prompt: "b" },
+      ],
+    }),
+  };
+  const fakeRegistry = { get: (id) => (id === "sensitive" ? withPrivate : null) };
+
+  assert.deepEqual([...privateIdsOf(withPrivate)], ["secret"]);
+
+  const token = encodeReport({
+    registry: fakeRegistry,
+    profile: {},
+    runs: [{ instrumentId: "sensitive", instrumentVersion: 1, answers: { a: 3, secret: 5, b: 2 } }],
+    sharing: { "run.sensitive": "friends" },
+    audience: "friends",
+  });
+
+  const back = decodeReport(token, fakeRegistry);
+  assert.equal(back.runs[0].answers.a, 3, "shared answers still travel");
+  assert.equal(back.runs[0].answers.b, 2);
+  assert.equal(back.runs[0].answers.secret, undefined, "a private answer reached a token");
+
+  // The position is held rather than removed, so the compact packing still
+  // lines up with the instrument's item order on the receiving side.
+  assert.equal(back.runs[0].answers.b, 2, "the item after the private one did not shift");
+});
+
+test("an expired token is refused, and one with no expiry never expires", () => {
+  const t = (key) => key;
+  const day = 86400000;
+  const made = Date.UTC(2026, 0, 1);
+
+  const dated = encodeReport({ registry, profile, runs, sharing, audience: "friends", expiresInDays: 30, now: made });
+  assert.doesNotThrow(() => decodeReport(dated, registry, t, made + 29 * day));
+  assert.throws(() => decodeReport(dated, registry, t, made + 31 * day), /report\.expired/);
+
+  // Expiry is opt-in: every link built before this existed still opens.
+  const undated = encodeReport({ registry, profile, runs, sharing, audience: "friends" });
+  assert.doesNotThrow(() => decodeReport(undated, registry, t, made + 3650 * day));
+});

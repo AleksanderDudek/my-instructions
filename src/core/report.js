@@ -41,6 +41,17 @@ const fromB64Url = (s) => decodeURIComponent(escape(atob(s.replace(/-/g, "+").re
 /** The canonical item order for an instrument, taken from the instrument. */
 const orderOf = (spec) => spec.form((key) => key).items?.map((item) => item.id) ?? null;
 
+/**
+ * Item ids the instrument has marked as never leaving the device.
+ *
+ * Enforced here rather than left to each instrument, because "remember to
+ * strip these" is a rule that holds until somebody adds a code path. Packing
+ * writes a blank in their position, so the item order — which is what makes
+ * the compact format work — is unchanged.
+ */
+const privateIdsOf = (spec) =>
+  new Set((spec.form((key) => key).items ?? []).filter((item) => item.tier === "private").map((item) => item.id));
+
 /** An unanswered item, so that a gap round-trips as a gap rather than a guess. */
 const BLANK = "-";
 
@@ -52,7 +63,8 @@ const BLANK = "-";
 function packAnswers(spec, answers) {
   const order = orderOf(spec);
   if (!order) return JSON.stringify(answers);
-  return order.map((id) => (answers[id] == null ? BLANK : String(answers[id]))).join("");
+  const withheld = privateIdsOf(spec);
+  return order.map((id) => (withheld.has(id) || answers[id] == null ? BLANK : String(answers[id]))).join("");
 }
 
 function unpackAnswers(spec, packed) {
@@ -72,10 +84,31 @@ function unpackAnswers(spec, packed) {
  * Everything here is a filter: a field or a run that is not in `elements` is
  * never read, so it cannot end up in the output by accident.
  */
-function encodeReport({ registry, profile = {}, runs = [], sharing = {}, audience = "public" }) {
+/**
+ * Days since the epoch, which is all the precision an expiry needs and small
+ * enough not to bloat the token.
+ */
+const today = (now) => Math.floor(now / 86400000);
+
+/**
+ * A note on what expiry is and is not.
+ *
+ * A link that carries its own data cannot be revoked. There is no server to
+ * ask, and the bytes are already in the other person's hands the moment they
+ * open it — anyone who saved the URL, or the page, holds a copy that no
+ * subsequent action here can reach. Expiry makes the app refuse to render an
+ * old link, which stops a forwarded link working in six months and does not
+ * stop a determined reader who kept it.
+ *
+ * That is worth having and it is worth saying, so the copy says it. Promising
+ * revocation for a self-contained token would be the kind of security claim
+ * that is worse than no claim at all.
+ */
+function encodeReport({ registry, profile = {}, runs = [], sharing = {}, audience = "public", expiresInDays = null, now = null }) {
   const allowed = new Set(elementsFor(sharing, audience));
 
   const payload = { v: VERSION, w: audience, r: [] };
+  if (expiresInDays && now) payload.x = today(now) + expiresInDays;
   if (allowed.has("profile.name") && profile.displayName) payload.n = profile.displayName;
   if (allowed.has("profile.pronouns") && profile.pronouns) payload.p = profile.pronouns;
   if (allowed.has("profile.note") && profile.note) payload.o = profile.note;
@@ -96,10 +129,11 @@ function encodeReport({ registry, profile = {}, runs = [], sharing = {}, audienc
  * Read a token back. `t` renders the diagnosis, so a broken link explains
  * itself in the language of whoever is holding it.
  */
-function decodeReport(token, registry, t = (key) => key) {
+function decodeReport(token, registry, t = (key) => key, now = null) {
   let data;
   try { data = JSON.parse(fromB64Url(token)); } catch { throw new Error(t("report.unreadable")); }
   if (data?.v !== VERSION) throw new Error(t("report.version", { version: data?.v }));
+  if (data.x != null && now != null && today(now) > data.x) throw new Error(t("report.expired"));
 
   const profile = {};
   if (data.n) profile.displayName = data.n;
@@ -123,6 +157,6 @@ const reportLink = (args) =>
   `${location.origin}${location.pathname}#/report?d=${encodeReport(args)}`;
 
 export {
-  AUDIENCES, VERSION, atLeast, elementsFor,
+  AUDIENCES, VERSION, atLeast, elementsFor, privateIdsOf,
   packAnswers, unpackAnswers, encodeReport, decodeReport, reportLink,
 };

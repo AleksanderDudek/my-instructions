@@ -25,4 +25,4 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(404, { "content-type": "text/plain" }).end("404 " + rel);
   }
-}).listen(PORT, () => console.log(`Ninefold Almanac → http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`My Instructions — http://localhost:${PORT}`));

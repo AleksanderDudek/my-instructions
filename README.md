@@ -1,92 +1,225 @@
-# Ninefold Almanac
+# My Instructions
 
-A birth date, reduced. Enter a date and the page returns its Chinese zodiac
-animal, its Western sign, its numerological destiny number, a pyramid of sums
-and differences, and a square of nine counting the digits of the date itself.
-Two dates can be read against each other.
+Most of what goes wrong between two people is a documentation problem.
 
-No dependencies, no build tooling, no framework. Vanilla ES modules, served
-static.
+Take a few tests, get one page that says how you work — what lands, what drains
+you, what to do when it goes badly — and hand it to someone.
 
-```
-npm run dev     # http://localhost:5173
-npm test        # 16 unit tests, node:test
-npm run build   # dist/ninefold.html — the whole app as one file
-```
-
-## What it computes
-
-**The core row** takes each part of the date on its own — `MM`, `DD`, `YYYY` —
-sums its digits and reduces:
+Everything runs in the browser. No account, no server, no analytics, no build
+step, and no dependencies: `npm install` does nothing because there is nothing
+to install.
 
 ```
-8 January 1993   →   MM 01 → 1     DD 08 → 8     YYYY 1993 → 22 → 4
+npm run dev      # http://localhost:5173
+npm test         # 98 tests, node:test, no framework
+npm run build    # dist/my-instructions.html — the whole app in one file
 ```
 
-**Rising rows** add adjacent pairs and reduce; **falling rows** subtract them,
-take the absolute value, and reduce. The **crown** joins month and year
-directly, skipping the day:
+---
+
+## What is in it
+
+| Instrument | Family | Items | What it reports |
+|---|---|---|---|
+| **Five Languages of Love** | questionnaire | 40 | Each language scored 1–100 *independently*, plus its share of the mix |
+| **Enneagram** | questionnaire | 45 | Nine type scores, wing, centre, stress and growth lines, and how close the top two are |
+| **Big Five** | questionnaire | 40 | Five factor scores, reported separately because the factors are meant to be independent |
+| **Ninefold Almanac** | profiler | a birth date | Chinese and Western zodiac, destiny number, reduction pyramid, square of nine |
+
+Each one contributes cards to the **instruction sheet** — the page the app
+exists to produce. Cards are grouped by *channel* (how to talk to me, how to
+show you care, when we clash, what drains me…) rather than by which test they
+came from, because nobody wants to read four test results.
+
+---
+
+## Instruments are plugins
+
+Adding a test is one folder and one line. Nothing in the shell knows any
+instrument by name.
 
 ```
-CROWN                    5              |  1 + 4
-SPIRE                    3              |  9 + 3 → 12
-RISE               9          3         |  1+8 ;  8+4 → 12
-CORE           1       8       4        |  month, day, year        → 31 → 4
-ROOT               7          4         |  |1−8| ;  |8−4|
-BASE                     3              |  |7−4|
+src/instruments/<id>/
+  items.js     the item bank, or the static tables — data only
+  index.js     the manifest
 ```
 
-**The destiny number** sums every digit of `DDMMYYYY` and reduces: 31 → 4.
+```js
+export default {
+  id: "attachment-style",   // slug: also the storage key and the URL segment
+  version: 1,               // bump when items or scoring change
+  family: "questionnaire",  // or "profiler"
+  title, tagline, glyph, minutes, framework, sourceNote,
 
-**The square of nine** drops a pip into a cell for each occurrence of a digit
-in the date. The arrangement is fixed:
+  form: () => ({ kind: "items", items, scale, shuffle: true, pageSize: 5 }),
+  //        or ({ kind: "fields", fields: [...] })  for a profiler
+  validate,                 // optional, profilers only: { fieldId: message }
+  score:        (answers) => result,          // pure, and JSON-serialisable
+  view:         (result)  => html`…`,
+  instructions: (result)  => [{ channel, title, body }],
+  compare:      (a, b, { nameA, nameB }) => html`…`,   // optional
+};
+```
+
+Register it in [`src/instruments/index.js`](src/instruments/index.js) and it
+appears in the catalogue, the sheet, the panel, the share links, and the test
+suite. [`test/instruments/contract.test.js`](test/instruments/contract.test.js)
+loops over the registry, so a new instrument inherits every contract check
+without a line of new test code.
+
+The shell supplies the mechanics: paging, shuffling, drafts, progress,
+keyboard entry, escaping, storage, visibility, sharing. The instrument supplies
+only meaning.
+
+### Input kinds available to any instrument
+
+`likert` · `choice` · `multi` — for questionnaires
+`text` · `number` · `select` · `date` · `multi` — for profilers
+
+A new input kind is added once in
+[`src/ui/components/fields.js`](src/ui/components/fields.js) and becomes
+available to every instrument at once.
+
+---
+
+## How the scoring works
+
+Three rules, in [`src/core/scoring.js`](src/core/scoring.js), cover every
+questionnaire:
+
+1. **An item belongs to one scale** and is forward- or reverse-keyed.
+2. **Reverse keying is `max + min − answer`.** Reverse items exist to defeat
+   acquiescence bias — the tendency to agree with everything. A scale without
+   them measures agreeableness more than it measures its own construct. Answer
+   `5` to all forty Big Five items and you get five near-identical middling
+   scores, and the app tells you so.
+3. **Raw sums are rescaled to 1–100** against the range that scale could
+   possibly have produced. That, not the raw sum, is what is stored and
+   compared. The floor is 1 rather than 0 because nobody has *zero* need for
+   touch — they have the minimum.
+
+**Why Likert and not forced choice.** Chapman's own quiz and the RHETI are both
+*ipsative*: every question pits two scales against each other, so the scores
+are locked to a constant sum. You cannot score 80 on all five love languages,
+and two people's scores cannot be meaningfully compared — which is fatal for a
+product that intends to connect people later. Every questionnaire here is
+normative, so all five can be high, or none.
+
+---
+
+## Where the items came from
+
+The frameworks are public; the item wording is ours.
+
+| Referenced | Status | What was done |
+|---|---|---|
+| Chapman's 30-item love-languages quiz | Copyright, Northfield Publishing | Original 40-item Likert bank against the same five categories |
+| RHETI v2.5 (144 forced-choice items) | Copyright, The Enneagram Institute — the public repos state their items were OCR'd from the source PDF | Original 45-item Likert bank against the public nine-type model |
+| "Multifactor Enneagram" (AugmentedPersonality) | No license or attribution stated | Not used |
+| openpsychometrics.org (OEPS) | Open, educational use | Referenced as prior art |
+| IPIP item pool | Public domain | Referenced; substitutable as pure data — see below |
+
+Item banks are plain data. Swapping the Big Five bank for the public-domain
+IPIP fifty-item markers is an edit to
+[`src/instruments/big-five/items.js`](src/instruments/big-five/items.js) and
+nothing else.
+
+Every result page carries a `sourceNote` saying what its instrument is and is
+not. The numerology one says plainly that it has no empirical support.
+
+---
+
+## Storage, and the server that is not there yet
+
+All state goes through [`src/core/store.js`](src/core/store.js), whose
+interface is **async** even though the only adapter today is synchronous
+`localStorage`. When the backend arrives, a `RemoteAdapter` implements the same
+four methods — `get`, `set`, `del`, `list` — and no call site changes.
 
 ```
-3 6 9
-2 4 8
-1 5 7
+mi:1:profile              display name, pronouns, opening line
+mi:1:run:<instrumentId>   answers + result + version + visibility
+mi:1:draft:<instrumentId> a part-finished questionnaire, saved on every answer
 ```
 
-## Three decisions worth knowing
+Keys are namespaced and versioned, so a schema change is a migration rather
+than a corruption. The row shape is already the row shape a database wants:
+`(user, instrument_id, version, answers, result, visibility)` — generic, with
+no per-test tables.
 
-**The Chinese animal turns at Chinese New Year, not on 1 January.** This is the
-most common bug in birth-chart software, and it is why `src/data.js` carries a
-table of 151 real Chinese New Year dates rather than a `(year - 1900) % 12`.
-8 January 1993 falls before the 23 January boundary, so it reads Monkey — not
-Rooster. Outside 1900–2050 the boundary is estimated at 4 February and the page
-says so.
+If the browser refuses to store data (private mode, storage disabled) the app
+runs from memory and says so across the top rather than losing answers
+silently.
 
-**"Modulo 9" means the digital root.** In numerology 18 reduces to 9, never 0.
-The one exception is a subtraction of two equal values, which is a genuine 0 and
-is kept as one — those cells render dimmed.
+### Visibility and sharing — built now, enforced later
 
-**Master numbers survive.** A digit total of 11, 22, or 33 is not reduced
-further.
+Every result carries `private | friends | public`. Today that governs how the
+sheet presents it; when the network exists it governs what other people can
+see, and the model does not have to be retrofitted.
+
+Sharing already works without a server. A share link carries **answers, not
+scores**, in the URL fragment; the receiving app re-scores them with its own
+current copy of the instrument. A link made against version 1 still reads
+correctly under version 2 — which storing the scores would have broken.
+
+`#/compare/<id>?with=<token>` renders both readings side by side. Nothing is
+uploaded, and nothing about the other person is stored.
+
+---
 
 ## Layout
 
 ```
-index.html          markup and the font link
-styles.css          tokens first; light and dark are both designed
-src/data.js         tables — CNY dates, animals, signs, number meanings
-src/calendar.js     zodiac-year and sign boundaries, leap years
-src/numerology.js   digital root, profile(), match()
-src/views.js        pure functions returning HTML strings
-src/main.js         input wiring and URL-hash state
-tools/serve.mjs     static server (ES modules need an origin)
-tools/build.mjs     inlines everything into dist/ninefold.html
-test/               node:test, no runner to install
+src/
+  core/         html.js · store.js · registry.js · router.js · scoring.js · share.js
+  ui/
+    app.js      the shell: routes, nav, one animation pass
+    pages/      home · catalog · runner · result · sheet · profile · compare
+    components/ fields.js (every input kind) · scorecard.js (every result widget)
+  instruments/  one folder per test — the only place to add features
+tools/
+  serve.mjs     static server, zero dependencies
+  build.mjs     29 modules into one self-contained HTML file
+test/           core · instruments · ui · build
 ```
 
-`src/views.js` never reads the DOM and `src/numerology.js` never writes it, so
-the tests import exactly the code the page runs.
+**Pages are pure functions.** A page returns an HTML string, or
+`{ body, mount }` when it needs behaviour after the markup lands. There is no
+virtual DOM because there is no shared mutable view state — each route owns its
+subtree and replaces it wholesale. The consequence is that the entire render
+layer is testable in Node with no browser, which is what
+[`test/ui/pages.test.js`](test/ui/pages.test.js) does.
 
-State lives in the URL hash — `#1993-01-08~Ada_1990-06-14~Grace` — so any chart
-is a link.
+**Escaping is inverted.** [`src/core/html.js`](src/core/html.js) exports an
+`html` tagged template that escapes every interpolation; trusted markup must
+opt out via `raw()`. Forgetting to escape is impossible; forgetting to
+*un*-escape is merely ugly.
 
-## Accuracy, honestly
+**The build is a real module system**, not a concatenation. Each module is
+wrapped in a function and a four-line registry resolves the graph at runtime —
+small enough to read in one sitting, which is the reason not to install a
+bundler for a project that installs nothing.
 
-The calendar and the arithmetic are exact and tested. The interpretations are
-traditional readings, not claims. For amusement and pattern-hunting.
+---
 
-MIT.
+## Roadmap
+
+The pieces below were designed for and are not yet built.
+
+- **Accounts and sync** — swap `LocalAdapter` for `RemoteAdapter`; the storage
+  interface and row shape already assume it.
+- **Connections** — friend links, then `visibility: friends` starts meaning
+  something.
+- **Public pages** — a shareable instruction sheet at a stable URL, showing
+  only the cards marked public.
+- **Matching** — every questionnaire score is normative and 1–100, so
+  cross-person comparison is already well defined. `compare()` exists on three
+  of the four instruments today and runs entirely client-side.
+- **More instruments** — attachment style, conflict style, chronotype,
+  work-preference profilers. Each is one folder.
+
+---
+
+*Self-report, not diagnosis. The Big Five has real research behind it at modest
+effect sizes; the Enneagram and love languages are useful vocabularies with
+thin evidence; the numerology has none and says so.*

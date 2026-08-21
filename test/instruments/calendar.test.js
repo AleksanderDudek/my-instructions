@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CNY, CUTS, FRIENDLY } from "../src/data.js";
-import { cnyOf, zodiacYear, westernSign, daysIn } from "../src/calendar.js";
-import { profile } from "../src/numerology.js";
+import { CNY, CUTS, FRIENDLY } from "../../src/instruments/numerology/data.js";
+import { cnyOf, zodiacYear, westernSign, daysIn } from "../../src/instruments/numerology/calendar.js";
+import { profile } from "../../src/instruments/numerology/compute.js";
 
 const animalOf = (d, m, y) => profile(d, m, y, "").animal[0];
 

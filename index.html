@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Birth-date numerology: Chinese and Western zodiac, destiny number, reduction pyramid, and the square of nine.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0d13'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' text-anchor='middle' fill='%23d9a441'%3E9%3C/text%3E%3C/svg%3E">
-<title>Ninefold Almanac</title>
+<meta name="description" content="Take a few tests, get one page that says how you work — what lands, what drains you, what to do when it goes badly.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0d13'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='700' text-anchor='middle' fill='%23d9a441'%3EMi%3C/text%3E%3C/svg%3E">
+<title>My Instructions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,1&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;0,600;1,300&display=swap">
@@ -14,42 +15,19 @@
 <body>
 <div class="shell">
   <header class="masthead">
-    <div>
-      <div class="wordmark"><h1>Ninefold <em>Almanac</em></h1></div>
-      <p class="tagline">A birth date, reduced. Zodiacs east and west, the destiny number, the pyramid of sums and differences, and the square of nine.</p>
-    </div>
-    <div class="modes" role="group" aria-label="Reading mode">
-      <button type="button" id="mode-solo"  aria-pressed="true">One person</button>
-      <button type="button" id="mode-duo"   aria-pressed="false">Two people</button>
-    </div>
+    <a class="wordmark" href="#/">
+      <span class="mark" aria-hidden="true">Mi</span>
+      <h1>My <em>Instructions</em></h1>
+    </a>
+    <nav id="nav" aria-label="Sections"></nav>
   </header>
+  <div class="masthead-rule"></div>
 
-  <div class="console" id="console">
-    <div class="entry a">
-      <div class="who"><input type="text" id="name-a" placeholder="Name (optional)" autocomplete="off" aria-label="First person's name"></div>
-      <div class="fields">
-        <div class="field"><label class="label" for="d-a">Day</label><input class="num" type="number" id="d-a" min="1" max="31" value="8" inputmode="numeric"></div>
-        <div class="field"><label class="label" for="m-a">Month</label><select id="m-a"></select></div>
-        <div class="field"><label class="label" for="y-a">Year</label><input class="num" type="number" id="y-a" min="1900" max="2050" value="1993" inputmode="numeric"></div>
-      </div>
-      <p class="warn" id="warn-a" role="status"></p>
-    </div>
-    <div class="entry b hidden" id="entry-b">
-      <div class="who"><input type="text" id="name-b" placeholder="Second name (optional)" autocomplete="off" aria-label="Second person's name"></div>
-      <div class="fields">
-        <div class="field"><label class="label" for="d-b">Day</label><input class="num" type="number" id="d-b" min="1" max="31" value="14" inputmode="numeric"></div>
-        <div class="field"><label class="label" for="m-b">Month</label><select id="m-b"></select></div>
-        <div class="field"><label class="label" for="y-b">Year</label><input class="num" type="number" id="y-b" min="1900" max="2050" value="1990" inputmode="numeric"></div>
-      </div>
-      <p class="warn" id="warn-b" role="status"></p>
-    </div>
-  </div>
-
-  <main id="out"></main>
+  <main id="view"><noscript><p class="prose" style="margin-top:60px">This application needs JavaScript. Everything it computes runs in your browser; there is no server to compute it for you.</p></noscript></main>
 
   <footer class="colophon">
-    <span>Ninefold Almanac — reductions use the digital root, so 18 becomes 9, never 0.</span>
-    <span>For amusement and pattern-hunting. Not advice.</span>
+    <span>My Instructions — every answer stays in this browser.</span>
+    <span>Self-report, not diagnosis.</span>
   </footer>
 </div>
 <script type="module" src="./src/main.js"></script>

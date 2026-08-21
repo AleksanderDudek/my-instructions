@@ -1,12 +1,11 @@
 import { NUM, MONTHS } from "./data.js";
-import { digits, sumd, dr, match } from "./numerology.js";
+import { digits, sumd } from "./compute.js";
+import { esc } from "../../core/html.js";
 
 /**
  * Rendering. Every function here returns an HTML string and touches no state.
  */
 /* ══ the pyramid, drawn ═══════════════════════════════════════════ */
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-
 function pyramidSVG(p){
   const X = {l:200, c:380, r:560, ml:290, mr:470}, Y = {crown:50, spire:145, rise:240, core:335, root:430, base:520};
   const node = (x,y,v,kind,cap,tip,delay) => `
@@ -103,9 +102,9 @@ function identityHTML(p){
   const cnyStr = p.cny.d+" "+MONTHS[p.cny.m-1];
   return `<div class="identity reveal">
     <div class="ident">
-      <span class="label">The date</span>
-      <span class="big">${esc(p.pretty)}</span>
-      <span class="sub">${p.weekday} · written <span class="num">${p.DD}·${p.MM}·${p.YYYY}</span></span>
+      <span class="label">${p.name ? "Whose chart" : "The date"}</span>
+      <span class="big">${p.name ? esc(p.name) : esc(p.pretty)}</span>
+      <span class="sub">${p.name ? esc(p.pretty)+" · " : ""}${p.weekday} · written <span class="num">${p.DD}·${p.MM}·${p.YYYY}</span></span>
     </div>
     <div class="ident">
       <span class="glyph">${p.animal[1]}</span>
@@ -135,20 +134,6 @@ function meaningsHTML(p){
    <p style="color:var(--muted);font-size:.87rem;margin-top:14px">Lit numbers are the ones this chart actually produced${p.destiny.value>9?`, plus the master ${p.destiny.value} — ${NUM[p.destiny.value][0]}`:""}.</p>`;
 }
 
-function head(title, note){
-  return `<div class="plate-head"><h2>${title}</h2><span class="rule"></span><span class="label">${note||""}</span></div>`;
-}
-
-function soloHTML(p){
-  const who = p.name ? esc(p.name) : "This chart";
-  return `<section class="plate">${head("The reckoning", who)}${identityHTML(p)}</section>
-    <section class="plate">${head("The pyramid","sums rise · differences fall")}
-      <div class="card pad reveal">${pyramidSVG(p)}</div></section>
-    <section class="plate">${head("Square of nine","occurrences in the date")}
-      <div class="card pad reveal">${squareHTML(p)}</div></section>
-    <section class="plate">${head("What the numbers carry","1 – 9")}${meaningsHTML(p)}</section>`;
-}
-
 function duelCard(p,accent){
   return `<div style="--accent:${accent}">
     <h3>${p.name ? esc(p.name) : p.pretty}</h3>
@@ -161,41 +146,4 @@ function duelCard(p,accent){
   </div>`;
 }
 
-function duoHTML(a,b){
-  const m = match(a,b);
-  const nameA = a.name || "First", nameB = b.name || "Second";
-  const list = (arr) => arr.length ? arr.map(n=>`<span class="chip on">${n} ${NUM[n][0].replace("The ","")}</span>`).join("") : `<span class="chip off">nothing the other lacks</span>`;
-  return `<section class="plate">${head("Two charts","side by side")}
-    <div class="duel reveal">${duelCard(a,"var(--brass)")}${duelCard(b,"var(--verdigris)")}</div></section>
-
-  <section class="plate">${head("Resonance","how the two readings meet")}
-    <div class="card pad reveal">
-      <div class="meter">
-        <div class="meter-top">
-          <div><span class="label">Composite</span><br><strong class="num" id="score">0</strong><span class="num" style="color:var(--muted);font-size:1rem"> / 100</span></div>
-          <div style="text-align:right"><span class="label">Verdict</span><br><span style="font-family:Fraunces,serif;font-size:1.45rem;font-weight:600">${m.band}</span></div>
-        </div>
-        <div class="meter-bar"><div class="meter-fill" id="fill"></div></div>
-      </div>
-      <div class="breakdown">
-        ${m.parts.map(pt=>`<div class="bd">
-            <span class="t">${pt.t}</span>
-            <span class="track"><i data-w="${(pt.v/pt.max*100).toFixed(1)}"></i></span>
-            <span class="v">${pt.v}<span style="color:var(--muted)">/${pt.max}</span></span>
-            <span class="bd-note">${esc(pt.note)}</span>
-          </div>`).join("")}
-      </div>
-      <div class="exchange" style="border-top:1px dashed var(--rule);padding-top:24px;margin-top:26px">
-        <div><span class="label">${esc(nameA)} supplies</span><div class="chips" style="margin-top:10px">${list(m.aFills)}</div></div>
-        <div><span class="label">${esc(nameB)} supplies</span><div class="chips" style="margin-top:10px">${list(m.bFills)}</div></div>
-      </div>
-      <p class="prose" style="margin-top:26px;color:var(--muted)">Their destiny numbers combine to <strong class="num" style="color:var(--brass)">${m.unionNum}</strong> — <strong style="color:var(--ink)">${NUM[m.unionNum][0]}</strong>. ${esc(NUM[m.unionNum][1])} That is the register the pair tends to operate in, whatever each brings alone.</p>
-    </div></section>
-
-  <section class="plate">${head("Pyramid — "+esc(nameA))}<div class="card pad reveal">${pyramidSVG(a)}</div></section>
-  <section class="plate">${head("Pyramid — "+esc(nameB))}<div class="card pad reveal">${pyramidSVG(b)}</div></section>
-  <section class="plate">${head("Square — "+esc(nameA))}<div class="card pad reveal">${squareHTML(a)}</div></section>
-  <section class="plate">${head("Square — "+esc(nameB))}<div class="card pad reveal">${squareHTML(b)}</div></section>`;
-}
-
-export { esc, pyramidSVG, squareHTML, identityHTML, meaningsHTML, soloHTML, duoHTML };
+export { pyramidSVG, squareHTML, identityHTML, meaningsHTML, duelCard };

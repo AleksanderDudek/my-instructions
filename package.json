@@ -1,7 +1,7 @@
 {
-  "name": "ninefold-almanac",
-  "version": "1.0.0",
-  "description": "Birth-date numerology: Chinese and Western zodiac, destiny number, reduction pyramid, and the square of nine — for one person or two.",
+  "name": "my-instructions",
+  "version": "2.0.0",
+  "description": "Take a few tests, get one page that says how you work — what lands, what drains you, what to do when it goes badly.",
   "type": "module",
   "private": true,
   "license": "MIT",

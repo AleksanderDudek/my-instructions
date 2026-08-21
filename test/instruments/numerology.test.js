@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { dr, sumd, reduceMaster, profile, match } from "../src/numerology.js";
+import { dr, sumd, reduceMaster, profile, match } from "../../src/instruments/numerology/compute.js";
 
 test("the digital root reduces to 1–9 and never yields 0 from a sum", () => {
   assert.equal(dr(9), 9);

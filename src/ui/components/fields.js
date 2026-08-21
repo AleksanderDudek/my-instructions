@@ -82,7 +82,8 @@ function fieldHTML(field, value, error, t) {
         <input type="checkbox" name="${field.id}" value="${o.value}" ${raw((value ?? []).includes(o.value) ? "checked" : "")}><span>${o.label}</span>
       </label>`))}</div>`;
   } else {
-    const type = field.kind === "number" ? "number" : field.kind === "date" ? "date" : "text";
+    const NATIVE = { number: "number", date: "date", time: "time" };
+    const type = NATIVE[field.kind] ?? "text";
     control = html`<input id="${id}" name="${field.id}" type="${type}" value="${v}"
       ${raw(field.min != null ? `min="${field.min}"` : "")} ${raw(field.max != null ? `max="${field.max}"` : "")}
       ${raw(field.placeholder ? `placeholder="${field.placeholder}"` : "")}

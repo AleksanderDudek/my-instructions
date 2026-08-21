@@ -84,7 +84,7 @@ function validateItems(spec, items) {
   }
 }
 
-const FIELD_KINDS = new Set(["date", "text", "number", "select", "multi"]);
+const FIELD_KINDS = new Set(["date", "time", "text", "number", "select", "multi"]);
 function validateFields(spec, fields) {
   if (!Array.isArray(fields) || !fields.length) throw new TypeError(`instrument "${spec.id}": form.fields must be a non-empty array`);
   const seen = new Set();

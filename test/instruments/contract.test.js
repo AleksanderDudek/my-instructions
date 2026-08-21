@@ -29,7 +29,11 @@ function answersFor(spec, seed = 1) {
   if (form.kind === "fields") {
     const out = {};
     for (const f of form.fields) {
-      if (f.kind === "number") out[f.id] = f.min ?? 1;
+      // A field's own default is the most honest answer available: it is what
+      // a reader who changed nothing would submit, and it is the only value
+      // guaranteed to be valid for kinds the harness does not know about.
+      if (f.value !== undefined) out[f.id] = f.value;
+      else if (f.kind === "number") out[f.id] = f.min ?? 1;
       else if (f.kind === "select") out[f.id] = f.options[0].value;
       else if (f.kind === "multi") out[f.id] = [f.options[0].value];
       else out[f.id] = "Test Person";

@@ -12,8 +12,9 @@ import bigFive from "./big-five/index.js";
 import hexaco from "./hexaco/index.js";
 import jungian from "./jungian/index.js";
 import attachment from "./attachment/index.js";
+import chronotype from "./chronotype/index.js";
 
-const INSTRUMENTS = [loveLanguages, attachment, enneagram, bigFive, hexaco, jungian, numerology];
+const INSTRUMENTS = [loveLanguages, attachment, enneagram, bigFive, hexaco, jungian, chronotype, numerology];
 
 const registry = createRegistry();
 for (const spec of INSTRUMENTS) registry.register(spec);

@@ -26,12 +26,12 @@ function match(route, path) {
   return params;
 }
 
-function createRouter({ onRoute, fallback }) {
+function createRouter({ onRoute, fallback, win = globalThis }) {
   const routes = [];
   let current = null;
 
   function parse() {
-    const raw = location.hash.replace(/^#/, "");
+    const raw = win.location.hash.replace(/^#/, "");
     const [path, query = ""] = raw.split("?");
     return { path: path || "/", query: new URLSearchParams(query) };
   }
@@ -52,14 +52,24 @@ function createRouter({ onRoute, fallback }) {
 
   return {
     add(pattern, handler) { const r = compile(pattern); r.handler = handler; routes.push(r); return this; },
-    start() { addEventListener("hashchange", resolve); return resolve(); },
+    start() { win.addEventListener("hashchange", resolve); return resolve(); },
     get current() { return current; },
-    /** Navigate. `replace` keeps the back button from filling with wizard steps. */
+    /**
+     * Navigate. `replace` keeps the back button from filling with wizard steps.
+     *
+     * The two branches are not symmetric and the asymmetry is the whole point:
+     * assigning `location.hash` fires `hashchange`, so the listener renders.
+     * `history.replaceState` fires nothing at all, so this has to resolve for
+     * itself — without that call the address bar changes and the page does not.
+     */
     go(path, { replace = false } = {}) {
       const next = "#" + path;
-      if (location.hash === next) return resolve();
-      if (replace) history.replaceState(null, "", next);
-      else location.hash = next;
+      if (win.location.hash === next) return resolve();
+      if (replace) {
+        win.history.replaceState(null, "", next);
+        return resolve();
+      }
+      win.location.hash = next;
     },
     href: (path) => "#" + path,
   };

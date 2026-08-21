@@ -1,5 +1,5 @@
 import { html } from "../../core/html.js";
-import { scaleFor, scoreLikert } from "../../core/scoring.js";
+import { scaleFor, scoreLikert, deviation } from "../../core/scoring.js";
 import { barsHTML, verdictHTML, factsHTML } from "../../ui/components/scorecard.js";
 import { ITEMS } from "./items.js";
 
@@ -58,8 +58,9 @@ function score(answers) {
     scores, assertiveness, cooperativeness, mode,
     fallback: fallbackOf(mode, assertiveness, cooperativeness),
     // How far from the centre, so the copy can hedge when the mode is a
-    // near-run thing rather than a settled habit.
-    reach: Math.round(Math.hypot(assertiveness - MIDPOINT, cooperativeness - MIDPOINT)),
+    // near-run thing rather than a settled habit. Normalised, so it means the
+    // same here as it does on the attachment plane.
+    reach: deviation(scores, MIDPOINT).distance,
     answered, total,
   };
 }

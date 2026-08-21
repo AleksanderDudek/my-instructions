@@ -1,5 +1,5 @@
 import { html } from "../../core/html.js";
-import { scaleFor, scoreLikert, band, straightlining } from "../../core/scoring.js";
+import { scaleFor, scoreLikert, band, deviation, straightlining } from "../../core/scoring.js";
 import { barsHTML, verdictHTML, factsHTML } from "../../ui/components/scorecard.js";
 import { GLYPHS, ORDER, ITEMS } from "./items.js";
 
@@ -28,7 +28,10 @@ function score(answers) {
     scores, profile,
     honesty: profile[0],
     marked: profile.filter((p) => p.marked),
-    flat: !profile.some((p) => p.marked),
+    // Deviation from the middle, not spread between the scales: a person at 70
+    // on everything has no spread and plenty to say, and calling that flat
+    // would be wrong.
+    flat: deviation(scores).furthest < MARKED,
     suspect: straightlining(ITEMS, answers),
     answered, total,
   };

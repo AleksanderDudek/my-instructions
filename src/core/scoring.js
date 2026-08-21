@@ -95,6 +95,98 @@ function shares(scores) {
   return Object.fromEntries(floored);
 }
 
+/**
+ * How spread out a profile is — the *range* reading.
+ *
+ * Six instruments independently grew a version of this question ("is this
+ * profile flat?") with four different formulas and four different thresholds,
+ * which is how you end up telling one reader that their twelve-point spread is
+ * meaningless and another that their fifteen-point spread is a finding. It
+ * belongs here, computed one way.
+ *
+ * Two numbers, because they answer different questions.
+ *
+ * `range` is the blunt one — highest minus lowest. It is what a reader
+ * understands without being taught anything, and it is what decides whether
+ * the ordering beneath it is worth printing at all.
+ *
+ * `evenness` is the principled one: the entropy of the shares, normalised so
+ * that 100 is perfectly even and 0 is everything in one scale. Range looks
+ * only at the two extremes and cannot tell 90/50/50/50/10 from 90/80/50/20/10;
+ * entropy sees the whole shape.
+ */
+function dispersion(scores) {
+  const values = Object.values(scores).filter(Number.isFinite);
+  if (values.length < 2) return { range: 0, evenness: 100, focus: 0, concentrated: false };
+
+  const range = Math.max(...values) - Math.min(...values);
+  const total = values.reduce((a, b) => a + b, 0);
+
+  // Shannon entropy over the shares, divided by the entropy of a perfectly
+  // even profile of the same size — which is the only thing that makes the
+  // number mean the same for a five-scale instrument and an eight-scale one.
+  const entropy = -values.reduce((acc, v) => {
+    const share = v / total;
+    return acc + (share > 0 ? share * Math.log(share) : 0);
+  }, 0);
+  const evenness = Math.round((entropy / Math.log(values.length)) * 100);
+
+  return {
+    range,
+    evenness,
+    /** The complement, for sentences that read better as concentration. */
+    focus: 100 - evenness,
+    // Below about fifteen points between highest and lowest, the ordering is
+    // mostly measurement noise. An instrument may raise this threshold; none
+    // should lower it without writing down why.
+    concentrated: range >= 15,
+  };
+}
+
+/**
+ * How far a profile sits from the neutral point — a different question from
+ * `dispersion`, and the one four instruments were actually asking.
+ *
+ * Spread asks whether the scales differ *from each other*; deviation asks
+ * whether they differ *from the middle*. A person at 70 on everything has no
+ * spread and a lot of deviation, and telling them "no strong pattern" would be
+ * wrong. Conflating the two would have been the tidy consolidation and the
+ * incorrect one.
+ *
+ * `distance` is the Euclidean norm from the centre, as a percentage of the
+ * furthest a profile of that size could be — so a two-dimensional instrument
+ * and a six-dimensional one produce comparable numbers.
+ */
+function deviation(scores, midpoint = 50) {
+  const values = Object.values(scores).filter(Number.isFinite);
+  if (!values.length) return { furthest: 0, mean: 0, distance: 0 };
+
+  const offsets = values.map((v) => Math.abs(v - midpoint));
+  const norm = Math.hypot(...offsets);
+  const ceiling = Math.hypot(...values.map(() => midpoint));
+
+  return {
+    /** The single scale furthest from the middle, in points. */
+    furthest: Math.round(Math.max(...offsets)),
+    /** The average distance from the middle, which a single spike cannot inflate. */
+    mean: Math.round(offsets.reduce((a, b) => a + b, 0) / offsets.length),
+    distance: Math.round((norm / ceiling) * 100),
+  };
+}
+
+/**
+ * The average height of a profile — the *level* reading, where it applies.
+ *
+ * Only meaningful when every scale points the same way, so that more really is
+ * more. On Big Five it is meaningless by construction: a high score on
+ * emotional reactivity is not more of anything good. An instrument that has
+ * not decided whether its scales have a direction should not call this.
+ */
+const elevation = (scores) => {
+  const values = Object.values(scores).filter(Number.isFinite);
+  return values.length ? Math.round(values.reduce((a, b) => a + b, 0) / values.length) : 0;
+};
+
 /** Scales sorted high to low, as [{ key, score, rank }] — ties share a rank. */
 function rank(scores) {
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
@@ -126,4 +218,4 @@ function straightlining(items, answers) {
   return new Set(given).size <= 1;
 }
 
-export { SCALES, scaleFor, clamp, flip, normalize, scoreLikert, shares, rank, band, straightlining };
+export { SCALES, scaleFor, clamp, flip, normalize, scoreLikert, shares, rank, band, dispersion, deviation, elevation, straightlining };

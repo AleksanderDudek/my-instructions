@@ -1,5 +1,5 @@
 import { html, join } from "../../core/html.js";
-import { scaleFor, scoreLikert, shares, rank } from "../../core/scoring.js";
+import { scaleFor, scoreLikert, shares, rank, dispersion } from "../../core/scoring.js";
 import { barsHTML, verdictHTML, factsHTML } from "../../ui/components/scorecard.js";
 import { GLYPHS, ORDER, ITEMS } from "./items.js";
 
@@ -24,8 +24,11 @@ function score(answers) {
   // A language is "quiet" when it is both low in itself and small in the mix —
   // the pair of tests stops us calling a 70 a weakness just because the rest are 80s.
   const quiet = ranked.filter((r) => r.score < 40 && r.share < 18).map((r) => r.key);
-  const flat = ranked[0].score - ranked[ranked.length - 1].score < 12;
-  return { scores, shares: pct, ranked, primary, secondary, quiet, flat, answered, total };
+  // The app's shared answer to "is this profile flat?", rather than this
+  // folder's own twelve-point rule. Evenness rides along because "how many
+  // channels reach you" is a genuinely different reading from "which one".
+  const { concentrated, evenness } = dispersion(scores);
+  return { scores, shares: pct, ranked, primary, secondary, quiet, flat: !concentrated, evenness, answered, total };
 }
 
 const rows = (result, t) =>

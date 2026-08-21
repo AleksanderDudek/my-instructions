@@ -1,5 +1,5 @@
 import { html } from "../../core/html.js";
-import { scaleFor, scoreLikert } from "../../core/scoring.js";
+import { scaleFor, scoreLikert, deviation } from "../../core/scoring.js";
 import { barsHTML, verdictHTML, factsHTML } from "../../ui/components/scorecard.js";
 import { ITEMS } from "./items.js";
 
@@ -35,10 +35,9 @@ function score(answers) {
   const avoidance = scores.avoidance;
 
   // How far from the middle of the plane, as a percentage of the furthest a
-  // person could be. A low number means the quadrant name is close to a
-  // coin toss and the copy says so.
-  const reach = Math.hypot(anxiety - MIDPOINT, avoidance - MIDPOINT);
-  const strength = Math.round((reach / Math.hypot(MIDPOINT, MIDPOINT)) * 100);
+  // person could be. A low number means the quadrant name is close to a coin
+  // toss, and the copy says so.
+  const { distance: strength } = deviation(scores, MIDPOINT);
 
   return {
     scores, anxiety, avoidance,

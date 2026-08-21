@@ -1,5 +1,5 @@
 import { html } from "../../core/html.js";
-import { scaleFor, scoreLikert, rank } from "../../core/scoring.js";
+import { scaleFor, scoreLikert, rank, dispersion } from "../../core/scoring.js";
 import { barsHTML, verdictHTML, factsHTML } from "../../ui/components/scorecard.js";
 import { GLYPHS, ORDER, ITEMS } from "./items.js";
 
@@ -36,13 +36,19 @@ function score(answers) {
   const ranked = rank(scores);
   const top = ranked.slice(0, 3).map((r) => r.key);
 
-  const spread = ranked[0].score - ranked[ranked.length - 1].score;
+  // `dispersion` is the app's one answer to "is this profile flat?". The
+  // threshold is raised from the shared default of fifteen because interests
+  // spread more widely than traits do, and twenty is where Holland's own
+  // differentiation guidance sits.
+  const { range: spread, evenness } = dispersion(scores);
   const consistency = consistencyOf(top[0], top[1]);
 
   return {
     scores, ranked, top,
     code: top.map((k) => LETTER[k]).join(""),
     spread,
+    /** How evenly the six interests are held, 0 concentrated to 100 even. */
+    evenness,
     // Under about twenty points the ordering is mostly noise, and saying so is
     // more useful than handing someone three letters they will take seriously.
     flat: spread < 20,

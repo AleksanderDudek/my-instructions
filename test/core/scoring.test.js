@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { SCALES, flip, normalize, scoreLikert, shares, rank, band, straightlining } from "../../src/core/scoring.js";
+import { SCALES, flip, normalize, scoreLikert, shares, rank, band, dispersion, deviation, elevation, straightlining } from "../../src/core/scoring.js";
 
 test("reverse keying is its own inverse", () => {
   for (const scale of Object.values(SCALES)) {
@@ -76,4 +76,79 @@ test("straightlining needs enough evidence before it accuses", () => {
   assert.equal(straightlining(few, Object.fromEntries(few.map((i) => [i.id, 3]))), false);
   assert.equal(straightlining(many, Object.fromEntries(many.map((i) => [i.id, 3]))), true);
   assert.equal(straightlining(many, Object.fromEntries(many.map((i, n) => [i.id, n % 2 ? 2 : 4]))), false);
+});
+
+/* ── dispersion ───────────────────────────────────────────────────
+   The "range" reading. Six instruments had each grown their own
+   version of this before it lived here.                             */
+
+test("a perfectly even profile is maximally even and not concentrated", () => {
+  const d = dispersion({ a: 50, b: 50, c: 50, d: 50 });
+  assert.equal(d.range, 0);
+  assert.equal(d.evenness, 100);
+  assert.equal(d.focus, 0);
+  assert.equal(d.concentrated, false);
+});
+
+test("everything in one scale reads as focus rather than spread", () => {
+  const d = dispersion({ a: 100, b: 1, c: 1, d: 1 });
+  assert.equal(d.range, 99);
+  assert.ok(d.evenness < 40, `evenness ${d.evenness} should be low`);
+  assert.equal(d.concentrated, true);
+});
+
+test("evenness sees the shape that range cannot", () => {
+  // The same highest and lowest, so the same range — but one profile keeps its
+  // mass in a single scale and the other spreads it, which is the whole point.
+  const peaked = dispersion({ a: 90, b: 50, c: 50, d: 50, e: 10 });
+  const spread = dispersion({ a: 90, b: 80, c: 50, d: 20, e: 10 });
+  assert.equal(peaked.range, spread.range, "the two profiles have the same range");
+  assert.notEqual(peaked.evenness, spread.evenness, "and different shapes, which evenness should see");
+});
+
+test("evenness is comparable across instruments of different sizes", () => {
+  // Normalising by the entropy of an even profile of the same size is what
+  // makes a five-scale reading mean the same as an eight-scale one.
+  const five = dispersion(Object.fromEntries(Array.from({ length: 5 }, (_, i) => [i, 40])));
+  const eight = dispersion(Object.fromEntries(Array.from({ length: 8 }, (_, i) => [i, 40])));
+  assert.equal(five.evenness, eight.evenness);
+  assert.equal(five.evenness, 100);
+});
+
+test("a degenerate profile does not divide by zero", () => {
+  assert.deepEqual(dispersion({}), { range: 0, evenness: 100, focus: 0, concentrated: false });
+  assert.deepEqual(dispersion({ only: 70 }), { range: 0, evenness: 100, focus: 0, concentrated: false });
+});
+
+test("elevation is the mean, and is only meaningful where scales point one way", () => {
+  assert.equal(elevation({ a: 10, b: 20, c: 30 }), 20);
+  assert.equal(elevation({}), 0);
+});
+
+/* ── deviation ────────────────────────────────────────────────────
+   A different question from spread, and the one four instruments
+   were actually asking.                                             */
+
+test("a flat profile away from the middle has deviation but no spread", () => {
+  const scores = { a: 70, b: 70, c: 70, d: 70 };
+  assert.equal(dispersion(scores).range, 0, "nothing separates the scales");
+  assert.equal(deviation(scores).furthest, 20, "and yet every one of them is high");
+});
+
+test("deviation is comparable across instruments of different sizes", () => {
+  const two = deviation({ a: 100, b: 100 });
+  const six = deviation(Object.fromEntries(Array.from({ length: 6 }, (_, i) => [i, 100])));
+  assert.equal(two.distance, six.distance, "both are as far from the middle as it is possible to be");
+  assert.equal(two.distance, 100);
+});
+
+test("the mean cannot be inflated by a single spike, and furthest can", () => {
+  const spike = deviation({ a: 100, b: 50, c: 50, d: 50 });
+  assert.equal(spike.furthest, 50);
+  assert.ok(spike.mean < 20, `mean ${spike.mean} should stay low with one spike`);
+});
+
+test("a profile sitting on the midpoint has no deviation at all", () => {
+  assert.deepEqual(deviation({ a: 50, b: 50 }), { furthest: 0, mean: 0, distance: 0 });
+  assert.deepEqual(deviation({}), { furthest: 0, mean: 0, distance: 0 });
 });

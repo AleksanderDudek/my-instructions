@@ -15,7 +15,17 @@ import { factsHTML, verdictHTML } from "../../ui/components/scorecard.js";
  * colleague can act on tomorrow without believing anything about personality.
  */
 
-/** Every question, with its options. Ids are stored, so they never change. */
+/**
+ * Every question, with its options. Ids are stored, so they never change.
+ *
+ * The five added in version 2 are the ones a colleague cannot guess and would
+ * otherwise learn by getting them wrong: how to hand you something, what
+ * actually changes your mind, what to do after a clash, and where an objection
+ * belongs. They are preferences in the same register as the rest — a fact about
+ * how you would like to be treated, with no claimed benefit attached. Stating a
+ * format preference does not predict better outcomes from that format, and this
+ * folder does not imply that it does.
+ */
 const FIELDS = [
   { id: "interruption", options: ["protected", "mixed", "open"] },
   { id: "feedback", options: ["blunt", "direct", "cushioned"] },
@@ -23,6 +33,11 @@ const FIELDS = [
   { id: "meetings", options: ["few", "some", "many"] },
   { id: "mode", options: ["async", "mixed", "sync"] },
   { id: "decisions", options: ["fast", "gather", "consensus"] },
+  { id: "brief", options: ["headline", "context", "written"] },
+  { id: "prep", options: ["document", "agenda", "cold"] },
+  { id: "evidence", options: ["number", "example", "user", "dissenter"] },
+  { id: "repair", options: ["now", "hour", "explicit"] },
+  { id: "dissent", options: ["meeting", "writing", "oneToOne"] },
 ];
 
 /** Multi-select questions: several answers are a real answer here. */
@@ -90,16 +105,22 @@ function view(result, { t }) {
       ...FIELDS.map((f) => [t(`field.${f.id}.label`), t(`answer.${f.id}.${result.choices[f.id]}`)]),
       ...MULTI.map((f) => [t(`field.${f.id}.label`), listOf(result, f.id, t) || t("view.nonePicked")]),
     ])}
-    <div class="note prose"><p>${t("view.notAMeasureNote")}</p></div>`;
+    <div class="note prose"><p>${t("view.notAMeasureNote")}</p></div>
+    <div class="note warn-note prose"><p>${t("view.notForDecisionsNote")}</p></div>`;
 }
 
 function instructions(result, t) {
+  const pick = (field) => t(`ask.${field}.${result.choices[field]}`);
   return [
-    { channel: "work", title: t("instructions.interruptionTitle"), body: t(`ask.interruption.${result.choices.interruption}`) },
-    { channel: "communication", title: t("instructions.feedbackTitle"), body: t(`ask.feedback.${result.choices.feedback}`) },
-    { channel: "work", title: t("instructions.noticeTitle"), body: t(`ask.notice.${result.choices.notice}`) },
+    { channel: "work", title: t("instructions.interruptionTitle"), body: pick("interruption") },
+    { channel: "communication", title: t("instructions.feedbackTitle"), body: pick("feedback") },
+    { channel: "work", title: t("instructions.noticeTitle"), body: pick("notice") },
     { channel: "energy", title: t("instructions.peakTitle"), body: t("instructions.peakBody", { when: listOf(result, "peak", t), where: listOf(result, "environment", t) }) },
-    { channel: "work", title: t("instructions.decisionsTitle"), body: t(`ask.decisions.${result.choices.decisions}`) },
+    { channel: "work", title: t("instructions.decisionsTitle"), body: pick("decisions") },
+    { channel: "communication", title: t("instructions.briefTitle"), body: t("instructions.briefBody", { brief: pick("brief"), prep: pick("prep") }) },
+    { channel: "communication", title: t("instructions.evidenceTitle"), body: pick("evidence") },
+    { channel: "conflict", title: t("instructions.repairTitle"), body: pick("repair") },
+    { channel: "communication", title: t("instructions.dissentTitle"), body: pick("dissent") },
   ];
 }
 
@@ -115,6 +136,11 @@ const OPPOSED = {
   meetings: ["few", "many"],
   mode: ["async", "sync"],
   decisions: ["fast", "consensus"],
+  brief: ["headline", "written"],
+  prep: ["document", "cold"],
+  evidence: ["number", "user"],
+  repair: ["now", "explicit"],
+  dissent: ["meeting", "oneToOne"],
 };
 
 function compare(a, b, { nameA = "A", nameB = "B", t }) {
@@ -157,11 +183,11 @@ export { FIELDS, MULTI, OPPOSED };
 
 export default {
   id: "working-style",
-  version: 1,
+  version: 2,
   family: "profiler",
   glyph: "▦",
-  minutes: 2,
-  channels: ["work", "communication", "energy"],
+  minutes: 3,
+  channels: ["work", "communication", "energy", "conflict"],
   messages: {
     en: () => import("./i18n/en.js"),
     pl: () => import("./i18n/pl.js"),

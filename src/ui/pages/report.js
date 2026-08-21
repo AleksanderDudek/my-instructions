@@ -77,6 +77,8 @@ async function reportPage(ctx, _params, query) {
           <p class="prose">${t("report.emptyBody")}</p></div>`
       : ""}
 
+    ${sections.some(({ spec }) => spec.family === "questionnaire")
+      ? html`<p class="source-note prose">${t("app.noValidation")}</p>` : ""}
     <p class="source-note prose">${t("report.footer")}</p>
   </article>`;
 }

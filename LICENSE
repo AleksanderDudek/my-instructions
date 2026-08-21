@@ -1,0 +1,55 @@
+This repository contains two different kinds of work under two different terms.
+
+────────────────────────────────────────────────────────────────────────
+1. THE CODE — MIT
+────────────────────────────────────────────────────────────────────────
+
+Everything under src/core/, src/ui/, tools/ and test/, and every index.js,
+items.js, compute.js and provenance.js under src/instruments/, is offered
+under the MIT licence below.
+
+Copyright (c) 2026 Aleksander Dudek
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+────────────────────────────────────────────────────────────────────────
+2. THE ITEM BANKS AND THE WRITING — all rights reserved
+────────────────────────────────────────────────────────────────────────
+
+Everything under src/instruments/*/i18n/ and src/ui/i18n/ — the questionnaire
+items, the result prose, and the four translations of both — is copyright
+© 2026 Aleksander Dudek. All rights reserved. It is not covered by the MIT
+grant above and may not be copied, reproduced or redistributed without
+permission.
+
+This split is not an afterthought. Questionnaire items are exactly the kind of
+work that gets lifted from one product into another, and the reason every
+folder in this repository writes its own items is that the published
+instruments they are modelled on are themselves protected. Taking that position
+seriously means taking it in both directions.
+
+Each instrument folder carries a provenance.js recording what its construct is,
+where the construct came from, whether it is public, and which named
+instruments were deliberately not used. Those files are the record of what was
+borrowed — the idea — and what was not — the questions.
+
+None of the item banks here has been validated, normed or administered to a
+sample. They are original writing against public constructs, and they carry no
+inherited psychometric properties from the instruments that established those
+constructs.

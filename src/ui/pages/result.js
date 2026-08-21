@@ -75,6 +75,7 @@ async function resultPage(ctx, { id }) {
     </section>
 
     <p class="source-note prose">${it("sourceNote")}</p>
+    ${spec.family === "questionnaire" ? html`<p class="source-note prose">${t("app.noValidation")}</p>` : ""}
   </article>`;
 
   function mount(root) {

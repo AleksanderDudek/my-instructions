@@ -13,6 +13,7 @@ export default {
   "app.tagline": "Haz unos cuantos tests y obtén una página que explica cómo funcionas: qué te llega, qué te agota y qué hacer cuando la cosa se tuerce.",
   "app.colophon": "Mis instrucciones: cada respuesta se queda en este navegador.",
   "app.disclaimer": "Autoinforme, no diagnóstico.",
+  "app.noValidation": "Cada cuestionario de esta aplicación escribe sus propias preguntas, porque el modelo que hay detrás de un instrumento suele ser público mientras que el cuestionario publicado tiene derechos de autor. Es la forma honesta de construirlo y tiene un coste que conviene decir sin rodeos: la fiabilidad y la validez pertenecen a un conjunto concreto de preguntas hecho a un grupo concreto de personas, no al nombre de la idea que hay detrás. Estas preguntas nunca se han pasado a una muestra, no tienen baremos y no tienen pruebas de que midan aquello de lo que llevan el nombre. Lee el resultado como una versión ordenada de lo que dijiste, no como una medición de ti.",
   "app.language": "Idioma",
 
   "nav.home": "Inicio",

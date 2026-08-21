@@ -15,6 +15,7 @@ export default {
   "app.tagline": "Zrób kilka testów i dostań jedną stronę, która mówi, jak działasz — co do ciebie trafia, co cię wyczerpuje i co robić, gdy idzie źle.",
   "app.colophon": "Moja instrukcja — każda odpowiedź zostaje w tej przeglądarce.",
   "app.disclaimer": "Samoopis, nie diagnoza.",
+  "app.noValidation": "Każdy kwestionariusz w tej aplikacji pisze własne pytania, bo model stojący za narzędziem jest zwykle publiczny, a opublikowany kwestionariusz objęty prawem autorskim. To uczciwy sposób budowania i ma koszt, który warto powiedzieć wprost: rzetelność i trafność należą do konkretnego zestawu pytań zadanego konkretnej grupie ludzi, a nie do nazwy idei, która za nimi stoi. Te pytania nigdy nie zostały zadane próbie badawczej, nie mają norm i nie mają dowodów, że mierzą to, od czego wzięły nazwę. Czytaj wynik jako uporządkowaną wersję tego, co powiedziałeś, a nie jako pomiar ciebie.",
   "app.language": "Język",
 
   "nav.home": "Start",

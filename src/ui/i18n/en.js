@@ -15,6 +15,7 @@ export default {
   "app.tagline": "Take a few tests, get one page that says how you work — what lands, what drains you, what to do when it goes badly.",
   "app.colophon": "My Instructions — every answer stays in this browser.",
   "app.disclaimer": "Self-report, not diagnosis.",
+  "app.noValidation": "Every questionnaire in this app writes its own items, because the framework behind an instrument is usually public while the published questionnaire is copyrighted. That is the honest way to build it and it has a cost worth stating plainly: reliability and validity belong to a specific set of questions given to a specific group of people, not to the name of the idea behind them. These questions have never been given to a sample, have no norms, and have no evidence that they measure what they are named after. Read the result as a structured version of what you said, not as a measurement of you.",
   "app.language": "Language",
 
   "nav.home": "Home",

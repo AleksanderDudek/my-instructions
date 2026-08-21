@@ -15,6 +15,7 @@ export default {
   "app.tagline": "Mach ein paar Tests und bekomm eine Seite, die sagt, wie du funktionierst — was ankommt, was dich auslaugt und was zu tun ist, wenn es schiefgeht.",
   "app.colophon": "Meine Gebrauchsanweisung — jede Antwort bleibt in diesem Browser.",
   "app.disclaimer": "Selbstauskunft, keine Diagnose.",
+  "app.noValidation": "Jeder Fragebogen in dieser App schreibt seine eigenen Fragen, weil das Modell hinter einem Instrument meist öffentlich ist, während der veröffentlichte Fragebogen urheberrechtlich geschützt ist. Das ist der ehrliche Weg, und er hat einen Preis, den man klar sagen sollte: Reliabilität und Validität gehören einem bestimmten Satz von Fragen, der einer bestimmten Gruppe vorgelegt wurde — nicht dem Namen der Idee dahinter. Diese Fragen wurden nie einer Stichprobe vorgelegt, haben keine Normen und keinen Beleg dafür, dass sie messen, wonach sie benannt sind. Lies das Ergebnis als geordnete Fassung dessen, was du gesagt hast, nicht als Messung deiner Person.",
   "app.language": "Sprache",
 
   "nav.home": "Start",

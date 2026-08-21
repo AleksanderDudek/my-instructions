@@ -42,6 +42,10 @@
  *   maxAudience  optional; the widest audience the sharing page may offer.
  *                "friends" means public is not on the menu at all, rather
  *                than being on the menu and discouraged.
+ *   persistence  optional; "session" keeps a run in memory and nowhere else.
+ *                No draft is written while answering, nothing reaches storage
+ *                or an export, and a reload loses it. For answers that are
+ *                worth having on screen and not worth keeping.
  */
 
 const FAMILIES = new Set(["questionnaire", "profiler"]);
@@ -90,6 +94,14 @@ function validate(spec) {
   }
   if (spec.sensitive && spec.maxAudience === "public") {
     throw new TypeError(`${where}: a sensitive instrument must not permit a public audience`);
+  }
+  if (spec.persistence != null && spec.persistence !== "session") {
+    throw new TypeError(`${where}: persistence, if set, must be "session"`);
+  }
+  // A run that is never written down cannot be put in a link either: the link
+  // would outlive the thing it came from, which is the opposite of the point.
+  if (spec.persistence === "session" && (spec.maxAudience ?? "public") !== "private") {
+    throw new TypeError(`${where}: a session-only instrument must set maxAudience to "private"`);
   }
 
   if (typeof spec.messages?.en !== "function") throw new TypeError(`${where}: messages.en must be a loader function`);

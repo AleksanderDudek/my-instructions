@@ -101,7 +101,11 @@ async function questionnaire(ctx, scoped, spec, form) {
     const host = root.querySelector("#runner-body");
     const paint = () => { host.innerHTML = pageHTML(); host.querySelector(".item")?.scrollIntoView({ block: "nearest" }); };
 
-    const save = () => store.saveDraft(spec.id, { answers: state.answers, order, seed, page: state.page, total: order.length });
+    // A session-only instrument writes no draft. Leaving the page loses the
+    // answers, which is the deal the page makes before the first question.
+    const save = () => (spec.persistence === "session"
+      ? Promise.resolve()
+      : store.saveDraft(spec.id, { answers: state.answers, order, seed, page: state.page, total: order.length }));
 
     host.addEventListener("change", (e) => {
       const field = e.target.closest("[data-item]");
@@ -126,7 +130,7 @@ async function questionnaire(ctx, scoped, spec, form) {
           instrumentVersion: spec.version,
           answers: state.answers,
           result: spec.score(state.answers),
-        });
+        }, { session: spec.persistence === "session" });
         router.go(`/test/${spec.id}/result`, { replace: true });
       }
     });

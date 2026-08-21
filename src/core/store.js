@@ -83,6 +83,22 @@ function makeStore(adapter) {
   const subs = new Set();
   const announce = () => { for (const fn of subs) fn(); };
 
+  /**
+   * Runs that are never written down.
+   *
+   * Some answers are worth having on screen for ten minutes and not worth
+   * keeping. An in-memory Map is not a privacy feature bolted onto storage —
+   * it *is* the guarantee. There is no key to find, no export that could
+   * include it and no token that could be built from it, because once the tab
+   * closes the data does not exist anywhere. A reload empties it whether or
+   * not the reader remembers to.
+   *
+   * What it cannot protect against is somebody standing behind you, or holding
+   * the unlocked device while the page is still open. The copy says so rather
+   * than implying otherwise.
+   */
+  const ephemeral = new Map();
+
   return {
     adapter,
     get durable() { return adapter.durable; },
@@ -144,12 +160,33 @@ function makeStore(adapter) {
     },
 
     /** A completed instrument: answers, computed result, and who may see it. */
-    async run(instrumentId) { return adapter.get(`run:${instrumentId}`); },
+    async run(instrumentId) {
+      return ephemeral.get(instrumentId) ?? (await adapter.get(`run:${instrumentId}`));
+    },
     async runs() {
       const rows = await adapter.list("run:");
-      return rows.map(([, v]) => v).sort((a, b) => (b.completedAt ?? "").localeCompare(a.completedAt ?? ""));
+      const stored = rows.map(([, v]) => v).filter((run) => !ephemeral.has(run.instrumentId));
+      return [...stored, ...ephemeral.values()]
+        .sort((a, b) => (b.completedAt ?? "").localeCompare(a.completedAt ?? ""));
     },
-    async saveRun(record) {
+    /** Whether this run exists only for as long as the tab is open. */
+    isEphemeral(instrumentId) { return ephemeral.has(instrumentId); },
+
+    /**
+     * `session: true` keeps a run in memory and nowhere else.
+     *
+     * It is a separate branch rather than a flag threaded through the stored
+     * path on purpose: the stored path merges with a predecessor, writes a
+     * key, and clears a draft, and none of those should happen here. Two
+     * short branches are easier to verify than one clever one.
+     */
+    async saveRun(record, { session = false } = {}) {
+      if (session) {
+        const next = { ...record, session: true, completedAt: new Date().toISOString() };
+        ephemeral.set(record.instrumentId, next);
+        announce();
+        return next;
+      }
       const prev = await this.run(record.instrumentId);
       const next = {
         visibility: prev?.visibility ?? "private",
@@ -172,6 +209,7 @@ function makeStore(adapter) {
       return run;
     },
     async clearRun(instrumentId) {
+      ephemeral.delete(instrumentId);
       await adapter.del(`run:${instrumentId}`);
       await adapter.del(`draft:${instrumentId}`);
       announce();
@@ -189,7 +227,13 @@ function makeStore(adapter) {
     },
     async clearDraft(instrumentId) { await adapter.del(`draft:${instrumentId}`); announce(); },
 
-    /** Whole-account snapshot — the seed of both "export my data" and sync. */
+    /**
+     * Whole-account snapshot — the seed of both "export my data" and sync.
+     *
+     * Session runs are absent by construction rather than by being filtered
+     * out: they were never in the adapter, so there is no code path here that
+     * could include one by accident.
+     */
     async exportAll() {
       const rows = await adapter.list("");
       return { schema: SCHEMA, exportedAt: new Date().toISOString(), entries: Object.fromEntries(rows) };

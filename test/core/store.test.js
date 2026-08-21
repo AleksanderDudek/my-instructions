@@ -151,3 +151,56 @@ test("an unknown audience is refused rather than stored", async () => {
   const store = makeStore(new LocalAdapter(fakeStorage()));
   await assert.rejects(() => store.setAudience("profile.name", "everyone"), RangeError);
 });
+
+/* ── session-only runs ────────────────────────────────────────────
+   Some answers are worth having on screen and not worth keeping.
+   The guarantee is that there is nothing to find, not that there is
+   something hidden.                                                 */
+
+test("a session run is readable now and absent from storage entirely", async () => {
+  const backing = fakeStorage();
+  const store = makeStore(new LocalAdapter(backing));
+
+  await store.saveRun({ instrumentId: "fleeting", instrumentVersion: 1, answers: { a: 1 }, result: {} }, { session: true });
+
+  assert.equal((await store.run("fleeting"))?.instrumentVersion, 1, "it should be readable during the session");
+  assert.equal(store.isEphemeral("fleeting"), true);
+
+  // The real assertion: nothing about it exists in the backing store, under
+  // any key. Not obscured, not encoded — absent.
+  const keys = Array.from({ length: backing.length }, (_, i) => backing.key(i));
+  assert.equal(keys.some((k) => k.includes("fleeting")), false, "a session run reached storage");
+  const dump = keys.map((k) => backing.getItem(k)).join("");
+  assert.equal(dump.includes("fleeting"), false, "a session run appeared in a stored value");
+});
+
+test("a session run is not in an export, and cannot be", async () => {
+  const store = makeStore(new LocalAdapter(fakeStorage()));
+  await store.saveRun({ instrumentId: "kept", instrumentVersion: 1, answers: {}, result: {} });
+  await store.saveRun({ instrumentId: "fleeting", instrumentVersion: 1, answers: {}, result: {} }, { session: true });
+
+  const dump = await store.exportAll();
+  assert.ok(JSON.stringify(dump).includes("kept"));
+  assert.equal(JSON.stringify(dump).includes("fleeting"), false, "a session run reached an export");
+});
+
+test("a session run appears in the current session's list and a stored one is not shadowed", async () => {
+  const store = makeStore(new LocalAdapter(fakeStorage()));
+  await store.saveRun({ instrumentId: "kept", instrumentVersion: 1, answers: {}, result: {} });
+  await store.saveRun({ instrumentId: "fleeting", instrumentVersion: 1, answers: {}, result: {} }, { session: true });
+
+  const ids = (await store.runs()).map((r) => r.instrumentId).sort();
+  assert.deepEqual(ids, ["fleeting", "kept"]);
+});
+
+test("a new store has no memory of a previous one, which is what a reload is", async () => {
+  const backing = fakeStorage();
+  const first = makeStore(new LocalAdapter(backing));
+  await first.saveRun({ instrumentId: "fleeting", instrumentVersion: 1, answers: {}, result: {} }, { session: true });
+
+  // The same backing storage, a fresh store: exactly what happens when the
+  // page is reloaded, and the session run is simply gone.
+  const second = makeStore(new LocalAdapter(backing));
+  assert.equal(await second.run("fleeting"), null);
+  assert.equal(second.isEphemeral("fleeting"), false);
+});

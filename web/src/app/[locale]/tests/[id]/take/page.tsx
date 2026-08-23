@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Link } from "@/components/ui/link";
-import { getInstrumentI18n, isLocale, TAGS } from "@/core/locales";
+import { getInstrumentI18n, isLocale, TAGS, loadShell, loadInstrument, DEFAULT_LOCALE } from "@/core/locales";
 import { registry } from "@/instruments";
 import type { Locale } from "@/core/types";
 import { Runner } from "@/components/runner/runner";
@@ -43,6 +43,14 @@ export default async function Take({
   // spec's functions do not travel; the island imports its own copy.
   const form = spec.form(scoped.t, locale as Locale);
 
+  // Validation messages belong to the instrument and are rendered on the
+  // client, so its table travels with the form.
+  const messages = { ...(await loadShell(locale)), ...(await loadInstrument(spec, locale)) };
+  const fallbackMessages =
+    locale === DEFAULT_LOCALE
+      ? messages
+      : { ...(await loadShell(DEFAULT_LOCALE)), ...(await loadInstrument(spec, DEFAULT_LOCALE)) };
+
   return (
     <>
       <header className="flex flex-col gap-3 py-10">
@@ -73,6 +81,8 @@ export default async function Take({
             pairwise: spec.pairwise,
           }}
           pairwise={Boolean(spec.pairwise)}
+        messages={messages}
+        fallbackMessages={fallbackMessages}
           copy={{
             count: i18n.raw("runner.count"),
             page: i18n.raw("runner.page"),

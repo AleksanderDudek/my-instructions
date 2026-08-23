@@ -13,6 +13,7 @@ import attachment from "./attachment";
 import coupleConversations from "./couple-conversations";
 import intimacyConditions from "./intimacy-conditions";
 import attraction from "./attraction";
+import intimacyMap from "./intimacy-map";
 import conflictStyle from "./conflict-style";
 import enneagram from "./enneagram";
 import bigFive from "./big-five";
@@ -22,6 +23,7 @@ import riasec from "./riasec";
 import workingStyle from "./working-style";
 import studyPractice from "./study-practice";
 import chronotype from "./chronotype";
+import numerology from "./numerology";
 
 const MODULES = [
   loveLanguages,
@@ -29,6 +31,7 @@ const MODULES = [
   coupleConversations,
   intimacyConditions,
   attraction,
+  intimacyMap,
   conflictStyle,
   enneagram,
   bigFive,
@@ -38,6 +41,7 @@ const MODULES = [
   workingStyle,
   studyPractice,
   chronotype,
+  numerology,
 ] as unknown as InstrumentModule[];
 
 export const registry = createRegistry(MODULES);

@@ -100,4 +100,4 @@ export async function loadInstrumentModule(id: string): Promise<InstrumentModule
 );
 
 console.log(`registered ${ready.length}: ${ready.join(", ")}`);
-if (skipped.length) console.log(`SKIPPED (no spec.ts): ${skipped.join(", ")}`);
+if (skipped.length) console.log(`SKIPPED (no index.ts): ${skipped.join(", ")}`);

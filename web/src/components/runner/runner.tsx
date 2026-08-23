@@ -7,7 +7,7 @@ import { loadInstrumentModule } from "@/instruments/lazy";
 import { ItemControl, FieldControl, type ItemValue } from "@/components/form/item-controls";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/components/shell/store-provider";
-import { format } from "@/core/i18n";
+import { createI18n, format, type Messages } from "@/core/i18n";
 
 /**
  * The runner.
@@ -79,6 +79,8 @@ export function Runner({
   meta,
   copy,
   pairwise,
+  messages,
+  fallbackMessages,
 }: {
   id: string;
   locale: Locale;
@@ -86,9 +88,24 @@ export function Runner({
   meta: Pick<InstrumentSpec, "version" | "persistence" | "pairwise">;
   copy: RunnerCopy;
   pairwise: boolean;
+  /**
+   * The instrument's own table, so validation messages are sentences.
+   *
+   * A profiler validates on submit and the messages come from the instrument.
+   * `t` is a function and cannot cross from a server component, so the table
+   * travels as data and `t` is rebuilt here — an earlier version passed an
+   * identity function instead and every validation error rendered its own
+   * message key at the reader.
+   */
+  messages: Messages;
+  fallbackMessages: Messages;
 }) {
   const store = useStore();
   const router = useRouter();
+  const scoped = useMemo(
+    () => createI18n({ locale, messages, fallbackMessages }).scope(id),
+    [locale, messages, fallbackMessages, id],
+  );
   // `?who=b` is the second person of a pair answering on the same device. It
   // is read here rather than on the server because a statically exported page
   // has no server to read it on — and because it was always client state: the
@@ -183,7 +200,7 @@ export function Runner({
       const values: Answers = {};
       for (const f of form.fields) values[f.id] = state.answers[f.id] ?? f.value ?? "";
       const instrument = await loadInstrumentModule(id);
-      const found = instrument?.spec.validate?.(values, (k) => k) ?? {};
+      const found = instrument?.spec.validate?.(values, scoped.t) ?? {};
       if (Object.keys(found).length) {
         setErrors(found);
         setSaving(false);

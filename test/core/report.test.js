@@ -23,11 +23,19 @@ const items = spec.form((key) => key).items;
 const answers = Object.fromEntries(items.map((item, i) => [item.id, (i % 5) + 1]));
 
 test("audiences widen: public is visible to everyone, private to no one else", () => {
-  assert.deepEqual(AUDIENCES, ["private", "friends", "public"]);
+  assert.deepEqual(AUDIENCES, ["private", "partner", "friends", "public"]);
   assert.equal(atLeast("public", "friends"), true, "a public element shows in a friends report");
   assert.equal(atLeast("friends", "public"), false, "a friends element must not show in a public report");
   assert.equal(atLeast("private", "friends"), false);
   assert.equal(atLeast("friends", "friends"), true);
+
+  // Partner is narrower than friends, so it flows outward into neither.
+  assert.equal(atLeast("friends", "partner"), true, "a friends element shows in the narrower partner report");
+  assert.equal(atLeast("public", "partner"), true);
+  assert.equal(atLeast("partner", "partner"), true);
+  assert.equal(atLeast("partner", "friends"), false, "a partner element must not reach a group of friends");
+  assert.equal(atLeast("partner", "public"), false);
+  assert.equal(atLeast("private", "partner"), false, "private is the absence of sharing, not the narrowest kind");
 });
 
 test("answers pack to one character each and come back unchanged", () => {

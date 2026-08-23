@@ -1,5 +1,6 @@
 import { html, join } from "../../core/html.js";
 import { AUDIENCES, elementsFor, reportLink } from "../../core/report.js";
+import { SHAREABLE } from "../../core/audience.js";
 import { audiencesFor } from "../../core/registry.js";
 
 /**
@@ -55,7 +56,7 @@ async function sharingPage(ctx) {
   const runs = await store.runs();
 
   const counts = Object.fromEntries(
-    AUDIENCES.filter((a) => a !== "private").map((a) => [a, elementsFor(sharing, a).length]));
+    SHAREABLE.map((a) => [a, elementsFor(sharing, a).length]));
 
   const linkFor = (audience) =>
     reportLink({ registry: ctx.registry, profile, runs, sharing, audience });
@@ -86,7 +87,7 @@ async function sharingPage(ctx) {
     <section class="plate">
       <div class="plate-head"><h2>${t("sharing.linksHeading")}</h2><span class="rule"></span></div>
       <div class="cards">
-        ${join(["friends", "public"].map((audience) => html`<div class="card pad">
+        ${join(SHAREABLE.map((audience) => html`<div class="card pad">
           <span class="label">${t(`audience.${audience}`)}</span>
           <h4>${t("sharing.linkCount", { count: counts[audience] })}</h4>
           <p class="prose muted">${t(`sharing.explain.${audience}`)}</p>

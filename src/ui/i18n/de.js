@@ -57,6 +57,7 @@ export default {
 
   "vis.private": "privat",
   "vis.friends": "Freunde",
+  "vis.partner": "Partnerin oder Partner",
   "vis.public": "öffentlich",
 
   "common.minutes": "{count} Min.",
@@ -132,6 +133,7 @@ export default {
   "result.visGroupLabel": "Wer dieses Ergebnis sehen darf",
   "result.visPrivate": "Nur du. Vergleichslinks funktionieren trotzdem — Teilen ist eine bewusste Handlung, keine Einstellung.",
   "result.visFriends": "Sichtbar für Menschen, mit denen du verbunden bist, sobald es das Netzwerk gibt.",
+  "result.visPartner": "Sichtbar für eine Person, der du einen Partner-Link gegeben hast, und für sonst niemanden.",
   "result.visPublic": "Sichtbar auf deiner öffentlichen Seite, sobald es das Netzwerk gibt.",
   "result.manageSharing": "Verwalte alles Geteilte an einer Stelle",
   "result.copyLink": "Vergleichslink kopieren",
@@ -205,6 +207,7 @@ export default {
   /* ── teilen ────────────────────────────────────────────────────── */
   "audience.private": "nur ich",
   "audience.friends": "Freunde",
+  "audience.partner": "Partnerin oder Partner",
   "audience.public": "öffentlich",
 
   "sharing.heading": "Wer was sieht",
@@ -221,6 +224,7 @@ export default {
   "sharing.linksHeading": "Deine Links",
   "sharing.linkCount": "{count, plural, one{# Element enthalten} other{# Elemente enthalten}}",
   "sharing.explain.friends": "Alles, was für Freunde markiert ist, plus alles Öffentliche. Schick das jemandem, dem du Dinge erzählen würdest.",
+  "sharing.explain.partner": "Alles, was als Partner markiert ist, dazu Freunde und Öffentliches. Der engste Link, den es gibt — für eine Person, nicht für eine Gruppe.",
   "sharing.explain.public": "Nur was du öffentlich markiert hast. Bedenkenlos dort abzulegen, wo jeder mitlesen kann.",
   "sharing.copyLink": "Link kopieren",
   "sharing.preview": "So sehen sie es",

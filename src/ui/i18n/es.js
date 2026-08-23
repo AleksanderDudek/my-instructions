@@ -55,6 +55,7 @@ export default {
 
   "vis.private": "privado",
   "vis.friends": "amistades",
+  "vis.partner": "pareja",
   "vis.public": "público",
 
   "common.minutes": "{count} min",
@@ -130,6 +131,7 @@ export default {
   "result.visGroupLabel": "Quién puede ver este resultado",
   "result.visPrivate": "Solo tú. Los enlaces de comparación siguen funcionando: compartir es un acto explícito, no un ajuste.",
   "result.visFriends": "Visible para las personas con las que conectes, cuando exista la red.",
+  "result.visPartner": "Visible para una sola persona a la que hayas dado un enlace de pareja, y para nadie más.",
   "result.visPublic": "Visible en tu página pública, cuando exista la red.",
   "result.manageSharing": "Gestiona todo lo que compartes desde un solo sitio",
   "result.copyLink": "Copiar enlace de comparación",
@@ -203,6 +205,7 @@ export default {
   /* ── compartir ─────────────────────────────────────────────────── */
   "audience.private": "solo yo",
   "audience.friends": "amistades",
+  "audience.partner": "pareja",
   "audience.public": "público",
 
   "sharing.heading": "Quién ve qué",
@@ -219,6 +222,7 @@ export default {
   "sharing.linksHeading": "Tus enlaces",
   "sharing.linkCount": "{count, plural, one{# elemento incluido} other{# elementos incluidos}}",
   "sharing.explain.friends": "Todo lo marcado para amistades, más todo lo público. Envíaselo a alguien a quien le contarías cosas.",
+  "sharing.explain.partner": "Todo lo marcado como pareja, más amistades y público. El enlace más estrecho que hay: para una persona, no para un grupo.",
   "sharing.explain.public": "Solo lo que marcaste como público. Seguro para ponerlo donde cualquiera pueda leerlo.",
   "sharing.copyLink": "Copiar enlace",
   "sharing.preview": "Verlo como lo verán",

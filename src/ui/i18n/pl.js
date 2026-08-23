@@ -57,6 +57,7 @@ export default {
 
   "vis.private": "prywatne",
   "vis.friends": "znajomi",
+  "vis.partner": "partner(ka)",
   "vis.public": "publiczne",
 
   "common.minutes": "{count} min",
@@ -132,6 +133,7 @@ export default {
   "result.visGroupLabel": "Kto może zobaczyć ten wynik",
   "result.visPrivate": "Tylko ty. Linki do porównania nadal działają — udostępnienie jest świadomym gestem, nie ustawieniem.",
   "result.visFriends": "Widoczne dla osób, z którymi się połączysz, gdy powstanie sieć.",
+  "result.visPartner": "Widoczne dla jednej osoby, której dasz link partnerski, i dla nikogo więcej.",
   "result.visPublic": "Widoczne na twojej publicznej stronie, gdy powstanie sieć.",
   "result.manageSharing": "Zarządzaj całym udostępnianiem w jednym miejscu",
   "result.copyLink": "Skopiuj link do porównania",
@@ -205,6 +207,7 @@ export default {
   /* ── udostępnianie ─────────────────────────────────────────────── */
   "audience.private": "tylko ja",
   "audience.friends": "znajomi",
+  "audience.partner": "partner(ka)",
   "audience.public": "publicznie",
 
   "sharing.heading": "Kto co widzi",
@@ -221,6 +224,7 @@ export default {
   "sharing.linksHeading": "Twoje linki",
   "sharing.linkCount": "{count, plural, one{# element w środku} few{# elementy w środku} many{# elementów w środku} other{# elementu w środku}}",
   "sharing.explain.friends": "Wszystko oznaczone jako dla znajomych plus wszystko publiczne. Wyślij to komuś, komu i tak byś to powiedział.",
+  "sharing.explain.partner": "Wszystko oznaczone jako partner(ka), plus znajomi i publiczne. Najwęższy możliwy link — dla jednej osoby, nie dla grupy.",
   "sharing.explain.public": "Tylko to, co oznaczyłeś jako publiczne. Bezpieczne do umieszczenia tam, gdzie każdy może przeczytać.",
   "sharing.copyLink": "Skopiuj link",
   "sharing.preview": "Zobacz to tak, jak oni",

@@ -19,14 +19,12 @@
  * reconstructs the keys from their own copy rather than being told them.
  */
 
+import { AUDIENCE_ORDER, atLeast } from "./audience.js";
+
 const VERSION = 2;
 
 /** Narrowest first. An element is visible to its own audience and wider ones. */
-const AUDIENCES = ["private", "friends", "public"];
-
-/** Is an element marked `elementAudience` visible in a report for `audience`? */
-const atLeast = (elementAudience, audience) =>
-  AUDIENCES.indexOf(elementAudience) >= AUDIENCES.indexOf(audience) && elementAudience !== "private";
+const AUDIENCES = AUDIENCE_ORDER;
 
 /** Every element id a report for `audience` may contain. */
 function elementsFor(sharing, audience) {

@@ -57,6 +57,7 @@ export default {
 
   "vis.private": "private",
   "vis.friends": "friends",
+  "vis.partner": "partner",
   "vis.public": "public",
 
   "common.minutes": "{count} min",
@@ -136,6 +137,7 @@ export default {
   "result.visGroupLabel": "Who can see this result",
   "result.visPrivate": "Only you. Share links still work — sharing is an explicit act, not a setting.",
   "result.visFriends": "Visible to people you have connected with, once the network exists.",
+  "result.visPartner": "Visible to one person you have shared a partner link with, and to nobody else.",
   "result.visPublic": "Visible on your public page, once the network exists.",
   "result.manageSharing": "Manage all your sharing in one place",
   "result.copyLink": "Copy a compare link",
@@ -212,6 +214,7 @@ export default {
   /* ── sharing ───────────────────────────────────────────────────── */
   "audience.private": "only me",
   "audience.friends": "friends",
+  "audience.partner": "partner",
   "audience.public": "public",
 
   "sharing.heading": "Who sees what",
@@ -228,6 +231,7 @@ export default {
   "sharing.linksHeading": "Your links",
   "sharing.linkCount": "{count, plural, one{# element included} other{# elements included}}",
   "sharing.explain.friends": "Everything marked friends, plus everything marked public. Send this to someone you would tell things to.",
+  "sharing.explain.partner": "Everything marked partner, plus friends and public. The narrowest link there is — for one person, not a group.",
   "sharing.explain.public": "Only what you marked public. Safe to put somewhere anyone can read.",
   "sharing.copyLink": "Copy link",
   "sharing.preview": "See it as they will",

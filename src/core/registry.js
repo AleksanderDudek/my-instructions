@@ -60,6 +60,8 @@ const FAMILIES = new Set(["questionnaire", "profiler"]);
  * both. Collapsing them into a single flag would have meant either gating
  * things that need no gate or leaving the gate off things that do.
  */
+import { AUDIENCE_ORDER } from "./audience.js";
+
 const CHANNELS = ["communication", "affection", "work", "conflict", "energy", "rhythm"];
 
 /** Message key for a channel's heading. */
@@ -67,8 +69,7 @@ const channelKey = (channel) => `channel.${channel}`;
 
 const REQUIRED = ["id", "version", "family", "glyph", "minutes", "messages", "form", "score", "view", "instructions"];
 
-/** Widest audience an instrument permits, narrowest first. */
-const AUDIENCE_ORDER = ["private", "friends", "public"];
+/** Widest audience an instrument permits, narrowest first. See audience.js. */
 
 /**
  * What the sharing page is allowed to offer for one instrument.

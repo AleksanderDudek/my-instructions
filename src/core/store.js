@@ -11,6 +11,8 @@
  * collide.
  */
 
+import { AUDIENCE_ORDER } from "./audience.js";
+
 const NS = "mi";
 const SCHEMA = 1;
 const key = (k) => `${NS}:${SCHEMA}:${k}`;
@@ -77,7 +79,7 @@ class StorageFullError extends Error {
    or a run. That keeps the key layout an implementation detail the
    future server is free to ignore.                                  */
 
-const VISIBILITY = ["private", "friends", "public"];
+const VISIBILITY = AUDIENCE_ORDER;
 
 function makeStore(adapter) {
   const subs = new Set();

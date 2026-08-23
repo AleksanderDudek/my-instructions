@@ -24,7 +24,12 @@ const result = spec.score(answers);
 
 test("public is not an audience this instrument offers", () => {
   assert.equal(spec.sensitive, true);
-  assert.deepEqual(audiencesFor(spec), ["private", "friends"]);
+  // The ceiling dropped to partner when that level arrived. What a person needs
+  // in order to feel safe with somebody is addressed to that somebody, and
+  // before there was a partner level the only honest place for it was a group
+  // of friends, which was never where it belonged.
+  assert.deepEqual(audiencesFor(spec), ["private", "partner"]);
+  assert.ok(!audiencesFor(spec).includes("friends"));
   assert.ok(!audiencesFor(spec).includes("public"));
 });
 
@@ -39,8 +44,8 @@ test("no raw answer reaches a token, in either direction", () => {
   const token = encodeReport({
     registry, profile: {},
     runs: [{ instrumentId: spec.id, instrumentVersion: 1, answers }],
-    sharing: { [`run.${spec.id}`]: "friends" },
-    audience: "friends",
+    sharing: { [`run.${spec.id}`]: "partner" },
+    audience: "partner",
   });
   const back = decodeReport(token, registry).runs[0].answers;
 
@@ -89,6 +94,6 @@ test("the source note says all four of the things it has to say", () => {
   // so this checks the English copy still carries each idea.
   const en = spec.messages.en;
   assert.equal(typeof en, "function");
-  assert.equal(spec.maxAudience, "friends");
+  assert.equal(spec.maxAudience, "partner");
   assert.equal(note("sourceNote"), "sourceNote");
 });

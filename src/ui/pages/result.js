@@ -11,6 +11,7 @@ import { link } from "../../core/share.js";
 
 const VIS_NOTE = {
   private: "result.visPrivate",
+  partner: "result.visPartner",
   friends: "result.visFriends",
   public: "result.visPublic",
 };

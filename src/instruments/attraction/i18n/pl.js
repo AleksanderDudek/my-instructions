@@ -18,15 +18,15 @@ export default {
 
   "axis.sexual.men": "Pociąg seksualny do mężczyzn",
   "axis.sexual.women": "Pociąg seksualny do kobiet",
-  "axis.romantic.men": "Pociąg romantyczny do mężczyzn",
-  "axis.romantic.women": "Pociąg romantyczny do kobiet",
+  "axis.romantic.men": "Pociąg romantyczny do mężczyzn (zauroczenia, zakochiwanie się)",
+  "axis.romantic.women": "Pociąg romantyczny do kobiet (zauroczenia, zakochiwanie się)",
 
-  "field.behaviour.label": "Z kim faktycznie byłeś, jeśli z kimkolwiek",
+  "field.behaviour.label": "Z kim naprawdę byłem, jeśli w ogóle",
   "behaviour.none": "Z nikim, jak dotąd",
   "behaviour.men": "Z mężczyznami",
   "behaviour.women": "Z kobietami",
 
-  "field.identity.label": "Słowo, którego używasz — jeśli używasz",
+  "field.identity.label": "Słowo, którym nazywam swoją orientację, jeśli jakieś mam",
   "identity.straight": "Hetero",
   "identity.gay": "Gej",
   "identity.lesbian": "Lesbijka",
@@ -35,17 +35,17 @@ export default {
   "identity.ownWord": "Własne słowo",
   "identity.ratherNotSay": "Wolę nie mówić",
 
-  "field.ownWord.label": "Albo twoje własne słowo",
+  "field.ownWord.label": "Albo moje własne słowo",
   "field.ownWord.placeholder": "Opcjonalnie — to, którego naprawdę używasz",
 
-  "field.certainty.label": "Na ile to jest ustalone",
+  "field.certainty.label": "Na ile ta odpowiedź wydaje mi się ustalona",
   "certainty.settled": "Ustalone",
   "certainty.working": "Jeszcze to rozgryzam",
   "certainty.noLabel": "Wolę nie nakładać na to słowa",
 
-  "field.assume.label": "Rzecz, którą ludzie najczęściej zakładają błędnie",
+  "field.assume.label": "W czym ludzie najczęściej się co do mnie mylą",
   "assume.partnerGender": "Zakładanie, że znają płeć mojej osoby partnerskiej",
-  "assume.identityFromPartner": "Ustalanie, kim jestem, po tym, z kim jestem",
+  "assume.identityFromPartner": "Określanie mojej orientacji po tym, z kim jestem",
   "assume.nothing": "Nic szczególnego",
 
   "assume.partnerGender.long": "Ludzie zakładają, że znają płeć mojej osoby partnerskiej.",

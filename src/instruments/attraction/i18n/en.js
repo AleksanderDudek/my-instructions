@@ -18,15 +18,15 @@ export default {
 
   "axis.sexual.men": "Sexually drawn to men",
   "axis.sexual.women": "Sexually drawn to women",
-  "axis.romantic.men": "Romantically drawn to men",
-  "axis.romantic.women": "Romantically drawn to women",
+  "axis.romantic.men": "Romantically drawn to men (crushes, falling in love)",
+  "axis.romantic.women": "Romantically drawn to women (crushes, falling in love)",
 
-  "field.behaviour.label": "Who you have actually been with, if anyone",
+  "field.behaviour.label": "Who I have actually been with, if anyone",
   "behaviour.none": "Nobody, so far",
   "behaviour.men": "Men",
   "behaviour.women": "Women",
 
-  "field.identity.label": "The word you use, if you use one",
+  "field.identity.label": "The word I use for my orientation, if I use one",
   "identity.straight": "Straight",
   "identity.gay": "Gay",
   "identity.lesbian": "Lesbian",
@@ -35,17 +35,17 @@ export default {
   "identity.ownWord": "A word of my own",
   "identity.ratherNotSay": "Would rather not say",
 
-  "field.ownWord.label": "Or your own word for it",
+  "field.ownWord.label": "Or my own word for it",
   "field.ownWord.placeholder": "Optional — whatever you actually say",
 
-  "field.certainty.label": "How settled that feels",
+  "field.certainty.label": "How settled that answer feels",
   "certainty.settled": "Settled",
   "certainty.working": "Still working it out",
   "certainty.noLabel": "I would rather not put a word on it",
 
-  "field.assume.label": "The thing people most often get wrong",
+  "field.assume.label": "The thing people most often get wrong about me",
   "assume.partnerGender": "Assuming they know my partner's gender",
-  "assume.identityFromPartner": "Deciding what I am from who I am with",
+  "assume.identityFromPartner": "Deciding my orientation from who I am with",
   "assume.nothing": "Nothing in particular",
 
   "assume.partnerGender.long": "People assume they know the gender of my partner.",

@@ -14,15 +14,15 @@ export default {
 
   "axis.sexual.men": "Atracción sexual hacia hombres",
   "axis.sexual.women": "Atracción sexual hacia mujeres",
-  "axis.romantic.men": "Atracción romántica hacia hombres",
-  "axis.romantic.women": "Atracción romántica hacia mujeres",
+  "axis.romantic.men": "Atracción romántica hacia hombres (flechazos, enamorarme)",
+  "axis.romantic.women": "Atracción romántica hacia mujeres (flechazos, enamorarme)",
 
-  "field.behaviour.label": "Con quién has estado realmente, si con alguien",
+  "field.behaviour.label": "Con quién he estado de verdad, si con alguien",
   "behaviour.none": "Con nadie, por ahora",
   "behaviour.men": "Con hombres",
   "behaviour.women": "Con mujeres",
 
-  "field.identity.label": "La palabra que usas, si usas alguna",
+  "field.identity.label": "La palabra que uso para mi orientación, si uso alguna",
   "identity.straight": "Hetero",
   "identity.gay": "Gay",
   "identity.lesbian": "Lesbiana",
@@ -31,17 +31,17 @@ export default {
   "identity.ownWord": "Una palabra propia",
   "identity.ratherNotSay": "Prefiero no decirlo",
 
-  "field.ownWord.label": "O tu propia palabra",
+  "field.ownWord.label": "O mi propia palabra",
   "field.ownWord.placeholder": "Opcional — la que uses de verdad",
 
-  "field.certainty.label": "Cómo de asentado lo notas",
+  "field.certainty.label": "Cómo de asentada siento esa respuesta",
   "certainty.settled": "Asentado",
   "certainty.working": "Todavía lo estoy averiguando",
   "certainty.noLabel": "Prefiero no ponerle palabra",
 
-  "field.assume.label": "Lo que la gente da por hecho más a menudo",
+  "field.assume.label": "Lo que la gente suele entender mal sobre mí",
   "assume.partnerGender": "Dar por hecho el género de mi pareja",
-  "assume.identityFromPartner": "Deducir lo que soy de con quién estoy",
+  "assume.identityFromPartner": "Deducir mi orientación según con quién estoy",
   "assume.nothing": "Nada en particular",
 
   "assume.partnerGender.long": "La gente da por hecho que sabe el género de mi pareja.",

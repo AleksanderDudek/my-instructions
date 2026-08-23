@@ -168,7 +168,12 @@ test("two people leaning the same way is reported as such rather than smoothed o
 test("the copied text is the text on screen, and carries no percentage", async () => {
   const real = (await i18nFor("en")).scope(spec.id).t;
   const text = asText(result, real);
-  const screen = str(spec.view(result, { t: real }));
+  // The rendered page escapes its text, so an item containing an apostrophe
+  // arrives as `&#39;`. This assertion is about content, not markup.
+  const unescape = (html) => html
+    .replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+  const screen = unescape(str(spec.view(result, { t: real })));
 
   for (const { id, section } of ACTS) {
     const named = at(result, section, (v) => v >= KEEN).includes(id)

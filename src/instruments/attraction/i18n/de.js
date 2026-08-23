@@ -14,15 +14,15 @@ export default {
 
   "axis.sexual.men": "Sexuell zu Männern hingezogen",
   "axis.sexual.women": "Sexuell zu Frauen hingezogen",
-  "axis.romantic.men": "Romantisch zu Männern hingezogen",
-  "axis.romantic.women": "Romantisch zu Frauen hingezogen",
+  "axis.romantic.men": "Romantisch zu Männern hingezogen (verknallen, verlieben)",
+  "axis.romantic.women": "Romantisch zu Frauen hingezogen (verknallen, verlieben)",
 
-  "field.behaviour.label": "Mit wem du tatsächlich zusammen warst, falls mit jemandem",
+  "field.behaviour.label": "Mit wem ich tatsächlich zusammen war, falls überhaupt",
   "behaviour.none": "Mit niemandem, bisher",
   "behaviour.men": "Mit Männern",
   "behaviour.women": "Mit Frauen",
 
-  "field.identity.label": "Das Wort, das du benutzt — falls du eins benutzt",
+  "field.identity.label": "Das Wort, das ich für meine Orientierung benutze, falls überhaupt",
   "identity.straight": "Hetero",
   "identity.gay": "Schwul",
   "identity.lesbian": "Lesbisch",
@@ -31,17 +31,17 @@ export default {
   "identity.ownWord": "Ein eigenes Wort",
   "identity.ratherNotSay": "Sage ich lieber nicht",
 
-  "field.ownWord.label": "Oder dein eigenes Wort dafür",
+  "field.ownWord.label": "Oder mein eigenes Wort dafür",
   "field.ownWord.placeholder": "Optional — das, was du wirklich sagst",
 
-  "field.certainty.label": "Wie gesetzt sich das anfühlt",
+  "field.certainty.label": "Wie sicher sich diese Antwort anfühlt",
   "certainty.settled": "Gesetzt",
   "certainty.working": "Ich sortiere das noch",
   "certainty.noLabel": "Ich lege lieber kein Wort darauf",
 
-  "field.assume.label": "Was Leute am häufigsten annehmen",
+  "field.assume.label": "Was Leute bei mir am häufigsten falsch verstehen",
   "assume.partnerGender": "Anzunehmen, das Geschlecht meiner Partnerperson zu kennen",
-  "assume.identityFromPartner": "Aus meiner Beziehung abzuleiten, was ich bin",
+  "assume.identityFromPartner": "Meine Orientierung daran festmachen, mit wem ich zusammen bin",
   "assume.nothing": "Nichts Bestimmtes",
 
   "assume.partnerGender.long": "Leute nehmen an, sie kennen das Geschlecht meiner Partnerperson.",

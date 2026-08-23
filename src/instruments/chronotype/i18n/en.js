@@ -7,9 +7,9 @@ export default {
   "framework": "Mid-sleep on free days, corrected for sleep debt",
   "sourceNote": "The method is Roenneberg's: chronotype is read from the mid-point of sleep on free days rather than from an opinion about mornings, corrected for the sleep being repaid on those days. The Munich ChronoType Questionnaire itself is not reproduced — these are our own six fields feeding the published calculation. Sleep timing is a real physiological variable, but this is four numbers you typed, not a sleep study.",
 
-  "form.workBed": "Bedtime on a working night",
+  "form.workBed": "Bedtime the night before a working day",
   "form.workWake": "Wake time on a working day",
-  "form.freeBed": "Bedtime when nothing is on tomorrow",
+  "form.freeBed": "Bedtime the night before a free day",
   "form.freeWake": "Wake time on a free day",
   "form.workDays": "Working days per week",
   "form.alarm": "Do you use an alarm on free days?",

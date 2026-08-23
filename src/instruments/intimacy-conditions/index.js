@@ -167,6 +167,7 @@ export default {
   channels: ["affection", "communication"],
 
   /** Private by default, and public is not on the menu at all. */
+  adult: true,
   sensitive: true,
   maxAudience: "friends",
 

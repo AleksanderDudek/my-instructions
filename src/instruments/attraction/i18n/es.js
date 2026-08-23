@@ -14,29 +14,21 @@ export default {
 
   "axis.sexual.men": "Atracción sexual hacia hombres",
   "axis.sexual.women": "Atracción sexual hacia mujeres",
-  "axis.sexual.nonbinary": "Atracción sexual hacia personas no binarias",
   "axis.romantic.men": "Atracción romántica hacia hombres",
   "axis.romantic.women": "Atracción romántica hacia mujeres",
-  "axis.romantic.nonbinary": "Atracción romántica hacia personas no binarias",
 
   "field.behaviour.label": "Con quién has estado realmente, si con alguien",
   "behaviour.none": "Con nadie, por ahora",
   "behaviour.men": "Con hombres",
   "behaviour.women": "Con mujeres",
-  "behaviour.nonbinary": "Con personas no binarias",
 
   "field.identity.label": "La palabra que usas, si usas alguna",
   "identity.straight": "Hetero",
   "identity.gay": "Gay",
   "identity.lesbian": "Lesbiana",
   "identity.bi": "Bisexual",
-  "identity.pan": "Pansexual",
   "identity.ace": "Asexual",
-  "identity.aro": "Arromántico",
-  "identity.queer": "Queer",
-  "identity.questioning": "Todavía lo estoy averiguando",
-  "identity.noLabel": "No uso ninguna palabra para esto",
-  "identity.somethingElse": "Otra cosa",
+  "identity.ownWord": "Una palabra propia",
   "identity.ratherNotSay": "Prefiero no decirlo",
 
   "field.ownWord.label": "O tu propia palabra",
@@ -50,17 +42,14 @@ export default {
   "field.assume.label": "Lo que la gente da por hecho más a menudo",
   "assume.partnerGender": "Dar por hecho el género de mi pareja",
   "assume.identityFromPartner": "Deducir lo que soy de con quién estoy",
-  "assume.aceMeaning": "Dar por hecho qué significa asexual o arromántico",
   "assume.nothing": "Nada en particular",
 
   "assume.partnerGender.long": "La gente da por hecho que sabe el género de mi pareja.",
   "assume.identityFromPartner.long": "La gente deduce lo que soy de con quién esté en ese momento.",
-  "assume.aceMeaning.long": "La gente da por hecho que sabe qué significa asexual o arromántico.",
   "assume.nothing.long": "Nada en particular que salga a menudo.",
 
   "assume.partnerGender.ask": "No des por hecho que sabes el género de mi pareja. Es algo pequeño de acertar y agotador de ir corrigiendo: «¿estás viendo a alguien?» no te cuesta nada y funciona sea quien sea.",
   "assume.identityFromPartner.ask": "Por favor, no deduzcas lo que soy de con quién esté ahora. Con quién salga en un momento dado es un dato sobre mi vida y ninguno sobre mi orientación, y que me reclasifiquen cada vez que salgo con alguien nuevo cansa más de lo que parece.",
-  "assume.aceMeaning.ask": "Si sale la palabra asexual o arromántico, merece la pena preguntar qué quiero decir con ella en vez de darlo por hecho: las palabras cubren un rango, no son lo mismo que el celibato y no son algo que me haya pasado.",
   "assume.nothing.ask": "Aquí no suele darse nada por hecho sobre mí, así que no hay nada que vigilar. Preguntar en vez de adivinar es todo el asunto.",
 
   "view.eyebrow": "Lo que dijiste",

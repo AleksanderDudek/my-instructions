@@ -42,20 +42,52 @@ function cardHTML(ctx, spec, run, draft) {
   </a>`;
 }
 
+/**
+ * The unopened adult group: a heading, what is behind it, and one button.
+ *
+ * The titles of the instruments are not printed here. Someone looking over a
+ * shoulder at an unconfirmed catalogue should learn that a section exists and
+ * not what is in it, which is also why the count is a count and not a list.
+ */
+const gateHTML = (t, count) => html`<div class="gate">
+    <p class="prose">${t("catalog.gate.body", { count })}</p>
+    <p class="fine">${t("catalog.gate.fine")}</p>
+    <button class="btn primary" data-adult-confirm>${t("catalog.gate.confirm")}</button>
+  </div>`;
+
 async function catalogPage(ctx) {
   const { registry, store, t } = ctx;
   const runs = Object.fromEntries((await store.runs()).map((r) => [r.instrumentId, r]));
   const drafts = await store.drafts();
+  const { adultOk } = await store.settings();
 
-  return html`<header class="page-head">
+  const body = html`<header class="page-head">
       <h2>${t("catalog.heading")}</h2>
       <p class="prose">${t("catalog.lead")}</p>
     </header>
     ${join(registry.groups().map((g) => html`
-      <section class="plate">
+      <section class="plate${g.gated ? " adult" : ""}">
         <div class="plate-head"><h2>${t(g.labelKey)}</h2><span class="rule"></span><span class="label">${t(g.noteKey)}</span></div>
-        <div class="test-list">${join(g.items.map((s) => cardHTML(ctx, s, runs[s.id], drafts[s.id])))}</div>
+        ${g.gated && !adultOk
+          ? gateHTML(t, g.items.length)
+          : html`<div class="test-list">${join(g.items.map((s) => cardHTML(ctx, s, runs[s.id], drafts[s.id])))}</div>`}
       </section>`))}`;
+
+  return { body, mount: (root) => mountGate(root, ctx) };
+}
+
+/**
+ * Wire the one button the gate has.
+ *
+ * Navigating to the route the reader is already on re-resolves it rather than
+ * being a no-op — that is the same router behaviour the result page depends
+ * on — so this needs no separate re-render path.
+ */
+function mountGate(root, ctx) {
+  root.querySelector("[data-adult-confirm]")?.addEventListener("click", async () => {
+    await ctx.store.saveSettings({ adultOk: true });
+    ctx.router?.go("/tests");
+  });
 }
 
 export { catalogPage, stateOf };

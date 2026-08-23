@@ -18,29 +18,21 @@ export default {
 
   "axis.sexual.men": "Sexually drawn to men",
   "axis.sexual.women": "Sexually drawn to women",
-  "axis.sexual.nonbinary": "Sexually drawn to non-binary people",
   "axis.romantic.men": "Romantically drawn to men",
   "axis.romantic.women": "Romantically drawn to women",
-  "axis.romantic.nonbinary": "Romantically drawn to non-binary people",
 
   "field.behaviour.label": "Who you have actually been with, if anyone",
   "behaviour.none": "Nobody, so far",
   "behaviour.men": "Men",
   "behaviour.women": "Women",
-  "behaviour.nonbinary": "Non-binary people",
 
   "field.identity.label": "The word you use, if you use one",
   "identity.straight": "Straight",
   "identity.gay": "Gay",
   "identity.lesbian": "Lesbian",
   "identity.bi": "Bisexual",
-  "identity.pan": "Pansexual",
   "identity.ace": "Asexual",
-  "identity.aro": "Aromantic",
-  "identity.queer": "Queer",
-  "identity.questioning": "Still working it out",
-  "identity.noLabel": "I do not use a word for it",
-  "identity.somethingElse": "Something else",
+  "identity.ownWord": "A word of my own",
   "identity.ratherNotSay": "Would rather not say",
 
   "field.ownWord.label": "Or your own word for it",
@@ -54,17 +46,14 @@ export default {
   "field.assume.label": "The thing people most often get wrong",
   "assume.partnerGender": "Assuming they know my partner's gender",
   "assume.identityFromPartner": "Deciding what I am from who I am with",
-  "assume.aceMeaning": "Assuming what asexual or aromantic means",
   "assume.nothing": "Nothing in particular",
 
   "assume.partnerGender.long": "People assume they know the gender of my partner.",
   "assume.identityFromPartner.long": "People decide what I am from whoever I happen to be with.",
-  "assume.aceMeaning.long": "People assume they know what asexual or aromantic means.",
   "assume.nothing.long": "Nothing in particular that comes up often.",
 
   "assume.partnerGender.ask": "Do not assume you know my partner's gender. It is a small thing to get right and a wearing one to keep correcting — «are you seeing anyone?» costs you nothing and works whoever I am seeing.",
   "assume.identityFromPartner.ask": "Please do not work out what I am from whoever I am currently with. Who I am seeing at any moment is one data point about my life and none about my orientation, and being re-sorted every time I date someone new is more tiring than it sounds.",
-  "assume.aceMeaning.ask": "If asexual or aromantic comes up, it is worth asking what I mean by it rather than assuming — the words cover a range, they are not the same as celibacy, and they are not a thing that happened to me.",
   "assume.nothing.ask": "Nothing in particular tends to get assumed about me here, so there is nothing to watch for. Asking rather than guessing is the whole of it.",
 
   "view.eyebrow": "What you said",

@@ -15,10 +15,55 @@ const VIS_NOTE = {
   public: "result.visPublic",
 };
 
-async function resultPage(ctx, { id }) {
+/**
+ * The second person of a pair, and the section that appears once both have
+ * answered.
+ *
+ * Both halves live in memory in one tab, so the comparison is possible exactly
+ * while the two people are in the same room — which is the only situation in
+ * which comparing answers of this kind is a good idea anyway. Closing the tab
+ * ends it; there is nothing to revoke because there is nothing to revoke.
+ */
+function pairSection(ctx, spec, scoped, mine, theirs) {
+  const { t } = ctx;
+  if (!theirs) {
+    return html`<section class="plate">
+      <div class="plate-head"><h2>${t("pair.heading")}</h2><span class="rule"></span></div>
+      <div class="card pad">
+        <p class="prose">${scoped.t("pair.invite")}</p>
+        <p class="prose muted">${t("pair.handover")}</p>
+        <a class="btn primary" href="#/test/${spec.id}?who=b">${t("pair.start")}</a>
+      </div>
+    </section>`;
+  }
+  return html`<section class="plate">
+    <div class="plate-head"><h2>${t("pair.resultHeading")}</h2><span class="rule"></span>
+      <span class="label">${t("pair.resultNote")}</span></div>
+    ${spec.pairView(spec.pairScore(mine.result, theirs.result), scoped)}
+  </section>`;
+}
+
+/** The second person's page: their own reading, the comparison, and nothing else. */
+function partnerPage(ctx, spec, scoped, run, mine) {
+  const { t } = ctx;
+  const body = html`<article class="result" id="result">
+    <header class="runner-head">
+      <a class="back" href="#/test/${spec.id}/result">${t("pair.backToFirst")}</a>
+      <h2>${scoped.t("title")}</h2>
+      <p class="prose">${t("pair.secondDone")}</p>
+    </header>
+    <section class="plate">${spec.view(run.result, scoped)}</section>
+    ${mine ? pairSection(ctx, spec, scoped, run, mine) : ""}
+    <p class="source-note prose">${scoped.t("sourceNote")}</p>
+  </article>`;
+  return { body, mount: (root) => spec.mount?.(root, scoped) };
+}
+
+async function resultPage(ctx, { id }, query) {
   const { t, locale } = ctx;
   const spec = ctx.registry.get(id);
-  const run = spec ? await ctx.store.run(id) : null;
+  const slot = spec?.pairwise && query?.get?.("who") === "b" ? "b" : null;
+  const run = spec ? await ctx.store.run(id, slot) : null;
   if (!spec || !run) {
     return { body: html`<div class="empty"><h2>${t("result.emptyTitle")}</h2>
       <p class="prose">${t("result.emptyBody")}</p>
@@ -26,6 +71,9 @@ async function resultPage(ctx, { id }) {
   }
 
   const scoped = ctx.instrument(spec);
+  if (slot === "b") return partnerPage(ctx, spec, scoped, run, await ctx.store.run(id));
+
+  const partner = spec.pairwise ? await ctx.store.run(id, "b") : null;
   const it = scoped.t;
   const stale = run.instrumentVersion !== spec.version;
   const cards = spec.instructions(run.result, it);
@@ -46,6 +94,8 @@ async function resultPage(ctx, { id }) {
     ${stale ? html`<div class="note warn-note prose"><p>${t("result.stale", { had: run.instrumentVersion, now: spec.version })}</p></div>` : ""}
 
     <section class="plate">${spec.view(run.result, scoped)}</section>
+
+    ${spec.pairwise ? pairSection(ctx, spec, scoped, run, partner) : ""}
 
     <section class="plate">
       <div class="plate-head"><h2>${t("result.addedHeading")}</h2><span class="rule"></span><span class="label">${t("result.addedNote")}</span></div>

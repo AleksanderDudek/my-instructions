@@ -18,29 +18,21 @@ export default {
 
   "axis.sexual.men": "Pociąg seksualny do mężczyzn",
   "axis.sexual.women": "Pociąg seksualny do kobiet",
-  "axis.sexual.nonbinary": "Pociąg seksualny do osób niebinarnych",
   "axis.romantic.men": "Pociąg romantyczny do mężczyzn",
   "axis.romantic.women": "Pociąg romantyczny do kobiet",
-  "axis.romantic.nonbinary": "Pociąg romantyczny do osób niebinarnych",
 
   "field.behaviour.label": "Z kim faktycznie byłeś, jeśli z kimkolwiek",
   "behaviour.none": "Z nikim, jak dotąd",
   "behaviour.men": "Z mężczyznami",
   "behaviour.women": "Z kobietami",
-  "behaviour.nonbinary": "Z osobami niebinarnymi",
 
   "field.identity.label": "Słowo, którego używasz — jeśli używasz",
   "identity.straight": "Hetero",
   "identity.gay": "Gej",
   "identity.lesbian": "Lesbijka",
   "identity.bi": "Biseksualny",
-  "identity.pan": "Panseksualny",
   "identity.ace": "Aseksualny",
-  "identity.aro": "Aromantyczny",
-  "identity.queer": "Queer",
-  "identity.questioning": "Jeszcze to rozgryzam",
-  "identity.noLabel": "Nie używam na to słowa",
-  "identity.somethingElse": "Coś innego",
+  "identity.ownWord": "Własne słowo",
   "identity.ratherNotSay": "Wolę nie mówić",
 
   "field.ownWord.label": "Albo twoje własne słowo",
@@ -54,17 +46,14 @@ export default {
   "field.assume.label": "Rzecz, którą ludzie najczęściej zakładają błędnie",
   "assume.partnerGender": "Zakładanie, że znają płeć mojej osoby partnerskiej",
   "assume.identityFromPartner": "Ustalanie, kim jestem, po tym, z kim jestem",
-  "assume.aceMeaning": "Zakładanie, co znaczy aseksualny albo aromantyczny",
   "assume.nothing": "Nic szczególnego",
 
   "assume.partnerGender.long": "Ludzie zakładają, że znają płeć mojej osoby partnerskiej.",
   "assume.identityFromPartner.long": "Ludzie ustalają, kim jestem, na podstawie tego, z kim akurat jestem.",
-  "assume.aceMeaning.long": "Ludzie zakładają, że wiedzą, co znaczy aseksualny albo aromantyczny.",
   "assume.nothing.long": "Nic szczególnego, co pojawiałoby się często.",
 
   "assume.partnerGender.ask": "Nie zakładaj, że znasz płeć mojej osoby partnerskiej. To drobiazg, który łatwo zrobić dobrze, i męcząca rzecz do ciągłego prostowania — „jesteś z kimś?” nic cię nie kosztuje i działa niezależnie od tego, z kim jestem.",
   "assume.identityFromPartner.ask": "Nie ustalaj, kim jestem, po tym, z kim akurat jestem. To, z kim się widuję w danym momencie, jest jedną informacją o moim życiu i żadną o mojej orientacji, a bycie przesortowywanym za każdym razem, gdy z kimś nowym się zwiążę, męczy bardziej, niż brzmi.",
-  "assume.aceMeaning.ask": "Jeśli pojawi się słowo aseksualny albo aromantyczny, warto zapytać, co przez nie rozumiem, zamiast zakładać — te słowa obejmują pewien zakres, nie są tym samym co celibat i nie są czymś, co mi się przydarzyło.",
   "assume.nothing.ask": "Nic szczególnego nie bywa tu o mnie zakładane, więc nie ma na co uważać. Pytanie zamiast zgadywania to całość rzeczy.",
 
   "view.eyebrow": "To, co powiedziałeś",

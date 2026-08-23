@@ -99,6 +99,23 @@ function makeStore(adapter) {
    */
   const ephemeral = new Map();
 
+  /**
+   * A second answer set for the same instrument, in the same tab.
+   *
+   * Two people comparing explicit answers is the thing this app is asked for
+   * most often and the thing it is least willing to build a network for. A
+   * slot solves it without one: both people answer on one device, one after
+   * the other, and the comparison happens in memory between two sets that were
+   * never written down. It is only available to session-only instruments,
+   * which the save path enforces rather than assumes.
+   *
+   * Slotted runs are deliberately invisible to `runs()`. They are half of a
+   * comparison, not a run of their own, and letting one appear in the
+   * catalogue or the sharing page would be exactly the leak this design
+   * exists to avoid.
+   */
+  const slotKey = (instrumentId, slot) => (slot ? `${instrumentId}#${slot}` : instrumentId);
+
   return {
     adapter,
     get durable() { return adapter.durable; },
@@ -137,9 +154,18 @@ function makeStore(adapter) {
       return next;
     },
 
-    /** Application settings — today just the reader's language. */
+    /**
+     * Application settings — the reader's language, and whether they have
+     * confirmed their age.
+     *
+     * `adultOk` is a self-attestation and nothing more. It keeps explicit
+     * material off the catalogue of somebody who has not asked for it, which
+     * is what it is for; it is not age verification and the copy beside it
+     * does not pretend to be. Storing it means the confirmation is asked once
+     * rather than every visit, and clearing site data asks again.
+     */
     async settings() {
-      return (await adapter.get("settings")) ?? { locale: null };
+      return { locale: null, adultOk: false, ...((await adapter.get("settings")) ?? {}) };
     },
     async saveSettings(patch) {
       const next = { ...(await this.settings()), ...patch };
@@ -160,13 +186,15 @@ function makeStore(adapter) {
     },
 
     /** A completed instrument: answers, computed result, and who may see it. */
-    async run(instrumentId) {
+    async run(instrumentId, slot = null) {
+      if (slot) return ephemeral.get(slotKey(instrumentId, slot)) ?? null;
       return ephemeral.get(instrumentId) ?? (await adapter.get(`run:${instrumentId}`));
     },
     async runs() {
       const rows = await adapter.list("run:");
       const stored = rows.map(([, v]) => v).filter((run) => !ephemeral.has(run.instrumentId));
-      return [...stored, ...ephemeral.values()]
+      const live = [...ephemeral.entries()].filter(([k]) => !k.includes("#")).map(([, v]) => v);
+      return [...stored, ...live]
         .sort((a, b) => (b.completedAt ?? "").localeCompare(a.completedAt ?? ""));
     },
     /** Whether this run exists only for as long as the tab is open. */
@@ -180,10 +208,11 @@ function makeStore(adapter) {
      * key, and clears a draft, and none of those should happen here. Two
      * short branches are easier to verify than one clever one.
      */
-    async saveRun(record, { session = false } = {}) {
+    async saveRun(record, { session = false, slot = null } = {}) {
+      if (slot && !session) throw new TypeError("a slotted run must be session-only");
       if (session) {
-        const next = { ...record, session: true, completedAt: new Date().toISOString() };
-        ephemeral.set(record.instrumentId, next);
+        const next = { ...record, session: true, slot, completedAt: new Date().toISOString() };
+        ephemeral.set(slotKey(record.instrumentId, slot), next);
         announce();
         return next;
       }
@@ -209,7 +238,9 @@ function makeStore(adapter) {
       return run;
     },
     async clearRun(instrumentId) {
-      ephemeral.delete(instrumentId);
+      for (const k of [...ephemeral.keys()]) {
+        if (k === instrumentId || k.startsWith(`${instrumentId}#`)) ephemeral.delete(k);
+      }
       await adapter.del(`run:${instrumentId}`);
       await adapter.del(`draft:${instrumentId}`);
       announce();

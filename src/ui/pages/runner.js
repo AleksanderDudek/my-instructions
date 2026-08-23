@@ -27,20 +27,32 @@ function shuffled(ids, seed) {
   return out;
 }
 
-async function runnerPage(ctx, { id }) {
+/**
+ * `?who=b` is the second person of a pair, answering on the same device.
+ *
+ * Anything other than the literal "b" is treated as the first person rather
+ * than as an error, so a mangled link answers the ordinary questionnaire
+ * instead of opening a half-state nobody asked for.
+ */
+const slotOf = (query) => (query?.get?.("who") === "b" ? "b" : null);
+
+async function runnerPage(ctx, { id }, query) {
   const spec = ctx.registry.get(id);
   if (!spec) {
     return { body: html`<div class="empty"><h2>${ctx.t("runner.noSuchTest")}</h2>
       <p><a class="btn" href="#/tests">${ctx.t("runner.backToCatalogue")}</a></p></div>` };
   }
+  const slot = spec.pairwise ? slotOf(query) : null;
   const scoped = ctx.instrument(spec);
   const form = spec.form(scoped.t, ctx.locale);
-  return form.kind === "items" ? questionnaire(ctx, scoped, spec, form) : profiler(ctx, scoped, spec, form);
+  return form.kind === "items"
+    ? questionnaire(ctx, scoped, spec, form, slot)
+    : profiler(ctx, scoped, spec, form);
 }
 
 /* ══ questionnaire ════════════════════════════════════════════════ */
 
-async function questionnaire(ctx, scoped, spec, form) {
+async function questionnaire(ctx, scoped, spec, form, slot = null) {
   const { store, router, t } = ctx;
   const it = scoped.t;
   const existing = await store.run(spec.id);
@@ -130,8 +142,8 @@ async function questionnaire(ctx, scoped, spec, form) {
           instrumentVersion: spec.version,
           answers: state.answers,
           result: spec.score(state.answers),
-        }, { session: spec.persistence === "session" });
-        router.go(`/test/${spec.id}/result`, { replace: true });
+        }, { session: spec.persistence === "session", slot });
+        router.go(`/test/${spec.id}/result${slot ? `?who=${slot}` : ""}`, { replace: true });
       }
     });
 

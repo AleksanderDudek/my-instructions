@@ -49,6 +49,17 @@
  */
 
 const FAMILIES = new Set(["questionnaire", "profiler"]);
+
+/**
+ * `adult: true` moves an instrument behind the age confirmation on the
+ * catalogue.
+ *
+ * It is separate from `sensitive`, which is about where a *result* may travel.
+ * An instrument can be one, the other, or both: chronotype is neither,
+ * intimacy-conditions is sensitive but not adult, and the explicit ones are
+ * both. Collapsing them into a single flag would have meant either gating
+ * things that need no gate or leaving the gate off things that do.
+ */
 const CHANNELS = ["communication", "affection", "work", "conflict", "energy", "rhythm"];
 
 /** Message key for a channel's heading. */
@@ -94,6 +105,24 @@ function validate(spec) {
   }
   if (spec.sensitive && spec.maxAudience === "public") {
     throw new TypeError(`${where}: a sensitive instrument must not permit a public audience`);
+  }
+  if (spec.adult != null && typeof spec.adult !== "boolean") {
+    throw new TypeError(`${where}: adult, if set, must be a boolean`);
+  }
+  /**
+   * `pairwise` instruments are answered twice in one tab and compared in
+   * memory. Requiring session persistence is not belt-and-braces: a stored
+   * pair comparison is a written record of two people's answers, which is a
+   * different and much worse object than either half, and the only reliable
+   * way to not have one is to make the shape impossible to declare.
+   */
+  if (spec.pairwise) {
+    if (typeof spec.pairScore !== "function" || typeof spec.pairView !== "function") {
+      throw new TypeError(`${where}: a pairwise instrument needs pairScore() and pairView()`);
+    }
+    if (spec.persistence !== "session") {
+      throw new TypeError(`${where}: a pairwise instrument must set persistence to "session"`);
+    }
   }
   if (spec.persistence != null && spec.persistence !== "session") {
     throw new TypeError(`${where}: persistence, if set, must be "session"`);
@@ -165,12 +194,22 @@ function createRegistry() {
     get(id) { return byId.get(id) ?? null; },
     has(id) { return byId.has(id); },
     all() { return [...byId.values()]; },
-    byFamily(family) { return this.all().filter((s) => s.family === family); },
-    /** Grouped for the catalogue page, in registration order within each group. */
+    byFamily(family) { return this.all().filter((s) => s.family === family && !s.adult); },
+    /** Instruments behind the age confirmation, in registration order. */
+    adult() { return this.all().filter((s) => s.adult); },
+    /**
+     * Grouped for the catalogue page, in registration order within each group.
+     *
+     * The adult group comes last and carries `gated: true`; the page decides
+     * whether its items are rendered. `byFamily` already excludes them, so an
+     * adult instrument appears in exactly one group and cannot leak into the
+     * ungated list by being added to a family later.
+     */
     groups() {
       return [
         { family: "profiler", labelKey: "catalog.group.profilers", noteKey: "catalog.group.profilersNote", items: this.byFamily("profiler") },
         { family: "questionnaire", labelKey: "catalog.group.tests", noteKey: "catalog.group.testsNote", items: this.byFamily("questionnaire") },
+        { family: "adult", gated: true, labelKey: "catalog.group.adult", noteKey: "catalog.group.adultNote", items: this.adult() },
       ].filter((g) => g.items.length);
     },
   };

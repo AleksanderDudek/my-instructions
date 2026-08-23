@@ -13,11 +13,14 @@ import { barsHTML, factsHTML, verdictHTML } from "../../ui/components/scorecard.
  * generating measurement error and calling it insight.
  *
  * The intensity axes are *independent*, following Storms (1980) rather than
- * Kinsey's single line. A bipolar zero-to-six scale cannot represent
- * asexuality at all: it puts "drawn strongly to everyone" and "drawn to
- * nobody" in the same place, because one is the midpoint of a sum and the
- * other is the midpoint of an absence. Separate axes put them at opposite
- * corners, which is the entire reason to use them.
+ * Kinsey's single line. Two axes is Storms' own form: attraction to men and
+ * attraction to women asked separately rather than traded off against each
+ * other. A single bipolar line cannot represent low attraction at all — it
+ * puts "drawn strongly to both" and "drawn to neither" in the same place,
+ * because one is the midpoint of a sum and the other the midpoint of an
+ * absence. Two independent axes put them at opposite corners, which is the
+ * whole reason to use them and the reason four outcomes fall out of two
+ * questions rather than being asked for directly.
  *
  * And nothing here assigns anybody anything. The Kinsey Institute states that
  * no official Kinsey scale test exists; AVEN states that no test determines
@@ -27,7 +30,7 @@ import { barsHTML, factsHTML, verdictHTML } from "../../ui/components/scorecard.
  */
 
 const LEVELS = ["none", "little", "some", "strong"];
-const TARGETS = ["men", "women", "nonbinary"];
+const TARGETS = ["men", "women"];
 
 /** Sexual and romantic attraction are asked separately, per the split model. */
 const AXES = [
@@ -35,13 +38,10 @@ const AXES = [
   ...TARGETS.map((target) => ({ id: `r.${target}`, kind: "romantic", target })),
 ];
 
-const IDENTITIES = [
-  "straight", "gay", "lesbian", "bi", "pan", "ace", "aro", "queer",
-  "questioning", "noLabel", "somethingElse", "ratherNotSay",
-];
+const IDENTITIES = ["straight", "gay", "lesbian", "bi", "ace", "ownWord", "ratherNotSay"];
 
 const CERTAINTY = ["settled", "working", "noLabel"];
-const ASSUME = ["partnerGender", "identityFromPartner", "aceMeaning", "nothing"];
+const ASSUME = ["partnerGender", "identityFromPartner", "nothing"];
 
 function form(t) {
   return {
@@ -53,8 +53,8 @@ function form(t) {
         options: LEVELS.map((value) => ({ value, label: t(`level.${value}`) })),
       })),
       {
-        id: "behaviour", kind: "multi", label: t("field.behaviour.label"), max: 4,
-        options: ["none", "men", "women", "nonbinary"].map((value) => ({ value, label: t(`behaviour.${value}`) })),
+        id: "behaviour", kind: "multi", label: t("field.behaviour.label"), max: 3,
+        options: ["none", "men", "women"].map((value) => ({ value, label: t(`behaviour.${value}`) })),
       },
       {
         id: "identity", kind: "select", value: "ratherNotSay", label: t("field.identity.label"),

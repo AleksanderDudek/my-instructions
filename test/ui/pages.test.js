@@ -194,3 +194,75 @@ test("the sharing page lists every completed run and defaults to private", async
   }
   sane(html, "sharing");
 });
+
+/* ── the age gate ────────────────────────────────────────────────
+   The gate is worth testing because the failure mode is silent:
+   a change that renders the cards anyway looks identical to a
+   reader who has already confirmed.                               */
+
+test("an unconfirmed catalogue does not name what is behind the gate", async () => {
+  const ctx = await makeCtx("en");
+  const adult = registry.all().filter((s) => s.adult);
+  assert.ok(adult.length, "nothing is gated, so this test proves nothing");
+
+  const closed = await render(catalogPage, ctx);
+  assert.ok(closed.includes("data-adult-confirm"), "the gate is missing");
+  for (const spec of adult) {
+    const title = ctx.instrument(spec).t("title");
+    assert.equal(closed.includes(title), false, `${spec.id} is named on a closed catalogue`);
+    assert.equal(closed.includes(`#/test/${spec.id}`), false, `${spec.id} is linked on a closed catalogue`);
+  }
+
+  await ctx.store.saveSettings({ adultOk: true });
+  const open = await render(catalogPage, ctx);
+  assert.equal(open.includes("data-adult-confirm"), false, "the gate stayed after confirmation");
+  for (const spec of adult) {
+    assert.ok(open.includes(`#/test/${spec.id}`), `${spec.id} did not appear after confirmation`);
+  }
+});
+
+test("a gated instrument appears in exactly one catalogue group", async () => {
+  const groups = registry.groups();
+  const seen = registry.all().map((s) => ({
+    id: s.id,
+    in: groups.filter((g) => g.items.some((i) => i.id === s.id)).map((g) => g.family),
+  }));
+  for (const row of seen) assert.equal(row.in.length, 1, `${row.id} is in ${row.in.join(" and ")}`);
+});
+
+/* ── the two-person flow ─────────────────────────────────────────── */
+
+test("a pairwise result offers the handover, then the comparison, and never the wrong half", async () => {
+  const ctx = await makeCtx("en");
+  const spec = registry.all().find((s) => s.pairwise);
+  assert.ok(spec, "nothing is pairwise, so this test proves nothing");
+
+  const answers = answersFor(spec, ctx.instrument(spec).t, ctx.locale);
+  const record = { instrumentId: spec.id, instrumentVersion: spec.version, answers, result: spec.score(answers) };
+  await ctx.store.saveRun(record, { session: true });
+
+  const alone = await render(resultPage, ctx, { id: spec.id });
+  assert.ok(alone.includes(`#/test/${spec.id}?who=b`), "no way to hand the device over");
+
+  await ctx.store.saveRun(record, { session: true, slot: "b" });
+  const paired = await render(resultPage, ctx, { id: spec.id });
+  assert.ok(paired.includes(ctx.t("pair.resultHeading")), "the comparison did not appear");
+
+  // The second person's page is their own reading plus the comparison. It must
+  // not carry the first person's sharing controls, which govern a run that is
+  // not theirs.
+  const second = await render(resultPage, ctx, { id: spec.id }, new URLSearchParams("who=b"));
+  assert.ok(second.includes(ctx.t("pair.secondDone")));
+  assert.equal(second.includes('id="vis"'), false, "the partner got the owner's audience controls");
+  assert.equal(second.includes('id="clear"'), false, "the partner could delete the owner's run");
+});
+
+test("who=b on an instrument that is not pairwise is read as the ordinary run", async () => {
+  const ctx = await makeCtx("en");
+  const spec = registry.all().find((s) => !s.pairwise && s.family === "questionnaire");
+  const answers = answersFor(spec, ctx.instrument(spec).t, ctx.locale);
+  await ctx.store.saveRun({ instrumentId: spec.id, instrumentVersion: spec.version, answers, result: spec.score(answers) });
+
+  const out = await render(resultPage, ctx, { id: spec.id }, new URLSearchParams("who=b"));
+  assert.ok(out.includes(ctx.instrument(spec).t("title")), "a stray query broke an ordinary result page");
+});

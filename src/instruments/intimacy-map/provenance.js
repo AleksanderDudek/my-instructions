@@ -5,10 +5,10 @@
  */
 export default {
   construct: {
-    name: "Areas of sexual interest, with a per-area role axis",
-    origin: "The negotiation-checklist tradition; the per-area role axis is the one structural idea taken from it",
+    name: "Specific sexual interests, asked per direction, matched across a couple",
+    origin: "The negotiation-checklist tradition; asking the two directions of an act separately is the one structural idea taken from it",
     public: true,
-    note: "No item text is taken from anywhere, and there was nowhere to take it from: no kink checklist in circulation carries a usable content licence. The two MIT-licensed repositories license the repository while their item text descends from older unattributed community lists, and MIT from a party that did not author the text grants nothing. Scarleteen's stocklist, Bex Caputo's sheets, bdsmtest.org and KNKI are all rights reserved. The Relationship Anarchy Smorgasbord is genuinely CC BY-NC-SA and was still refused, because ShareAlike would contradict this repository's own all-rights-reserved declaration over i18n. What is used is ordinary domain vocabulary that belongs to nobody — restraint, impact, sensation, control — and one idea: that the role axis must be named per area, because giving and receiving is the wrong pair for bondage and meaningless for watching.",
+    note: "No item text is taken from anywhere, and there was nowhere to take it from: no kink checklist in circulation carries a usable content licence. The two MIT-licensed repositories license the repository while their item text descends from older unattributed community lists, and MIT from a party that did not author the text grants nothing. Scarleteen's stocklist, Bex Caputo's sheets, bdsmtest.org and KNKI are all rights reserved. The Relationship Anarchy Smorgasbord is genuinely CC BY-NC-SA and was still refused, because ShareAlike would contradict this repository's own all-rights-reserved declaration over i18n. All fifty items are written here, in ordinary domain vocabulary that belongs to nobody. One idea is taken, because an idea is not an expression: that the two directions of an act have to be asked separately and the axis named per act, since giving and receiving is the wrong pair for being on top and a nonsense pair for being watched. What is done with it is not taken. Those worksheets rate both directions and then compare each against its own twin; this faces one person's giving against the other's receiving, which is the crossing that answers the question a couple actually has.",
   },
 
   items: {
@@ -16,9 +16,11 @@ export default {
     writtenFor: "my-instructions",
   },
 
-  /* Nothing is scored, nothing is counted and nothing is stored. There is no
-     construct here whose validity could be claimed, and no measurement to
-     validate — the answers are reported back grouped. */
+  /* Nothing here is a measurement. The per-side lean is an average of stated
+     interest and is presented as a description of what the reader said, not as
+     a score of anything; the pair comparison is set arithmetic over two
+     people's stated interest. Neither claims a construct, so neither has a
+     validity to report. Nothing is stored. */
   evidence: {
     reliability: "none",
     factorStructure: "none",

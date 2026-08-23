@@ -14,29 +14,21 @@ export default {
 
   "axis.sexual.men": "Sexuell zu Männern hingezogen",
   "axis.sexual.women": "Sexuell zu Frauen hingezogen",
-  "axis.sexual.nonbinary": "Sexuell zu nichtbinären Personen hingezogen",
   "axis.romantic.men": "Romantisch zu Männern hingezogen",
   "axis.romantic.women": "Romantisch zu Frauen hingezogen",
-  "axis.romantic.nonbinary": "Romantisch zu nichtbinären Personen hingezogen",
 
   "field.behaviour.label": "Mit wem du tatsächlich zusammen warst, falls mit jemandem",
   "behaviour.none": "Mit niemandem, bisher",
   "behaviour.men": "Mit Männern",
   "behaviour.women": "Mit Frauen",
-  "behaviour.nonbinary": "Mit nichtbinären Personen",
 
   "field.identity.label": "Das Wort, das du benutzt — falls du eins benutzt",
   "identity.straight": "Hetero",
   "identity.gay": "Schwul",
   "identity.lesbian": "Lesbisch",
   "identity.bi": "Bisexuell",
-  "identity.pan": "Pansexuell",
   "identity.ace": "Asexuell",
-  "identity.aro": "Aromantisch",
-  "identity.queer": "Queer",
-  "identity.questioning": "Ich sortiere das noch",
-  "identity.noLabel": "Ich benutze kein Wort dafür",
-  "identity.somethingElse": "Etwas anderes",
+  "identity.ownWord": "Ein eigenes Wort",
   "identity.ratherNotSay": "Sage ich lieber nicht",
 
   "field.ownWord.label": "Oder dein eigenes Wort dafür",
@@ -50,17 +42,14 @@ export default {
   "field.assume.label": "Was Leute am häufigsten annehmen",
   "assume.partnerGender": "Anzunehmen, das Geschlecht meiner Partnerperson zu kennen",
   "assume.identityFromPartner": "Aus meiner Beziehung abzuleiten, was ich bin",
-  "assume.aceMeaning": "Anzunehmen, was asexuell oder aromantisch heißt",
   "assume.nothing": "Nichts Bestimmtes",
 
   "assume.partnerGender.long": "Leute nehmen an, sie kennen das Geschlecht meiner Partnerperson.",
   "assume.identityFromPartner.long": "Leute leiten aus der Person, mit der ich gerade zusammen bin, ab, was ich bin.",
-  "assume.aceMeaning.long": "Leute nehmen an, sie wüssten, was asexuell oder aromantisch heißt.",
   "assume.nothing.long": "Nichts Bestimmtes, das häufig vorkäme.",
 
   "assume.partnerGender.ask": "Nimm nicht an, dass du das Geschlecht meiner Partnerperson kennst. Es ist eine Kleinigkeit, das richtig zu machen, und zermürbend, es dauernd zu korrigieren — „bist du mit jemandem zusammen?“ kostet dich nichts und funktioniert, mit wem auch immer.",
   "assume.identityFromPartner.ask": "Bitte leite nicht aus der Person, mit der ich gerade zusammen bin, ab, was ich bin. Mit wem ich in einem Moment zusammen bin, ist ein Datenpunkt über mein Leben und keiner über meine Orientierung, und jedes Mal neu einsortiert zu werden, wenn ich jemanden date, ermüdet mehr, als es klingt.",
-  "assume.aceMeaning.ask": "Wenn asexuell oder aromantisch fällt, lohnt es sich zu fragen, was ich damit meine, statt es anzunehmen — die Worte decken eine Bandbreite ab, sind nicht dasselbe wie Enthaltsamkeit und sind nichts, was mir zugestoßen ist.",
   "assume.nothing.ask": "Hier wird über mich nichts Bestimmtes angenommen, es gibt also nichts zu beachten. Fragen statt raten ist die ganze Sache.",
 
   "view.eyebrow": "Was du gesagt hast",

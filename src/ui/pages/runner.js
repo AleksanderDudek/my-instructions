@@ -111,7 +111,7 @@ async function questionnaire(ctx, scoped, spec, form, slot = null) {
 
   function mount(root) {
     const host = root.querySelector("#runner-body");
-    const paint = () => { host.innerHTML = pageHTML(); host.querySelector(".item")?.scrollIntoView({ block: "nearest" }); };
+    const paint = (opts) => repaint(host, pageHTML, opts);
 
     // A session-only instrument writes no draft. Leaving the page loses the
     // answers, which is the deal the page makes before the first question.
@@ -133,8 +133,8 @@ async function questionnaire(ctx, scoped, spec, form, slot = null) {
     host.addEventListener("click", async (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
-      if (btn.id === "prev") { state.page--; paint(); save(); }
-      if (btn.id === "next") { state.page++; paint(); save(); }
+      if (btn.id === "prev") { state.page--; paint({ scroll: true }); save(); }
+      if (btn.id === "next") { state.page++; paint({ scroll: true }); save(); }
       if (btn.id === "finish") {
         btn.disabled = true;
         await store.saveRun({
@@ -202,7 +202,7 @@ async function profiler(ctx, scoped, spec, form) {
 
   function mount(root) {
     const host = root.querySelector("#runner-body");
-    const paint = () => { host.innerHTML = pageHTML(); };
+    const paint = () => repaint(host, pageHTML);
 
     host.addEventListener("click", async (e) => {
       if (!e.target.closest("#finish")) return;
@@ -224,4 +224,46 @@ async function profiler(ctx, scoped, spec, form) {
   return { body, mount };
 }
 
-export { runnerPage, shuffled, mulberry32 };
+/**
+ * Replace a region's markup without dropping the control the reader is using.
+ *
+ * The runner repaints the whole page on every answer, because the state of the
+ * navigation depends on the whole page and one source of truth beats three
+ * targeted updates. That reasoning holds for the markup and fails for the
+ * person: `innerHTML =` destroys the element being interacted with, so focus
+ * falls back to the document, tab order restarts from the top, and an open
+ * native `<select>` is torn out from under the pointer mid-choice — which
+ * reads, correctly, as the control not working.
+ *
+ * So the focused control is identified before the swap and re-focused after
+ * it. Identity is the item it belongs to plus its name and value, which is
+ * stable across a repaint in a way that a node reference is not.
+ *
+ * Scrolling is now opt-in. Doing it on every answer yanked the page under
+ * somebody who was simply working down a list.
+ */
+function repaint(host, render, { scroll = false } = {}) {
+  const active = host.ownerDocument.activeElement;
+  const mark = active && host.contains(active)
+    ? {
+      item: active.closest("[data-item]")?.dataset.item ?? null,
+      name: active.getAttribute?.("name") ?? null,
+      value: active.getAttribute?.("value") ?? null,
+      tag: active.tagName.toLowerCase(),
+    }
+    : null;
+
+  host.innerHTML = render();
+
+  if (mark) {
+    const esc = (v) => (host.ownerDocument.defaultView?.CSS?.escape?.(v) ?? v);
+    const scope = mark.item ? host.querySelector(`[data-item="${esc(mark.item)}"]`) : host;
+    const selector = mark.name && mark.value !== null
+      ? `[name="${esc(mark.name)}"][value="${esc(mark.value)}"]`
+      : mark.name ? `[name="${esc(mark.name)}"]` : mark.tag;
+    (scope ?? host).querySelector(selector)?.focus({ preventScroll: true });
+  }
+  if (scroll) host.querySelector(".item")?.scrollIntoView({ block: "nearest" });
+}
+
+export { runnerPage, shuffled, mulberry32, repaint };

@@ -1,0 +1,123 @@
+/**
+ * Five Languages of Love — Polish.
+ *
+ * Items keep the first person and the plain register of the original. A Likert
+ * item that gains a qualifier in translation stops measuring what it measured,
+ * so where English hedges the Polish hedges, and where it is blunt the Polish
+ * is blunt.
+ *
+ * `lang.*.inline` is the form a language takes inside a sentence — for Polish
+ * that is the instrumental after "przez", because the two sentences using it
+ * both need that case.
+ */
+export default {
+  "title": "Pięć języków miłości",
+  "tagline": "Kanał, którym uczucie musi przyjść, żeby w ogóle do ciebie dotarło.",
+  "framework": "Pięciokategoryjny model Chapmana",
+  "sourceNote": "Pięć kategorii pochodzi od Gary'ego Chapmana. Pytania są nasze i punktowane niezależnie w skali 1–100, a nie przeciwko sobie — więc wszystkie pięć może być wysokich albo żadne.",
+
+  "lang.words.inline": "słowa uznania",
+  "lang.time.inline": "wspólny czas",
+  "lang.service.inline": "czyny",
+  "lang.touch.inline": "dotyk",
+  "lang.gifts.inline": "podarunki",
+
+  "view.eyebrow": "Główny język",
+  "view.fact.primary": "Główny",
+  "view.fact.primaryValue": "{label} — {share}% całości",
+  "view.fact.secondary": "Drugi",
+  "view.fact.secondaryValue": "{label} — {share}%",
+  "view.fact.quiet": "Ciche",
+  "view.fact.quietNone": "żaden — każdy język do ciebie dociera",
+  "view.fact.profile": "Profil",
+  "view.fact.profileEven": "Równy. Żaden kanał nie dominuje; konsekwencja liczy się bardziej niż trafienie w ten właściwy.",
+  "view.fact.profilePeaked": "Szczytowy. Jeden kanał niesie większość ciężaru.",
+  "view.noteEven": "Twoje pięć wyników leży blisko siebie. To nie jest niezdecydowanie — to znaczy, że odczytujesz bliskość kilkoma kanałami naraz, a partner, który używa tylko jednego z nich, będzie miał poczucie, że się stara, a ty poczucie niedosytu. Oboje będziecie mieć rację.",
+  "view.notePeaked": "Większość tego, co do ciebie dociera, przychodzi przez {language}. Wysiłek włożony w pozostałe cztery nie jest zmarnowany, ale niczego nie zastąpi.",
+
+  "instructions.leadWith": "Zacznij od tego: {language}",
+  "instructions.then": "Potem: {language}",
+  "instructions.distance": "Jak odczytuję dystans",
+  "instructions.quietTitle": "{language} — to do mnie ledwo dociera",
+  "instructions.quietBody": "To nie obraza — po prostu kanał, na którym prawie nie odbieram. Wysiłek tutaj czyta się jako wysiłek, a nie jako miłość. Włóż go gdzie indziej.",
+  "instructions.flatTitle": "Bez skrótów",
+  "instructions.flatBody": "Moje kanały mają równą wagę. Konsekwencja we wszystkich pięciu bije intensywność w jednym.",
+
+  "compare.eyebrow": "Dopasowanie języków",
+  "compare.sameTitle": "Ten sam główny język",
+  "compare.mixedTitle": "{a} spotyka: {b}",
+  "compare.sameBody": "Chcecie tej samej waluty. To sprawia, że porozumienie przychodzi łatwo, a martwe pola macie identyczne — cokolwiek oboje pomijacie, po prostu nigdy się nie wydarzy.",
+  "compare.mixedBody": "Nie mówicie natywnie swoim pierwszym językiem. To zwyczajny przypadek i da się tego nauczyć; nie dzieje się tylko samo z siebie.",
+  "compare.aNeeds": "{a} potrzebuje tego najbardziej, a {b} daje tego najmniej",
+
+  "lang.words.label": "Słowa uznania",
+  "lang.words.blurb": "Usłyszeć na głos i konkretnie, ile jesteś wart.",
+  "lang.words.starved": "Milczenie czytasz jako dezaprobatę. Wypełnisz je najgorszą z dostępnych interpretacji.",
+  "lang.words.fed": "Nazwany, konkretny komplement niesie cię przez kilka dni.",
+  "lang.words.ask": "Powiedz to dobre na głos. Bądź konkretny — „dobrze poprowadziłeś tę rozmowę” bije „jesteś super”.",
+  "lang.time.label": "Wspólny czas",
+  "lang.time.blurb": "Niepodzielna uwaga, z resztą świata odłożoną na bok.",
+  "lang.time.starved": "Odwołany plan spada jak wyrok na to, ile znaczysz.",
+  "lang.time.fed": "Jedna niespieszna godzina resetuje całą relację.",
+  "lang.time.ask": "Odłóż telefon ekranem w dół i dotrzymaj planu. Prezentem jest obecność; zajęcie jest drugorzędne.",
+  "lang.service.label": "Czyny",
+  "lang.service.blurb": "Zadanie, którego się bałeś, po cichu zdjęte z twoich rąk.",
+  "lang.service.starved": "Prowadzisz prywatny rejestr tego, kto wykonuje niewidzialną pracę, i ten rejestr się zapełnia.",
+  "lang.service.fed": "Ktoś, kto robi to bez proszenia, czyta się jako oddanie.",
+  "lang.service.ask": "Zrób to i nie obwieszczaj. Oferta, która nigdy nie staje się pomocą, jest gorsza niż brak oferty.",
+  "lang.touch.label": "Dotyk",
+  "lang.touch.blurb": "Kontakt — zwyczajny, stały, nie tylko ten intymny.",
+  "lang.touch.starved": "Dzień bez kontaktu zostawia cię w niepokoju, którego nie umiesz nazwać.",
+  "lang.touch.fed": "Dłoń na plecach robi to, czego nie zrobi akapit.",
+  "lang.touch.ask": "Dotykaj mimochodem, nie tylko w wielkich momentach. Siadaj bliżej, niż to ściśle konieczne.",
+  "lang.gifts.label": "Podarunki",
+  "lang.gifts.blurb": "Dowód w postaci przedmiotu, że ktoś o tobie myślał.",
+  "lang.gifts.starved": "Zapomniana data nie jest dla ciebie pomyłką w kalendarzu. Jest informacją.",
+  "lang.gifts.fed": "Drobiazg wybrany z uwagą przeżywa swoją własną użyteczność.",
+  "lang.gifts.ask": "Nigdy nie chodzi o cenę. Chodzi o dowód, że myślano o tobie na odległość.",
+
+  "item.w1": "Kiedy ktoś mówi wprost, co we mnie lubi, pamiętam to przez kilka dni.",
+  "item.w2": "Wracam do wiadomości, w których napisano o mnie coś dobrego.",
+  "item.w3": "Uwielbiam, kiedy ktoś chwali mnie przy innych.",
+  "item.w4": "Gdy ktoś, kogo kocham, przestaje mówić miłe rzeczy, od razu to czuję.",
+  "item.w5": "Chcę często słyszeć, że jestem kochany, nawet gdy nic się nie dzieje.",
+  "item.w6": "Kiedy ktoś dziękuje mi na głos za drobiazg, od razu mam lepszy dzień.",
+  "item.w7": "Komplementy spływają po mnie i nic z nich nie zostaje.",
+  "item.w8": "Słowa wsparcia niewiele mi dają.",
+
+  "item.t1": "Czuję się najbliżej drugiej osoby wtedy, gdy odkładamy telefony.",
+  "item.t2": "Kiedy ktoś odwołuje nasze plany, czuję, że się nie liczę.",
+  "item.t3": "Jedna długa rozmowa znaczy dla mnie więcej niż wiele krótkich.",
+  "item.t4": "Nawet gdy razem załatwiamy sprawy, to dla mnie prawdziwy wspólny czas.",
+  "item.t5": "Boli mnie, kiedy coś przerywa czas, który miałem spędzić z kimś.",
+  "item.t6": "Wystarczy mi być z kimś w jednym pokoju, każdy przy swoim.",
+  "item.t7": "Nie potrzebuję wiele niepodzielnej uwagi, żeby czuć się bezpiecznie.",
+  "item.t8": "Po dłuższym czasie razem zaczyna mi być tego za dużo.",
+
+  "item.s1": "Kiedy ktoś po cichu robi to, czego się bałem, czuję się kochany.",
+  "item.s2": "Wiem dokładnie, kto robi to, czego nikt nie zauważa.",
+  "item.s3": "Kiedy jestem przytłoczony, chcę, żeby ktoś zdjął coś z mojej listy.",
+  "item.s4": "Denerwuje mnie, gdy ktoś proponuje pomoc, a potem nic nie robi.",
+  "item.s5": "Kiedy ktoś dla mnie gotuje, czuję się zaopiekowany.",
+  "item.s6": "Pełny bak albo naprawiona półka to dla mnie dowód miłości.",
+  "item.s7": "Praktyczna pomoc od partnera to dla mnie bardziej układ niż miłość.",
+  "item.s8": "Wolę, żeby ktoś przy mnie usiadł, niż żeby coś dla mnie robił.",
+
+  "item.p1": "Dłoń na plecach w trudnej chwili od razu mnie uspokaja.",
+  "item.p2": "Kiedy jestem niespokojny, szukam przytulenia.",
+  "item.p3": "Kiedy śpię obok kogoś, czuję z nim prawdziwą bliskość.",
+  "item.p4": "Po dniu bez przytulenia i dotyku jestem spięty.",
+  "item.p5": "Lubię, kiedy ktoś dotyka mnie mimochodem, przechodząc obok.",
+  "item.p6": "Chcę trzymać się za ręce przy ludziach.",
+  "item.p7": "Robi mi się nieswojo, kiedy ktoś siada bardzo blisko mnie.",
+  "item.p8": "Kiedy jestem zdenerwowany, przytulanie sprawia, że chcę się odsunąć.",
+
+  "item.g1": "Drobiazg, który pokazuje, że ktoś o mnie myślał, cieszy mnie tygodniami.",
+  "item.g2": "Trzymam rzeczy, które ktoś mi dał, długo po tym, jak przestały być użyteczne.",
+  "item.g3": "Czuję się kochany, gdy prezent pokazuje, że ktoś zapamiętał moje słowa.",
+  "item.g4": "Bardzo mnie boli, kiedy ktoś zapomina o moich urodzinach.",
+  "item.g5": "Zauważam, kiedy ktoś przywozi mi coś z wyjazdu.",
+  "item.g6": "Liczę na to, że ktoś naprawdę pomyśli, wybierając dla mnie prezent.",
+  "item.g7": "Czuję się nieswojo, kiedy dostaję prezenty.",
+  "item.g8": "Sam prezent niewiele dla mnie znaczy.",
+};

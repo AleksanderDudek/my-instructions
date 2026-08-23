@@ -118,7 +118,12 @@ import type { Locale } from "./types";
 
 export function makeStore(adapter: Adapter) {
   const subs = new Set<() => void>();
+  // A monotonic counter is the snapshot React subscribes to. The store's own
+  // data is mutable and identity-stable, so returning any part of it as a
+  // snapshot would compare equal after a write and never re-render.
+  let version = 0;
   const announce = () => {
+    version++;
     for (const fn of subs) fn();
   };
 
@@ -146,6 +151,8 @@ export function makeStore(adapter: Adapter) {
       subs.add(fn);
       return () => void subs.delete(fn);
     },
+    /** Increments on every write. The snapshot for `useSyncExternalStore`. */
+    version: () => version,
 
     async settings(): Promise<Settings> {
       return { locale: null, adultOk: false, theme: null, ...((await adapter.get<Partial<Settings>>("settings")) ?? {}) };

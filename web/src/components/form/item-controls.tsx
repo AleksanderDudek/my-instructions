@@ -34,14 +34,27 @@ const optionStyles = (checked: boolean) =>
 const dot = (checked: boolean) =>
   cn("grid size-4 shrink-0 place-items-center rounded-full border", checked ? "border-brass" : "border-muted");
 
+/**
+ * The item *is* the control — no `<label>` around it.
+ *
+ * Wrapping a Radix radio in a label nests one interactive element inside
+ * another: `<button>` is labelable, so the label's implicit control is the very
+ * button it contains, and a click on the button bubbles to the label which
+ * forwards a click back to it. Radix selects on arrow-key navigation by
+ * calling `.click()` from the item's focus handler, and that call was being
+ * lost in the round trip — focus moved, selection did not follow, which is
+ * precisely the "radio does not work" report in a different disguise.
+ *
+ * The button carries its own text, so it names itself and needs no label.
+ */
 function Radio({ value, label, checked }: { value: string; label: string; checked: boolean }) {
   return (
-    <label className={optionStyles(checked)}>
-      <RadioGroup.Item value={value} className={dot(checked)}>
-        <RadioGroup.Indicator className="block size-2 rounded-full bg-brass" />
-      </RadioGroup.Item>
+    <RadioGroup.Item value={value} className={optionStyles(checked)}>
+      <span className={dot(checked)} aria-hidden>
+        {checked ? <span className="block size-2 rounded-full bg-brass" /> : null}
+      </span>
       <span>{label}</span>
-    </label>
+    </RadioGroup.Item>
   );
 }
 
@@ -111,25 +124,26 @@ export function ItemControl({
         {item.options.map((o) => {
           const on = picked.includes(o.value);
           return (
-            <label key={o.value} className={optionStyles(on)}>
-              <Checkbox.Root
-                checked={on}
-                // A limit stops you adding, never stops you removing. Disabling
-                // a ticked box at the cap traps somebody who picked wrong.
-                disabled={!on && atLimit}
-                onCheckedChange={(next) =>
-                  onChange(next ? [...picked, o.value] : picked.filter((v) => v !== o.value))
-                }
+            <Checkbox.Root
+              key={o.value}
+              checked={on}
+              // A limit stops you adding, never stops you removing. Disabling a
+              // ticked box at the cap traps somebody who picked wrong.
+              disabled={!on && atLimit}
+              onCheckedChange={(next) => onChange(next ? [...picked, o.value] : picked.filter((v) => v !== o.value))}
+              className={cn(optionStyles(on), !on && atLimit && "opacity-50")}
+            >
+              <span
+                aria-hidden
                 className={cn(
-                  "grid size-4 shrink-0 place-items-center rounded-[2px] border",
-                  on ? "border-brass bg-brass/20" : "border-muted",
-                  !on && atLimit && "opacity-40",
+                  "grid size-4 shrink-0 place-items-center rounded-[2px] border text-[10px] leading-none",
+                  on ? "border-brass bg-brass/20 text-brass" : "border-muted text-transparent",
                 )}
               >
-                <Checkbox.Indicator className="text-[10px] leading-none text-brass">✓</Checkbox.Indicator>
-              </Checkbox.Root>
+                ✓
+              </span>
               <span>{o.label}</span>
-            </label>
+            </Checkbox.Root>
           );
         })}
       </div>
@@ -174,21 +188,23 @@ export function FieldControl({
             const picked = Array.isArray(value) ? value : [];
             const on = picked.includes(o.value);
             return (
-              <label key={o.value} className={optionStyles(on)}>
-                <Checkbox.Root
-                  checked={on}
-                  onCheckedChange={(next) =>
-                    onChange(next ? [...picked, o.value] : picked.filter((v) => v !== o.value))
-                  }
+              <Checkbox.Root
+                key={o.value}
+                checked={on}
+                onCheckedChange={(next) => onChange(next ? [...picked, o.value] : picked.filter((v) => v !== o.value))}
+                className={optionStyles(on)}
+              >
+                <span
+                  aria-hidden
                   className={cn(
-                    "grid size-4 shrink-0 place-items-center rounded-[2px] border",
-                    on ? "border-brass bg-brass/20" : "border-muted",
+                    "grid size-4 shrink-0 place-items-center rounded-[2px] border text-[10px] leading-none",
+                    on ? "border-brass bg-brass/20 text-brass" : "border-muted text-transparent",
                   )}
                 >
-                  <Checkbox.Indicator className="text-[10px] leading-none text-brass">✓</Checkbox.Indicator>
-                </Checkbox.Root>
+                  ✓
+                </span>
                 <span>{o.label}</span>
-              </label>
+              </Checkbox.Root>
             );
           })}
         </div>

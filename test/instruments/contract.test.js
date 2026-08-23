@@ -134,6 +134,15 @@ for (const spec of ALL) {
       assert.ok(cards.length >= 1, "no instruction cards produced");
       for (const c of cards) {
         assert.ok(CHANNELS.includes(c.channel), `unknown channel "${c.channel}"`);
+        // Declaring a channel is a promise about where an instrument's cards
+        // land on the sheet, and the catalogue prints that promise. Emitting a
+        // card on an undeclared channel makes the declaration a lie — which is
+        // what big-five and hexaco were both doing on a flat profile, because
+        // the old assertion only checked that the channel existed at all.
+        assert.ok(
+          spec.channels.includes(c.channel),
+          `${spec.id} emitted a "${c.channel}" card but declares only ${spec.channels.join(", ")}`,
+        );
         assert.ok(c.title?.trim(), "card without a title");
         assert.ok(c.body?.trim().length > 20, "card without a usable body");
       }

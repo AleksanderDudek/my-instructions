@@ -93,7 +93,13 @@ function instructions(result, t) {
       body: t(`factor.${p.key}.ask.${p.side}`),
     });
   }
-  if (cards.length === 1) cards.push({ channel: "rhythm", title: t("instructions.flatTitle"), body: t("instructions.flatBody") });
+  // "Read the situation rather than the profile" is guidance on how to
+  // approach a person, which is the communication channel. It was filed under
+  // rhythm — a channel neither instrument declares — so the card rendered on
+  // the sheet under a heading its own instrument said it never contributes to.
+  // Only reachable on a flat profile, which is why it survived: the contract
+  // test answered every item the same way and never produced one.
+  if (cards.length === 1) cards.push({ channel: "communication", title: t("instructions.flatTitle"), body: t("instructions.flatBody") });
   return cards;
 }
 

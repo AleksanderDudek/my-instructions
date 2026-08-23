@@ -266,8 +266,13 @@ function SelectField({
         aria-describedby={describedBy}
         className="flex w-full items-center justify-between gap-3 rounded-sm border border-rule bg-panel-2 px-4 py-3 text-left text-ink data-[state=open]:border-brass"
       >
-        <Select.Value>{current?.label ?? ""}</Select.Value>
-        <Select.Icon className="text-muted">▾</Select.Icon>
+        <Select.Value data-testid="select-value">{current?.label ?? ""}</Select.Value>
+        {/* Decorative. Without this the caret joins the control's accessible
+            name and a screen reader announces the chosen option followed by a
+            down-pointing triangle. */}
+        <Select.Icon aria-hidden className="text-muted">
+          ▾
+        </Select.Icon>
       </Select.Trigger>
       <Select.Portal>
         <Select.Content

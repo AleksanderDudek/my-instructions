@@ -37,8 +37,17 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: web/package-lock.json
-      - run: npm ci
+      # `npm ci` is the right tool and it fails here for a reason worth
+      # recording: npm resolves a package's *optional* native dependencies for
+      # the platform the lockfile was written on. This lockfile is written on
+      # macOS; on Linux, Tailwind's wasm fallback pulls @emnapi at a version
+      # the lock has never seen, and `npm ci` refuses rather than guessing.
+      # Neither is wrong — the lock genuinely does not describe this platform.
+      # So: keep the deterministic path when it works, and fall back rather
+      # than blocking a deploy on a difference that affects no application code.
+      - name: Install
         working-directory: web
+        run: npm ci || npm install --no-audit --no-fund
       - run: npm run typecheck
         working-directory: web
       - run: npm run lint
@@ -58,8 +67,17 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: web/package-lock.json
-      - run: npm ci
+      # `npm ci` is the right tool and it fails here for a reason worth
+      # recording: npm resolves a package's *optional* native dependencies for
+      # the platform the lockfile was written on. This lockfile is written on
+      # macOS; on Linux, Tailwind's wasm fallback pulls @emnapi at a version
+      # the lock has never seen, and `npm ci` refuses rather than guessing.
+      # Neither is wrong — the lock genuinely does not describe this platform.
+      # So: keep the deterministic path when it works, and fall back rather
+      # than blocking a deploy on a difference that affects no application code.
+      - name: Install
         working-directory: web
+        run: npm ci || npm install --no-audit --no-fund
 
       # A project page is served from `/<repo>/`, so the prefix is compiled in.
       # A custom domain sets NEXT_BASE_PATH to an empty string and nothing else

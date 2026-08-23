@@ -10,7 +10,7 @@ const { createI18n } = await import("../../src/core/i18n.js");
 const { makeContext } = await import("../../src/ui/context.js");
 const { makeStore, LocalAdapter } = await import("../../src/core/store.js");
 const { str } = await import("../../src/core/html.js");
-const { registry, fakeStorage, makeCtx } = await import("../helpers/harness.js");
+const { registry, fakeStorage, makeCtx, answersFor } = await import("../helpers/harness.js");
 const { encode } = await import("../../src/core/share.js");
 
 const { homePage } = await import("../../src/ui/pages/home.js");
@@ -92,14 +92,6 @@ function assertNoStrayProse(html, where) {
   assert.equal(found, null, `${where}: untranslated prose in the page — "${found?.[0]}"`);
 }
 
-/** A plausible answer for one profiler field, honouring its own default. */
-function answerFor(f) {
-  if (f.kind === "multi") return [f.options[0].value];
-  if (f.value !== undefined) return f.value;
-  if (f.kind === "text") return "Ada";
-  return f.min ?? 1;
-}
-
 async function pseudoCtx() {
   const marked = Object.fromEntries(ENGLISH_KEYS.map((k) => [k, `«${k}»`]));
   const i18n = createI18n({ locale: "en", messages: marked, fallbackMessages: marked });
@@ -129,10 +121,7 @@ test("no page hard-codes a sentence — empty store", async () => {
 test("no instrument hard-codes a sentence — every view, card and comparison", async () => {
   const ctx = await pseudoCtx();
   for (const spec of instruments) {
-    const form = spec.form(ctx.instrument(spec).t, ctx.locale);
-    const answers = form.kind === "items"
-      ? Object.fromEntries(form.items.map((i, n) => [i.id, form.scale.min + (n % (form.scale.max - form.scale.min + 1))]))
-      : Object.fromEntries(form.fields.map((f) => [f.id, answerFor(f)]));
+    const answers = answersFor(spec, ctx.instrument(spec).t, ctx.locale);
     await ctx.store.saveRun({ instrumentId: spec.id, instrumentVersion: spec.version, answers, result: spec.score(answers) });
   }
 

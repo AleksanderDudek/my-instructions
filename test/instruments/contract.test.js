@@ -81,8 +81,14 @@ for (const spec of ALL) {
     const ids = form.kind === "items" ? form.items.map((i) => i.id) : form.fields.map((f) => f.id);
     assert.equal(new Set(ids).size, ids.length, "duplicate ids");
     if (form.kind === "items") {
-      assert.ok(form.scale, "an items form needs a scale");
-      assert.equal(form.scale.labels.length, form.scale.max - form.scale.min + 1, "a scale needs one label per point");
+      // A scale is what a Likert item is rendered against. A bank made
+      // entirely of choices needs none, and requiring one would be asking for
+      // a declaration nothing reads.
+      const likert = form.items.filter((item) => item.kind === "likert");
+      if (likert.length) {
+        assert.ok(form.scale, "an items form with Likert items needs a scale");
+        assert.equal(form.scale.labels.length, form.scale.max - form.scale.min + 1, "a scale needs one label per point");
+      }
       for (const item of form.items) {
         assert.ok(item.prompt.trim().length > 10, `item ${item.id} has a stub prompt`);
         // A statement or a question — both are legitimate prompts. What is not

@@ -42,4 +42,36 @@ async function tFor(spec, locale = "en") {
   return (await i18nFor(locale)).scope(spec.id).t;
 }
 
-export { fakeStorage, i18nFor, makeCtx, tFor, registry };
+/**
+ * A plausible answer for one item, by its kind.
+ *
+ * Both page harnesses used to reach for `form.scale.min`, which assumed every
+ * items form is Likert. It also meant choice items were being answered with
+ * numbers, which happened to render and was never right.
+ */
+function answerForItem(item, scale, n = 0) {
+  if (item.kind === "likert") {
+    const span = (scale?.max ?? 5) - (scale?.min ?? 1) + 1;
+    return (scale?.min ?? 1) + (n % span);
+  }
+  if (item.kind === "multi") return [item.options[0].value];
+  return item.options[n % item.options.length].value;
+}
+
+/** A plausible answer for one profiler field, honouring its own default. */
+function answerForField(f) {
+  if (f.kind === "multi") return [f.options[0].value];
+  if (f.value !== undefined) return f.value;
+  if (f.kind === "text") return "Ada";
+  return f.min ?? 1;
+}
+
+/** Every answer for one instrument, whichever family it is. */
+function answersFor(spec, t, locale = "en") {
+  const form = spec.form(t, locale);
+  return form.kind === "items"
+    ? Object.fromEntries(form.items.map((item, n) => [item.id, answerForItem(item, form.scale, n)]))
+    : Object.fromEntries(form.fields.map((f) => [f.id, answerForField(f)]));
+}
+
+export { fakeStorage, i18nFor, makeCtx, tFor, registry, answerForItem, answerForField, answersFor };

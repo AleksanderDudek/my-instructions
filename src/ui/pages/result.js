@@ -79,6 +79,11 @@ async function resultPage(ctx, { id }) {
   </article>`;
 
   function mount(root) {
+    // An instrument may need behaviour of its own — a copy button, say. Most
+    // do not, so it is optional and receives the scoped context rather than
+    // the page's, keeping the instrument's own `t` in scope.
+    spec.mount?.(root, scoped);
+
     root.querySelector("#vis").addEventListener("click", async (e) => {
       const btn = e.target.closest("[data-vis]");
       if (!btn) return;

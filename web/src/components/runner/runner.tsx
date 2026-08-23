@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Answers, Form, InstrumentSpec, ItemsForm, Locale } from "@/core/types";
 import { loadInstrumentModule } from "@/instruments/lazy";
 import { ItemControl, FieldControl, type ItemValue } from "@/components/form/item-controls";
@@ -78,22 +78,28 @@ export function Runner({
   form,
   meta,
   copy,
-  slot,
+  pairwise,
 }: {
   id: string;
   locale: Locale;
   form: Form;
   meta: Pick<InstrumentSpec, "version" | "persistence" | "pairwise">;
   copy: RunnerCopy;
-  slot: "b" | null;
+  pairwise: boolean;
 }) {
   const store = useStore();
   const router = useRouter();
+  // `?who=b` is the second person of a pair answering on the same device. It
+  // is read here rather than on the server because a statically exported page
+  // has no server to read it on — and because it was always client state: the
+  // half it selects lives in memory in this tab and nowhere else.
+  const search = useSearchParams();
+  const slot: "b" | null = pairwise && search.get("who") === "b" ? "b" : null;
   const [state, setState] = useState<Ready | null>(null);
   const [saving, setSaving] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const items = form.kind === "items" ? form.items : [];
+  const items = useMemo(() => (form.kind === "items" ? form.items : []), [form]);
   const byId = useMemo(() => new Map(items.map((i) => [i.id, i])), [items]);
   const pageSize = form.kind === "items" ? (form.pageSize ?? 5) : items.length;
   const optional = form.kind === "items" ? Boolean(form.optional) : true;
@@ -176,8 +182,8 @@ export function Runner({
       setSaving(true);
       const values: Answers = {};
       for (const f of form.fields) values[f.id] = state.answers[f.id] ?? f.value ?? "";
-      const module = await loadInstrumentModule(id);
-      const found = module?.spec.validate?.(values, (k) => k) ?? {};
+      const instrument = await loadInstrumentModule(id);
+      const found = instrument?.spec.validate?.(values, (k) => k) ?? {};
       if (Object.keys(found).length) {
         setErrors(found);
         setSaving(false);
@@ -187,7 +193,7 @@ export function Runner({
         instrumentId: id,
         instrumentVersion: meta.version,
         answers: values,
-        result: module!.spec.score(values),
+        result: instrument!.spec.score(values),
       });
       router.push(`/${locale}/tests/${id}/result`);
     };
@@ -244,14 +250,14 @@ export function Runner({
 
   const finish = async () => {
     setSaving(true);
-    const module = await loadInstrumentModule(id);
-    if (!module) return;
+    const instrument = await loadInstrumentModule(id);
+    if (!instrument) return;
     await store.saveRun(
       {
         instrumentId: id,
         instrumentVersion: meta.version,
         answers: state.answers,
-        result: module.spec.score(state.answers),
+        result: instrument.spec.score(state.answers),
       },
       { session: sessionOnly, slot },
     );

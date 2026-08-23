@@ -1,0 +1,66 @@
+name: web
+
+# Builds and tests the Next.js rewrite on every push. It deliberately does not
+# deploy: the vanilla app is still what serves the site, because the rewrite
+# has not reached parity yet and swapping in a version with fewer instruments
+# would be a downgrade for whoever is using it. Flipping the live site is one
+# line in pages.yml when the port is finished.
+
+on:
+  push:
+    paths: ["web/**", ".github/workflows/web.yml"]
+  pull_request:
+    paths: ["web/**"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+
+      # The static shape is the one that has to work on GitHub Pages, so it is
+      # the one CI builds. `NEXT_BASE_PATH` is the repository name because a
+      # project page is served from a subdirectory; a custom domain sets it to
+      # an empty string and nothing else changes.
+      - name: Build static export
+        env:
+          NEXT_OUTPUT: export
+          NEXT_BASE_PATH: /my-instructions
+          NEXT_PUBLIC_SITE_URL: https://aleksanderdudek.github.io
+        run: npm run build:static
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      # Served from a subdirectory, exactly as Pages would, so a path bug that
+      # only appears under a base path fails here rather than in production.
+      - name: Test the export as a subpath
+        env:
+          E2E_BASE_URL: http://127.0.0.1:3200
+          E2E_PREFIX: /my-instructions
+        run: |
+          mkdir -p /tmp/pages/my-instructions
+          cp -R out/. /tmp/pages/my-instructions/
+          npx --yes serve /tmp/pages -l 3200 --no-clipboard &
+          npx wait-on http://127.0.0.1:3200/my-instructions/en/ --timeout 60000
+          npm run e2e
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: static-site
+          path: web/out
+          retention-days: 7

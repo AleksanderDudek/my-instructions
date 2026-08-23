@@ -8,6 +8,13 @@ import { defineConfig, devices } from "@playwright/test";
  * behaves differently under a dev-mode double render. So the suite builds and
  * serves the real thing.
  */
+/**
+ * `E2E_BASE_URL` points the suite at an already-running server — used to prove
+ * the static export behaves the same as the server build, served from a
+ * subpath the way GitHub Pages serves a project page.
+ */
+const external = process.env.E2E_BASE_URL;
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -15,16 +22,18 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? "github" : [["list"]],
   use: {
-    baseURL: "http://127.0.0.1:3100",
+    baseURL: external ?? "http://127.0.0.1:3100",
     trace: "on-first-retry",
   },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
   ],
-  webServer: {
-    command: "npm run build && npx next start -p 3100",
-    url: "http://127.0.0.1:3100/en",
-    reuseExistingServer: !process.env.CI,
-    timeout: 240_000,
-  },
+  webServer: external
+    ? undefined
+    : {
+        command: "npm run build && npx next start -p 3100",
+        url: "http://127.0.0.1:3100/en",
+        reuseExistingServer: !process.env.CI,
+        timeout: 240_000,
+      },
 });

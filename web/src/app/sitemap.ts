@@ -1,8 +1,19 @@
 import type { MetadataRoute } from "next";
+
+/**
+ * A static export has no request to respond to, so this file has to be a
+ * build-time artifact rather than a route handler. Next needs to be told that
+ * explicitly; without it the export fails rather than silently omitting the
+ * file, which is the right way round.
+ */
+export const dynamic = "force-static";
 import { TAGS } from "@/core/locales";
 import { registry } from "@/instruments";
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://myinstructions.app";
+// The site URL and the path the app is mounted at are two different things:
+// a GitHub project page lives at `https://user.github.io/my-instructions`, and
+// a sitemap that omits the second half publishes URLs that all 404.
+const BASE = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://myinstructions.app"}${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}`;
 
 /**
  * Only what a stranger should be able to find.

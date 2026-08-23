@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import { getI18n, isLocale } from "@/core/locales";
 import { registry } from "@/instruments";
 import type { Locale } from "@/core/types";

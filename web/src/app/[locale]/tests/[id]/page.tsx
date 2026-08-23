@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getInstrumentI18n, isLocale, TAGS } from "@/core/locales";
@@ -26,9 +26,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string; id: string }>;
 }): Promise<Metadata> {
   const { locale, id } = await params;
-  const module = registry.get(id);
-  if (!isLocale(locale) || !module) return {};
-  const { scoped } = await getInstrumentI18n(module.spec, locale);
+  const instrument = registry.get(id);
+  if (!isLocale(locale) || !instrument) return {};
+  const { scoped } = await getInstrumentI18n(instrument.spec, locale);
   const path = (tag: string) => `/${tag}/tests/${id}`;
   return {
     title: scoped.t("title"),
@@ -37,16 +37,16 @@ export async function generateMetadata({
     openGraph: { type: "article", title: scoped.t("title"), description: scoped.t("tagline"), locale },
     // Adult instruments stay out of the index entirely. A description page for
     // an explicit questionnaire is not something to compete for traffic on.
-    robots: module.spec.adult ? { index: false, follow: false } : undefined,
+    robots: instrument.spec.adult ? { index: false, follow: false } : undefined,
   };
 }
 
 export default async function InstrumentPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
   const { locale, id } = await params;
-  const module = registry.get(id);
-  if (!isLocale(locale) || !module) notFound();
+  const instrument = registry.get(id);
+  if (!isLocale(locale) || !instrument) notFound();
 
-  const { spec, provenance } = module;
+  const { spec, provenance } = instrument;
   const { i18n, scoped } = await getInstrumentI18n(spec, locale as Locale);
   const { t } = i18n;
   const it = scoped.t;

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
+import { useSearchParams } from "next/navigation";
 import { createI18n, type Messages } from "@/core/i18n";
 import { loadInstrumentModule } from "@/instruments/lazy";
 import type { InstrumentModule } from "@/core/registry";
@@ -24,18 +25,20 @@ export function ResultView({
   locale,
   messages,
   fallbackMessages,
-  slot,
+  pairwise,
   copy,
 }: {
   id: string;
   locale: Locale;
   messages: Messages;
   fallbackMessages: Messages;
-  slot: "b" | null;
+  pairwise: boolean;
   copy: { empty: string; emptyBody: string; emptyAction: string; loading: string; retake: string; sheet: string; stale: string };
 }) {
   const store = useStore();
-  const [module, setModule] = useState<InstrumentModule | null>(null);
+  const search = useSearchParams();
+  const slot: "b" | null = pairwise && search.get("who") === "b" ? "b" : null;
+  const [instrument, setInstrument] = useState<InstrumentModule | null>(null);
   const [run, setRun] = useState<Run | null | undefined>(undefined);
 
   const i18n = useMemo(() => createI18n({ locale, messages, fallbackMessages }), [locale, messages, fallbackMessages]);
@@ -46,7 +49,7 @@ export function ResultView({
     (async () => {
       const [m, r] = await Promise.all([loadInstrumentModule(id), store.run(id, slot)]);
       if (!live) return;
-      setModule(m);
+      setInstrument(m);
       setRun(r);
     })();
     return () => {
@@ -54,7 +57,7 @@ export function ResultView({
     };
   }, [id, slot, store]);
 
-  if (run === undefined || !module) {
+  if (run === undefined || !instrument) {
     return (
       <p className="py-16 text-muted" role="status">
         {copy.loading}
@@ -77,7 +80,7 @@ export function ResultView({
     );
   }
 
-  const { View, spec } = module;
+  const { View, spec } = instrument;
   const stale = run.instrumentVersion !== spec.version;
   const cards = spec.instructions(run.result, scoped.t);
 

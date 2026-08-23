@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf .next out && next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "e2e": "playwright test",
-    "e2e:ui": "playwright test --ui"
+    "e2e:ui": "playwright test --ui",
+    "build:static": "rm -rf .next out && NEXT_OUTPUT=export next build && node scripts/write-root-redirect.mjs",
+    "serve:static": "npx --yes serve out -l 3200"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -33,6 +35,7 @@
     "eslint-config-next": "16.3.2",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.11",
+    "wait-on": "^9.1.0"
   }
 }

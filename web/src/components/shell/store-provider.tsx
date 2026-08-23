@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useRef, useSyncExternalStore } from "react";
+import { createContext, useContext, useState, useSyncExternalStore } from "react";
 import { LocalAdapter, makeStore, type Store } from "@/core/store";
 
 /**
@@ -15,11 +15,12 @@ import { LocalAdapter, makeStore, type Store } from "@/core/store";
 const StoreContext = createContext<Store | null>(null);
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
-  const ref = useRef<Store | null>(null);
-  if (ref.current === null) {
-    ref.current = makeStore(new LocalAdapter(typeof window === "undefined" ? undefined : window.localStorage));
-  }
-  return <StoreContext.Provider value={ref.current}>{children}</StoreContext.Provider>;
+  // `useState`'s initialiser runs once and never during a later render, which
+  // is what makes it safe here — an assignment to a ref during render is not.
+  const [store] = useState(() =>
+    makeStore(new LocalAdapter(typeof window === "undefined" ? undefined : window.localStorage)),
+  );
+  return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;
 }
 
 export function useStore(): Store {

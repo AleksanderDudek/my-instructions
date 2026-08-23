@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { path } from "./paths";
 
 /**
  * The reported bug, written down so it cannot come back.
@@ -15,7 +16,7 @@ import { test, expect, type Page } from "@playwright/test";
  */
 
 const TEST = "love-languages";
-const take = (locale = "en") => `/${locale}/tests/${TEST}/take`;
+const take = (locale = "en") => path(`/${locale}/tests/${TEST}/take/`);
 
 /**
  * Press an arrow the way a person does: down, a beat, up.

@@ -1,18 +1,13 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import { defineConfig } from "eslint/config";
+import next from "eslint-config-next";
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
+export default defineConfig([
+  ...next,
+  {
+    // Message tables and provenance records are data files: one exported
+    // object each, by design. Naming a variable purely to satisfy a rule aimed
+    // at components would be 68 files of churn for nothing.
+    files: ["src/i18n/messages/*.ts", "src/instruments/*/i18n/*.ts", "src/instruments/*/provenance.ts"],
+    rules: { "import/no-anonymous-default-export": "off" },
+  },
 ]);
-
-export default eslintConfig;

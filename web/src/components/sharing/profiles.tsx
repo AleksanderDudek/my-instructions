@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Plate, PlateHead } from "@/components/ui/primitives";
 import { useStore } from "@/components/shell/store-provider";
 import {
+  IDENTITY_ELEMENTS,
   PRESETS,
   PRESET_AUDIENCE,
   allowedFor,
@@ -51,6 +52,9 @@ type Props = {
   copy: ProfilesCopy;
   /** Resolved instrument titles, so this component needs no translator. */
   titleOf: Record<string, string>;
+  /** The reader's own three elements: what to call them, and what they say. */
+  identityLabels: Record<string, string>;
+  identityValues: Record<string, string>;
   runs: Run[];
   instruments: Map<string, InstrumentModule>;
   identity: { displayName: string; pronouns: string; note: string };
@@ -70,7 +74,7 @@ const newId = () =>
 const subscribeToNothing = () => () => {};
 const readFalse = () => false;
 
-export function Profiles({ locale, copy, titleOf, runs, instruments, identity }: Props) {
+export function Profiles({ locale, copy, titleOf, identityLabels, identityValues, runs, instruments, identity }: Props) {
   const store = useStore();
   const [profiles, setProfiles] = useState<ShareProfile[] | null>(null);
   const [open, setOpen] = useState<string | null>(null);
@@ -281,9 +285,31 @@ export function Profiles({ locale, copy, titleOf, runs, instruments, identity }:
                   <fieldset className="mb-6">
                     <legend className="label-caps mb-3">{copy["profiles.elements"]}</legend>
                     <div className="grid gap-2">
-                      {specs.map((spec) => {
-                        const element = runElement(spec.id);
-                        const permitted = allowedFor(spec, profile.audience);
+                      {/*
+                          Identity first, then results.
+                          The reader is the thing being described, so a profile
+                          that could carry only readings would arrive unsigned —
+                          a page of scores with nobody's name on it. One list
+                          rather than two sections: it is all the same question,
+                          and splitting it would imply a name is a different
+                          kind of decision from a result.
+                       */}
+                      {[
+                        ...IDENTITY_ELEMENTS.map((element) => ({
+                          element,
+                          label: identityLabels[element] ?? element,
+                          hint: identityValues[element],
+                          // Identity carries no instrument and therefore no
+                          // ceiling; it is governed by being chosen.
+                          permitted: true,
+                        })),
+                        ...specs.map((spec) => ({
+                          element: runElement(spec.id),
+                          label: titleOf[spec.id] ?? spec.id,
+                          hint: undefined as string | undefined,
+                          permitted: allowedFor(spec, profile.audience),
+                        })),
+                      ].map(({ element, label, hint, permitted }) => {
                         const on = profile.elements.includes(element);
                         return (
                           <Checkbox.Root
@@ -306,7 +332,10 @@ export function Profiles({ locale, copy, titleOf, runs, instruments, identity }:
                             >
                               ✓
                             </span>
-                            <span>{titleOf[spec.id] ?? spec.id}</span>
+                            <span>
+                              {label}
+                              {hint ? <span className="ml-2 text-sm text-muted">{hint}</span> : null}
+                            </span>
                             {/* Shown rather than hidden: the app declined, and
                                 that is a fact about the instrument the reader
                                 is entitled to see. */}
@@ -428,6 +457,24 @@ function Reach({
   return (
     <div className="border-t border-rule pt-5">
       <span className="label-caps mb-3 block">{copy["profiles.send"]}</span>
+
+      {/*
+          The link itself, on the page, selectable.
+          The clipboard is refused often enough to matter — an insecure origin,
+          a denied permission, an iframe — and the message for that case tells
+          the reader to select the link and copy it by hand. It has to be there
+          to be selected. Readonly rather than disabled: a disabled field cannot
+          be focused, and therefore cannot be copied from either.
+       */}
+      <input
+        readOnly
+        value={url}
+        data-link
+        aria-label={copy["profiles.linkLabel"]}
+        onFocus={(e) => e.currentTarget.select()}
+        className="mb-3 w-full rounded-sm border border-rule bg-panel px-4 py-3 font-mono text-xs text-ink/80"
+      />
+
       <div className="flex flex-wrap gap-2">
         <Button
           variant="primary"

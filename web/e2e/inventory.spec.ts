@@ -330,9 +330,18 @@ for (const id of INVENTORIES) {
  * the decoded payload, and the assertions are about what is not in it.
  */
 async function tokens(page: Page): Promise<{ raw: string; answersFor(id: string): Record<string, unknown> | null }[]> {
-  const hrefs = await page
-    .getByRole("link")
-    .evaluateAll((els) => els.map((el) => el.getAttribute("href") ?? ""));
+  /**
+   * Read from the link field the page shows, not from an anchor.
+   *
+   * Sharing is a profile now, and a profile's link is displayed so it can be
+   * selected by hand — the clipboard is refused often enough that the page has
+   * to have something to point at. That field is also the honest thing to
+   * assert against: it is the exact string a reader would send.
+   */
+  const shown = await page.locator("input[data-link]").evaluateAll((els) =>
+    els.map((el) => (el as HTMLInputElement).value),
+  );
+
   /**
    * The token lives in the fragment, and this asserts it rather than coping.
    *
@@ -340,13 +349,15 @@ async function tokens(page: Page): Promise<{ raw: string; answersFor(id: string)
    * link-preview crawler a messenger runs. A test that merely accepted either
    * form would let it drift back.
    */
-  const inQuery = hrefs.filter((href) => href.includes("?d="));
-  expect(inQuery, "a share link carried its token in the query string").toEqual([]);
+  expect(
+    shown.filter((url) => url.includes("?d=")),
+    "a share link carried its token in the query string",
+  ).toEqual([]);
 
-  return hrefs
-    .filter((href) => href.includes("#d="))
-    .map((href) => {
-      const token = decodeURIComponent(href.split("#d=")[1] ?? "");
+  return shown
+    .filter((url) => url.includes("#d="))
+    .map((url) => {
+      const token = decodeURIComponent(url.split("#d=")[1] ?? "");
       const raw = Buffer.from(token.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8");
       const payload = JSON.parse(raw) as { r?: { i: string; a: string }[] };
       return {
@@ -359,13 +370,22 @@ async function tokens(page: Page): Promise<{ raw: string; answersFor(id: string)
     });
 }
 
-/** Put one instrument's run in front of the widest audience it permits. */
-async function shareAt(page: Page, title: string, audience: string) {
+/**
+ * Build a profile that carries one instrument, and open it.
+ *
+ * Visibility is a named selection now rather than a rung per element, so the
+ * setup is what a reader would actually do: make a profile for a partner —
+ * the widest ceiling anything sensitive permits — and make sure the instrument
+ * under test is ticked in it.
+ */
+async function shareAt(page: Page, title: string) {
   await page.goto(path("/en/sharing/"));
-  const row = page.getByRole("group", { name: `Audience for ${title}` });
-  await expect(row, `no sharing row for "${title}"`).toBeVisible();
-  await row.getByRole("button", { name: audience, exact: true }).click();
-  await expect(row.getByRole("button", { name: audience, exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Add one for a partner" }).click();
+
+  const box = page.getByRole("checkbox", { name: new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) });
+  await expect(box.first(), `no row for "${title}" in the profile`).toBeVisible();
+  if ((await box.first().getAttribute("aria-checked")) !== "true") await box.first().click();
+  await expect(box.first()).toHaveAttribute("aria-checked", "true");
 }
 
 for (const id of INVENTORIES) {
@@ -431,7 +451,7 @@ for (const id of INVENTORIES) {
 
     /* ── and nothing of it in a share token ─────────────────────── */
 
-    await shareAt(page, shape.title, "partner");
+    await shareAt(page, shape.title);
     const found = await tokens(page);
     expect(found.length, `${id}: the sharing page offered no links`).toBeGreaterThan(0);
 
@@ -510,7 +530,7 @@ for (const id of INVENTORIES) {
 
     // Never scored, never shared. The first is the result object's business and
     // is unit-tested; the second is a link, and this is where a link is made.
-    await shareAt(page, shape.title, "partner");
+    await shareAt(page, shape.title);
     for (const token of await tokens(page)) {
       const answers = token.answersFor(id);
       if (!answers) continue;

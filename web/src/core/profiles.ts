@@ -90,6 +90,35 @@ export const PRESET_AUDIENCE: Record<Preset, Audience> = {
  */
 export const TEAM_CHANNELS = ["work", "communication", "conflict"] as const;
 
+/**
+ * The reader themselves, as elements.
+ *
+ * A profile that could only carry test results would arrive at the other end
+ * unsigned — a page of readings with nobody's name on it. These are the three
+ * things the report layer already knows how to send, and they are elements
+ * rather than a special case so that the same one control governs all of it:
+ * one list, one set of checkboxes, one answer to "what is in this".
+ *
+ * Ordered least to most revealing, which is also the order somebody would
+ * naturally stop at: a name, then how to address them, then a sentence they
+ * wrote about themselves.
+ */
+export const IDENTITY_ELEMENTS = ["profile.name", "profile.pronouns", "profile.note"] as const;
+
+/**
+ * What each preset starts an identity at.
+ *
+ * A public profile carries a name because that is what makes it a profile
+ * rather than an anonymous reading. It does not carry the opening line, which
+ * people write for somebody in particular — seeding it into a public link is
+ * the kind of default that gets noticed after it has been sent.
+ */
+const PRESET_IDENTITY: Record<Preset, readonly string[]> = {
+  public: ["profile.name"],
+  team: ["profile.name", "profile.pronouns"],
+  partner: [...IDENTITY_ELEMENTS],
+};
+
 /** What a spec has to tell us to be sorted into a preset. */
 export type ProfileSpec = {
   id: string;
@@ -124,11 +153,14 @@ export function allowedFor(spec: ProfileSpec | null | undefined, audience: Audie
 export function seedElements(preset: Preset, specs: readonly ProfileSpec[]): ElementId[] {
   const audience = PRESET_AUDIENCE[preset];
   const usable = specs.filter((spec) => allowedFor(spec, audience));
+  const identity = [...PRESET_IDENTITY[preset]];
 
   if (preset === "team") {
-    return usable
-      .filter((spec) => spec.channels.some((channel) => (TEAM_CHANNELS as readonly string[]).includes(channel)))
-      .map((spec) => runElement(spec.id));
+    return identity.concat(
+      usable
+        .filter((spec) => spec.channels.some((channel) => (TEAM_CHANNELS as readonly string[]).includes(channel)))
+        .map((spec) => runElement(spec.id)),
+    );
   }
 
   if (preset === "public") {
@@ -136,10 +168,10 @@ export function seedElements(preset: Preset, specs: readonly ProfileSpec[]): Ele
     // instrument by instrument for exactly this question and is more reliable
     // than any list kept here, which would fall out of date the first time an
     // instrument was added by somebody who never read this file.
-    return usable.filter((spec) => !spec.sensitive).map((spec) => runElement(spec.id));
+    return identity.concat(usable.filter((spec) => !spec.sensitive).map((spec) => runElement(spec.id)));
   }
 
-  return usable.map((spec) => runElement(spec.id));
+  return identity.concat(usable.map((spec) => runElement(spec.id)));
 }
 
 /**

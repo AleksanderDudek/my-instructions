@@ -258,4 +258,7 @@ export default {
   "fit.forget": "Forget this one",
   "fit.privacy": "Nothing you type here is saved. Someone else's date of birth is not yours to keep, and this is the only place in the app where you can enter one — so it stays in this tab, is in no export and no link, and is gone when you close the page.",
   "fit.caveat": "This total is arithmetic on two dates, done exactly as the traditions specify. It is not evidence of anything and it does not predict how two people will get on. Read it as a vocabulary for a conversation, not as a finding — and notice that nobody in it has been asked a single question about themselves.",
+  "fit.you": "You",
+  "fit.row.sign": "Western sign",
+  "fit.row.squares": "Squares lit",
 };

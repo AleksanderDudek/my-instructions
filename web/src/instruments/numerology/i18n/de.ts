@@ -263,4 +263,7 @@ export default {
   "fit.forget": "Diesen vergessen",
   "fit.privacy": "Nichts, was du hier eingibst, wird gespeichert. Das Geburtsdatum einer anderen Person gehört nicht dir zum Aufbewahren, und dies ist die einzige Stelle der App, an der du eines eingeben kannst — es bleibt also in diesem Tab, steht in keinem Export und keinem Link und ist weg, sobald du die Seite schließt.",
   "fit.caveat": "Diese Summe ist Rechnen mit zwei Daten, genau so ausgeführt, wie die Traditionen es vorschreiben. Sie ist kein Beleg für irgendetwas und sagt nicht voraus, wie zwei Menschen miteinander auskommen. Lies sie als Vokabular für ein Gespräch und nicht als Befund — und beachte, dass niemand darin auch nur eine Frage über sich selbst beantwortet hat.",
+  "fit.you": "Du",
+  "fit.row.sign": "Westliches Zeichen",
+  "fit.row.squares": "Belegte Felder",
 };

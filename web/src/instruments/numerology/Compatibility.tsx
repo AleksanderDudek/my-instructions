@@ -6,6 +6,7 @@ import { Note } from "@/components/result/scorecard";
 import { granted } from "@/core/entitlements";
 import type { T } from "@/core/types";
 import { match, profile } from "./compute";
+import { ELEMENTS } from "./data";
 import { validate } from "./spec";
 import type { NumerologyResult } from "./spec";
 
@@ -52,7 +53,14 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState<
-    { key: string; label: string; reading: ReturnType<typeof match> }[]
+    {
+      key: string;
+      label: string;
+      /** The other chart itself, so the two can be read side by side rather
+          than only through the score that compares them. */
+      theirs: ReturnType<typeof profile>;
+      reading: ReturnType<typeof match>;
+    }[]
   >([]);
 
   if (!granted("numerology.compatibility")) return null;
@@ -74,6 +82,7 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
       {
         key: `${answers.year}-${answers.month}-${answers.day}-${prev.length}`,
         label: name.trim() || `${day}.${month}.${year}`,
+        theirs,
         reading: match(mine, theirs, t),
       },
       ...prev,
@@ -100,7 +109,7 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
 
       <Note tone="warn">{t("fit.privacy")}</Note>
 
-      {checked.map(({ key, label, reading }) => (
+      {checked.map(({ key, label, theirs, reading }) => (
         <article key={key} className="mt-8 rounded-sm border border-rule bg-panel-2 p-6">
           <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
             <h4 className="text-xl">{t("fit.against", { name: label })}</h4>
@@ -109,6 +118,15 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
               <span className="ml-2 text-sm text-muted">/ 100 · {reading.band}</span>
             </p>
           </div>
+
+          {/*
+              Their chart beside yours, before the score that compares them.
+              The comparison is the part with no evidence behind it; the two
+              charts are just the traditions applied to two dates, and putting
+              them first is the honest order — a reader can check the arithmetic
+              of what is above and can only take the number below on faith.
+           */}
+          <SideBySide mine={mine} theirs={theirs} label={label} t={t} />
 
           <div className="my-6 flex flex-col gap-4">
             {reading.parts.map((part) => (
@@ -144,6 +162,68 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
 
       {checked.length ? <Note>{t("fit.caveat")}</Note> : null}
     </section>
+  );
+}
+
+/** One row per thing the traditions name, the two charts in two columns. */
+function SideBySide({
+  mine,
+  theirs,
+  label,
+  t,
+}: {
+  mine: NumerologyResult;
+  theirs: ReturnType<typeof profile>;
+  label: string;
+  t: T;
+}) {
+  const lit = (chart: { counts: Record<number, number> }) =>
+    [1, 2, 3, 4, 5, 6, 7, 8, 9].filter((n) => chart.counts[n] > 0);
+
+  const rows: [string, string, string][] = [
+    [
+      t("identity.destiny"),
+      `${mine.destiny.value} — ${t(`num.${mine.destiny.value}.name`)}`,
+      `${theirs.destiny.value} — ${t(`num.${theirs.destiny.value}.name`)}`,
+    ],
+    [
+      t("identity.lunarYear"),
+      `${t(`element.${ELEMENTS[mine.elementIdx]}`)} ${t(`animal.${mine.animalIdx}.name`)} · ${t(`polarity.${mine.polarity}`)}`,
+      `${t(`element.${ELEMENTS[theirs.elementIdx]}`)} ${t(`animal.${theirs.animalIdx}.name`)} · ${t(`polarity.${theirs.polarity}`)}`,
+    ],
+    [
+      t("fit.row.sign"),
+      `${t(`sign.${mine.sign}.name`)} · ${t(`element.${mine.signElement}`)}`,
+      `${t(`sign.${theirs.sign}.name`)} · ${t(`element.${theirs.signElement}`)}`,
+    ],
+    [t("fit.row.squares"), lit(mine).join(" "), lit(theirs).join(" ")],
+  ];
+
+  return (
+    <table className="my-6 w-full border-collapse text-left text-[0.95rem]">
+      <thead>
+        <tr className="border-b border-rule">
+          <th scope="col" className="label-caps py-2 pr-4 font-normal" />
+          <th scope="col" className="label-caps py-2 pr-4 font-normal">
+            {t("fit.you")}
+          </th>
+          <th scope="col" className="label-caps py-2 font-normal">
+            {label}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map(([name, a, b]) => (
+          <tr key={name} className="border-b border-rule/50">
+            <th scope="row" className="py-3 pr-4 font-normal text-muted">
+              {name}
+            </th>
+            <td className="py-3 pr-4 text-ink/90">{a}</td>
+            <td className="py-3 text-ink/90">{b}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 

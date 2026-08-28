@@ -1,0 +1,910 @@
+{
+  "bank": {
+    "id": "good-life",
+    "sections": [
+      {
+        "id": "work",
+        "title": "What the work is for",
+        "note": "Two questions about what the work is for. They come first because work is the least tender subject here, and because the answer changes how everything later about money reads. One answer to the second declines growth altogether, and it counts like any other."
+      },
+      {
+        "id": "money",
+        "title": "Money, and where enough is",
+        "note": "Three questions. The first takes up to two answers, because money genuinely serves more than one purpose at once. The second is not about an amount — it asks what would have to be true before you stopped. The third asks how far into your life a risk may reach."
+      },
+      {
+        "id": "place",
+        "title": "Where, and who is near",
+        "note": "Where you live and who is near come apart more often than they look: the town can be settled while the people in it are not, or the other way round. The first question asks about distance alone. The second takes two answers, which makes it a choice rather than a list."
+      },
+      {
+        "id": "week",
+        "title": "The body and the week",
+        "note": "The first question is about what you are already giving up, not what you intend to — the intention belongs in the weight underneath it. The second looks a year ahead and names the thing you would cut first."
+      },
+      {
+        "id": "keep",
+        "title": "What you keep, what you owe",
+        "note": "The first question here is the hardest, and takes one answer on purpose: allowed everything, everyone keeps everything, and that tells a reader nothing. Health has to stand against the people you live with and against your own hours. The second takes two."
+      },
+      {
+        "id": "later",
+        "title": "Looking back from seventy",
+        "note": "One question, and the last one with options. Eleven positions are already stated before you are asked which absence would sting. The last answer — none of these — is a real one here rather than a way out."
+      },
+      {
+        "id": "open",
+        "title": "Open space",
+        "note": "Four questions with no options. What you write is not scored, not compared with anybody, never goes into a share link, and never reaches your instruction sheet — it stays on this device. The last one is four words, because every extra word offers a gentler question to answer."
+      }
+    ],
+    "openItems": [
+      {
+        "id": "open-letter",
+        "kind": "text",
+        "section": "open",
+        "tier": "private",
+        "rows": 8,
+        "prompt": "A letter to yourself at seventy. What should be true?"
+      },
+      {
+        "id": "open-five",
+        "kind": "text",
+        "section": "open",
+        "tier": "private",
+        "rows": 4,
+        "prompt": "What one thing would make the next five years count?"
+      },
+      {
+        "id": "open-said",
+        "kind": "text",
+        "section": "open",
+        "tier": "private",
+        "rows": 4,
+        "prompt": "What would you want the people who knew you best to say?"
+      },
+      {
+        "id": "open-avoid",
+        "kind": "text",
+        "section": "open",
+        "tier": "private",
+        "rows": 4,
+        "prompt": "What are you avoiding?"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "work-purpose",
+        "kind": "choice",
+        "prompt": "What is your work mainly for?",
+        "section": "work",
+        "tells": "Tells a reader whether a raise, a title, or a harder problem would register as a reward, which are three different offers that people routinely make to each other interchangeably.",
+        "options": [
+          {
+            "value": "income",
+            "label": "Paying for the life I have outside it"
+          },
+          {
+            "value": "craft",
+            "label": "Getting good at the thing itself"
+          },
+          {
+            "value": "service",
+            "label": "Being useful to specific people"
+          },
+          {
+            "value": "standing",
+            "label": "Position — being taken seriously"
+          },
+          {
+            "value": "structure",
+            "label": "Structure. I do badly with an open week"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not worked that out"
+          }
+        ]
+      },
+      {
+        "id": "learn-next",
+        "kind": "choice",
+        "prompt": "What do you want to be visibly better at in ten years?",
+        "section": "work",
+        "tells": "Separates the person who is still building from the person who has decided that what they have is enough, a distinction invisible from outside and one that changes what an offer of development means.",
+        "options": [
+          {
+            "value": "trade",
+            "label": "The work I already do"
+          },
+          {
+            "value": "newskill",
+            "label": "A skill I have not started yet"
+          },
+          {
+            "value": "people",
+            "label": "Handling people, especially conflict"
+          },
+          {
+            "value": "temper",
+            "label": "Keeping my head when things go wrong"
+          },
+          {
+            "value": "nothing",
+            "label": "Nothing. I want to keep what I have and use it"
+          },
+          {
+            "value": "unknown",
+            "label": "I do not know yet"
+          }
+        ]
+      },
+      {
+        "id": "money-for",
+        "kind": "multi",
+        "max": 2,
+        "exclusive": [
+          "undecided"
+        ],
+        "prompt": "What is money mainly for?",
+        "section": "money",
+        "tells": "Shows what the same sum would do here — a buffer, a plane ticket, or a year of being able to say no — which is why two people with identical incomes can argue about an identical purchase.",
+        "options": [
+          {
+            "value": "safety",
+            "label": "A buffer, so nothing can force my hand"
+          },
+          {
+            "value": "freedom",
+            "label": "Buying the freedom to say no"
+          },
+          {
+            "value": "provide",
+            "label": "Providing for people who depend on me"
+          },
+          {
+            "value": "now",
+            "label": "Spending it now on things I will remember"
+          },
+          {
+            "value": "give",
+            "label": "Giving it away while I can see where it lands"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not worked that out"
+          }
+        ]
+      },
+      {
+        "id": "enough-point",
+        "kind": "choice",
+        "prompt": "What has to be true before you stop trying to earn more?",
+        "section": "money",
+        "tells": "Names the stopping condition. Whether a person has one, and what it is, is not visible from outside, so the people around them are left to guess at it.",
+        "options": [
+          {
+            "value": "number",
+            "label": "A specific amount in the bank"
+          },
+          {
+            "value": "nodebt",
+            "label": "No debt of any kind, the house included"
+          },
+          {
+            "value": "hours",
+            "label": "When earning more starts costing time I want"
+          },
+          {
+            "value": "never",
+            "label": "Nothing. I do not expect to stop"
+          },
+          {
+            "value": "already",
+            "label": "Nothing has to change. I have enough now"
+          },
+          {
+            "value": "unknown",
+            "label": "I have never set a point"
+          }
+        ]
+      },
+      {
+        "id": "risk-appetite",
+        "kind": "choice",
+        "prompt": "What would you risk for work you actually wanted?",
+        "section": "money",
+        "tells": "Places one person on a ladder that everyone else assumes they know the answer to. The rung where the household starts carrying the downside is the one that surprises people.",
+        "options": [
+          {
+            "value": "nothing",
+            "label": "Nothing. Stability is what I am protecting"
+          },
+          {
+            "value": "months",
+            "label": "A few months of savings, no more than that"
+          },
+          {
+            "value": "savings",
+            "label": "Most of what I have put by"
+          },
+          {
+            "value": "income",
+            "label": "Years of lower income for the household"
+          },
+          {
+            "value": "house",
+            "label": "The house and the standard of living in it"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know until it is in front of me"
+          }
+        ]
+      },
+      {
+        "id": "live-where",
+        "kind": "choice",
+        "prompt": "In ten years, where do you want to be living?",
+        "section": "place",
+        "tells": "Says in advance whether a job that requires moving is an opportunity or an ending, which is otherwise discovered at the point where the offer has already been made.",
+        "options": [
+          {
+            "value": "here",
+            "label": "Here. This town, possibly this street"
+          },
+          {
+            "value": "near",
+            "label": "Within an hour of here"
+          },
+          {
+            "value": "country",
+            "label": "Somewhere else in this country"
+          },
+          {
+            "value": "abroad",
+            "label": "Another country"
+          },
+          {
+            "value": "movable",
+            "label": "Nowhere fixed. I want to be able to move"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "who-near",
+        "kind": "multi",
+        "max": 2,
+        "exclusive": [
+          "nobody"
+        ],
+        "prompt": "Who would you stay here for?",
+        "section": "place",
+        "tells": "Turns an abstract relocation into a specific, nameable loss, and the cap at two is what makes it one — most people would say everybody matters, and almost nobody would stay for everybody.",
+        "options": [
+          {
+            "value": "partner",
+            "label": "The person I live with"
+          },
+          {
+            "value": "children",
+            "label": "Children, mine or ones I help raise"
+          },
+          {
+            "value": "parents",
+            "label": "My parents, while they need me"
+          },
+          {
+            "value": "friends",
+            "label": "Old friends who are here"
+          },
+          {
+            "value": "community",
+            "label": "A group here I turn up for"
+          },
+          {
+            "value": "nobody",
+            "label": "Nobody. I would go"
+          }
+        ]
+      },
+      {
+        "id": "health-effort",
+        "kind": "multi",
+        "max": 3,
+        "exclusive": [
+          "nothing"
+        ],
+        "prompt": "What are you giving up now to stay healthy?",
+        "section": "week",
+        "tells": "Records what is already being spent rather than what is planned. It is a fact about this month, not a rating of anybody's discipline.",
+        "options": [
+          {
+            "value": "nothing",
+            "label": "Nothing at the moment"
+          },
+          {
+            "value": "sleep",
+            "label": "Evenings out, to protect the sleep"
+          },
+          {
+            "value": "drink",
+            "label": "Alcohol, or something else I enjoyed"
+          },
+          {
+            "value": "training",
+            "label": "Two or three hours a week of training"
+          },
+          {
+            "value": "spend",
+            "label": "Money — food, treatment, dentistry"
+          },
+          {
+            "value": "checks",
+            "label": "Time — appointments before anything hurts"
+          }
+        ]
+      },
+      {
+        "id": "less-of",
+        "kind": "choice",
+        "prompt": "What do you most want less of next year?",
+        "section": "week",
+        "tells": "Names the one thing this person would cut first, so an offer of help lands on that rather than on whichever thing looks heaviest from outside.",
+        "options": [
+          {
+            "value": "hours",
+            "label": "Hours worked"
+          },
+          {
+            "value": "obligations",
+            "label": "Obligations I did not choose"
+          },
+          {
+            "value": "debt",
+            "label": "Debt and what it makes me accept"
+          },
+          {
+            "value": "screen",
+            "label": "Time on a screen at home"
+          },
+          {
+            "value": "noise",
+            "label": "Noise — people, traffic, mess, interruption"
+          },
+          {
+            "value": "nothing",
+            "label": "Nothing. The shape of the year is right"
+          }
+        ]
+      },
+      {
+        "id": "keep-one",
+        "kind": "choice",
+        "prompt": "If you could keep only one of these, which would it be?",
+        "section": "keep",
+        "tells": "Forces the trade nobody makes explicitly. Keeping one rather than refusing to trade is what stops it collecting the answer everybody already knows they would give.",
+        "options": [
+          {
+            "value": "health",
+            "label": "My health"
+          },
+          {
+            "value": "people",
+            "label": "The people I live with"
+          },
+          {
+            "value": "voice",
+            "label": "Being able to say what I actually think"
+          },
+          {
+            "value": "time",
+            "label": "Control over my own hours"
+          },
+          {
+            "value": "standard",
+            "label": "The standard of living I have now"
+          },
+          {
+            "value": "unknown",
+            "label": "I have not had to find out"
+          }
+        ]
+      },
+      {
+        "id": "owe-others",
+        "kind": "multi",
+        "max": 2,
+        "exclusive": [
+          "nothing"
+        ],
+        "prompt": "What do you owe people outside your own household?",
+        "section": "keep",
+        "tells": "Puts a stated boundary where most people leave a vague generosity, which is the thing that otherwise gets discovered at the worst possible moment by whoever asked.",
+        "options": [
+          {
+            "value": "nothing",
+            "label": "Nothing beyond leaving them alone"
+          },
+          {
+            "value": "money",
+            "label": "A fixed share of what I earn"
+          },
+          {
+            "value": "time",
+            "label": "Hours — showing up, driving, sitting with people"
+          },
+          {
+            "value": "parents",
+            "label": "Care for my parents when it comes to that"
+          },
+          {
+            "value": "useful-work",
+            "label": "Work that is useful beyond what it pays me"
+          },
+          {
+            "value": "local",
+            "label": "Turning up for the place I live"
+          }
+        ]
+      },
+      {
+        "id": "regret-most",
+        "kind": "choice",
+        "prompt": "At seventy, which of these would you regret not doing?",
+        "section": "later",
+        "tells": "Points at an inaction this person already knows about, which is a more useful thing to hand somebody than a list of goals they have told everyone already.",
+        "options": [
+          {
+            "value": "children",
+            "label": "Having children, or having more of them"
+          },
+          {
+            "value": "venture",
+            "label": "Starting the thing I kept planning"
+          },
+          {
+            "value": "place",
+            "label": "Living somewhere else while I still could"
+          },
+          {
+            "value": "mend",
+            "label": "Mending one relationship before it was too late"
+          },
+          {
+            "value": "body",
+            "label": "Looking after my body while it still recovered"
+          },
+          {
+            "value": "none",
+            "label": "None of these. I do not think that way"
+          }
+        ]
+      }
+    ],
+    "provenance": {
+      "constructName": "A stated account of a good life",
+      "constructOrigin": "No published instrument. The wellbeing literature was read as a coverage checklist and nothing else.",
+      "constructPublic": true,
+      "constructNote": "Hedonic and eudaimonic accounts of wellbeing, Ryff's six dimensions, self-determination theory's autonomy, competence and relatedness, Seligman's PERMA, and the OECD's eleven Better Life domains are public frameworks. They were used to answer one question — which domains of a life do these twelve blocks leave out — and to nothing else. No item, option, anchor, wording or dimension was taken from any of them. Ryff's Scales of Psychological Well-Being carry no public terms of use and the University of Pennsylvania page hosting them directs anyone wanting to use them to write to the author, so they are not reproduced, paraphrased, or reconstructed here; the same applies to the PERMA-Profiler, whose items belong to Butler and Kern. Three further debts are recorded because the first draft did not record them and they are the kind of thing that looks like concealment later. First, `work-purpose` sits on the job / career / calling trichotomy, which is public and predates its measurement; Wrzesniewski's Work-Life Questionnaire operationalises it in three paragraph-length vignettes, none of which is used, paraphrased or reconstructed here, and this block has six short options on a different question. Second, `regret-most` was rewritten because three of its six original options — saying the thing never said, mending a relationship, being present instead of working — reproduced the shape of Bronnie Ware's five regrets of the dying, which is a copyrighted book's framing rather than a public construct. The wording was original, the set was not; it now overlaps at one option instead of three and carries an escape. Third, the closing eulogy question was reworded away from 'what would you want said at your funeral', which is close to Covey's Habit 2 visualisation, to a question about what the people who know you best would say.",
+      "evidenceNote": "None, and none is required. Nothing here is measured, so there is nothing to validate — the answers are the result. Reliability, factor structure and criterion validity are properties of a specific item set administered to a specific sample; this bank has never been administered to one, has no norms, and produces no number about anybody. A stated position cannot be wrong about the person stating it, which is the whole of the epistemic claim being made.",
+      "avoided": [
+        "Ryff Scales of Psychological Well-Being",
+        "PERMA-Profiler (Butler & Kern)",
+        "Satisfaction With Life Scale (Diener)",
+        "Flourishing Scale (Diener)",
+        "Cantril Self-Anchoring Striving Scale",
+        "Personal Wellbeing Index",
+        "Warwick–Edinburgh Mental Wellbeing Scale",
+        "WHO-5 Wellbeing Index",
+        "Meaning in Life Questionnaire (Steger)",
+        "Basic Psychological Need Satisfaction scales (SDT)",
+        "VIA Inventory of Strengths",
+        "Regret Elements Scale",
+        "Work-Life Questionnaire (Wrzesniewski) — the job/career/calling vignettes",
+        "The Top Five Regrets of the Dying (Ware) — the five-regret list as a set",
+        "Begin with the End in Mind — the funeral visualisation (Covey)"
+      ]
+    },
+    "sourceNote": "There is no instrument behind this one and there does not need to be. The wellbeing literature — hedonic and eudaimonic accounts, Ryff's six dimensions, self-determination theory's three needs, Seligman's PERMA, the OECD's eleven domains — was read only as a checklist of what a life is usually said to contain, and nothing was taken from any of it; those questionnaires belong to their authors, several of them require written permission, and none of them is reproduced or paraphrased here. One old and public idea is used as a frame rather than as a checklist: that work can be held as a job, a career or a calling. The research questionnaire built on that idea is not used and not paraphrased. The one place research shaped a question rather than a checklist is the last closed block, which asks what you would regret not doing rather than what you would regret doing, following the finding that regrets of inaction outlast regrets of action over a lifetime — replicated since, with weaker effects and not in every study, so read it as a reason for the question's direction rather than as a fact about you. The four questions at the end have no options at all and never leave this device. Nothing on this page is scored, banded, or set against anybody else's answers. What comes back is what you said, in the order of the weight you put on it, which is why the reasons you write are worth more than the options you tick.",
+    "playbookOk": [
+      {
+        "id": "ok-harder-not-bigger",
+        "from": "work-purpose = craft",
+        "text": "Give me the harder version of the job before you give me the bigger one."
+      },
+      {
+        "id": "ok-money-not-title",
+        "from": "work-purpose = income",
+        "text": "Pay me for the extra work rather than promoting me for it."
+      },
+      {
+        "id": "ok-name-who-benefits",
+        "from": "work-purpose = service",
+        "text": "Tell me who is actually helped by this and I will do the dull part of it."
+      },
+      {
+        "id": "ok-give-me-fixed-hours",
+        "from": "work-purpose = structure",
+        "text": "Give me fixed hours and I will be better at everything inside them."
+      },
+      {
+        "id": "ok-stop-offering-growth",
+        "from": "learn-next = nothing",
+        "text": "Assume I am not looking for a new challenge and stop putting me forward for one."
+      },
+      {
+        "id": "ok-put-me-in-hard-talks",
+        "from": "learn-next = people",
+        "text": "Put me in the difficult conversation on purpose; I am trying to get better at those."
+      },
+      {
+        "id": "ok-tell-me-when-i-snapped",
+        "from": "learn-next = temper",
+        "text": "Tell me when I have been short with you, on the day it happens."
+      },
+      {
+        "id": "ok-ask-before-buffer",
+        "from": "money-for = safety",
+        "text": "Ask me before anything comes out of the savings; I will almost always say yes."
+      },
+      {
+        "id": "ok-shorter-week-first",
+        "from": "money-for = freedom",
+        "text": "Offer me the shorter week before you offer me the bigger salary."
+      },
+      {
+        "id": "ok-book-it-now",
+        "from": "money-for = now",
+        "text": "Book the expensive thing now; I would rather pay for it than wait for it."
+      },
+      {
+        "id": "ok-ask-me-for-something-specific",
+        "from": "money-for = give",
+        "text": "Ask me for money for one specific thing rather than for a cause."
+      },
+      {
+        "id": "ok-no-is-not-modesty",
+        "from": "enough-point = already",
+        "text": "Believe me when I say I do not want the bigger job; it is not modesty."
+      },
+      {
+        "id": "ok-price-it-in-hours",
+        "from": "enough-point = hours",
+        "text": "Tell me what the extra money costs in hours before you ask me to decide."
+      },
+      {
+        "id": "ok-risk-stops-at-my-savings",
+        "from": "risk-appetite = savings",
+        "text": "Bring me the risky plan while the downside stops at my own savings."
+      },
+      {
+        "id": "ok-safe-version-first",
+        "from": "risk-appetite = nothing",
+        "text": "Bring me the safe version of the plan first and I will listen properly."
+      },
+      {
+        "id": "ok-ask-me-to-move",
+        "from": "live-where = movable",
+        "text": "Ask me to move for something worth moving for; I am not attached to this address."
+      },
+      {
+        "id": "ok-find-the-version-that-stays",
+        "from": "live-where = here",
+        "text": "Look for the version of this that does not need me to leave."
+      },
+      {
+        "id": "ok-bring-me-the-other-city",
+        "from": "who-near = nobody",
+        "text": "Bring me the job in another city; there is nobody keeping me here."
+      },
+      {
+        "id": "ok-dates-early-for-parents",
+        "from": "who-near = parents",
+        "text": "Give me the dates early; I plan the weekends around my parents."
+      },
+      {
+        "id": "ok-early-not-late",
+        "from": "health-effort = sleep",
+        "text": "Book me first thing in the morning rather than late at night."
+      },
+      {
+        "id": "ok-either-side-of-lunch",
+        "from": "health-effort = training",
+        "text": "Put the meeting either side of lunch; the middle of the day is training."
+      },
+      {
+        "id": "ok-cut-something",
+        "from": "less-of = hours",
+        "text": "Take something off my list; I would rather do fewer things properly."
+      },
+      {
+        "id": "ok-ask-before-my-name",
+        "from": "less-of = obligations",
+        "text": "Ask me before you put my name on anything, even something small."
+      },
+      {
+        "id": "ok-ask-what-i-think",
+        "from": "keep-one = voice",
+        "text": "Ask me what I actually think while the decision is still open."
+      },
+      {
+        "id": "ok-deadline-not-hours",
+        "from": "keep-one = time",
+        "text": "Give me the deadline and leave the hours to me."
+      },
+      {
+        "id": "ok-call-me-to-show-up",
+        "from": "owe-others = time",
+        "text": "Call me when somebody needs driving, collecting, or sitting with."
+      },
+      {
+        "id": "ok-tell-me-the-street-needs-it",
+        "from": "owe-others = local",
+        "text": "Tell me when the street needs something done and I will turn up for it."
+      },
+      {
+        "id": "ok-tell-me-about-the-opening",
+        "from": "regret-most = venture",
+        "text": "Tell me if you hear of something worth leaving this job for."
+      },
+      {
+        "id": "ok-say-if-i-have-gone-quiet",
+        "from": "regret-most = mend",
+        "text": "If I have gone quiet with someone, say so; I would rather be told."
+      },
+      {
+        "id": "ok-leave-me-out-of-the-thread",
+        "from": "less-of = noise",
+        "text": "Leave me out of the group thread for a week and read nothing into it."
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "not-reassign-my-work",
+        "from": "work-purpose = craft",
+        "text": "Do not hand my piece to somebody faster because the date moved."
+      },
+      {
+        "id": "not-title-instead-of-money",
+        "from": "work-purpose = income",
+        "text": "Do not offer me a title instead of money and expect it to land as a reward."
+      },
+      {
+        "id": "not-remove-the-hours",
+        "from": "work-purpose = structure",
+        "text": "Do not take away my fixed hours and call it flexibility."
+      },
+      {
+        "id": "not-unasked-development",
+        "from": "learn-next = nothing",
+        "text": "Do not enrol me in training I did not ask for."
+      },
+      {
+        "id": "not-spend-the-buffer",
+        "from": "money-for = safety",
+        "text": "Do not spend the emergency money on something that is not an emergency."
+      },
+      {
+        "id": "not-assume-my-income",
+        "from": "money-for = provide",
+        "text": "Do not make plans that assume my income and tell me about them afterwards."
+      },
+      {
+        "id": "not-tell-me-i-have-enough",
+        "from": "enough-point = never",
+        "text": "Do not tell me I have enough; that judgement is mine to make."
+      },
+      {
+        "id": "not-laugh-at-the-target",
+        "from": "enough-point = number",
+        "text": "Do not treat the number I am saving towards as a joke."
+      },
+      {
+        "id": "not-stake-what-i-depend-on",
+        "from": "risk-appetite = nothing",
+        "text": "Do not put anything I depend on into a plan I did not agree to."
+      },
+      {
+        "id": "not-talk-me-out-of-it",
+        "from": "risk-appetite = house",
+        "text": "Do not talk me down from a risk I have already decided to take."
+      },
+      {
+        "id": "not-assume-i-will-move",
+        "from": "live-where = here",
+        "text": "Do not treat moving away as the obvious answer when the job changes."
+      },
+      {
+        "id": "not-assume-i-will-stay",
+        "from": "live-where = movable",
+        "text": "Do not assume I will still be living here in five years."
+      },
+      {
+        "id": "not-book-my-parent-weekends",
+        "from": "who-near = parents",
+        "text": "Do not book the weekend without asking whether I am needed at my parents'."
+      },
+      {
+        "id": "not-two-weekends-running",
+        "from": "who-near = children",
+        "text": "Do not ask me to work two weekends in a row; I am already counting them."
+      },
+      {
+        "id": "not-press-the-drink",
+        "from": "health-effort = drink",
+        "text": "Do not offer me a drink again after I have said no once."
+      },
+      {
+        "id": "not-joke-about-checkups",
+        "from": "health-effort = checks",
+        "text": "Do not make a joke of the appointments; going early is not hypochondria."
+      },
+      {
+        "id": "not-volunteer-me",
+        "from": "less-of = obligations",
+        "text": "Do not put my name down for something and tell me afterwards."
+      },
+      {
+        "id": "not-message-me-late",
+        "from": "less-of = screen",
+        "text": "Do not send me work messages after nine and expect an answer."
+      },
+      {
+        "id": "not-fill-my-calendar",
+        "from": "keep-one = time",
+        "text": "Do not fill my week and then ask why I am short with people."
+      },
+      {
+        "id": "not-every-evening-out",
+        "from": "keep-one = people",
+        "text": "Do not put something in every evening; I want to be in the house."
+      },
+      {
+        "id": "not-sign-me-up-locally",
+        "from": "owe-others = nothing",
+        "text": "Do not sign me up for the collection, the committee, or the street party."
+      },
+      {
+        "id": "not-joke-about-children",
+        "from": "regret-most = children",
+        "text": "Do not make jokes about whether I am going to have children."
+      },
+      {
+        "id": "not-ring-me",
+        "from": "less-of = noise",
+        "text": "Do not ring me when a message would have done."
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "A thirteenth block on the ordinary good week — leisure, rest, pleasure, what a free evening is for",
+        "why": "This is the real coverage gap. The twelve lean eudaimonic, and the hedonic half of the literature (PERMA's positive emotion and engagement, the OECD's work–life balance) is only reached obliquely. It was folded into `less-of`, which asks what takes up the week rather than what a good week feels like, because every direct version produced a fortune cookie: 'time with the people I love' is an option nobody rejects and therefore an option that collects nothing. If a thirteenth block is ever added, the version worth trying is numeric and answerable — 'how many evenings a week are yours to do nothing with' — which is a fact the person knows and a position a reasonable person would argue with."
+      },
+      {
+        "idea": "A `grounds` multi on every block — where your idea of a good life came from",
+        "why": "Grounds pays for itself only when the same small set of authorities recurs across blocks in a comparable way, which is why §1.3 of the design gives it to `faith` and to nothing else. Here the honest answer to 'on what grounds' is biography — a parent, a death, a job that went wrong — and biography is prose. It belongs in the `why`, where it already is, and closing it into six options would trade a real answer for a comparable one."
+      },
+      {
+        "idea": "Faith, meaning, and what it all rests on",
+        "why": "The `faith` instrument owns this with twelve blocks and a grounds question, which is the right depth for it. A single block here would collect a shallower answer to a question already asked properly, and the two results would then disagree with each other on the same sheet."
+      },
+      {
+        "idea": "Children — whether, how many, when",
+        "why": "`family-plan` owns it at fourteen blocks. `who-near` and `regret-most` reference children as a presence and as an absence, which is as much as a good-life instrument can ask without duplicating a whole instrument badly."
+      },
+      {
+        "idea": "Sex and intimacy as a component of a good life",
+        "why": "`intimacy-conditions` and `intimacy-map` own it, and they carry the `adult` and `sensitive` flags for good reasons. Adding one block here would drag that gating onto an instrument that otherwise has none, and would cost far more than the block is worth."
+      },
+      {
+        "idea": "Self-acceptance — how you feel about yourself (Ryff dimension)",
+        "why": "It is a state to be estimated, not a position to be stated. 'Do you accept yourself' collects a mood on the day, which is exactly what rule 4 exists to keep out."
+      },
+      {
+        "idea": "Meaning — whether your life feels meaningful (PERMA's M)",
+        "why": "Fails the Barnum test and the alone test in one move. Either the option set is unrejectable, or the answer is a self-rating, and this instrument does not take self-ratings."
+      },
+      {
+        "idea": "A life-satisfaction ladder, 0 to 10 (Cantril)",
+        "why": "It is a measurement, and it would be the only number on the page, which means it would be the thing every reader looked at first. An inventory that scores nothing cannot carry one score."
+      },
+      {
+        "idea": "Legacy — what you leave behind, as a closed choice",
+        "why": "Every option that could be written for it flatters the person choosing. It moved to the free-text question about what the people who know you best would say, where it cannot be ticked and has to be written."
+      },
+      {
+        "idea": "Politics and civic participation (the OECD's civic-engagement domain)",
+        "why": "A party-political question collects a badge rather than a position, and it would make the instrument unshareable with half the people it is meant to be handed to. `owe-others` carries the actionable part — turning up for the place you live — without asking who anybody votes for."
+      },
+      {
+        "idea": "Death, dying, and medical wishes",
+        "why": "A real domain and the wrong instrument. It needs legal framing, jurisdiction-specific wording in four countries, and copy written with far more care than an option list allows. Trivialising it into six choices would be worse than leaving it out."
+      },
+      {
+        "idea": "Leaving `money-for` without an explicit 'I have not decided' option",
+        "why": "Reversed from the first draft, and worth recording as a reversal rather than quietly fixing. The original argument was that a multi which can be left empty already carries the escape. It cannot: `components/runner/runner.tsx` treats every non-`text` item whose answer is `undefined` as blocking, so on a non-optional form an untouched multi stops the reader advancing, and even with `form.optional` a blank multi is stored exactly like a skipped one — `scoreStances` reads both as `choice: null` — so 'I have not worked that out' would never be recorded, only inferred from an absence that also means 'I got bored'. The slot was paid for by cutting `standing`, on two grounds: `work-purpose` already records standing as a position, and an option that people are reluctant to tick is only worth a slot if some of them tick it, which is unlikely at a cap of two against five more comfortable answers."
+      },
+      {
+        "idea": "Keeping the mixed `risk-appetite` list with 'whatever is mine alone, nothing that is shared'",
+        "why": "It crossed two dimensions in one option set. 'Savings, down to a few months of runway' is a magnitude and 'whatever is mine alone' is a scope, and for a single person with nobody depending on them both are true at once, so the block forced a coin-flip and called it a position. The replacement is a containment ladder, and the distinction the mixed list was reaching for — caution versus responsibility — is recovered from where a person stops on it: anyone who stops before 'years of lower income for the household' is protecting somebody else."
+      },
+      {
+        "idea": "Keeping density in `live-where` — a big city, somewhere quiet with space around the house",
+        "why": "Same failure, and a more painful cut because those are the two most vivid options in the block. They cross with 'another country': a person who wants a large city abroad has two true answers and no way to choose. The block exists to say in advance whether a move is an opportunity or an ending, which is a distance question, so distance is what it now asks and density is what it lost. If density is ever wanted it needs its own block, not a slot in this one."
+      },
+      {
+        "idea": "Keeping `never-trade` as 'what would you not trade, whatever it bought you'",
+        "why": "It failed the alone test. Almost every reader knows before answering that they will tick 'my health', because refusing to trade something costs nothing to say, and a block whose answer the reader could have written in advance is a block that collected nothing. Removing health was considered and rejected — it would have left the person whose honest answer is health with no slot, which is rule 6's failure rather than rule 3's. Keeping exactly one thing is the same trade stated as a decision: health then has to beat the people you live with and control of your own hours, and picking any of them costs the other four."
+      },
+      {
+        "idea": "The original `regret-most` option set",
+        "why": "Two faults. It had no escape, so a person who would regret none of the six was made to invent one — rule 6, and the most straightforward failure in the first draft. And three of its six options tracked Bronnie Ware's five regrets of the dying closely enough that the set was a re-derivation even though every word was original: saying the thing never said, mending a relationship, and being present rather than working. Ware's list is a copyrighted book's framing, not a public construct like PERMA's five elements, and this repo's standard rejects reconstruction as well as reproduction. The set now overlaps at one option, adds one Ware does not have, and carries 'none of these'."
+      },
+      {
+        "idea": "A `text` prompt asking what you would want said about you at your funeral",
+        "why": "Close to Covey's Habit 2 visualisation, which is a copyrighted exercise rather than a folk question, and near enough that a reader who knows the book would recognise it. The substance is worth keeping and the framing is not, so the question now asks what the people who knew you best would say. It also reads as a slightly less theatrical question, which suits a page nobody else will see."
+      },
+      {
+        "idea": "Relying on a 'nothing' or 'nobody' option inside a multi to behave as an exclusive answer",
+        "why": "Recorded as an outstanding implementation gap rather than a bank decision, because it cannot be fixed in the bank. `components/form/item-controls.tsx` enforces `max` on a multi and enforces nothing else, so a reader can tick 'Nothing at the moment' alongside 'Two or three hours a week of training' and the contradiction is stored. Three blocks are exposed: `health-effort`, `who-near` and `owe-others`. Rule 6 requires the escape, so the escapes stay and the control needs an exclusive-option flag before this instrument ships. Writing the labels to read as terminal is a mitigation, not a fix."
+      }
+    ],
+    "sources": [
+      "/Users/pl2mac0030/Projects/my-instructions/docs/superpowers/specs/2026-08-27-stated-positions-design.md — §1 stance block, §3 scoring, §4.1 the playbook's derived-suggestion rule and its eight-to-fourteen target, §7.5 good-life and the open space, §8 copy rules",
+      "/Users/pl2mac0030/Projects/my-instructions/docs/candidate-instruments.md — the licence standard applied to DISC, MBTI, RHETI and Chapman: the framework can be public while the questionnaire is not",
+      "/Users/pl2mac0030/Projects/my-instructions/web/src/core/stance.ts — the block expansion, and the fact that a blank multi and a skipped multi both read as `choice: null`",
+      "/Users/pl2mac0030/Projects/my-instructions/web/src/components/runner/runner.tsx — the `blocking` / `pageDone` logic that decides whether an untouched multi can be left empty; only `text` items are exempt",
+      "/Users/pl2mac0030/Projects/my-instructions/web/src/components/form/item-controls.tsx — the multi control, which enforces `max` and has no exclusive-option handling",
+      "/Users/pl2mac0030/Projects/my-instructions/web/src/instruments/attachment/i18n/en.ts — copy register and sourceNote form",
+      "/Users/pl2mac0030/Projects/my-instructions/web/src/instruments/couple-conversations/items.ts — topic-structured bank declaration",
+      "/Users/pl2mac0030/Projects/my-instructions/web/src/instruments/working-style/provenance.ts — the 'nothing is measured, so there is nothing to validate' precedent",
+      "/Users/pl2mac0030/Projects/my-instructions/test/i18n/readability.test.js — the 80-character, 14-word, joiner and translation-stretch gates; every prompt above was counted against them rather than estimated",
+      "https://ppc.sas.upenn.edu/resources/questionnaires-researchers/psychological-well-being-scales — Ryff PWB scales; page states no terms of use and directs users to write to the author for permission, which is why nothing from them is used",
+      "https://ppc.sas.upenn.edu/resources/questionnaires-researchers/perma-profiler — PERMA-Profiler, Butler and Kern; freely downloadable, licence unstated",
+      "https://www.peggykern.org/uploads/5/6/6/7/56678211/the_perma-profiler_101416.pdf — the PERMA-Profiler itself, read only to confirm which domains it covers",
+      "https://en.wikipedia.org/wiki/PERMA_model — the five public elements used as a coverage checklist",
+      "https://positivepsychology.com/ryff-scale-psychological-wellbeing/ — Ryff's six public dimensions used as a coverage checklist",
+      "https://www.oecd.org/en/data/tools/well-being-data-monitor/better-life-index.html — the eleven Better Life domains, the most concrete coverage checklist of the four",
+      "https://selfdeterminationtheory.org/wp-content/uploads/2025/01/2024_AbdallahMahoney_OECDWellBeing.pdf — SDT's autonomy, competence and relatedness against OECD measurement",
+      "https://gwern.net/doc/psychology/1994-gilovich.pdf — Gilovich & Medvec 1994, the temporal pattern of regret; the basis for asking regret in the inaction direction",
+      "https://online.ucpress.edu/collabra/article/8/1/37122/190272/Revisiting-the-Temporal-Pattern-of-Regret-in — Yeung & Feldman 2022 replication, N=988: support in Studies 1, 3 and 4 with weaker effects, no support in Study 5. This is the reason the sourceNote hedges rather than asserts.",
+      "https://royalsocietypublishing.org/rsos/article/10/6/221574/92083/A-very-public-replication-of-the-temporal-pattern — a second, larger public replication of the same temporal pattern",
+      "Wrzesniewski, McCauley, Rozin & Schwartz (1997), 'Jobs, careers, and callings: people's relations to their work', Journal of Research in Personality 31, 21–33 — named because `work-purpose` uses the public trichotomy. The Work-Life Questionnaire's three vignettes were not used, paraphrased or reconstructed.",
+      "Bronnie Ware, 'The Top Five Regrets of the Dying' (Hay House, 2011) — named because the first draft of `regret-most` reproduced the shape of its five-item list without citing it. Not a public construct; the option set was rewritten away from it.",
+      "Stephen R. Covey, 'The 7 Habits of Highly Effective People' (1989), Habit 2 — named because the first draft's funeral question was close to its visualisation exercise. Reworded."
+    ]
+  },
+  "changes": [
+    "RULE 6 HARD FAIL, fixed — `regret-most` had no honest escape. A person who would regret none of the six was forced to invent a regret. Added `none` (\"None of these. I do not think that way\").",
+    "LICENCE, fixed — three of `regret-most`'s six options (`spoken` \"Saying the thing I never said\", `presence` \"Being there for the years I spent working\", `mend` \"Mending one relationship\") reconstructed the shape of Bronnie Ware's five regrets of the dying (Hay House, 2011): express your feelings / don't work so hard / stay in touch. The wording was original; the set was a re-derivation, which this repo's standard rejects as firmly as reproduction. Cut `spoken` and `presence`, kept `mend` (rupture repair is not \"stay in touch\"), added `body` \"Looking after my body while it still recovered\" — not on Ware's list. Ware added to `avoided`, `sources` and `constructNote`.",
+    "LICENCE, fixed — the open prompt \"What would you want said about you at your funeral?\" is close to Covey's Habit 2 funeral visualisation (The 7 Habits, 1989), a copyrighted exercise rather than a folk question. Reworded to \"What would you want the people who knew you best to say?\" Covey named in `avoided` and `sources`.",
+    "LICENCE, disclosed — `work-purpose` sits on the job/career/calling trichotomy, which is public, but Wrzesniewski's Work-Life Questionnaire operationalises it and the draft provenance did not name it at all. No item taken; added to `avoided`, `sources` and `constructNote`, because an undisclosed real debt reads as concealment later and this repo's whole credibility position is honest provenance.",
+    "ALONE TEST FAIL, fixed — `never-trade` (\"What would you not trade, whatever it bought you?\") collects an answer nearly every reader could write before answering: health. Refusing to trade costs nothing to say. Renamed to `keep-one` and reframed as \"If you could keep only one of these, which would it be?\" — the same trade as a decision, so health has to beat the people you live with and control of your own hours, and every pick costs four things. Removing health instead was rejected: it would leave the person whose honest answer is health with no slot, trading a rule-3 failure for a rule-6 one.",
+    "ALONE TEST FAIL, fixed — `who-near` at max 3 collected partner + children + parents from everybody with a family. Rewritten to \"Who would you stay here for?\" and capped at 2, which makes it a real trade and ties it to `live-where`. Options reworded so each names a claim rather than an affection.",
+    "PARTITION FAIL, fixed — `risk-appetite` crossed magnitude (savings / years / everything) with scope (`mine-only` \"Whatever is mine alone, nothing that is shared\"). For anyone with no dependants both are true at once, so the block forced a coin-flip. Replaced with a containment ladder: nothing / a few months / most of what I have put by / years of lower income for the household / the house. The caution-versus-responsibility distinction is recovered from where a person stops — anyone stopping before the household rung is protecting somebody else. This also removes the only option in the bank that leaned on having a partner.",
+    "PARTITION FAIL, fixed — `live-where` crossed density (`city`, `quiet`) with country (`abroad`); someone wanting a large city in another country had two true answers. Rewritten as one dimension, distance from here: here / within an hour / elsewhere in this country / another country / nowhere fixed / undecided. Density was the more vivid content and the less actionable; the block exists to predict whether a relocation is an opportunity or an ending. Loss recorded in `rejected`.",
+    "RULE 6, fixed on `money-for` — the draft's defence (\"a multi that can be left with nothing ticked already has the escape\") is contradicted by the code. `components/runner/runner.tsx` line 318-320 blocks Next on every non-`text` item whose answer is `undefined`, and `core/stance.ts` reads a blank multi and a skipped one both as `choice: null`, so \"I have not worked that out\" is never recorded, only inferred from an absence that also means \"I got bored\". Added `undecided`; paid for the slot by cutting `standing`, which duplicates `work-purpose = standing` and, capped at two against five easier answers, would have been ticked by almost nobody. The draft's `rejected` entry defending its omission was rewritten as a recorded reversal.",
+    "PROMPT/OPTION MISMATCH, fixed — `health-effort` asks what you are giving up, but `checks` was \"Going to the doctor before something hurts\", which is a thing done, not a thing given up. Reworded to \"Time — appointments before anything hurts\". `sleep` reworded to \"Evenings out, to protect the sleep\" so it names the cost rather than the benefit.",
+    "RULE 4 (nothing is estimated), fixed — `never-trade`'s `tells` claimed the answer \"predicts what this person will actually do\". An instrument that records stated positions cannot make a prediction claim; that is the one sentence in the draft that crosses from recording into inference. Cut. `health-effort`'s tells (\"the difference between someone who means to look after themselves and someone who is doing it\") passed a judgement on the answerer and was softened to a statement about what the item records.",
+    "UNSOURCED ASSERTIONS, fixed — `enough-point`'s tells asserted people guess wrongly \"usually in the direction of assuming there isn't one\", and `less-of`'s asserted the cut is \"usually work when it is usually obligations\". Both are empirical claims about people in general with nothing behind them, in a repo whose position is that credibility comes from real lineage and never from inflating absent evidence. Rewritten to say what the item records, not what people are like.",
+    "TRAIT LANGUAGE, fixed — `learn-next` option `temper` was \"My temper on a bad day\", a trait label. Reworded to \"Keeping my head when things go wrong\", which is a skill and therefore a stated intention rather than a self-assessment.",
+    "SECTION NOTES corrected — `week` claimed both its blocks ask what is already being paid; `less-of` asks about next year, which is an intention, so the note asserted the opposite of its own content. `later` said the reader has stated twelve positions before it, but it is the twelfth block, so eleven. `open` said the text items carry `skipWeight`; they are plain items rather than stance blocks, so there is no weight question to skip, and the runner already exempts every `text` item from blocking Next.",
+    "OPEN SPACE promoted from prose to data — the four text prompts existed only inside a section note, so nothing machine-readable held them and the readability gate could not see them. Added as `openItems` with ids, `tier: \"private\"` and row counts. The letter prompt was shortened from 61 to 53 characters for German headroom.",
+    "PLAYBOOK COVERAGE, fixed — the draft's 15 lines per side drew on only six of the twelve blocks, so a reader whose answers gated the list would have matched roughly four, against §4.1's target of eight to fourteen rendered. Expanded to 30 OK and 23 not-OK candidates covering all twelve blocks, so a typical reader renders ten to thirteen a side.",
+    "PLAYBOOK LINES that presupposed a second person, fixed — `ok-ask-before-buffer` (\"before we spend from the savings\") and `ok-spend-on-the-trip` (\"while we can still go on it, and let me pay my half\") are unhandable by a person answering alone, which rule 7 forbids. Rewritten without the shared subject.",
+    "PLAYBOOK LINE misfiled — \"Leave me out of the group thread for a week\" is an instruction to do something, not a prohibition, and sat in the not-OK column. Moved to `playbookOk` and keyed to `less-of = noise`; `not-ring-me` added to cover that option on the not-OK side.",
+    "PLAYBOOK REKEYED where options changed — `ok-risk-lands-on-me` → `ok-risk-stops-at-my-savings` on `risk-appetite = savings`; `ok-leave-me-a-week` replaced by `ok-bring-me-the-other-city` on the rewritten `who-near = nobody`; `not-two-weekends-running` moved from the deleted `regret-most = presence` to `who-near = children`; the two `never-trade` lines rekeyed to `keep-one`. Every `from` was machine-checked against the option sets: no dangling references, no duplicate ids.",
+    "READABILITY verified by counting, not estimating — all twelve block prompts and all four open prompts pass at 80 characters and 14 words with no joiner. Longest is now 56 characters and 12 words (`enough-point`, `open-said`), down from 61; at the 30% German stretch that lands near 73 characters, inside the gate. No prompt was double-barrelled in either draft.",
+    "IMPLEMENTATION GAP recorded, not fixable in the bank — `components/form/item-controls.tsx` enforces `max` on a multi and nothing else, so an escape option inside a multi can be ticked alongside its contradictions: \"Nothing at the moment\" plus \"Two or three hours a week of training\" stores cleanly. `health-effort`, `who-near` and `owe-others` are exposed. Rule 6 requires the escapes, so they stay and the control needs an exclusive-option flag before this instrument ships. Recorded in `rejected` rather than papered over.",
+    "BLOCK AND SECTION COUNTS unchanged — twelve blocks across six closed sections plus the open one, matching §7's table. Every block still has exactly six options and every option set still carries an escape.",
+    "MULTI ESCAPES — the implementation gap this bank recorded in `rejected` was closed upstream (OUTSTANDING §1, `MultiItem.exclusive`), so the escapes the bank was carrying unenforced are now declared. The three blocks named there: `health-effort` → `nothing` («Nothing at the moment»), `who-near` → `nobody` («Nobody. I would go»), `owe-others` → `nothing` («Nothing beyond leaving them alone»). A fourth was exposed and unnamed — `money-for` → `undecided` («I have not worked that out»), the option OUTSTANDING §2 records this bank buying with a block slot. It is the same fault: a reader could state that money is mainly a buffer and, in the same answer, that they have not worked out what money is for. All four keep five non-exclusive options and their existing `max`, so all four remain multis. The `rejected` entry is left standing: it is a true record of why the escapes could not be enforced when the bank was authored, and the fix was not a bank decision.",
+    "SECTION NOTES were memos, not copy — fixed. `section.<id>.note` is reader-facing: `sectionHeader` in `components/runner/runner.tsx` draws it above the questions of every page, and `View.tsx` draws it again over each section of the result. Six of these seven carried backticked block ids, a file path, and arguments with an earlier draft; the `money` note ran to 1224 characters, against a 328-character ceiling across the other seven banks. Two translators found this independently and carried it faithfully into `es` and `de`, which was correct — the English was the contract. All seven rewritten as one to three sentences of reader orientation. Nothing was lost: every argument in them was moved into `src/instruments/good-life/blocks.ts`, where the rest of it already lived. `test/i18n/section-copy.test.ts` is the new gate.",
+    "PROMISE THE CODE REFUSES, fixed — `section.open.note` said the four open answers were «printed on the sheet». They are not: `instructions()` builds cards from block ids and the open items are not blocks, which `spec.ts` states in the opposite direction («The four open items produce nothing here») and §4 of the decisions spec settles in one clause. A promise about where private writing goes must not be the one that overstates. The note now states the four guarantees the code actually holds: not scored (`scoreStances` walks `BLOCKS`, which does not contain them), not compared (`compareStances`, same list), never in a share link (`tier: \"private\"` and `packAnswers`), and no instruction card."
+  ],
+  "critiqued": true
+}

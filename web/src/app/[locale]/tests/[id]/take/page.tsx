@@ -87,6 +87,10 @@ export default async function Take({
             count: i18n.raw("runner.count"),
             page: i18n.raw("runner.page"),
             remaining: i18n.raw("runner.remaining"),
+            // The cap belongs to one item rather than to the page, so this one
+            // travels as a pattern and is filled in beside the checkboxes.
+            chooseUpTo: i18n.raw("runner.chooseUpTo"),
+            chooseAny: i18n.t("runner.chooseAny"),
             next: i18n.t("runner.next"),
             back: i18n.t("common.back"),
             finish: i18n.t("runner.finish"),

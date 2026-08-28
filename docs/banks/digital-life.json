@@ -1,0 +1,830 @@
+{
+  "bank": {
+    "id": "digital-life",
+    "sections": [
+      {
+        "id": "attention",
+        "title": "Attention",
+        "note": "What a phone is allowed to interrupt, and how soon an answer is expected."
+      },
+      {
+        "id": "visibility",
+        "title": "What other people see",
+        "note": "Publication — including the one person in this section who is not here to answer for themselves."
+      },
+      {
+        "id": "access",
+        "title": "What is open",
+        "note": "Passwords, locations, and whether an unlocked phone on the table is an invitation."
+      },
+      {
+        "id": "permanence",
+        "title": "What is kept",
+        "note": "What may exist, what should never be typed at all, and what happens to the whole archive afterwards."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "phone-at-meals",
+        "kind": "choice",
+        "prompt": "Where should phones be during a shared meal?",
+        "section": "attention",
+        "grounds": false,
+        "tells": "Where a phone belongs at a shared meal, and whether a rule exists at all. Face down on the table and out of the room are different rules, and the difference shows the first time it buzzes.",
+        "options": [
+          {
+            "value": "out-of-room",
+            "label": "Out of the room entirely"
+          },
+          {
+            "value": "silent-away",
+            "label": "Nearby but silent and out of sight"
+          },
+          {
+            "value": "face-down",
+            "label": "On the table, face down, untouched"
+          },
+          {
+            "value": "used-freely",
+            "label": "Used freely, like any other time"
+          },
+          {
+            "value": "no-rule",
+            "label": "I have no rule about this"
+          }
+        ]
+      },
+      {
+        "id": "reply-window",
+        "kind": "choice",
+        "prompt": "How soon should a direct question get an answer?",
+        "section": "attention",
+        "grounds": false,
+        "tells": "The expectation stated as a length of time, rather than a feeling about silence. Records a norm this person holds, which is answerable, instead of asking them to estimate when they start to mind.",
+        "options": [
+          {
+            "value": "hours",
+            "label": "Within a few hours"
+          },
+          {
+            "value": "same-day",
+            "label": "The same day"
+          },
+          {
+            "value": "day-or-more",
+            "label": "A day or more is fine"
+          },
+          {
+            "value": "urgent-only",
+            "label": "Only if I said it was urgent"
+          },
+          {
+            "value": "never",
+            "label": "There is no expectation at all"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not thought about it"
+          }
+        ]
+      },
+      {
+        "id": "work-after-hours",
+        "kind": "choice",
+        "prompt": "When may work reach you outside working hours?",
+        "section": "attention",
+        "grounds": true,
+        "tells": "How late work may reach this person — and, through the grounds, whether that is a rule they hold or a condition of the job. Those two produce the same evening and completely different conversations.",
+        "options": [
+          {
+            "value": "never",
+            "label": "Never, it waits until morning"
+          },
+          {
+            "value": "cannot-wait",
+            "label": "Only for something that cannot wait"
+          },
+          {
+            "value": "any-evening",
+            "label": "Any evening, until I go to sleep"
+          },
+          {
+            "value": "any-time",
+            "label": "Any time at all"
+          },
+          {
+            "value": "no-work",
+            "label": "My work has no way to reach me"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided this"
+          }
+        ]
+      },
+      {
+        "id": "posted-about-me",
+        "kind": "multi",
+        "exclusive": [
+          "none"
+        ],
+        "prompt": "What may not be posted about you without asking?",
+        "section": "visibility",
+        "grounds": false,
+        "tells": "The specific items that need a check-in first, rather than a general impression that this person is 'quite private'. A short list is a different instruction from a long one.",
+        "options": [
+          {
+            "value": "photos",
+            "label": "A photograph I appear in"
+          },
+          {
+            "value": "full-name",
+            "label": "My full name, written out"
+          },
+          {
+            "value": "whereabouts",
+            "label": "Where I am at the time"
+          },
+          {
+            "value": "relationship",
+            "label": "News about my relationship"
+          },
+          {
+            "value": "none",
+            "label": "None of these — post any of it freely"
+          }
+        ]
+      },
+      {
+        "id": "children-online",
+        "kind": "choice",
+        "prompt": "What is the most that may be posted about your child?",
+        "section": "visibility",
+        "grounds": true,
+        "tells": "The furthest a child's photograph may travel, and how identifiable they may be in it — set before the first photograph sets it by default and permanently.",
+        "options": [
+          {
+            "value": "nothing",
+            "label": "Nothing at all, ever"
+          },
+          {
+            "value": "private-only",
+            "label": "Only sent privately to people I choose"
+          },
+          {
+            "value": "closed-account",
+            "label": "On a closed account, never a public one"
+          },
+          {
+            "value": "public-no-identifiers",
+            "label": "Publicly, with no face and no name"
+          },
+          {
+            "value": "public-open",
+            "label": "Publicly, like anything else"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not settled this"
+          }
+        ]
+      },
+      {
+        "id": "group-chats",
+        "kind": "multi",
+        "exclusive": [
+          "none"
+        ],
+        "prompt": "What of yours should stay out of a group chat?",
+        "section": "visibility",
+        "grounds": false,
+        "tells": "Who else this person counts as being in the room when you tell them something, named item by item instead of left to be discovered.",
+        "options": [
+          {
+            "value": "screenshots",
+            "label": "Screenshots of my messages"
+          },
+          {
+            "value": "arguments",
+            "label": "An argument we had"
+          },
+          {
+            "value": "health",
+            "label": "Anything about my health"
+          },
+          {
+            "value": "money",
+            "label": "Anything about my money"
+          },
+          {
+            "value": "none",
+            "label": "None of these — repeat any of it"
+          }
+        ]
+      },
+      {
+        "id": "passwords",
+        "kind": "choice",
+        "prompt": "Which passwords of yours should someone else have?",
+        "section": "access",
+        "grounds": false,
+        "tells": "How far account access is meant to extend, on one ladder from none to all — so that keeping a password is a stated rule rather than a signal read after the fact.",
+        "options": [
+          {
+            "value": "none",
+            "label": "None of them"
+          },
+          {
+            "value": "shared-accounts",
+            "label": "Only accounts we both already use"
+          },
+          {
+            "value": "shared-plus-passcode",
+            "label": "Those, plus my phone passcode"
+          },
+          {
+            "value": "emergency-all",
+            "label": "All of them, kept for an emergency"
+          },
+          {
+            "value": "all-any-time",
+            "label": "All of them, to use any time"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided this"
+          }
+        ]
+      },
+      {
+        "id": "location",
+        "kind": "choice",
+        "prompt": "Who may see where you are right now?",
+        "section": "access",
+        "grounds": true,
+        "tells": "Whether location is shared with a person, on an occasion, or continuously — three arrangements the phone offers as one switch, and the grounds say which of them is care and which is checking.",
+        "options": [
+          {
+            "value": "nobody",
+            "label": "Nobody, ever"
+          },
+          {
+            "value": "only-when-i-send",
+            "label": "Only when I send it myself"
+          },
+          {
+            "value": "travelling",
+            "label": "One person, while I travel or am out late"
+          },
+          {
+            "value": "one-person-always",
+            "label": "One person, always on"
+          },
+          {
+            "value": "household-always",
+            "label": "My whole household, always on"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided this"
+          }
+        ]
+      },
+      {
+        "id": "reading-messages",
+        "kind": "choice",
+        "prompt": "Who may read the messages on your phone?",
+        "section": "access",
+        "grounds": true,
+        "tells": "Where the line falls between handing a phone over and leaving it unlocked — and whether asking first moves it.",
+        "options": [
+          {
+            "value": "nobody",
+            "label": "Nobody, not even in an emergency"
+          },
+          {
+            "value": "if-incapable",
+            "label": "Only if I cannot answer for myself"
+          },
+          {
+            "value": "handed-over",
+            "label": "Only what I have handed over to show"
+          },
+          {
+            "value": "ask-first",
+            "label": "One person, if they ask me first"
+          },
+          {
+            "value": "one-person-anytime",
+            "label": "One person, any time, without asking"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided this"
+          }
+        ]
+      },
+      {
+        "id": "intimate-images",
+        "kind": "choice",
+        "prompt": "What may happen to intimate photographs of you?",
+        "section": "permanence",
+        "grounds": true,
+        "tells": "What may exist and where it may be stored, settled in advance of a moment in which nobody is thinking about automatic backups.",
+        "options": [
+          {
+            "value": "none",
+            "label": "None should exist at all"
+          },
+          {
+            "value": "deleted",
+            "label": "Taken, then deleted the same day"
+          },
+          {
+            "value": "my-device",
+            "label": "Only on a device I control"
+          },
+          {
+            "value": "no-cloud",
+            "label": "On either person's device, never a cloud"
+          },
+          {
+            "value": "anywhere",
+            "label": "Anywhere, cloud backups included"
+          },
+          {
+            "value": "rather-not",
+            "label": "I would rather not answer this"
+          }
+        ]
+      },
+      {
+        "id": "not-in-writing",
+        "kind": "multi",
+        "exclusive": [
+          "none"
+        ],
+        "prompt": "Which of these should never arrive as a message?",
+        "section": "permanence",
+        "grounds": false,
+        "tells": "The conversations this person will not accept in text at all — so a message can be recognised as the wrong instrument rather than merely the fast one.",
+        "options": [
+          {
+            "value": "apology",
+            "label": "An apology that matters"
+          },
+          {
+            "value": "end-of-argument",
+            "label": "The end of an argument"
+          },
+          {
+            "value": "health-news",
+            "label": "Bad news about someone's health"
+          },
+          {
+            "value": "money-decision",
+            "label": "A decision about money"
+          },
+          {
+            "value": "criticism",
+            "label": "Anything critical of me"
+          },
+          {
+            "value": "none",
+            "label": "None of these — a message is fine"
+          }
+        ]
+      },
+      {
+        "id": "accounts-after-death",
+        "kind": "choice",
+        "prompt": "What should be left of your accounts after you die?",
+        "section": "permanence",
+        "grounds": false,
+        "tells": "How much of the archive is meant to survive, on a ladder from nothing to all of it — a question a platform's terms answer by default if nobody answers it first.",
+        "options": [
+          {
+            "value": "nothing",
+            "label": "Nothing — delete all of it"
+          },
+          {
+            "value": "photographs",
+            "label": "The photographs only"
+          },
+          {
+            "value": "no-messages",
+            "label": "Everything except my private messages"
+          },
+          {
+            "value": "as-it-is",
+            "label": "Everything, exactly as it is"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not thought about it"
+          }
+        ]
+      }
+    ],
+    "grounds": [
+      {
+        "value": "safety",
+        "label": "Safety, mine or somebody else's"
+      },
+      {
+        "value": "consent",
+        "label": "Somebody else has not agreed to it"
+      },
+      {
+        "value": "experience",
+        "label": "Something that happened to me before"
+      },
+      {
+        "value": "privacy",
+        "label": "Wanting part of my life to stay mine"
+      },
+      {
+        "value": "trust",
+        "label": "What trust looks like to me"
+      },
+      {
+        "value": "obligation",
+        "label": "My work or the law requires it"
+      },
+      {
+        "value": "not-worked-out",
+        "label": "I have not worked that out"
+      }
+    ],
+    "sourceNote": "No validated instrument sits behind this one, because none exists — the questions were written here, and the research was used to choose which ones to ask rather than to say anything about your answers. What that research supports is modest and worth stating at its real size. In a meta-analysis of partner phubbing (Ni and colleagues, Frontiers in Psychology, 2025), the association between feeling phubbed by a partner and relationship satisfaction was r = −0.22 across 30 samples and 9,040 people — real, small, and drawn almost entirely from cross-sectional data that cannot say which way it runs. A dyadic diary study found the effect attaches to the perception rather than to the behaviour: a partner's own reported phone use predicted nothing, while feeling phubbed predicted lower relationship quality on the day — and that day-level effect did not hold two months later either (Carnelley, Vowels, Stanton, Millings and Hart, Computers in Human Behavior 147, 2023). Sharenting is the one subject here where the person most affected is not the one answering: the reviewed harms are documented — a permanent footprint the child did not choose, image misuse, conflict with the grown child over posts they never agreed to — the studies behind them are small and largely descriptive, and in one survey of 1,460 Czech and Spanish parents, around four in five had posted pictures of their child while only about one in five had asked the child first. For group chats, for what should never be typed at all, and for what people want done with their accounts afterwards there is no useful evidence whatever; those questions are here because they get settled by default rather than because anything is known about them. Nothing on this page is scored, inferred, or turned into a number.",
+    "provenance": {
+      "constructName": "Digital household agreements",
+      "constructOrigin": "An original topic map assembled for this repo out of four separate research literatures — partner phubbing and technoference, sharenting, electronic partner surveillance, and digital legacy — none of which supplies a questionnaire that this instrument uses. The topics are public; the twelve questions are not taken from anywhere.",
+      "constructPublic": true,
+      "constructNote": "There is no proprietary construct here to license and no canonical instrument to reproduce, which makes the licence position unusually simple. The vocabulary — phubbing, technoference, sharenting, telepressure, legacy contact — is public and comes from published papers and from platform documentation. Every prompt and every option label is original wording written for this repo. Where a published scale exists on one of these subjects it was read for what the field thinks is worth asking about, and then closed; nothing was paraphrased from one, and no item was reconstructed from a description of one. One overlap is close enough to name rather than leave implicit: the Partner Phubbing Scale contains items about a partner's phone at a shared meal and about a phone placed on the table, which is the same subject as this instrument's first block. What is asked here is a rule, in the first person, chosen from named alternatives, with no frequency scale, no partner as the subject, and nothing summed — the overlap is topical, and a household rule about the dinner table is not a reconstruction of anybody's item. The same standard the repo already applies to DISC, MBTI, the RHETI and Chapman's quiz applies here without needing to be argued again.",
+      "evidenceNote": "None, and none is needed. This instrument measures nothing: it records a position you state, the weight you put on it, and the reason you give. Reliability, test–retest stability, factor structure and criterion validity are properties of a measurement, and there is no measurement here to have them — so claiming any of them would be inventing a credential for something that does not require one. The research named in the source note decided which twelve questions were worth asking. It says nothing about what your answers mean, and this instrument does not either.",
+      "avoided": [
+        "Partner Phubbing Scale (Roberts & David, 2016) — including its mealtime and phone-on-the-table items, the nearest published neighbours to this instrument's first block",
+        "Generic Scale of Phubbing and Generic Scale of Being Phubbed (Chotpitayasunondh & Douglas, 2018)",
+        "McDaniel & Coyne's Technoference measure",
+        "Interpersonal Electronic Surveillance Scale for SNSs (Tokunaga, Computers in Human Behavior 27, 2011) — the standard measure in the partner-surveillance literature, and the reason the access blocks ask permission rather than behaviour",
+        "Facebook Intrusion Questionnaire (Elphinston & Noller, 2011)",
+        "Smartphone Addiction Scale – Short Version (Kwon et al., 2013)",
+        "Bergen Social Media Addiction Scale (Andreassen et al.)",
+        "Workplace Telepressure Measure (Barber & Santuzzi, 2015)",
+        "The published sharenting attitude and behaviour scales — none open-licensed, none opened; they are not named individually here because a citation written from memory is not a citation",
+        "DISC, MBTI, the RHETI and Chapman's quiz — already rejected in docs/candidate-instruments.md on the same grounds"
+      ]
+    },
+    "playbookOk": [
+      {
+        "id": "ok-phone-in-another-room",
+        "from": "phone-at-meals = out-of-room | silent-away",
+        "text": "Leave your phone in another room while we eat, without announcing it — I will not read that as a sulk."
+      },
+      {
+        "id": "ok-glance-if-you-say-so",
+        "from": "phone-at-meals = face-down",
+        "text": "Glance at your phone at the table if you are waiting on something — just tell me you are."
+      },
+      {
+        "id": "ok-phone-out-at-dinner",
+        "from": "phone-at-meals = used-freely | no-rule",
+        "text": "Use your phone at the table without checking my face first — I genuinely do not mind."
+      },
+      {
+        "id": "ok-one-line-holds-it",
+        "from": "reply-window = hours | same-day",
+        "text": "Send me one line saying you cannot answer properly yet; that counts as an answer."
+      },
+      {
+        "id": "ok-reply-tomorrow",
+        "from": "reply-window = day-or-more",
+        "text": "Leave my message until tomorrow if you are tired; I have not been counting the hours."
+      },
+      {
+        "id": "ok-silence-costs-nothing",
+        "from": "reply-window = urgent-only | never",
+        "text": "Take as long as you want to reply, and do not open with an apology for the gap."
+      },
+      {
+        "id": "ok-send-what-cannot-wait",
+        "from": "work-after-hours = cannot-wait",
+        "text": "Message me after hours if it genuinely will not keep until the morning."
+      },
+      {
+        "id": "ok-take-the-work-call",
+        "from": "work-after-hours = any-evening | any-time",
+        "text": "Take the work call in the evening, as long as you tell me it is work."
+      },
+      {
+        "id": "ok-post-me-unasked",
+        "from": "posted-about-me = none",
+        "text": "Post the photograph of me if you like it — you do not need to check with me first."
+      },
+      {
+        "id": "ok-send-child-photos-privately",
+        "from": "children-online = private-only",
+        "text": "Send photographs of our child straight to the people who want them rather than posting them anywhere."
+      },
+      {
+        "id": "ok-ask-the-child",
+        "from": "children-online = closed-account | public-no-identifiers | public-open",
+        "text": "Show our child the photograph before it goes up, and take a no for an answer without arguing them out of it."
+      },
+      {
+        "id": "ok-tell-your-friends",
+        "from": "group-chats = none",
+        "text": "Tell your friends we argued if it helps you — I would rather you had someone to talk to than carried it."
+      },
+      {
+        "id": "ok-use-shared-logins",
+        "from": "passwords = shared-accounts | shared-plus-passcode",
+        "text": "Log into the accounts we both use without asking me each time."
+      },
+      {
+        "id": "ok-use-my-passcode",
+        "from": "passwords = emergency-all | all-any-time",
+        "text": "Use my passcode if you cannot reach me and something actually needs doing."
+      },
+      {
+        "id": "ok-location-when-travelling",
+        "from": "location = travelling",
+        "text": "Turn my location on while I am travelling, and turn it off again when I am home."
+      },
+      {
+        "id": "ok-check-my-location",
+        "from": "location = one-person-always | household-always",
+        "text": "Look at my location whenever you want — that is what I turned it on for."
+      },
+      {
+        "id": "ok-open-my-phone-if-i-cannot",
+        "from": "reading-messages = if-incapable",
+        "text": "Get into my phone if I am in hospital and cannot answer it myself."
+      },
+      {
+        "id": "ok-read-the-handed-phone",
+        "from": "reading-messages = handed-over | ask-first | one-person-anytime",
+        "text": "Read anything on my phone once I have handed it to you — I do not need to watch you do it."
+      },
+      {
+        "id": "ok-delete-on-request",
+        "from": "intimate-images = none | deleted | my-device | no-cloud | anywhere",
+        "text": "Ask me to delete a photograph of you and expect it gone the same day, with no discussion attached."
+      },
+      {
+        "id": "ok-call-instead-of-typing",
+        "from": "not-in-writing = health-news | apology | end-of-argument",
+        "text": "Call me rather than typing it if the thing you have to say is bad news about someone's health."
+      },
+      {
+        "id": "ok-message-is-fine",
+        "from": "not-in-writing = none",
+        "text": "Send it as a message if that is easier; none of it has to be said out loud."
+      },
+      {
+        "id": "ok-name-me-legacy-contact",
+        "from": "accounts-after-death = nothing | photographs | no-messages | as-it-is",
+        "text": "Name me as your legacy contact on your phone and your email, so nobody has to argue with a helpline later."
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "no-phone-at-the-table",
+        "from": "phone-at-meals = out-of-room | silent-away",
+        "text": "Do not bring your phone to the table at all — not face down, not on silent."
+      },
+      {
+        "id": "no-scroll-mid-sentence",
+        "from": "phone-at-meals = out-of-room | silent-away | face-down",
+        "text": "Do not start scrolling while I am halfway through a sentence, even if you are still listening."
+      },
+      {
+        "id": "no-day-long-silence",
+        "from": "reply-window = hours | same-day",
+        "text": "Do not leave a direct question unanswered all day without one line about why."
+      },
+      {
+        "id": "no-work-in-the-evening",
+        "from": "work-after-hours = never",
+        "text": "Do not answer a work message in the evening; it will still be there in the morning."
+      },
+      {
+        "id": "no-work-unless-it-burns",
+        "from": "work-after-hours = cannot-wait",
+        "text": "Do not send me work after hours unless you would have phoned me about it."
+      },
+      {
+        "id": "no-post-me-unasked",
+        "from": "posted-about-me = photos",
+        "text": "Do not post a photograph I am in without asking me first, including in a story that disappears."
+      },
+      {
+        "id": "no-name-me-in-public",
+        "from": "posted-about-me = full-name",
+        "text": "Do not write my full name in a public post, even in a thank-you."
+      },
+      {
+        "id": "no-post-where-i-am",
+        "from": "posted-about-me = whereabouts",
+        "text": "Do not post where I am while I am still there."
+      },
+      {
+        "id": "no-announce-my-relationship",
+        "from": "posted-about-me = relationship",
+        "text": "Do not announce anything about my relationship before I have."
+      },
+      {
+        "id": "no-child-at-all",
+        "from": "children-online = nothing",
+        "text": "Do not post about our child anywhere, including to people you would trust with them."
+      },
+      {
+        "id": "no-child-face-public",
+        "from": "children-online = private-only | closed-account",
+        "text": "Do not put our child's face on a public account — not once, not even a good photograph."
+      },
+      {
+        "id": "no-child-school-or-uniform",
+        "from": "children-online = private-only | closed-account | public-no-identifiers",
+        "text": "Do not post anything that names our child's school or shows their uniform."
+      },
+      {
+        "id": "no-child-embarrassment",
+        "from": "children-online = closed-account | public-no-identifiers | public-open",
+        "text": "Do not post our child crying or being told off, even as a joke about parenting."
+      },
+      {
+        "id": "no-screenshot-into-group",
+        "from": "group-chats = screenshots",
+        "text": "Do not screenshot my messages into a group chat, however good the line was."
+      },
+      {
+        "id": "no-argument-into-group",
+        "from": "group-chats = arguments",
+        "text": "Do not tell the group chat about an argument we are still in the middle of."
+      },
+      {
+        "id": "no-health-into-group",
+        "from": "group-chats = health",
+        "text": "Do not pass on anything about my health, even to people who would only worry kindly."
+      },
+      {
+        "id": "no-money-into-group",
+        "from": "group-chats = money",
+        "text": "Do not repeat what I earn or what I owe to anybody, in any chat."
+      },
+      {
+        "id": "no-shared-logins-in-my-name",
+        "from": "passwords = none",
+        "text": "Do not set up an account in my name and keep the password yourself."
+      },
+      {
+        "id": "no-check-instead-of-asking",
+        "from": "location = nobody | only-when-i-send | travelling",
+        "text": "Do not check my location to find out where I am instead of asking me where I am."
+      },
+      {
+        "id": "no-read-while-i-shower",
+        "from": "reading-messages = nobody | if-incapable | handed-over | ask-first",
+        "text": "Do not read my messages while I am in the shower, even though the phone is sitting there unlocked."
+      },
+      {
+        "id": "no-intimate-photos-at-all",
+        "from": "intimate-images = none",
+        "text": "Do not take intimate photographs of me at all, however safely you would keep them."
+      },
+      {
+        "id": "no-cloud-backup-of-photos",
+        "from": "intimate-images = deleted | my-device | no-cloud",
+        "text": "Do not keep intimate photographs of me in anything that syncs to a cloud."
+      },
+      {
+        "id": "no-ending-arguments-by-text",
+        "from": "not-in-writing = end-of-argument | apology",
+        "text": "Do not end an argument by message — finish it out loud, or leave it open until we can."
+      },
+      {
+        "id": "no-criticism-by-text",
+        "from": "not-in-writing = criticism",
+        "text": "Do not tell me what I have done wrong in a message; say it to my face."
+      },
+      {
+        "id": "no-money-by-text",
+        "from": "not-in-writing = money-decision",
+        "text": "Do not settle a decision about money in a message thread."
+      },
+      {
+        "id": "no-reading-my-messages-after",
+        "from": "accounts-after-death = nothing | no-messages",
+        "text": "Do not read my private messages after I die, whatever else you decide to keep."
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "\"What may interrupt a conversation with you?\" as a separate multi block on attention",
+        "why": "It overlaps phone-at-meals and reply-window from both ends, and the phubbing evidence is that the damage runs on the perception of being phubbed rather than on the behaviour — so a permitted-interrupters list records the wrong side of the effect and produces something nobody can act on in the moment."
+      },
+      {
+        "idea": "\"Where does your phone spend the night?\"",
+        "why": "A habit rather than a stance, and mostly decided by whether the phone is the alarm clock. The sleep literature it would lean on is about the individual, not about the pair, so it would put a health claim on a page that is not making health claims."
+      },
+      {
+        "idea": "\"How many hours a day do you spend on your phone?\"",
+        "why": "An estimate, which rule 4 rules out. Self-reported screen time is a poor match to logged use, so the number collected would be a measure of self-image rather than of anything else."
+      },
+      {
+        "idea": "\"Do you feel your phone use is out of control?\"",
+        "why": "A self-diagnosis, and the honest options would all be Barnum-passing. It also drags in addiction scales this instrument has deliberately not touched."
+      },
+      {
+        "idea": "\"Would you look at your partner's phone if you suspected something?\"",
+        "why": "A hypothetical about a state the person is not currently in, so the answer collected is aspirational rather than stated. reading-messages asks the same ground as a rule that holds today, which is answerable."
+      },
+      {
+        "idea": "\"Is messaging someone else cheating?\"",
+        "why": "This is the fight, not the question underneath it. Most people would answer a definition rather than state a position, and posted-about-me plus reading-messages reach the same territory without asking anybody to adjudicate infidelity in six options."
+      },
+      {
+        "idea": "\"Who may you follow or stay in contact with online?\"",
+        "why": "Cannot be answered without naming third parties, the answer changes weekly, and the free-text why would fill with other people's names — which §1.1 of the design already treats as the reason that field never leaves the device."
+      },
+      {
+        "idea": "\"What happens to shared accounts and the shared photo library if you separate?\"",
+        "why": "Genuinely uncovered and genuinely useful, but it presupposes a relationship and its ending, which breaks the one-person rule in spirit even where a single person can technically type an answer."
+      },
+      {
+        "idea": "\"What may you tell an AI assistant about your household?\"",
+        "why": "The largest gap that is opening, and there is no research to choose the questions with yet. A question invented against a norm nobody holds collects noise, and an honest \"no evidence\" is worth more than a fashionable block."
+      },
+      {
+        "idea": "A thirteenth block asking whether the person has already set a legacy contact",
+        "why": "It mixes two dimensions — what you want and what you have done — into one option set, which breaks exclusivity. It belongs on the result page as a next step, not in the bank."
+      },
+      {
+        "idea": "A separate block asking at what age a child gets a veto over their own photographs",
+        "why": "A real question, and the one the sharenting evidence most directly supports — around four in five of those 1,460 parents posted and around one in five asked. But it is a second axis on the same subject, and the twelve-block budget put the audience ladder first, because a photograph's reach cannot be undone while a missed veto can still be honoured later. The child's say survives as a playbook line rather than as a block."
+      },
+      {
+        "idea": "\"Whenever my job expects it\" as an option on work-after-hours",
+        "why": "It records the employer's expectation rather than the person's position, and putting an obligation into a permission ladder breaks exclusivity — somebody whose job expects it at any hour also has a view about whether it should. The grounds multi now carries it, which is what \"My work or the law requires it\" was written for."
+      },
+      {
+        "idea": "\"Any of it, I do not mind\" as an option on the restrictive multis",
+        "why": "In a multi it says exactly what ticking nothing says, and having both lets a person tick a contradiction — \"screenshots\" and \"any of it\" at once. Each multi now carries one explicit floor option and no ceiling one."
+      },
+      {
+        "idea": "A permissive framing for posted-about-me and group-chats — \"what may be posted\", \"what may be repeated\"",
+        "why": "It reads more naturally, and it inverts every not-OK line derived from it: ticking \"whereabouts\" would mean whereabouts may be posted, while the line generated from it said do not post where I am. Both multis are now restrictive, so a ticked option always generates a prohibition and the floor option generates the permission."
+      }
+    ],
+    "sources": [
+      "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1561159/full",
+      "https://pubmed.ncbi.nlm.nih.gov/40432797/",
+      "https://www.sciencedirect.com/science/article/pii/S074756322300211X",
+      "https://shura.shu.ac.uk/32065/1/Millings-PerceivedPartnerPhubbing(VoR).pdf",
+      "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0251451",
+      "https://journals.sagepub.com/doi/10.1177/0093650210378229",
+      "https://onlinelibrary.wiley.com/doi/10.1111/jftr.12566",
+      "https://www.aap.org/en/patient-care/media-and-children/center-of-excellence-on-social-media-and-youth-mental-health/qa-portal/qa-portal-library/qa-portal-library-questions/sharing-photos-and-videos-of-children-on-social-media/",
+      "https://www.sciencedirect.com/science/article/abs/pii/S0190740919309715",
+      "https://pubmed.ncbi.nlm.nih.gov/39080796/",
+      "https://doi.org/10.1525/collabra.130033",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC10809786/",
+      "https://dl.acm.org/doi/10.1145/3613904.3642447",
+      "https://www.sciencedirect.com/science/article/abs/pii/S0747563222002473",
+      "https://journals.sagepub.com/doi/10.1177/20563051251337352",
+      "https://www.frontiersin.org/journals/human-dynamics/articles/10.3389/fhumd.2025.1553619/xml",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC13147545/",
+      "https://link.springer.com/article/10.1007/s41542-021-00107-3",
+      "https://doi.org/10.1177/10596011231206206",
+      "https://dl.acm.org/doi/10.1016/j.chb.2010.08.014",
+      "https://www.nolo.com/legal-encyclopedia/ufadaa.html",
+      "https://www.everplans.com/articles/apple-ios-15-digital-legacy-program-offers-some-control-over-an-account-after-death-follows-efforts-from-facebook-and-google"
+    ]
+  },
+  "changes": [
+    "READABILITY — no failures found, and none introduced. Every original prompt passed (longest 53 chars / 11 words), and I counted rather than estimated: all twelve rewritten prompts were checked in English, Polish, German and Spanish against the 80-char / 14-word / no-joiner gate in test/i18n/readability.test.js. Worst case is 57 chars (de phone-at-meals, es phone-at-meals), so there is 23 chars of headroom before the gate. location lost its comma-spliced 'at any moment' (41→36 chars).",
+    "LICENCE — no breach found, but one overlap was going unnamed. The Partner Phubbing Scale has items about a partner's phone at a shared meal and about a phone placed on the table; phone-at-meals and the old 'Do not leave your phone face up on the table' line were its nearest neighbours in the bank. I rewrote that line as 'Do not bring your phone to the table at all' and added a paragraph to constructNote stating the overlap and why it is topical rather than a reconstruction: a first-person rule chosen from named alternatives, no frequency scale, no partner as the subject, nothing summed. Nothing else in the bank tracked an item from any instrument I could identify.",
+    "RULE 4 (nothing estimated) — reply-window asked 'After how long does no reply start to mean something?', which asks the person to introspect on when silence starts to feel like something. That is an estimate of a feeling, not a stated position. Replaced with 'How soon should a direct question get an answer?', which records a norm they hold and can state.",
+    "PARTITION FAILURE, work-after-hours — the options mixed two axes, when work MAY reach you and what you do once it has. 'I will read it, I answer in the morning' and 'Any time, it does not bother me' were both true of the same person, which breaks exclusivity for a choice. Rebuilt as one permission ladder. Dropped 'Whenever my job expects it' because it records the employer rather than the person, and set grounds:true so the existing 'My work or the law requires it' ground carries the obligation instead — which is what that ground was written for.",
+    "PARTITION FAILURE, children-online — three axes in one choice: a content rule (no face, no name, no school), an audience rule (only approved people), and a consent rule (only what the child agreed to). A parent can hold all three at once, so the option set forced a false answer on the highest-stakes block in the bank. Rebuilt as a single ladder of reach and identifiability. The child's own veto moved to the ok-ask-the-child playbook line and into rejected with the reason.",
+    "PARTITION FAILURE, passwords — 'only accounts we both use', 'my phone passcode' and 'whatever is needed if I cannot be reached' are combinable, and the combination is the commonest real position. Rebuilt as a scope ladder from none to all.",
+    "PARTITION FAILURE, reading-messages — 'Only if I cannot answer for myself' was combinable with 'Nobody, without exception'. Rebuilt as a ladder whose first rung is now 'Nobody, not even in an emergency', which is explicitly exclusive of the emergency case and is itself a real and strong position.",
+    "PARTITION FAILURE, accounts-after-death — mixed what survives with who gets it. 'Profiles left up as they are', 'One named person gets all of it' and 'Photographs yes, private messages never' are simultaneously holdable. Rebuilt as one ladder of how much survives; the named-person question survives as ok-name-me-legacy-contact, which is where it is actionable.",
+    "MISSING HONEST ESCAPE (rule 6) — reply-window and work-after-hours had none. 'Silence never means anything to me' is a position, not an escape, and 'My work does not reach me at all' is a circumstance. Merged 'A day or so' and 'Several days' into 'A day or more is fine' to free the slot, and added 'I have not thought about it' / 'I have not decided this'. location relabelled so its five rungs read as one ladder of exposure rather than alternating between who and when.",
+    "MULTI COHERENCE — posted-about-me, group-chats and not-in-writing each carried both a 'nothing' and an 'any of it' option, so a person could tick 'screenshots' and 'any of it' together. In a multi, 'any of it' says exactly what ticking nothing says. Dropped the ceiling option from each; each multi now has one explicit floor option ('None of these — …') and no ceiling.",
+    "INVERTED PLAYBOOK DERIVATIONS — the worst defect in the bank. posted-about-me and group-chats asked what MAY be posted or repeated, but no-post-where-i-am fired on ticking 'whereabouts' and no-screenshot-into-group on ticking 'screenshots' — both lines said the opposite of the answer that produced them. Flipped both multis to restrictive ('What may not be posted…', 'What should stay out…'), so a ticked option always generates a prohibition and the floor option generates the permission. not-in-writing was already restrictive; all three now run the same direction.",
+    "PLAYBOOK, invented facts — no-work-after-ten asserted 'after ten at night' from an answer that named no hour, which is the instrument estimating a threshold the person never gave. Replaced with two lines tied to what was actually answered. ok-take-the-work-call fired on 'read-not-answer', an answer meaning the person does not take the call; that option is gone and the line now fires only on the two answers that permit it.",
+    "PLAYBOOK, missing strongest lines — 'None should exist at all' and 'Nothing at all, ever' generated only the weaker prohibition below them, which reads as permission. Added no-intimate-photos-at-all and no-child-at-all, and removed 'nothing' from the two nested child lines so that answer no longer produces three overlapping prohibitions. Rewrote ok-silence-costs-nothing, whose second clause ('I would rather you did not pretend to') did not parse.",
+    "PLAYBOOK COVERAGE — grew from 14+14 to 22 OK and 26 not-OK so every ticked multi option gets its own handable line and every ladder rung that has a request to make gets one. Per reader this yields 13 OK (inside §4.1's 8–14 band) and up to 20 not-OK for a maximally strict answerer. RECOMMENDATION FOR THE RESULT PAGE: order playbook lines by the weight given to the block they came from and render the top fourteen per side. §1.2's weight field is exactly what makes that ordering non-arbitrary, and it is the honest way to hold the 14 cap without cutting specificity from the bank.",
+    "BARNUM, result copy — rewrote all twelve `tells`. The originals drifted from what the block records into claims about the reader's life that cannot be false of anybody: 'a number they have never said out loud and you have been guessing at', 'which neither of you finds out until it has already happened', 'the reason decides which'. Each now states what is recorded and what distinction it buys, in terms a reader could disagree with.",
+    "SOURCE NOTE, two citation errors, both verified against the sources. (1) Carnelley et al. is Computers in Human Behavior 147, 107860, 2023 — not 2024 — and the full author list is Carnelley, Vowels, Stanton, Millings and Hart. (2) The note reported the paper's enacted-phubbing null but omitted its second one: the perceived-phubbing effect held on the day and did NOT hold two months later. Omitting that overstated the finding, so it is now stated. The r = −0.22 across 30 samples and 9,040 people is exact and correct — it is the RS row of Table 4 in Ni and colleagues (rz = −0.219, k = 30, N = 9,040), one outcome within a larger meta-analysis. The 1,460-parent survey verified as Czech and Spanish parents, ~80% posted, ~20% asked; both countries are now named.",
+    "PROVENANCE — added Tokunaga's Interpersonal Electronic Surveillance Scale for SNSs (Computers in Human Behavior 27, 2011) to `avoided`. Electronic partner surveillance is one of the four literatures constructOrigin names and it was the only one with no scale listed, which read as an omission rather than a choice. Replaced the vague 'The published sharenting scales, none of which is open-licensed' with an honest line saying they are not named individually because a citation written from memory is not a citation. Added the CHB 2011 and PubMed 39080796 URLs to `sources`.",
+    "RULE 7 (no partner required) — every block is answerable alone. children-online is the one that presupposes a circumstance rather than a partner; the honest escape 'I have not settled this' is a true answer for a reader with no children, and the tension between that and the bank's own rejection of hypotheticals is now recorded in `rejected` rather than left silent.",
+    "LEFT ALONE, and why: intimate-images and not-in-writing are already clean single-axis sets with real escapes ('I would rather not answer this' is the right escape on the most sensitive block and is kept). phone-at-meals is a single ordered axis with a genuine escape. The ten original `rejected` entries are all sound and are kept verbatim; four more were added recording what this pass cut.",
+    "MULTI ESCAPES — every restrictive multi in this bank carries a floor option, all three written before `MultiItem.exclusive` existed. Declared at block level: `posted-about-me` → `none` («None of these — post any of it freely»), `group-chats` → `none` («None of these — repeat any of it»), `not-in-writing` → `none` («None of these — a message is fine»). Each is a permission granted over the whole set, which cannot be true beside a restriction drawn from it — ticking «None of these — post any of it freely» next to «Where I am at the time» stores a reader as having said both. No option was added, reworded or removed. The blocks keep four, four and five non-exclusive options, so none of them collapses into a choice.",
+    "GROUNDS ESCAPE, §2 of the 2026-08-27 inventory decisions. `unworked` → `not-worked-out`, the label «I have not worked that out» unchanged. `faith` already spelled it `not-worked-out` while this bank and `money-management` spelled it `unworked`, for the identical option; it is the one grounds value shared code will ever special-case, and it can only do that if all three spell it the same. Value only, and it is the sole occurrence of the old spelling in this file — no block, playbook line, `rejected` entry or earlier change entry referenced it."
+  ],
+  "critiqued": true
+}

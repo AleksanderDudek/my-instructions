@@ -17,6 +17,25 @@ const ORDER = [
   "attraction", "intimacy-map", "conflict-style", "enneagram", "big-five",
   "hexaco", "jungian", "riasec", "working-style", "study-practice",
   "chronotype", "numerology",
+  // The inventories, as one contiguous run. `registry.groups()` files them
+  // between the profilers and the questionnaires by family, so where the run
+  // sits in this array does not decide where the group appears — the only
+  // load-bearing property is order *within* the family, which is §5 of
+  // docs/superpowers/specs/2026-08-27-inventory-decisions.md: ascending
+  // presupposition, how much of a life an instrument requires you to already
+  // have before its first question makes sense. `communication-style` needs
+  // only a person who talks to other people, and it is the one with no flags,
+  // so it is the front door; `boundaries` and `digital-life` need a home and a
+  // phone; `good-life` needs solitude, being the one here answerable by
+  // somebody with nobody; `faith` is where the first reader declines the
+  // premise, so it follows the four nobody declines.
+  "communication-style", "boundaries", "digital-life", "good-life", "faith",
+  // The last three break ascending presupposition on purpose and follow the
+  // route the `sourceNote`s describe instead: `before-marriage` is broad and
+  // shallow and tells you which of the deep two you need, naming them in this
+  // order — "then Managing money and The family plan". A catalogue ordered
+  // against its own copy would teach two routes.
+  "before-marriage", "money-management", "family-plan",
 ];
 
 const dirs = (await readdir("src/instruments", { withFileTypes: true }))

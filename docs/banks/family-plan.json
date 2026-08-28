@@ -1,0 +1,735 @@
+{
+  "bank": {
+    "id": "family-plan",
+    "sections": [
+      {
+        "id": "plan",
+        "title": "The plan",
+        "note": "Number, timing, spacing, and what you would do if it did not happen. Every question in this section has an honest answer that is «not decided». None of them has a correct one."
+      },
+      {
+        "id": "care",
+        "title": "Work and who is at home",
+        "note": "The part of a family plan that has a price and a date attached. Answer for the arrangement you would actually want, not the one that sounds fair when said out loud."
+      },
+      {
+        "id": "raising",
+        "title": "Raising",
+        "note": "Four decisions that get made in a hurry, one at a time, years apart, usually by whoever is in the room. Written down in advance they are positions. Made in the moment they are arguments."
+      },
+      {
+        "id": "disagreement",
+        "title": "When you do not agree",
+        "note": "Two questions about what happens when the rest of this page does not line up. They are the hardest ones here and the ones nobody asks before they are needed."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "children-ceiling",
+        "kind": "choice",
+        "prompt": "What is the largest number of children you would agree to?",
+        "section": "plan",
+        "grounds": false,
+        "tells": "It records the ceiling rather than the wish — the number at which the answer turns into no — which is routinely a different number from the one the same person gives when asked how many they want.",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "one",
+            "label": "One"
+          },
+          {
+            "value": "two",
+            "label": "Two"
+          },
+          {
+            "value": "three",
+            "label": "Three"
+          },
+          {
+            "value": "fourPlus",
+            "label": "Four or more"
+          },
+          {
+            "value": "undecided",
+            "label": "I have no number in mind"
+          }
+        ]
+      },
+      {
+        "id": "timing-gate",
+        "kind": "choice",
+        "prompt": "What would have to change first before you had a child?",
+        "section": "plan",
+        "grounds": false,
+        "tells": "It names one obstacle instead of a date, so a reader learns whether pressing on timing is a conversation about money, about where you live, about work, or about nothing at all. «First» is in the prompt because most people face two of these and the block records which one is in front.",
+        "options": [
+          {
+            "value": "readyNow",
+            "label": "I am ready now"
+          },
+          {
+            "value": "money",
+            "label": "Money or job security"
+          },
+          {
+            "value": "home",
+            "label": "Somewhere better to live"
+          },
+          {
+            "value": "study",
+            "label": "Finishing study or training"
+          },
+          {
+            "value": "notWanted",
+            "label": "Nothing would — I do not want one"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know what I am waiting for"
+          }
+        ]
+      },
+      {
+        "id": "child-spacing",
+        "kind": "choice",
+        "prompt": "How far apart would you want children to be?",
+        "section": "plan",
+        "grounds": false,
+        "tells": "It separates people who are holding a gap in mind from people who are not, which is the difference between a second pregnancy arriving as a plan and arriving as news.",
+        "options": [
+          {
+            "value": "underTwo",
+            "label": "Less than two years apart"
+          },
+          {
+            "value": "twoThree",
+            "label": "Two to three years apart"
+          },
+          {
+            "value": "overThree",
+            "label": "More than three years apart"
+          },
+          {
+            "value": "whatever",
+            "label": "However it happens"
+          },
+          {
+            "value": "notMoreThanOne",
+            "label": "No more than one child either way"
+          },
+          {
+            "value": "unsure",
+            "label": "I have not thought about it"
+          }
+        ]
+      },
+      {
+        "id": "if-not-natural",
+        "kind": "multi",
+        "max": 4,
+        "exclusive": [
+          "stop",
+          "unsure"
+        ],
+        "prompt": "If conceiving did not work, what would you be open to?",
+        "section": "plan",
+        "grounds": false,
+        "tells": "It is the answer nobody has ready at the moment they need it, and knowing in advance which of these routes a person would walk down means the conversation is not happening for the first time in a clinic waiting room.",
+        "options": [
+          {
+            "value": "treatment",
+            "label": "Fertility treatment such as IVF"
+          },
+          {
+            "value": "donor",
+            "label": "Treatment using a donor egg or donor sperm"
+          },
+          {
+            "value": "adoption",
+            "label": "Adoption"
+          },
+          {
+            "value": "fostering",
+            "label": "Fostering"
+          },
+          {
+            "value": "stop",
+            "label": "None — I would stop and live without children"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know yet"
+          }
+        ]
+      },
+      {
+        "id": "who-steps-back",
+        "kind": "choice",
+        "prompt": "Who would step back from paid work when a child arrives?",
+        "section": "care",
+        "grounds": false,
+        "tells": "It records whether the career interruption is placed on a named person or on an earnings rule. Those are different answers even when they point at the same person today, because the rule moves when the salaries do and the name does not.",
+        "options": [
+          {
+            "value": "me",
+            "label": "I would, whatever we each earn"
+          },
+          {
+            "value": "otherParent",
+            "label": "The other parent would"
+          },
+          {
+            "value": "bothPartTime",
+            "label": "Both of us, part time"
+          },
+          {
+            "value": "neither",
+            "label": "Neither of us"
+          },
+          {
+            "value": "lowerEarner",
+            "label": "Whoever earns less at the time"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "time-at-home",
+        "kind": "choice",
+        "prompt": "How long would a break from work last after a birth?",
+        "section": "care",
+        "grounds": false,
+        "tells": "The length is where the money and the career actually go: someone who says a few months and someone who says until school starts can agree completely on who steps back and on nothing else.",
+        "options": [
+          {
+            "value": "weeksOrLess",
+            "label": "A few weeks or less"
+          },
+          {
+            "value": "months",
+            "label": "A few months"
+          },
+          {
+            "value": "year",
+            "label": "About a year"
+          },
+          {
+            "value": "twoThreeYears",
+            "label": "Two or three years"
+          },
+          {
+            "value": "untilSchool",
+            "label": "Until school starts"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "childcare",
+        "kind": "choice",
+        "prompt": "Who would do most of the weekday care of a small child?",
+        "section": "care",
+        "grounds": false,
+        "tells": "It records which single arrangement the week actually rests on. Where the answer names relatives, it names people whose agreement is not recorded anywhere on this page and may never have been asked for.",
+        "options": [
+          {
+            "value": "parentHome",
+            "label": "A parent at home"
+          },
+          {
+            "value": "family",
+            "label": "Grandparents or other family"
+          },
+          {
+            "value": "nursery",
+            "label": "A nursery or daycare"
+          },
+          {
+            "value": "nanny",
+            "label": "A nanny or childminder"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "schooling",
+        "kind": "choice",
+        "prompt": "Where would you want a child of yours educated?",
+        "section": "raising",
+        "grounds": false,
+        "tells": "The options are sorted by what the answer costs — fees, a move, a commute, or nothing — so the block records a position that has a price rather than a preference that does not.",
+        "options": [
+          {
+            "value": "state",
+            "label": "The local state school"
+          },
+          {
+            "value": "faithSchool",
+            "label": "A state school chosen for its faith"
+          },
+          {
+            "value": "private",
+            "label": "A school we would pay fees for"
+          },
+          {
+            "value": "home",
+            "label": "Home education"
+          },
+          {
+            "value": "whicheverAdmits",
+            "label": "Whichever school we can get into"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know"
+          }
+        ]
+      },
+      {
+        "id": "discipline",
+        "kind": "choice",
+        "prompt": "What would you do the third time a child ignores you?",
+        "section": "raising",
+        "grounds": false,
+        "tells": "It is answered from a concrete moment rather than from a philosophy of parenting, which is why it gets a different answer from the one the same person gives when asked what kind of parent they would be.",
+        "options": [
+          {
+            "value": "explain",
+            "label": "Explain again and wait"
+          },
+          {
+            "value": "removeSomething",
+            "label": "Take away something they like"
+          },
+          {
+            "value": "timeOut",
+            "label": "A time out on their own"
+          },
+          {
+            "value": "raiseVoice",
+            "label": "Raise my voice"
+          },
+          {
+            "value": "smack",
+            "label": "A smack"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know what I would do"
+          }
+        ]
+      },
+      {
+        "id": "screens",
+        "kind": "choice",
+        "prompt": "At what age would a child of yours get their own phone?",
+        "section": "raising",
+        "grounds": false,
+        "tells": "Unlike a rule about screen hours, this is a single decision with a date on it, so it can be held up years later against what actually happened.",
+        "options": [
+          {
+            "value": "underTen",
+            "label": "Before they are ten"
+          },
+          {
+            "value": "tenEleven",
+            "label": "At ten or eleven"
+          },
+          {
+            "value": "twelveThirteen",
+            "label": "At twelve or thirteen"
+          },
+          {
+            "value": "fourteenPlus",
+            "label": "At fourteen or older"
+          },
+          {
+            "value": "noFixedAge",
+            "label": "No age set — I would decide on the day"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not thought about it"
+          }
+        ]
+      },
+      {
+        "id": "grandparents",
+        "kind": "choice",
+        "prompt": "How much say would your own parents have over a child?",
+        "section": "raising",
+        "grounds": false,
+        "tells": "It asks about your parents rather than about grandparents in general, because «it depends which one» is true of nearly everybody and an answer everybody can give is not an answer. It also pulls help apart from authority, which arrive bundled in practice.",
+        "options": [
+          {
+            "value": "sayInDecisions",
+            "label": "A real say in decisions"
+          },
+          {
+            "value": "helpNoSay",
+            "label": "Regular help, no say in decisions"
+          },
+          {
+            "value": "occasional",
+            "label": "Occasional help only"
+          },
+          {
+            "value": "minimal",
+            "label": "As little involvement as possible"
+          },
+          {
+            "value": "notAround",
+            "label": "They would not be there to ask"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know"
+          }
+        ]
+      },
+      {
+        "id": "parent-deadlock",
+        "kind": "choice",
+        "prompt": "If the other parent disagreed, what would settle it?",
+        "section": "disagreement",
+        "grounds": false,
+        "tells": "It is a rule chosen before it is needed, and it is the only answer on this page that decides what happens to every other answer on it.",
+        "options": [
+          {
+            "value": "moreWorried",
+            "label": "The more worried one decides"
+          },
+          {
+            "value": "mainCarer",
+            "label": "Whoever does more of the care decides"
+          },
+          {
+            "value": "byADate",
+            "label": "We set a date and decide by then"
+          },
+          {
+            "value": "outsideHelp",
+            "label": "We ask someone we both trust"
+          },
+          {
+            "value": "noChange",
+            "label": "Nothing changes until we both agree"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "change-of-mind",
+        "kind": "choice",
+        "prompt": "What if a partner changed their mind about children?",
+        "section": "disagreement",
+        "grounds": false,
+        "tells": "It says whether children are a preference or a condition, which is the single fact this whole instrument turns on and the one almost nobody states out loud before the situation arrives.",
+        "options": [
+          {
+            "value": "stayAndAccept",
+            "label": "I would stay and accept it"
+          },
+          {
+            "value": "stayAndPress",
+            "label": "I would stay and keep asking"
+          },
+          {
+            "value": "end",
+            "label": "I would want to end the relationship"
+          },
+          {
+            "value": "dependsDirection",
+            "label": "It depends which way they changed"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know"
+          }
+        ]
+      }
+    ],
+    "grounds": [],
+    "provenance": {
+      "constructName": "Stated positions on family formation and raising children",
+      "constructOrigin": "No published psychological instrument. The topic list follows demographic fertility-intention surveys — the US National Survey of Family Growth, whose questionnaires are a federal work product, and the openly published Generations and Gender Survey — plus the standard domains of marriage-preparation curricula.",
+      "constructPublic": true,
+      "constructNote": "Nothing here is a construct and nothing is being measured. What is recorded is a position on a decision the person will have to make anyway, the weight they put on it, and their own reason for it. The construct is deliberately not called «intentions»: an intention is a forecast, and this family of instruments forecasts nothing. A topic list was taken from public survey instruments; not one item was. Every prompt and every option label on this page was written for this repo.",
+      "evidenceNote": "None, and none is needed: nothing is inferred here, so there is nothing to validate. Reliability, factor structure and criterion validity are properties of a measurement given to a population, and this instrument does not measure — the answers are the result. Three things about the domain are worth knowing, and none of them is a property of these items. Stated intentions about children predict achieved family size poorly, with people more likely to miss their number than hit it (Quesnel-Vallée and Morgan 2003). Infertility is not an edge case: WHO's 2023 review put lifetime prevalence at roughly one adult in six, which is why the block on what happens if conceiving does not work is in the bank rather than in a footnote. And grandparental childcare, which the childcare block may name as the arrangement the week rests on, ranges from about 24% to about 60% of grandparents across European countries in SHARE data (European Journal of Ageing, 2023), so there is no safe default to assume for the reader.",
+      "avoided": [
+        "PREPARE/ENRICH",
+        "FOCCUS Pre-Marriage Inventory",
+        "RELATE and the Couple CHECKUP",
+        "The Gottman Institute's relationship assessments",
+        "Parenting Alliance Measure (PAR Inc.)",
+        "Parenting Styles and Dimensions Questionnaire",
+        "Alabama Parenting Questionnaire",
+        "FertiQoL"
+      ]
+    },
+    "sourceNote": "There is no instrument behind this folder and there does not need to be. The topic list is the one demographic surveys have used for decades — the US National Survey of Family Growth, whose questionnaires are a federal work product, and the openly published Generations and Gender Survey — while every question and every option here was written for this app; the facilitator-gated marriage inventories covering the same ground, PREPARE/ENRICH, FOCCUS and RELATE, are neither reproduced nor paraphrased, and their product pages are named in the avoided list rather than in sources because nothing on this page came from them. Nothing here is scored and nothing here forecasts anything: intended family size is a weak predictor of achieved family size, and people are more likely to miss their number than hit it (Quesnel-Vallée and Morgan 2003), so read this as a position held on a date rather than as a plan that will happen. Take Conversations first to find out whether children have been raised as a subject at all, and Before marrying if a wedding is in view; this is the thirteen decisions downstream of that, and it is what you bring to the conversation rather than what starts it. Every question here is answerable by one person sitting alone, including the three that name a hypothetical other parent; where a block records something undecided the option says «I have not decided», never «we», because a page that cannot be filled in until a second person is in the room is a different product. Before reading a disagreement as a verdict, it is worth knowing that when partners differ over a first child roughly half go on to have one, while disagreement over a later child usually settles as no (Testa and Bolano 2021). One block offers physical punishment as an answer, because people choose it and an option set that omits a real answer collects a false one instead; the largest meta-analysis of the practice found it associated with worse outcomes on thirteen of seventeen measures and better on none (Gershoff and Grogan-Kaylor 2016). That is said here rather than inside the question, because a question that argues collects agreement.",
+    "playbookOk": [
+      {
+        "id": "ok-start-whenever",
+        "text": "Raise starting a family whenever you want to. I am not waiting for a signal from you or from anything else.",
+        "from": "timing-gate = I am ready now"
+      },
+      {
+        "id": "ok-money-before-dates",
+        "text": "Talk to me about money before you talk to me about dates — money is the thing actually in the way.",
+        "from": "timing-gate = Money or job security"
+      },
+      {
+        "id": "ok-no-gap-held",
+        "text": "You can bring up a second pregnancy at any point. I am not holding a gap in mind that you would be breaking.",
+        "from": "child-spacing = However it happens"
+      },
+      {
+        "id": "ok-tests-early",
+        "text": "Raise fertility tests with me early rather than late. I will not hear it as an accusation about either of us.",
+        "from": "if-not-natural includes Fertility treatment such as IVF"
+      },
+      {
+        "id": "ok-adoption-first-class",
+        "text": "Put adoption on the table as a first option rather than as the thing we do once everything else has failed.",
+        "from": "if-not-natural includes Adoption"
+      },
+      {
+        "id": "ok-plan-on-me",
+        "text": "Plan on me being the one who goes part time, and make me say it out loud if that ever stops being true.",
+        "from": "who-steps-back = I would, whatever we each earn"
+      },
+      {
+        "id": "ok-book-the-visits",
+        "text": "Book the nursery visits without me. I do not need to be in the room for the shortlist, only for the choice.",
+        "from": "childcare = A nursery or daycare"
+      },
+      {
+        "id": "ok-ask-my-parents",
+        "text": "Ask my parents for a day of childcare without checking with me first. That help is already agreed.",
+        "from": "grandparents = Regular help, no say in decisions"
+      },
+      {
+        "id": "ok-local-school-no-case",
+        "text": "Put the local school first without building a case for it. You do not need to persuade me into it.",
+        "from": "schooling = The local state school"
+      },
+      {
+        "id": "ok-stop-me",
+        "text": "Stop me if I ever smack a child. I have written down that I would not, so hold me to it.",
+        "from": "discipline ≠ A smack"
+      },
+      {
+        "id": "ok-phone-age-settled",
+        "text": "Tell a child the phone age is settled and that both of us decided it, so it is not one of us to argue with.",
+        "from": "screens = any fixed age"
+      },
+      {
+        "id": "ok-you-decide-on-the-day",
+        "text": "Decide it yourself on the days you are doing the care, and I will back you in front of the child.",
+        "from": "parent-deadlock = Whoever does more of the care decides"
+      },
+      {
+        "id": "ok-say-it-either-way",
+        "text": "Tell me the day you change your mind about children. I am not going to leave over it.",
+        "from": "change-of-mind = I would stay and accept it"
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "notok-reopen-the-number",
+        "text": "Do not treat the number I gave as an opening offer to be negotiated upward once the first one is here.",
+        "from": "children-ceiling = any number, including None"
+      },
+      {
+        "id": "notok-date-before-obstacle",
+        "text": "Do not put a date on a first child before the thing I named as the obstacle has actually moved.",
+        "from": "timing-gate = Money, Somewhere better to live, or Finishing study"
+      },
+      {
+        "id": "notok-donor-small-step",
+        "text": "Do not raise a donor egg or donor sperm with me as though it were a small step from where we are.",
+        "from": "if-not-natural does not include the donor option"
+      },
+      {
+        "id": "notok-keep-sending-clinics",
+        "text": "Do not keep sending me clinics and success rates. I said I would stop rather than keep going.",
+        "from": "if-not-natural = None — I would stop and live without children"
+      },
+      {
+        "id": "notok-assume-i-step-back",
+        "text": "Do not assume I am the one going part time because I earn less. I have not agreed to that.",
+        "from": "who-steps-back = The other parent would, or Neither of us"
+      },
+      {
+        "id": "notok-leave-has-an-end-date",
+        "text": "Do not tell people I am giving up work. The break has an end date and I know what it is.",
+        "from": "time-at-home = About a year, Two or three years, or Until school starts"
+      },
+      {
+        "id": "notok-ask-my-parents-first",
+        "text": "Do not build the week around my parents helping until I have actually asked them.",
+        "from": "childcare = Grandparents or other family"
+      },
+      {
+        "id": "notok-fees-without-me",
+        "text": "Do not commit us to school fees in a conversation I was not in, including with your own family.",
+        "from": "schooling = A school we would pay fees for"
+      },
+      {
+        "id": "notok-school-not-a-compromise",
+        "text": "Do not tell a child the local school was what we could afford. It was what we chose.",
+        "from": "schooling = The local state school"
+      },
+      {
+        "id": "notok-smack",
+        "text": "Do not smack a child of mine, whatever was done to you when you were small.",
+        "from": "discipline ≠ A smack"
+      },
+      {
+        "id": "notok-early-phone",
+        "text": "Do not buy a child a phone before the age we agreed because their friends already have one.",
+        "from": "screens = any fixed age"
+      },
+      {
+        "id": "notok-grandparents-overrule",
+        "text": "Do not let my parents overrule something we decided. Helping with a child is not the same as deciding for one.",
+        "from": "grandparents = Regular help, no say in decisions"
+      },
+      {
+        "id": "notok-quiet-change",
+        "text": "Do not sit on a change of mind about children. I need to hear it the month you know, not the year.",
+        "from": "change-of-mind = I would want to end the relationship, or It depends which way"
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "«Do you want children?» as an opening block",
+        "why": "Already asked, as a coarse fact, by couple-conversations item k1, and it is the one question in this domain that nobody needs a form to answer. Every block here is written to be downstream of a yes or a maybe, and the ones that presuppose a child carry an option that declines the premise instead."
+      },
+      {
+        "idea": "«How many children do you want?» in the couple-conversations wording",
+        "why": "A straight repeat of k2. Replaced by the ceiling — the largest number you would agree to — which is a different number, is the one that actually binds, and passes the alone test because most people have never been asked for it."
+      },
+      {
+        "idea": "«We have not decided» as the honest escape on seven blocks",
+        "why": "The single worst fault in the first draft. House rule 7 says no question may require a partner, and «we» in the escape option quietly reintroduced one: a person answering alone, or one whose partner has never raised the subject, had no true option and would have been pushed onto a false one. Every escape is now first person. The four blocks that name a hypothetical other parent still ask what you would do about them."
+      },
+      {
+        "idea": "«It depends which grandparent» as an option",
+        "why": "True of nearly everybody with more than one living grandparent, so it could not plausibly be rejected, it was not exclusive with the other options in a single-choice block, and it would have collected the reader who has a firm view about one set and a vague one about the other. Fixed by naming whose parents: the block now asks about your own."
+      },
+      {
+        "idea": "«Whichever school is best at the time» as a schooling option",
+        "why": "Nobody picks the worse school, so the option was unrejectable and it absorbed everyone who holds a real leaning and also wants a good school. Replaced by «whichever school we can get into», which is a genuine position about admissions, travel and luck that plenty of people would refuse."
+      },
+      {
+        "idea": "«A mix of these» as a childcare option",
+        "why": "Almost every real arrangement is a mix, so the option collected the answer that carries no information. The prompt now asks who does most of the weekday care, which forces a single answer, and the mixed-arrangement person still answers it truthfully."
+      },
+      {
+        "idea": "A separate block on how far you would go with fertility treatment before stopping",
+        "why": "Strong question, cut for arithmetic. The brief names fourteen subjects and the bank has fourteen blocks, so splitting the branch would have cost child-spacing, which the brief also names. The stop option lives inside if-not-natural as «None — I would stop and live without children»."
+      },
+      {
+        "idea": "«Would you end a pregnancy after a serious diagnosis?»",
+        "why": "The heaviest question in the domain and deliberately absent. It is a medical decision made with information nobody has in advance, any option set reads as a moral ranking of the answers, and a stored answer to it is a liability to the person who gave it rather than a document they can hand to anyone. Named here so its absence is a decision and not an oversight."
+      },
+      {
+        "idea": "A vaccination block",
+        "why": "A real disagreement with real stakes, and there is no option set that does not read as advocacy in one direction or the other. The instrument has no standing to take a side, and a page written to be handed over should not double as an argument."
+      },
+      {
+        "idea": "«How were you disciplined as a child?»",
+        "why": "A fact about the past rather than a stated position, so it belongs to a different kind of instrument. It also invites a disclosure that a form has no way to hold, and the discipline block gets at the same thing by asking what you would do in a specific moment."
+      },
+      {
+        "idea": "«Have the two of you discussed this?» attached to each block",
+        "why": "Requires a partner to answer and duplicates couple-conversations exactly. §7.2 of the design contract splits the two: that instrument records whether a subject has been raised, this one records the position you bring once it has been."
+      },
+      {
+        "idea": "Screen time in hours per day",
+        "why": "An hours-per-day rule is something people state and do not keep, so the answer would be about intentions rather than about a decision. The age a child gets their own phone is a single event with a date on it and can be checked afterwards."
+      },
+      {
+        "idea": "Spacing as a number of years typed in",
+        "why": "Nobody knows this to the year, and a free numeric field would manufacture a precision that the person did not have. Three bands plus «however it happens» plus «no more than one either way» covers the space without inventing anything, and that last option is what stops the block forcing a false answer on the person whose ceiling was none or one."
+      },
+      {
+        "idea": "Circumcision and other infant medical decisions",
+        "why": "Genuinely divisive, and the answer is so heavily determined by faith and country that the block would mostly re-collect faith-formation in a form that reads as an interrogation."
+      },
+      {
+        "idea": "Baby names",
+        "why": "Everyone enjoys the conversation and nobody has ever ended anything over it. Fails the stakes test that every other block passes."
+      },
+      {
+        "idea": "«Who would raise the children if you both died?»",
+        "why": "A real decision that belongs in a will rather than in a stated-position inventory, because the answer is not valid until the named person has agreed to it — and that makes it a question requiring a third party, which this format does not ask."
+      },
+      {
+        "idea": "Playbook lines that fire on any answer to a block",
+        "why": "Six of the first draft's twenty-eight did, which makes them a fixed list rather than a result, against §4.1. Two also failed Barnum outright — «do not sign a childcare contract I have not read» is a sentence nobody would refuse — and one was incoherent for part of its own trigger, since «do not treat the number I gave as an opening offer» means nothing to a reader who answered «I have no number in mind». Every line now names the answers it comes from."
+      },
+      {
+        "idea": "Declaring grounds on schooling and discipline",
+        "why": "Tempting, and rejected on the design contract's own reasoning: grounds becomes legible only when the same closed list is comparable across a whole bank, which is why §1.3 gives it to the faith instrument throughout and to nothing else by default. Two blocks out of thirteen would produce a pattern too sparse to read, and the why free text already carries the reason on every block."
+      }
+    ],
+    "sources": [
+      "https://www.cdc.gov/nchs/nsfg/nsfg_questionnaires.htm",
+      "https://www.ggp-i.org/wp-content/uploads/2021/04/GGS-Questionnaire-3_0_7.pdf",
+      "https://link.springer.com/article/10.1023/B:POPU.0000021074.33415.c1",
+      "https://demographic-research.org/volumes/vol44/33",
+      "https://pubmed.ncbi.nlm.nih.gov/27055181/",
+      "https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility",
+      "https://link.springer.com/article/10.1007/s10433-023-00785-8"
+    ]
+  },
+  "changes": [
+    "PARTNER RULE, the worst fault found. Seven of fourteen blocks used «We have not decided» as their honest escape (who-steps-back, time-at-home, childcare, screens, faith-formation, grandparents, parent-deadlock). That breaches house rule 7 and rule 6 at once: a person answering alone, or one whose partner has never raised the subject, had no true option left and would have been pushed onto a false one. All seven escapes are now first person — «I have not decided» / «I have not thought about it». Recorded in `rejected` so the change is a decision, not a silent edit.",
+    "PARTNER RULE, prompt wording. `parent-deadlock` read «If you two could not agree about a child, what then?» — «you two» presupposes a partner exists. Rewritten to «If the other parent disagreed, what would settle it?» (52ch, 9w), using the hypothetical-other-parent term the bank had already established elsewhere. `sourceNote` now states plainly that all fourteen are answerable alone and why the escapes never say «we».",
+    "BARNUM, grandparents. «It depends which grandparent» is true of nearly everyone with more than one living grandparent, so it could not plausibly be false, and in a single-choice block it was not exclusive with «Regular help, no say» either. Both faults are fixed by naming whose parents: the prompt is now «How much say would your own parents have over a child?» (54ch, 11w), which forces the answer and stays answerable by one person. Added «They would not be there to ask» so the bereaved or estranged reader is not pushed onto a false answer.",
+    "BARNUM, schooling. «Whichever school is best at the time» cannot be rejected by a reasonable person — nobody picks the worse school — and it absorbed every reader who holds a real leaning and also wants a good school, which is the exact failure the block claimed to detect. Replaced with «Whichever school we can get into», a genuine position about admissions, travel and luck that many readers would refuse.",
+    "BARNUM, childcare. «A mix of these» describes almost every real arrangement, so it collected the uninformative answer. Cut. The prompt now asks who does *most* of the weekday care («Who would do most of the weekday care of a small child?», 55ch, 12w), which forces a single answer and which the mixed-arrangement reader can still answer truthfully. Block is now five options, inside the three-to-six rule.",
+    "PARTITION, schooling. «A school with a religious character» and «A fee-paying school» overlapped — many faith schools charge fees — so a single-choice block had two true answers for the same reader. The set is now sorted by what the answer costs and is mutually exclusive: local state / state school chosen for its faith / a school we would pay fees for / home education / whichever admits us / I do not know.",
+    "PARTITION, who-steps-back. «I would» and «Whichever of us earns less» are both true for a lower-earning reader. Reworded to «I would, whatever we each earn» and «Whoever earns less at the time», which makes the block record the thing its own `tells` claimed: whether the interruption is pinned to a person or to a rule that moves when the salaries do.",
+    "PARTITION, child-spacing. No option was honest for the reader whose ceiling was «None» or «One» — «However it happens» and «I have not thought about it» were both false for them. Added «No more than one child either way».",
+    "PARTITION, time-at-home. Anyone answering «Neither of us» to who-steps-back had no honest length. The shortest band is now «A few weeks or less», which covers statutory leave and no real break, and the prompt is neutral about who: «How long would a break from work last after a birth?» (52ch, 11w). Still six options.",
+    "PARTITION, parent-deadlock. «We keep talking until one of us moves» and «Nothing changes until we both agree» are the same rule described twice — status quo holds. Replaced the first with «We set a date and decide by then», a genuinely different rule.",
+    "PARTITION, screens. «No fixed age — when they seem ready» and «We have not decided» collapsed into each other. Now «No age set — I would decide on the day» (a rule) and «I have not thought about it» (the escape), which are distinct answers.",
+    "FORCED FALSE ANSWER, if-not-natural. `max: 3` over four real routes meant a reader open to treatment, donor, adoption and fostering had to drop one. Raised to 4. «None of these — I would let it go» reworded to «None — I would stop and live without children» so a reader who ticks it alongside a route can see the combination is incoherent; the schema has no exclusive-option flag and this is the wording-level fix.",
+    "SINGLE-ANSWER FRAMING, timing-gate. Most people face two of money, housing and study, so a single-choice block was under-specified. Added «first» to the prompt («What would have to change first before you had a child?», 55ch, 11w) and said why in `tells`.",
+    "AMBIGUOUS PROMPT, change-of-mind. «If the other parent changed their mind, what then?» never said about what, and the runner pages by group so the section note may be off screen. Now «What if a partner changed their mind about children?» (52ch, 9w).",
+    "PLAYBOOK, §4.1 violation. Six lines fired on «any answer», which makes them a fixed list rather than something derived from the result. All are now conditional on named options. Two were cut outright as Barnum: «do not sign a childcare contract I have not read» (nobody would refuse it) and the unconditional half of «do not tell me to relax». One had an incoherent trigger — «do not treat the number I gave as an opening offer» means nothing to a reader who answered «I have no number in mind» — now scoped to any actual number.",
+    "PLAYBOOK, replacements so the count stays 14 and 14. New: `notok-ask-my-parents-first` (childcare = family — the unpriced assumption the evidence note flags, now handable), `notok-school-not-a-compromise` (schooling = state), `notok-leave-has-an-end-date` (time-at-home = a year or longer, so that block yields a line at all), `ok-say-it-either-way` (change-of-mind = stay and accept, which is the answer a partner is least able to guess). Dropped `notok-extend-my-leave` as vague — «agreeing to something on my behalf» is not a handable instruction. `notok-fees-without-me` narrowed to the fee-paying answer, since the state-school reader now has a line of their own. `notok-baptism-without-me` scoped to faith-formation ≠ «However the other parent wants», because the deferring reader would genuinely reject it.",
+    "PLAYBOOK, wording collision. `ok-stop-me` said «raise a hand to a child» while the discipline block offers «Raise my voice» as a separate option, so a reader who chose raising their voice got a line that appeared to forbid it. Now «Stop me if I ever smack a child.»",
+    "ESTIMATION CREEP in `tells`, rule 4. Three fields asserted things the block does not record or forecast behaviour from a stated position: childcare claimed to «expose whether the plan depends on relatives who have never been asked» (never asked), schooling predicted who «will move house or find fees» (a behavioural forecast), who-steps-back claimed a rule «neither of them has yet checked against real salaries». All three rewritten to state only what is recorded. Grandparents `tells` rewritten for the new prompt.",
+    "PROVENANCE, construct name. «Stated family-formation and parenting intentions» reintroduced the frame the `sourceNote` spends a paragraph disavowing — an intention is a forecast and this instrument forecasts nothing. Now «Stated positions on family formation and raising children», with the reasoning added to `constructNote`.",
+    "SOURCES, licence posture. `sources` listed prepare-enrich.com/the-assessment and parinc.com/products/PAM — the product pages of two instruments the same file lists under `avoided`. Citing a copyrighted commercial instrument as a source implies it was consulted for items, which is the opposite of this repo's published position. Both removed; `sourceNote` now says explicitly that they are named in `avoided` rather than `sources` because nothing here came from them.",
+    "LICENCE, no breach found and I looked for one. Checked every prompt and option against PREPARE/ENRICH and FOCCUS (agree-disagree statements about agreement reached, e.g. «we have agreed on how to discipline our children» — nothing here is that shape), the Alabama Parenting Questionnaire and PSDQ (frequency ratings of past discipline; `discipline` asks a forced choice about one future moment), the Parenting Alliance Measure (partner support, untouched), FertiQoL (quality of life, untouched), and NSFG/GGS (federal work product and openly published — permitted anyway, and `children-ceiling` asks for a maximum, which neither survey asks). No prompt or option tracks a copyrighted item.",
+    "READABILITY, measured not estimated. All fourteen English prompts counted: longest is children-ceiling at 58 characters and 11 words; every prompt is under 80 characters, under 14 words, and free of «, and » / «, but » / «; ». I also drafted and counted German and Polish renderings of all fourteen — worst case German 58 characters (change-of-mind), worst case Polish 53 (grandparents), all inside the gate with no forbidden joiner. Nothing needed shortening on length grounds; the prompt rewrites above were for meaning, and each stayed inside budget.",
+    "COUNTS PRESERVED. Fourteen blocks, distributed 4 / 3 / 5 / 2, which is what the four section notes claim («Five decisions», «Two questions»). Fourteen ok lines and fourteen not-ok lines, at the top of the eight-to-fourteen target in §4.1. Every block still declares `grounds: false`, correctly, and the `rejected` entry defending that against §1.3 is kept verbatim.",
+    "MULTI ESCAPES — `if-not-natural` is this bank's only multi, and the wording-level fix recorded in the FORCED FALSE ANSWER entry now has a mechanism behind it. `exclusive: [\"stop\", \"unsure\"]`. «None — I would stop and live without children» was reworded so a reader could *see* that ticking it beside a route was incoherent; it is now the control's job rather than the reader's. «I do not know yet» is marked on the same ground the other banks mark «I have not worked that out»: a reader who can name a route they are open to has an answer, and holding the floor answer beside it records both a stated openness and the absence of one. The four real routes — treatment, donor, adoption, fostering — stay non-exclusive, so `max: 4` still lets somebody open to all of them say so, and the block remains a multi.",
+    "CUT, faith-formation — 2026-08-27 inventory decisions §1.2. Deleted as a duplicate of `faith.children-taught`: both are single-choice blocks about a child's religious upbringing and the ladders are the same one in different words («practising» ≈ «raised-in-it», «exposedThenChoose» ≈ «taught-then-choose», «none» ≈ «none-unless-asked», «undecided» ≈ «undecided»). `faith.children-taught` survives because it is the one of the two that declares `grounds`, and a position on a child's upbringing without what it rests on is the half of the answer that starts the argument. `ok-take-them-along` and `notok-baptism-without-me` fired from this block and nothing else; both moved to `faith`, re-keyed on `children-taught`, so the cut relocates two lines rather than losing them. Not backfilled — a bank critiqued end to end should lose a block rather than gain an uncritiqued one. `schooling` stays with its `faithSchool` option: where a child is educated is a different decision from what they are taught to believe, and plenty of people pick a faith school for a child they are not raising in a faith.",
+    "COUNTS AFTER THE CUT. Thirteen blocks, distributed 4 / 3 / 4 / 2, and thirteen playbook lines a side. The `raising` section note said «Five decisions» and now says four; the `sourceNote` said «the fourteen decisions downstream of that» and now says thirteen, and «the four that name a hypothetical other parent» is three, faith-formation having been one of the four. The historical entries above are left as written — they record what was true when they were made.",
+    "RENAMES, §2. `deadlock` → `parent-deadlock`, because `before-marriage` had its own `deadlock` (renamed there to `final-say`) asking a different question: whose vote settles any big decision, against what settles a decision about a child. Both halves were renamed rather than one, so neither surviving id reads as the other instrument's. `spacing` → `child-spacing`, because `study-practice` uses `spacing` for spaced practice. Section `settling` → `disagreement`, because `before-marriage` uses `settling` for where you settle geographically and the collision is a pun. Applied to the block ids, the `section` field on `parent-deadlock` and `change-of-mind`, the playbook `from` fields, and every entry in `rejected` and in this list that names them. The `plan` section note keeps the ordinary English word «spacing» and the `rejected` idea title «Spacing as a number of years typed in» keeps it too; neither is an id reference.",
+    "SOURCENOTE, §1.5. The sentence contrasting this bank with the conversations instrument is replaced by the decision's routing sentence, which names Conversations first and Before marrying second, and which carries the corrected count: «Take Conversations first to find out whether children have been raised as a subject at all, and Before marrying if a wedding is in view; this is the thirteen decisions downstream of that, and it is what you bring to the conversation rather than what starts it.» Nothing else in the note changed except the two counts."
+  ],
+  "critiqued": true
+}

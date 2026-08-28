@@ -114,6 +114,20 @@ export type Settings = { locale: Locale | null; adultOk: boolean; theme: "dark" 
 export type Draft = { answers: Answers; order: string[]; seed: number; page: number; total: number; updatedAt?: string };
 export type Sharing = Record<string, Audience>;
 
+/**
+ * What the reader decided to *do* about a result, kept beside the run.
+ *
+ * `ok` and `notOk` hold the ids of suggested lines they ticked; `ownOk` and
+ * `ownNotOk` hold the text of lines they wrote. Ids for ours, text for theirs
+ * — see `core/playbook.ts` for why that asymmetry is the whole design.
+ *
+ * A separate key rather than a field on the run, because these are written at a
+ * different time by a different act: a run is answers submitted once, a
+ * practice is a checkbox ticked on a Tuesday. Folding them together would mean
+ * every tick rewrites the record of what somebody answered.
+ */
+export type Practice = { ok: string[]; notOk: string[]; ownOk: string[]; ownNotOk: string[]; updatedAt?: string };
+
 import type { Locale } from "./types";
 
 export function makeStore(adapter: Adapter) {
@@ -247,6 +261,39 @@ export function makeStore(adapter: Adapter) {
       }
       await adapter.del(`run:${instrumentId}`);
       await adapter.del(`draft:${instrumentId}`);
+      // Deleting a result must mean everything derived from it is gone. A set
+      // of notes surviving the result they were written against is a surprise,
+      // and it is the surprise in the wrong direction: the reader asked for the
+      // thing to be forgotten and half of it stayed.
+      await adapter.del(`practice:${instrumentId}`);
+      announce();
+    },
+
+    /**
+     * The reader's own lines for one instrument.
+     *
+     * Returns a filled shape rather than null so no call site has to remember
+     * four empty arrays. An absent key and a practice with nothing in it are
+     * the same thing to every reader of this, and making them different would
+     * only produce a null check somebody forgets.
+     */
+    async practice(instrumentId: string): Promise<Practice> {
+      return {
+        ok: [],
+        notOk: [],
+        ownOk: [],
+        ownNotOk: [],
+        ...((await adapter.get<Partial<Practice>>(`practice:${instrumentId}`)) ?? {}),
+      };
+    },
+    async savePractice(instrumentId: string, patch: Partial<Practice>): Promise<Practice> {
+      const next = { ...(await store.practice(instrumentId)), ...patch, updatedAt: new Date().toISOString() };
+      await adapter.set(`practice:${instrumentId}`, next);
+      announce();
+      return next;
+    },
+    async clearPractice(instrumentId: string) {
+      await adapter.del(`practice:${instrumentId}`);
       announce();
     },
 

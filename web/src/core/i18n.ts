@@ -110,6 +110,25 @@ export function format(pattern: string, vars: Vars = {}, locale = "en", hash: nu
   return out;
 }
 
+/**
+ * One instrument's translator, plus the question `t` cannot answer.
+ *
+ * `t` renders a key it cannot find as the key itself and warns, which is the
+ * right behaviour for copy the page is committed to showing — a visible
+ * "band.high" is a bug report the reader files for you. It is the wrong
+ * behaviour for copy the page is deciding *whether* to show, and the runner's
+ * page-section header is exactly that: an optional caption a bank only gets if
+ * it wrote one. Asking first is what keeps a key off the screen and a spurious
+ * warning out of the console.
+ *
+ * `defines` deliberately does not mean what `I18n.has` means. `has` asks the
+ * active locale alone, because its job is to find gaps. This asks the fallback
+ * too, because its job is to predict `t` — and `t` renders the English string
+ * for a key a translator has not reached yet. A caption that vanished in Polish
+ * and reappeared in English would be a worse answer than the English caption.
+ */
+export type ScopedI18n = { t: T; defines(key: string): boolean; locale: Locale };
+
 export type I18n = {
   t: T;
   /**
@@ -121,7 +140,7 @@ export type I18n = {
    */
   raw(key: string): string;
   locale: Locale;
-  scope(prefix: string): { t: T; locale: Locale };
+  scope(prefix: string): ScopedI18n;
   has(key: string): boolean;
   keys(): string[];
   gaps(): string[];
@@ -178,8 +197,15 @@ export function createI18n({
      * define falls through to the shared table, which is how `band.high` is
      * written once and used by every questionnaire.
      */
-    scope(prefix: string) {
-      return { t: ((key, vars) => t(defines(`${prefix}.${key}`) ? `${prefix}.${key}` : key, vars)) as T, locale };
+    scope(prefix: string): ScopedI18n {
+      return {
+        t: ((key, vars) => t(defines(`${prefix}.${key}`) ? `${prefix}.${key}` : key, vars)) as T,
+        // The same two lookups the `t` above makes, in the same order, asked
+        // rather than performed. Written as one expression with it so the two
+        // cannot answer differently.
+        defines: (key: string) => defines(`${prefix}.${key}`) || defines(key),
+        locale,
+      };
     },
     has: (key: string) => Object.hasOwn(messages, key),
     keys: () => Object.keys(messages),

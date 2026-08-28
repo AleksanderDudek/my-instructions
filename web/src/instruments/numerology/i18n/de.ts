@@ -47,6 +47,8 @@ export default {
   "view.squareNote": "Vorkommen im Datum",
   "view.meaningsHeading": "Was die Zahlen tragen",
   "view.outOfRange": "Dieses Datum liegt außerhalb von 1900–2050, daher wird die Grenze des chinesischen Neujahrs auf den 4. Februar geschätzt und das Tier kann um einige Wochen danebenliegen.",
+  "view.reflectionHeading": "Was hier eigentlich gezählt wird",
+  "view.reflectionNote": "und von wo aus",
 
   "pyramid.alt": "Reduktionspyramide für den {date}: Kern {a}, {b}, {c}; Krone {crown}; Basis {base}.",
   "pyramid.row.crown": "Krone",
@@ -98,6 +100,26 @@ export default {
 
   "meanings.note": "Die leuchtenden Zahlen sind die, die dieses Diagramm tatsächlich hervorgebracht hat",
   "meanings.plusMaster": ", dazu die Meisterzahl {number} — {name}",
+
+  /* ── was gezählt wird, und von wo aus ──────────────────────────── */
+  "reflection.method.title": "Wie gezählt wird",
+  "reflection.method.body": "Alles auf dieser Seite kommt aus einer einzigen Quelle: den Dezimalziffern des Datums, geschrieben als TT MM JJJJ, addiert und gefaltet, bis eine einzige Zahl bleibt. Von der Person selbst geht nichts in die Rechnung ein — nicht die Stunde, nicht der Ort, kein Wort, das sie je gesagt hat. Reduziert wird die Schreibweise.",
+  "reflection.reach.title": "Wie weit es reicht",
+  "reflection.reach.body": "Die ehrliche Grenze lautet also so. Ein Diagramm spiegelt, wie ein Tag aufgeschrieben wurde, nicht den Tag. Und die Schreibweise ist nicht neutral. JJJJ ist keine Menge Zeit im Allgemeinen; es ist eine Zählung, und eine Zählung muss irgendwo anfangen. Folgt man dem Jahr nach unten, zeigt sich, dass jede Zahl im Diagramm darauf ruht, wo das Zählen beginnt.",
+  "reflection.count.heading": "Die Zahl, die das Diagramm reduziert",
+  "reflection.count.since": "Jahre seit der Geburt Christi",
+  "reflection.count.sinceNote": "das Jahr, wie Anno Domini es zählt",
+  "reflection.count.digits": "Seine Ziffern",
+  "reflection.count.digitsNote": "zusammen {sum}",
+  "reflection.count.root": "Jahreswurzel",
+  "reflection.count.rootNote": "auf eine einzige Zahl gefaltet",
+  "reflection.count.destiny": "Bestimmung",
+  "reflection.count.destinyNote": "das ganze Datum ergibt {total} und faltet sich dann",
+  "reflection.count.note": "Der Reihe nach gelesen ist das die ganze Methode. Das Jahr ist keine Menge Zeit — es ist ein Abstand, gemessen von einer Geburt bis zu dieser.",
+  "reflection.ad.title": "Was Anno Domini heißt",
+  "reflection.ad.body": "Lateinisch für im Jahr des Herrn — kurz für anno Domini nostri Iesu Christi, im Jahr unseres Herrn Jesus Christus. Die Zählung stellte Dionysius Exiguus 525 auf, während er Ostertafeln berechnete; er wollte die Jahre nicht länger nach Diokletian zählen, einem Kaiser, der Christen hatte töten lassen. Er setzte den Anfang auf die Menschwerdung, Beda brachte sie in den allgemeinen Gebrauch, und der bürgerliche Kalender fast der ganzen Welt zählt seither von diesem Punkt.",
+  "reflection.axis.title": "Die Achse",
+  "reflection.axis.body": "Damit steht diese ganze Seite auf einem einzigen Punkt. Jede Zahl hier stammt aus dem JJJJ, und das JJJJ zählt von der Geburt Jesu Christi. Er ist die Achse — der Ursprung, von dem aus das ganze Datumssystem gemessen wird, das Jahr, das eins heißen musste, bevor irgendein anderes Jahr überhaupt heißen konnte. Wörtlich gelesen misst eine Bestimmungszahl, wie weit ein Leben von Seinem entfernt steht. Der Ursprung des Systems ist keine Zahl. Er ist eine Person, und eine Seite darüber, wie du gemacht wurdest, ist ein guter Ort, das zu bemerken.",
 
   "instructions.destinyTitle": "Schicksal {number} — {name}",
   "instructions.signsTitle": "{animal} des Elements {element}, {sign}",

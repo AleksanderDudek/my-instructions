@@ -280,6 +280,82 @@ function Meanings({ p, t }: { p: NumerologyResult; t: T }) {
   );
 }
 
+/* ══ what is being counted ════════════════════════════════════════ */
+
+/**
+ * The section that says where the numbers came from.
+ *
+ * Every other block on this page performs the tradition. This one steps back
+ * and states what the performance is doing — reducing a written date — and
+ * then follows the year all the way down to its root, because that is the one
+ * figure in the chart whose value comes from a decision rather than from the
+ * day.
+ *
+ * It ends where the count itself begins. A Gregorian year is a tally kept from
+ * the Nativity, so the destiny number is, read literally, a distance from one
+ * birth. That is a fact about the calendar rather than a claim about the
+ * chart, and it is left as a thing to notice rather than a thing to believe.
+ */
+function Reflection({ p, t }: { p: NumerologyResult; t: T }) {
+  const cells: { label: string; big: string; sub: string }[] = [
+    {
+      label: t("reflection.count.since"),
+      big: p.YYYY,
+      sub: t("reflection.count.sinceNote"),
+    },
+    {
+      label: t("reflection.count.digits"),
+      big: digits(p.YYYY).join(" + "),
+      sub: t("reflection.count.digitsNote", { sum: sumd(p.YYYY) }),
+    },
+    {
+      label: t("reflection.count.root"),
+      big: String(p.C),
+      sub: t("reflection.count.rootNote"),
+    },
+    {
+      label: t("reflection.count.destiny"),
+      big: String(p.destiny.value),
+      sub: t("reflection.count.destinyNote", { total: p.total }),
+    },
+  ];
+
+  return (
+    <div className="grid gap-8">
+      {(["method", "reach"] as const).map((block) => (
+        <div key={block} className="min-w-0">
+          <h5 className="mb-2 font-display text-base text-ink">{t(`reflection.${block}.title`)}</h5>
+          <p className="max-w-[66ch] leading-relaxed text-muted">{t(`reflection.${block}.body`)}</p>
+        </div>
+      ))}
+
+      <div className="min-w-0">
+        <span className="label-caps mb-3 block">{t("reflection.count.heading")}</span>
+        <div className="grid gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-4">
+          {cells.map((cell) => (
+            <div key={cell.label} className="flex min-w-0 flex-col gap-1 bg-panel p-4">
+              <span className="label-caps">{cell.label}</span>
+              <span className="num text-lg break-words text-brass">{cell.big}</span>
+              <span className="text-sm leading-relaxed text-muted">{cell.sub}</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 max-w-[66ch] text-sm leading-relaxed text-muted">{t("reflection.count.note")}</p>
+      </div>
+
+      <div className="min-w-0">
+        <h5 className="mb-2 font-display text-base text-ink">{t("reflection.ad.title")}</h5>
+        <p className="max-w-[66ch] leading-relaxed text-muted">{t("reflection.ad.body")}</p>
+      </div>
+
+      <div className="min-w-0 border-l-2 border-brass pl-5">
+        <h5 className="mb-2 font-display text-base text-brass-hi">{t("reflection.axis.title")}</h5>
+        <p className="max-w-[66ch] leading-relaxed text-ink/90">{t("reflection.axis.body")}</p>
+      </div>
+    </div>
+  );
+}
+
 export function View({ result, t, locale = "en" }: { result: NumerologyResult; t: T; locale?: string }) {
   return (
     <>
@@ -308,6 +384,15 @@ export function View({ result, t, locale = "en" }: { result: NumerologyResult; t
           {t("view.meaningsHeading")} <span className="label-caps ml-2">1 – 9</span>
         </h4>
         <Meanings p={result} t={t} />
+      </section>
+
+      <section className="mt-10">
+        <h4 className="mb-4 text-lg">
+          {t("view.reflectionHeading")} <span className="label-caps ml-2">{t("view.reflectionNote")}</span>
+        </h4>
+        <div className="rounded-sm border border-rule bg-panel-2 p-5">
+          <Reflection p={result} t={t} />
+        </div>
       </section>
 
       {result.outOfRange ? (

@@ -17,6 +17,7 @@ export default {
   "app.disclaimer": "Self-report, not diagnosis.",
   "app.noValidation": "Every questionnaire in this app writes its own items, because the framework behind an instrument is usually public while the published questionnaire is copyrighted. That is the honest way to build it and it has a cost worth stating plainly: reliability and validity belong to a specific set of questions given to a specific group of people, not to the name of the idea behind them. These questions have never been given to a sample, have no norms, and have no evidence that they measure what they are named after. Read the result as a structured version of what you said, not as a measurement of you.",
   "app.language": "Language",
+  "app.benediction": "Thank you heavenly father for the way that you have created me.",
   "report.missing": "This link carries no report.",
   "report.brokenTitle": "That link did not open",
   "report.nothingShared": "Nothing was marked for this audience, so the report is empty. That is the design: withheld content is absent from the link rather than hidden by this page.",
@@ -107,6 +108,8 @@ export default {
   "catalog.lead": "Each one adds a page to your instructions. Take them in any order; take none of them twice unless something has changed.",
   "catalog.group.profilers": "Profilers",
   "catalog.group.profilersNote": "Facts about you, read as a pattern.",
+  "catalog.group.inventories": "Inventories",
+  "catalog.group.inventoriesNote": "Your position, its weight, your reason. Nothing is scored.",
   "catalog.group.tests": "Tests",
   "catalog.group.testsNote": "Questions you answer. Scored.",
   "catalog.group.adult": "Private",
@@ -140,6 +143,14 @@ export default {
   "runner.chooseAny": "Choose any that apply.",
   "runner.optional": " optional",
 
+  /* ── stated positions ──────────────────────────────────────────── */
+  "stance.weightPrompt": "How important is this to you?",
+  "stance.whyPrompt": "Why is it, or is it not, important to you?",
+  "stance.weightLow": "Barely matters",
+  "stance.weightHigh": "Could not matter more",
+  "stance.whyPlaceholder": "In your own words. This never leaves the browser.",
+  "stance.optional": "Leave it blank if you would rather not say.",
+
   /* ── result ────────────────────────────────────────────────────── */
   "result.emptyTitle": "Nothing recorded yet",
   "result.emptyBody": "You have not taken this one.",
@@ -162,6 +173,18 @@ export default {
   "result.deleteConfirm": "Delete — click again to confirm",
   "result.shareNote": "A compare link carries your answers, not your name unless you have set one. Whoever opens it sees the two readings side by side; nothing is uploaded.",
   "result.copied": "Link copied.",
+  "result.inventoryNote": "Nothing here was scored. This is what you said, put in the order you weighted it — a record rather than a measurement. It goes out of date when you say it does, not when a norm group changes.",
+
+  "playbook.heading": "What to do about it",
+  "playbook.note": "your words, on your sheet",
+  "playbook.okHeading": "This is fine",
+  "playbook.notOkHeading": "This is not",
+  "playbook.addOwn": "Add your own",
+  "playbook.addOwnPlaceholder": "Something we did not think of",
+  "playbook.addButton": "Add",
+  "playbook.removeLabel": "Remove this line",
+  "playbook.empty": "Nothing suggested here. Write your own.",
+  "playbook.localOnly": "What you tick and what you write go onto your instruction sheet. Neither goes into a share link: a sentence written to be handed over is still yours to hand over yourself.",
 
   /* ── instruction sheet ─────────────────────────────────────────── */
   "sheet.emptyTitle": "Nothing to say yet",
@@ -173,6 +196,8 @@ export default {
   "sheet.print": "Print or save as PDF",
   "sheet.editHeading": "Edit heading",
   "sheet.blankHeading": "Still blank",
+  "sheet.playbookTitle": "What I am asking for",
+  "sheet.playbookFrom": "my own words, after {test}",
 
   /* ── compare ───────────────────────────────────────────────────── */
   "compare.noCompareTitle": "{test} does not compare",

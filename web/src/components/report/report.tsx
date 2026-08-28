@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/components/ui/link";
 import { createI18n, type Messages } from "@/core/i18n";
-import { decodeReport, type DecodedReport } from "@/core/report";
+import { decodeReport, tokenFrom, REPORT_KEY, type DecodedReport } from "@/core/report";
 import { loadInstrumentModule } from "@/instruments/lazy";
 import type { InstrumentModule } from "@/core/registry";
 import type { Locale } from "@/core/types";
@@ -21,6 +21,14 @@ import { Plate, PlateHead } from "@/components/ui/primitives";
  * Nothing here reaches the store. A received report is not the reader's own
  * data and must never be filed as if it were.
  */
+/** The address bar, as an external store. Strings, so the snapshot is stable. */
+const subscribeToHash = (onChange: () => void) => {
+  window.addEventListener("hashchange", onChange);
+  return () => window.removeEventListener("hashchange", onChange);
+};
+const readHash = () => window.location.hash;
+const readNothing = () => "";
+
 export function Report({
   locale,
   messages,
@@ -32,8 +40,39 @@ export function Report({
   fallbackMessages: Messages;
   ids: string[];
 }) {
+  /**
+   * The fragment is read as an external store rather than into state.
+   *
+   * It is one: the address bar is owned by the browser, changes without this
+   * component doing anything, and has no server-side value at all. Copying it
+   * into state through an effect would be a render, then a second render, then
+   * — the shape lint calls a cascading render, and it is right to. The empty
+   * server snapshot is not a lie either: on the server there is genuinely no
+   * fragment, because a fragment is never sent to one, which is the whole
+   * reason the token lives there.
+   *
+   * `useSearchParams` is still read, but only so the legacy `?d=` form keeps
+   * opening. See `tokenFrom` in core/report.ts for why one character of URL is
+   * a privacy boundary.
+   */
   const search = useSearchParams();
-  const token = search.get("d");
+  const hash = useSyncExternalStore(subscribeToHash, readHash, readNothing);
+  const { token, fromQuery } = tokenFrom(hash, search.toString());
+
+  useEffect(() => {
+    /**
+     * Get a legacy token out of the address bar once it has been read.
+     *
+     * It is already in this browser's history and it has already reached the
+     * host, so this recovers nothing that was lost on the way in. What it stops
+     * is the next step: a URL sitting in the bar is the one that gets copied,
+     * screenshotted, restored by session sync and sent as a referrer. Moving it
+     * to the fragment costs nothing and makes onward travel silent.
+     */
+    if (fromQuery && token) {
+      window.history.replaceState(null, "", `${window.location.pathname}#${REPORT_KEY}=${token}`);
+    }
+  }, [fromQuery, token]);
   const i18n = useMemo(() => createI18n({ locale, messages, fallbackMessages }), [locale, messages, fallbackMessages]);
   const { t } = i18n;
 

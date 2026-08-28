@@ -130,6 +130,7 @@ export type Practice = { ok: string[]; notOk: string[]; ownOk: string[]; ownNotO
 
 import type { Locale } from "./types";
 import { validateProfile, type ShareProfile } from "./profiles";
+import { validateFit, type Fit } from "./fits";
 
 export function makeStore(adapter: Adapter) {
   const subs = new Set<() => void>();
@@ -246,6 +247,30 @@ export function makeStore(adapter: Adapter) {
     },
     async deleteShareProfile(id: string) {
       await adapter.del(`profile:${id}`);
+      announce();
+    },
+
+    /**
+     * Dates kept for the compatibility calculator.
+     *
+     * One key each, like profiles and for the same reason: deleting one is a
+     * deletion rather than a rewrite of a list that also holds the others. Here
+     * the stakes are a little different — each record is a third party's date of
+     * birth, so "delete this one" has to mean it, and has to not depend on the
+     * other nine surviving a write.
+     */
+    async fits(): Promise<Fit[]> {
+      return (await adapter.list<Fit>("fit:")).map(([, v]) => v);
+    },
+    async saveFit(fit: Fit): Promise<Fit> {
+      const next = { ...fit, updatedAt: new Date().toISOString() };
+      validateFit(next);
+      await adapter.set(`fit:${next.id}`, next);
+      announce();
+      return next;
+    },
+    async deleteFit(id: string) {
+      await adapter.del(`fit:${id}`);
       announce();
     },
 

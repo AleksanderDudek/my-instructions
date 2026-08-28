@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { PAGE_SIZE, byNewest, dateLabel, fold, paginate, search, validateFit, view, type Fit } from "@/core/fits";
+import { PAGE_SIZE, byNewest, dateLabel, fold, isFresh, paginate, search, stampFor, validateFit, view, type Fit } from "@/core/fits";
 
 /**
  * The list behaviour, where the bugs of a list actually live.
@@ -184,4 +184,56 @@ test("the row label is what the search matches", () => {
   const row = fit({ day: 3, month: 7, year: 1966 });
   expect(dateLabel(row)).toBe("3.7.1966");
   expect(search([row], dateLabel(row))).toHaveLength(1);
+});
+
+describe("the stored reading, and what makes it stale", () => {
+  const base = {
+    version: 1,
+    locale: "en",
+    mine: { d: 8, m: 1, y: 1993 },
+    theirs: { day: 3, month: 7, year: 1966 },
+  };
+  const stamp = stampFor(base);
+
+  test("a stored reading is used only while everything it came from is unchanged", () => {
+    expect(isFresh(fit({ cache: { stamp, reading: {}, theirs: {} } }), stamp)).toBe(true);
+  });
+
+  test("a new version of the instrument invalidates it", () => {
+    // The reason storing a derived value needs a stamp at all: correct a
+    // correspondence table and every saved total is a number the rest of the
+    // app no longer agrees with.
+    expect(stampFor({ ...base, version: 2 })).not.toBe(stamp);
+  });
+
+  test("a different language invalidates it", () => {
+    // `match()` renders its notes through `t`, so a cached reading carries
+    // sentences in one language. Four correct numbers under four Polish
+    // sentences shown to a German reader is the failure this prevents.
+    expect(stampFor({ ...base, locale: "de" })).not.toBe(stamp);
+  });
+
+  test("retaking your own chart invalidates every one of them", () => {
+    // The comparison is against the reader's own date. Change it and all of
+    // them are wrong at once — the single worst case, and the easiest to miss
+    // because nothing about the other person changed.
+    expect(stampFor({ ...base, mine: { d: 9, m: 1, y: 1993 } })).not.toBe(stamp);
+  });
+
+  test("correcting the other date invalidates that one", () => {
+    expect(stampFor({ ...base, theirs: { day: 4, month: 7, year: 1966 } })).not.toBe(stamp);
+  });
+
+  test("a record with no stored reading is never fresh", () => {
+    expect(isFresh(fit(), stamp)).toBe(false);
+  });
+
+  test("a stamp from another record does not pass", () => {
+    const other = stampFor({ ...base, theirs: { day: 1, month: 1, year: 2000 } });
+    expect(isFresh(fit({ cache: { stamp: other, reading: {}, theirs: {} } }), stamp)).toBe(false);
+  });
+
+  test("a stored reading does not make a record unstorable", () => {
+    expect(() => validateFit(fit({ cache: { stamp, reading: {}, theirs: {} } }))).not.toThrow();
+  });
 });

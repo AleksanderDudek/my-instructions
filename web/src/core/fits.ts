@@ -23,7 +23,28 @@
  * holding it — and `store.wipe()` removes them with everything else.
  */
 
-export type Fit = {
+/**
+ * A reading kept beside the date it came from.
+ *
+ * Storing a derived value is a decision with one failure mode, and `stamp` is
+ * the whole answer to it. A saved comparison is only trusted while everything
+ * it was derived *from* is unchanged: the version of the instrument that
+ * computed it, the language its sentences are in, the reader's own date, and
+ * the other person's. Any of those moves and the stamp stops matching, so the
+ * reading is recomputed and rewritten rather than shown.
+ *
+ * The language is in there because `match()` renders its notes through `t`, so
+ * a cached reading is not language-free — one computed in Polish and shown to a
+ * German reader would be four correct numbers under four Polish sentences.
+ * That is the failure this field exists to make impossible.
+ */
+export type CachedReading<R = unknown, C = unknown> = {
+  stamp: string;
+  reading: R;
+  theirs: C;
+};
+
+export type Fit<R = unknown, C = unknown> = {
   id: string;
   /** Optional. A date with nobody's name on it is a legitimate thing to keep. */
   name: string;
@@ -32,7 +53,32 @@ export type Fit = {
   year: number;
   createdAt: string;
   updatedAt: string;
+  /** Absent until the reading has been computed once. */
+  cache?: CachedReading<R, C>;
 };
+
+/**
+ * Everything a stored reading depends on, in one string.
+ *
+ * Built here rather than at the call site so that the thing which decides
+ * whether a cache is fresh and the thing which writes it cannot drift apart —
+ * which is the ordinary way a cache starts serving something it should not.
+ */
+export const stampFor = (args: {
+  version: number;
+  locale: string;
+  mine: { d: number; m: number; y: number };
+  theirs: Pick<Fit, "day" | "month" | "year">;
+}): string =>
+  [
+    args.version,
+    args.locale,
+    `${args.mine.d}.${args.mine.m}.${args.mine.y}`,
+    `${args.theirs.day}.${args.theirs.month}.${args.theirs.year}`,
+  ].join("|");
+
+/** Is what was stored still an answer to the question being asked? */
+export const isFresh = (fit: Fit, stamp: string): boolean => fit.cache?.stamp === stamp;
 
 /**
  * Fold case and strip diacritics before comparing.

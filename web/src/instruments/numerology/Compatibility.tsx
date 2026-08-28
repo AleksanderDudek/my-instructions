@@ -2,16 +2,17 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Accordion } from "radix-ui";
+import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Note } from "@/components/result/scorecard";
 import { useStore } from "@/components/shell/store-provider";
 import { granted } from "@/core/entitlements";
-import { dateLabel, view, type Fit } from "@/core/fits";
+import { dateLabel, isFresh, stampFor, view, type Fit } from "@/core/fits";
 import { cn } from "@/lib/cn";
 import type { T } from "@/core/types";
 import { match, profile } from "./compute";
 import { ELEMENTS } from "./data";
-import { validate } from "./spec";
+import { validate, spec } from "./spec";
 import type { NumerologyResult } from "./spec";
 
 /**
@@ -57,8 +58,20 @@ const EMPTY: Draft = { name: "", day: "", month: "", year: "" };
 const newId = () =>
   typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now());
 
+type Reading = ReturnType<typeof match>;
+type Chart = ReturnType<typeof profile>;
+
 export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
   const store = useStore();
+  /**
+   * The language a stored reading was written in.
+   *
+   * `match()` renders its notes through `t`, so a saved comparison is not
+   * language-free. Read from the route rather than threaded through the View's
+   * props, because the route is where the locale actually lives and a prop
+   * would be a second copy of it that could disagree.
+   */
+  const locale = String(useParams()?.locale ?? "en");
   const [fits, setFits] = useState<Fit[] | null>(null);
   const [draft, setDraft] = useState<Draft>(EMPTY);
   const [editing, setEditing] = useState<string | null>(null);
@@ -89,13 +102,48 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
    * screen and for nothing else.
    */
   const readings = useMemo(() => {
-    const out = new Map<string, { theirs: ReturnType<typeof profile>; reading: ReturnType<typeof match> }>();
+    const out = new Map<string, { theirs: Chart; reading: Reading; fresh: boolean; stamp: string }>();
     for (const fit of paged.rows) {
+      const stamp = stampFor({ version: spec.version, locale, mine, theirs: fit });
+      if (isFresh(fit, stamp)) {
+        const kept = fit.cache as { reading: Reading; theirs: Chart };
+        out.set(fit.id, { ...kept, fresh: true, stamp });
+        continue;
+      }
       const theirs = profile(fit.day, fit.month, fit.year, fit.name);
-      out.set(fit.id, { theirs, reading: match(mine, theirs, t) });
+      out.set(fit.id, { theirs, reading: match(mine, theirs, t), fresh: false, stamp });
     }
     return out;
-  }, [paged.rows, mine, t]);
+  }, [paged.rows, mine, t, locale]);
+
+  /**
+   * Write back anything that had to be recomputed.
+   *
+   * After render, never during: a store write inside a render is the impurity
+   * the linter refuses and the cascade React warns about. Only rows whose stamp
+   * did not match are written, so a page of already-fresh readings costs no
+   * writes at all — and a row whose stamp changed is overwritten rather than
+   * accumulating a second copy.
+   */
+  useEffect(() => {
+    const stale = paged.rows.filter((fit) => readings.get(fit.id)?.fresh === false);
+    if (!stale.length) return;
+    let live = true;
+    void (async () => {
+      for (const fit of stale) {
+        const computed = readings.get(fit.id);
+        if (!computed) continue;
+        await store.saveFit({
+          ...fit,
+          cache: { stamp: computed.stamp, reading: computed.reading, theirs: computed.theirs },
+        });
+      }
+      if (live) setFits(await store.fits());
+    })();
+    return () => {
+      live = false;
+    };
+  }, [paged.rows, readings, store]);
 
   if (!granted("numerology.compatibility")) return null;
 
@@ -121,6 +169,10 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
       // jump the row to the top of a list the reader has ordered in their head.
       createdAt: existing?.createdAt ?? now,
       updatedAt: now,
+      // Deliberately not carried over. The stamp would catch a stale reading on
+      // the next render anyway, but keeping one that is known to be wrong for a
+      // single frame is a worse thing to have written down than nothing.
+      cache: undefined,
     });
     await reload();
     setDraft(EMPTY);

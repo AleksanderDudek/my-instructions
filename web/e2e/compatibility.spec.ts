@@ -190,3 +190,62 @@ test("holds three hundred without the page giving up", async ({ page }) => {
   await page.locator("#fit-search").fill("Person 42");
   await expect(rows(page)).toHaveCount(1);
 });
+
+test("the reading is written to storage and read back from it", async ({ page }) => {
+  await takeNumerology(page);
+  await add(page, "Ada", "3", "7", "1966");
+  await expect(rows(page)).toHaveCount(1);
+
+  const stored = async () =>
+    page.evaluate(() => {
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i) ?? "";
+        if (key.startsWith("mi:1:fit:")) return JSON.parse(localStorage.getItem(key) ?? "{}");
+      }
+      return null;
+    });
+
+  // Written on the render that computed it, not on the next visit.
+  await expect.poll(async () => (await stored())?.cache?.stamp ?? null).not.toBeNull();
+  const first = await stored();
+  expect(first.cache.reading.total).toBeGreaterThan(0);
+  expect(first.cache.reading.parts).toHaveLength(4);
+
+  await page.reload();
+  await expect(rows(page)).toHaveCount(1);
+  // Same record, same stamp: a reload reads the stored reading rather than
+  // recomputing and rewriting it.
+  expect((await stored()).cache.stamp).toBe(first.cache.stamp);
+});
+
+test("a stored reading in the wrong language is replaced rather than shown", async ({ page }) => {
+  await takeNumerology(page);
+  await add(page, "Ada", "3", "7", "1966");
+  await expect.poll(async () =>
+    page.evaluate(() => {
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i) ?? "";
+        if (key.startsWith("mi:1:fit:")) return JSON.parse(localStorage.getItem(key) ?? "{}").cache?.stamp ?? null;
+      }
+      return null;
+    }),
+  ).not.toBeNull();
+
+  // Forge a stamp that claims German, with a note nobody would recognise.
+  await page.evaluate(() => {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i) ?? "";
+      if (!key.startsWith("mi:1:fit:")) continue;
+      const row = JSON.parse(localStorage.getItem(key) ?? "{}");
+      row.cache.stamp = row.cache.stamp.replace("|en|", "|de|");
+      row.cache.reading.total = 1;
+      localStorage.setItem(key, JSON.stringify(row));
+    }
+  });
+
+  await page.reload();
+  await expect(rows(page)).toHaveCount(1);
+  // The forged total must not survive: the stamp says German, the page is
+  // English, so it is recomputed.
+  await expect(rows(page).first()).not.toContainText("1 / 100");
+});

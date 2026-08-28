@@ -264,4 +264,7 @@ export default {
   "fit.forget": "Zapomnij tę",
   "fit.privacy": "Nic, co tu wpiszesz, nie jest zapisywane. Cudza data urodzenia nie jest twoja do przechowywania, a to jedyne miejsce w aplikacji, gdzie można ją wpisać — więc zostaje w tej karcie, nie ma jej w żadnym eksporcie ani linku, i znika po zamknięciu strony.",
   "fit.caveat": "Ta suma to działanie arytmetyczne na dwóch datach, wykonane dokładnie tak, jak nakazują tradycje. Nie jest dowodem na nic i nie przewiduje, jak dwoje ludzi się dogada. Czytaj to jako słownik do rozmowy, nie jako ustalenie — i zauważ, że nikogo w tym rachunku nie zapytano o nic na jego własny temat.",
+  "fit.you": "Ty",
+  "fit.row.sign": "Znak zachodni",
+  "fit.row.squares": "Zapalone pola",
 };

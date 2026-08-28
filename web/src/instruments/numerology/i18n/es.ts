@@ -264,4 +264,7 @@ export default {
   "fit.forget": "Olvidar esta",
   "fit.privacy": "Nada de lo que escribas aquí se guarda. La fecha de nacimiento de otra persona no es tuya para guardarla, y este es el único sitio de la aplicación donde puedes introducir una — así que se queda en esta pestaña, no está en ninguna exportación ni enlace, y desaparece al cerrar la página.",
   "fit.caveat": "Este total es aritmética sobre dos fechas, hecha tal como especifican las tradiciones. No es prueba de nada y no predice cómo se llevarán dos personas. Léelo como un vocabulario para una conversación, no como un hallazgo — y fíjate en que a nadie se le ha preguntado nada sobre sí mismo.",
+  "fit.you": "Tú",
+  "fit.row.sign": "Signo occidental",
+  "fit.row.squares": "Casillas encendidas",
 };

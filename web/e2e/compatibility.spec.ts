@@ -37,6 +37,25 @@ test("a date is checked against the reader's own chart, as often as they like", 
   const first = page.locator("[data-compatibility] article").first();
   await expect(first).toContainText("Ada");
   await expect(first).toContainText("/ 100");
+
+  /**
+   * Their chart beside yours, not only the score comparing them.
+   *
+   * The comparison is the part with nothing behind it; the two charts are the
+   * traditions applied to two dates, and a reader who can see both can check
+   * the arithmetic above the number instead of taking the number on faith.
+   */
+  const table = first.locator("table");
+  await expect(table).toBeVisible();
+  await expect(table.getByRole("columnheader", { name: "You" })).toBeVisible();
+  await expect(table.getByRole("columnheader", { name: "Ada" })).toBeVisible();
+  // Four named rows, each carrying a value for each of the two people.
+  await expect(table.getByRole("row")).toHaveCount(5);
+  for (const row of await table.locator("tbody tr").all()) {
+    const cells = await row.locator("td").allInnerTexts();
+    expect(cells).toHaveLength(2);
+    for (const cell of cells) expect(cell.trim().length).toBeGreaterThan(0);
+  }
   // Four parts, each with its own bar and note.
   await expect(first.locator("p").filter({ hasText: "/" }).first()).toBeVisible();
 

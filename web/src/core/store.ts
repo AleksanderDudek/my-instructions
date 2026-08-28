@@ -129,6 +129,7 @@ export type Sharing = Record<string, Audience>;
 export type Practice = { ok: string[]; notOk: string[]; ownOk: string[]; ownNotOk: string[]; updatedAt?: string };
 
 import type { Locale } from "./types";
+import { validateProfile, type ShareProfile } from "./profiles";
 
 export function makeStore(adapter: Adapter) {
   const subs = new Set<() => void>();
@@ -215,6 +216,37 @@ export function makeStore(adapter: Adapter) {
       }
       announce();
       return next;
+    },
+
+    /**
+     * Named selections, one key each.
+     *
+     * One key per profile rather than one key holding them all, for the reason
+     * `adapter.list` exists: deleting a profile has to be a deletion, not a
+     * rewrite of a list that also contains three others. A rewrite loses the
+     * other three if it half-fails, and the thing being deleted here is
+     * somebody withdrawing access from a person they no longer trust — the one
+     * operation in this app that must not half-work.
+     */
+    async shareProfiles(): Promise<ShareProfile[]> {
+      const rows = await adapter.list<ShareProfile>("profile:");
+      return rows.map(([, v]) => v).sort((a, b) => (a.createdAt ?? "").localeCompare(b.createdAt ?? ""));
+    },
+    async shareProfile(id: string): Promise<ShareProfile | null> {
+      return adapter.get<ShareProfile>(`profile:${id}`);
+    },
+    async saveShareProfile(profile: ShareProfile): Promise<ShareProfile> {
+      // Validated on the way in, not on the way out. A malformed profile that
+      // reaches storage is one every later read has to defend against.
+      const next = { ...profile, updatedAt: new Date().toISOString() };
+      validateProfile(next);
+      await adapter.set(`profile:${next.id}`, next);
+      announce();
+      return next;
+    },
+    async deleteShareProfile(id: string) {
+      await adapter.del(`profile:${id}`);
+      announce();
     },
 
     async run<R>(instrumentId: string, slot: string | null = null): Promise<Run<R> | null> {

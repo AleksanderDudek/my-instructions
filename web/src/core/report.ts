@@ -323,8 +323,48 @@ export function decodeReport(
   return { audience: (data.w as Audience) ?? "public", profile, runs };
 }
 
+/**
+ * The token rides in the fragment, and that is not a cosmetic choice.
+ *
+ * A query string is sent to the server on every request. A fragment never
+ * leaves the browser — no server, no proxy, no log, no referrer. For a link
+ * whose whole payload *is* the query string, the difference is the difference
+ * between a private answer and a published one.
+ *
+ * This shipped as `?d=` and the leak it opened is worth naming, because it is
+ * not the obvious one. The obvious one is the host's access log. The real one
+ * is that every messenger worth sending a link through fetches it to draw a
+ * preview card: paste a `?d=` link into WhatsApp, Messenger, Signal, Slack,
+ * Discord or iMessage and that company's crawler requests the URL, token and
+ * all, before the person you sent it to has touched anything. Browser history
+ * sync carries it to a vendor's cloud on the same principle.
+ *
+ * With the payload in the fragment, a crawler fetches a page with nothing in
+ * it, which is exactly what a crawler should get.
+ */
+export const REPORT_KEY = "d";
+
+/**
+ * Read the token from wherever it is, preferring the fragment.
+ *
+ * The query form is still read, because links made before this change are in
+ * other people's messages and breaking them would punish the reader for a
+ * mistake that was ours. `fromQuery` says which form was used, so the page can
+ * get the token out of the address bar afterwards rather than leaving it in
+ * history and in the next outgoing referrer.
+ *
+ * Pure, and takes both strings, so it is testable without a browser.
+ */
+export function tokenFrom(hash: string, query: string): { token: string | null; fromQuery: boolean } {
+  const fragment = new URLSearchParams(hash.replace(/^#/, ""));
+  const fromHash = fragment.get(REPORT_KEY);
+  if (fromHash) return { token: fromHash, fromQuery: false };
+  const fromSearch = new URLSearchParams(query.replace(/^\?/, "")).get(REPORT_KEY);
+  return { token: fromSearch, fromQuery: Boolean(fromSearch) };
+}
+
 /** Absolute URL for one audience's report. */
 export const reportLink = (locale: string, args: EncodeArgs): string => {
   const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-  return `${location.origin}${base}/${locale}/report/?d=${encodeReport(args)}`;
+  return `${location.origin}${base}/${locale}/report/#${REPORT_KEY}=${encodeReport(args)}`;
 };

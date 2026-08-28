@@ -155,12 +155,30 @@ export async function revoke(endpoint: string, id: string, manageToken: string):
   return response.ok || response.status === 404;
 }
 
-/** `…/p/<id>#<key>` — the key in the fragment, where no request carries it. */
+/**
+ * `…/p/#i=<id>&k=<key>` — both halves in the fragment, and for two reasons.
+ *
+ * The practical one: this app is a static export, so there is no server able to
+ * answer `/p/<id>` for an id that did not exist when the site was built. One
+ * page reading its own fragment is the shape that works.
+ *
+ * The better one is that it did not have to be a compromise. With the id in the
+ * path, the host serving the page learns which record is being opened, every
+ * time, in its access log — and a log of "this record was opened from this
+ * address at this hour" is most of what a log of readers would be. Put the id
+ * in the fragment and the only party that learns it is the one that has to: the
+ * service holding the bytes, which cannot read them.
+ */
 export const publishedLink = (base: string, id: string, key: string): string =>
-  `${base.replace(/\/$/, "")}/${encodeURIComponent(id)}#${key}`;
+  `${base.replace(/\/$/, "")}/#i=${encodeURIComponent(id)}&k=${key}`;
 
-/** The key half of a published link, read from a fragment. */
-export const keyFromFragment = (hash: string): string | null => {
-  const key = hash.replace(/^#/, "").trim();
-  return key || null;
-};
+/** The two halves of a published link, read out of a fragment. */
+export function handleFromFragment(hash: string): { id: string; key: string } | null {
+  const parts = new URLSearchParams(hash.replace(/^#/, ""));
+  const id = parts.get("i");
+  const key = parts.get("k");
+  // Half a handle is not a handle: an id with no key fetches bytes nobody can
+  // read, and a key with no id has nothing to open. Both are the same failure
+  // to the reader — a link that does not work — and saying so once is honest.
+  return id && key ? { id, key } : null;
+}

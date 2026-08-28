@@ -333,10 +333,20 @@ async function tokens(page: Page): Promise<{ raw: string; answersFor(id: string)
   const hrefs = await page
     .getByRole("link")
     .evaluateAll((els) => els.map((el) => el.getAttribute("href") ?? ""));
+  /**
+   * The token lives in the fragment, and this asserts it rather than coping.
+   *
+   * It shipped in a query string once, which handed the whole payload to every
+   * link-preview crawler a messenger runs. A test that merely accepted either
+   * form would let it drift back.
+   */
+  const inQuery = hrefs.filter((href) => href.includes("?d="));
+  expect(inQuery, "a share link carried its token in the query string").toEqual([]);
+
   return hrefs
-    .filter((href) => href.includes("?d="))
+    .filter((href) => href.includes("#d="))
     .map((href) => {
-      const token = decodeURIComponent(href.split("?d=")[1] ?? "");
+      const token = decodeURIComponent(href.split("#d=")[1] ?? "");
       const raw = Buffer.from(token.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8");
       const payload = JSON.parse(raw) as { r?: { i: string; a: string }[] };
       return {

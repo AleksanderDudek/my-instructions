@@ -12,6 +12,8 @@ import type { InstrumentModule } from "@/core/registry";
 import { useStore } from "@/components/shell/store-provider";
 import { Plate, PlateHead } from "@/components/ui/primitives";
 import { Button } from "@/components/ui/button";
+import { Profiles } from "./profiles";
+import { PROFILE_COPY_KEYS } from "./profile-copy";
 import { cn } from "@/lib/cn";
 
 /**
@@ -143,6 +145,15 @@ export function Sharing({
     );
   }
 
+  /**
+   * Resolved strings for the profiles island.
+   *
+   * `t` is a function and the island is a client component with its own
+   * concerns; handing it finished strings keeps it from needing a translator,
+   * which is the same shape every other island in this app uses.
+   */
+  const profilesCopy = Object.fromEntries(PROFILE_COPY_KEYS.map((key) => [key, t(key)]));
+
   const registryLike = { get: (id: string) => instruments.get(id) ?? null };
   const linkFor = (audience: Audience) =>
     reportLink(locale, {
@@ -251,9 +262,10 @@ export function Sharing({
                 >
                   {t("sharing.copyLink")}
                 </Button>
-                <Link
-                  href={`/${locale}/report?d=${encodeURIComponent(linkFor(audience).split("d=")[1] ?? "")}`}
-                >
+                {/* The fragment, not a query string. A preview that put the
+                    token back in the path would undo the whole reason it moved
+                    — see `tokenFrom` in core/report.ts. */}
+                <Link href={`/${locale}/report/#d=${linkFor(audience).split("#d=")[1] ?? ""}`}>
                   <Button>{t("sharing.preview")}</Button>
                 </Link>
               </div>
@@ -270,6 +282,15 @@ export function Sharing({
           {t("sharing.expiryNote")}
         </p>
       </Plate>
+      <Profiles
+        locale={locale}
+        copy={profilesCopy}
+        titleOf={Object.fromEntries([...instruments.keys()].map((id) => [id, i18n.scope(id).t("title")]))}
+        runs={runs}
+        instruments={instruments}
+        identity={profile}
+      />
+
       <span className="sr-only">{ids.length}</span>
     </>
   );

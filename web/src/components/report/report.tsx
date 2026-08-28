@@ -34,11 +34,22 @@ export function Report({
   messages,
   fallbackMessages,
   ids,
+  token: given,
 }: {
   locale: Locale;
   messages: Messages;
   fallbackMessages: Messages;
   ids: string[];
+  /**
+   * A token that came from somewhere other than this page's own address.
+   *
+   * The published route decrypts one out of a service and hands it here, so the
+   * two paths share every line of rendering rather than growing a second copy
+   * that drifts. `undefined` means "read the URL"; `null` means "there is
+   * genuinely nothing", which is what a caller says while it is still fetching
+   * and after it has failed.
+   */
+  token?: string | null;
 }) {
   /**
    * The fragment is read as an external store rather than into state.
@@ -57,7 +68,10 @@ export function Report({
    */
   const search = useSearchParams();
   const hash = useSyncExternalStore(subscribeToHash, readHash, readNothing);
-  const { token, fromQuery } = tokenFrom(hash, search.toString());
+  const located = tokenFrom(hash, search.toString());
+  const supplied = given !== undefined;
+  const token = supplied ? given : located.token;
+  const fromQuery = supplied ? false : located.fromQuery;
 
   useEffect(() => {
     /**

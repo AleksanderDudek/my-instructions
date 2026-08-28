@@ -31,9 +31,23 @@ import { INVENTORIES, shapeOf, type Shape } from "./inventories";
 /** What one page of the runner turned out to be. */
 type Seen = { items: string[]; header: string | null };
 
-/** The `data-item` of everything drawn on the page, in document order. */
-const drawn = (page: Page) =>
-  page.locator("[data-item]").evaluateAll((els) => els.map((el) => el.getAttribute("data-item") ?? ""));
+/**
+ * The `data-item` of everything drawn on the page, in document order.
+ *
+ * Waits for the first one before reading. `evaluateAll` does not auto-wait —
+ * it answers with whatever is in the DOM at the instant it is called, and an
+ * empty page is a perfectly good answer to it. The runner is client-only and
+ * shows a loading line before it has read storage, so calling this too early
+ * returns `[]`, which the walker then reports as "a runner page with nothing on
+ * it": a real-looking failure whose cause is the test arriving first.
+ *
+ * It failed roughly one inventory in eight on CI and none locally, because CI
+ * serves the static export over a subpath and everything takes a moment longer.
+ */
+const drawn = async (page: Page) => {
+  await page.locator("[data-item]").first().waitFor({ state: "attached" });
+  return page.locator("[data-item]").evaluateAll((els) => els.map((el) => el.getAttribute("data-item") ?? ""));
+};
 
 /**
  * The section title the page is showing, or null where it draws no header.
@@ -160,7 +174,16 @@ test("every inventory is filed under the inventories", async ({ page }) => {
     // By href, because that is the identity the registry filed; the name is
     // then checked on the card that href found, so a card carrying the wrong
     // words is a different failure from a card in the wrong group.
-    const card = inventories.locator(`a[href$="/tests/${id}"]`);
+    /**
+     * Both spellings, because the two ways this app is served disagree.
+     *
+     * `next start` links to `/en/tests/<id>`; the static export written for
+     * Pages links to `/en/tests/<id>/`. CI serves the export from a subpath and
+     * a developer runs the server, so a selector anchored to one of them passes
+     * locally and fails on the machine that decides whether anything ships —
+     * which is how this suite went green here and red there for five merges.
+     */
+    const card = inventories.locator(`a[href$="/tests/${id}"], a[href$="/tests/${id}/"]`);
     await expect(card, `${id} is not in the inventories plate`).toHaveCount(1);
     await expect(card).toContainText(shape.title);
   }

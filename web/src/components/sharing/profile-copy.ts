@@ -31,6 +31,7 @@ export const PROFILE_COPY_KEYS = [
   "profiles.expiryNever",
   "profiles.expiryDays",
   "profiles.send",
+  "profiles.linkLabel",
   "profiles.copy",
   "profiles.copied",
   "profiles.copyFailed",

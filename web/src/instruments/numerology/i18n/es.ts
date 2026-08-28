@@ -48,6 +48,8 @@ export default {
   "view.squareNote": "apariciones en la fecha",
   "view.meaningsHeading": "Lo que cargan los números",
   "view.outOfRange": "Esta fecha cae fuera de 1900–2050, así que la frontera del Año Nuevo chino se estima en el 4 de febrero y el animal puede estar equivocado por unas semanas.",
+  "view.reflectionHeading": "Qué se está contando en realidad",
+  "view.reflectionNote": "y desde dónde",
 
   "pyramid.alt": "Pirámide de reducción para el {date}: núcleo {a}, {b}, {c}; corona {crown}; base {base}.",
   "pyramid.row.crown": "Corona",
@@ -99,6 +101,26 @@ export default {
 
   "meanings.note": "Los números encendidos son los que esta carta ha producido de verdad",
   "meanings.plusMaster": ", más el maestro {number} — {name}",
+
+  /* ── qué se cuenta y desde dónde ───────────────────────────────── */
+  "reflection.method.title": "Cómo se hace la cuenta",
+  "reflection.method.body": "Todo lo de esta página sale de un solo sitio: los dígitos decimales de la fecha, escrita DD MM AAAA, sumados y plegados hasta que queda una sola cifra. Nada de la persona entra en la aritmética — ni la hora, ni el lugar, ni una sola palabra que haya dicho. Lo que se reduce es la notación.",
+  "reflection.reach.title": "Hasta dónde refleja",
+  "reflection.reach.body": "El límite honesto es este. Una carta refleja la manera en que se escribió un día, no el día. Y esa escritura no es neutral. AAAA no es una cantidad de tiempo en abstracto; es una cuenta, y una cuenta tiene que empezar en algún sitio. Sigue el año hacia abajo y cada cifra de la carta resulta apoyarse en dónde empieza el recuento.",
+  "reflection.count.heading": "El número que la carta reduce",
+  "reflection.count.since": "Años desde la Natividad",
+  "reflection.count.sinceNote": "el año, tal como lo cuenta Anno Domini",
+  "reflection.count.digits": "Sus dígitos",
+  "reflection.count.digitsNote": "que suman {sum}",
+  "reflection.count.root": "Raíz del año",
+  "reflection.count.rootNote": "plegada a una sola cifra",
+  "reflection.count.destiny": "Destino",
+  "reflection.count.destinyNote": "la fecha entera suma {total}, y luego se pliega",
+  "reflection.count.note": "Leído en orden, ese es todo el método. El año no es una cantidad de tiempo: es una distancia, medida desde un nacimiento hasta este.",
+  "reflection.ad.title": "Qué significa Anno Domini",
+  "reflection.ad.body": "Latín para en el año del Señor — abreviatura de anno Domini nostri Iesu Christi, en el año de nuestro Señor Jesucristo. La cuenta la estableció Dionisio el Exiguo en 525, mientras armaba tablas pascuales; se negó a seguir numerando los años a partir de Diocleciano, un emperador que había matado cristianos. Reinició el cómputo en la Encarnación, Beda lo llevó al uso corriente, y el calendario civil de casi todo el mundo cuenta desde ese punto desde entonces.",
+  "reflection.axis.title": "El eje",
+  "reflection.axis.body": "Lo cual apoya toda esta página en un solo punto. Cada cifra de aquí desciende del AAAA, y el AAAA cuenta desde el nacimiento de Jesucristo. Él es el eje — el origen desde el que se mide todo el sistema de fechas, el año que tuvo que llamarse uno antes de que cualquier otro año pudiera llamarse algo. Leído al pie de la letra, un número de destino mide cuánto dista una vida de la Suya. El origen del sistema no es un número. Es una Persona, y una página sobre cómo fuiste hecho es un buen sitio para notarlo.",
 
   "instructions.destinyTitle": "Destino {number} — {name}",
   "instructions.signsTitle": "{animal} de {element}, {sign}",

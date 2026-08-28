@@ -1,0 +1,843 @@
+{
+  "bank": {
+    "id": "communication-style",
+    "sections": [
+      {
+        "id": "reaching",
+        "title": "Getting hold of me",
+        "note": "The mechanics of contact: how a conversation opens, whether it can be interrupted, and what to do when it stops. None of it is about what you say. All of it is about how you arrive."
+      },
+      {
+        "id": "hard",
+        "title": "When something is wrong",
+        "note": "The order bad news should arrive in, how finished a problem has to be before you want to hear about it, and what an apology has to contain before it counts."
+      },
+      {
+        "id": "friction",
+        "title": "When we are at odds",
+        "note": "Being corrected, being told someone is angry with you, and what it takes for you to let an argument go. Three things usually settled in the moment by whoever moves first."
+      },
+      {
+        "id": "reading",
+        "title": "Reading me",
+        "note": "What your silence means, how you want to be asked, and where praise has to land. Three blanks the other person has to fill in for themselves if you have not said."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "small-talk",
+        "kind": "choice",
+        "prompt": "How much small talk before someone gets to the point?",
+        "section": "reaching",
+        "tells": "Whether a preamble reads to you as courtesy or as delay. Two people can both be being polite and still disagree about this one.",
+        "options": [
+          {
+            "value": "none",
+            "label": "Straight to the point, no preamble"
+          },
+          {
+            "value": "aLine",
+            "label": "A line of greeting, then the point"
+          },
+          {
+            "value": "fewMinutes",
+            "label": "A few minutes of ordinary talk first"
+          },
+          {
+            "value": "depends",
+            "label": "It depends who it is"
+          }
+        ]
+      },
+      {
+        "id": "interrupting",
+        "kind": "choice",
+        "prompt": "When may someone interrupt you mid-sentence?",
+        "section": "reaching",
+        "tells": "Whether being cut off costs you the thread or saves you three minutes. The two look identical from outside.",
+        "options": [
+          {
+            "value": "anyTime",
+            "label": "Any time — I do not lose my place"
+          },
+          {
+            "value": "toBuild",
+            "label": "Only to add to the point"
+          },
+          {
+            "value": "askFirst",
+            "label": "Only after they say my name"
+          },
+          {
+            "value": "wait",
+            "label": "Not until I have finished"
+          },
+          {
+            "value": "depends",
+            "label": "It depends on the subject"
+          }
+        ]
+      },
+      {
+        "id": "no-reply",
+        "kind": "choice",
+        "prompt": "What should someone do if you have not replied in two days?",
+        "section": "reaching",
+        "tells": "What two days of silence from you should be taken to mean, including whether the silence is itself the answer.",
+        "options": [
+          {
+            "value": "nudge",
+            "label": "Send it again — I have lost it"
+          },
+          {
+            "value": "call",
+            "label": "Ring me instead"
+          },
+          {
+            "value": "escalate",
+            "label": "Say it is urgent, if it is"
+          },
+          {
+            "value": "wait",
+            "label": "Wait — I will get to it"
+          },
+          {
+            "value": "assumeNo",
+            "label": "Take the silence as a no"
+          },
+          {
+            "value": "depends",
+            "label": "It depends who is asking"
+          }
+        ]
+      },
+      {
+        "id": "bad-news",
+        "kind": "choice",
+        "prompt": "How should someone give you bad news?",
+        "section": "hard",
+        "tells": "How much runway you want before the worst sentence, and whether you want to be in the room for it at all.",
+        "options": [
+          {
+            "value": "firstSentence",
+            "label": "The worst part in the first sentence"
+          },
+          {
+            "value": "shortWarning",
+            "label": "A short warning, then the worst part"
+          },
+          {
+            "value": "contextFirst",
+            "label": "The background first, the worst last"
+          },
+          {
+            "value": "writtenFirst",
+            "label": "In writing, so I read it alone"
+          },
+          {
+            "value": "depends",
+            "label": "It depends what the news is"
+          }
+        ]
+      },
+      {
+        "id": "unfinished",
+        "kind": "choice",
+        "prompt": "When should someone tell you about an unsolved problem?",
+        "section": "hard",
+        "tells": "The certainty threshold a problem has to cross before you want it — the line between being kept in the loop and being alarmed for nothing.",
+        "options": [
+          {
+            "value": "atOnce",
+            "label": "The moment anyone suspects it"
+          },
+          {
+            "value": "onceReal",
+            "label": "Once someone is sure it is real"
+          },
+          {
+            "value": "withOptions",
+            "label": "Once there is at least one option"
+          },
+          {
+            "value": "onceStuck",
+            "label": "Only when it cannot be fixed without me"
+          },
+          {
+            "value": "depends",
+            "label": "It depends how big it is"
+          }
+        ]
+      },
+      {
+        "id": "apology",
+        "kind": "choice",
+        "prompt": "How should someone apologise to you?",
+        "section": "hard",
+        "tells": "What an apology has to contain before it counts with you, and how soon after the thing you can hear one.",
+        "options": [
+          {
+            "value": "named",
+            "label": "By naming exactly what they did"
+          },
+          {
+            "value": "said",
+            "label": "Once, plainly, then let it go"
+          },
+          {
+            "value": "changed",
+            "label": "By saying what changes now"
+          },
+          {
+            "value": "shown",
+            "label": "By doing something about it"
+          },
+          {
+            "value": "later",
+            "label": "Not at once — give me a day"
+          },
+          {
+            "value": "depends",
+            "label": "It depends what they did"
+          }
+        ]
+      },
+      {
+        "id": "public-correction",
+        "kind": "choice",
+        "prompt": "How should someone correct you in front of others?",
+        "section": "friction",
+        "tells": "Whether being corrected in front of people costs you anything, which is a different question from whether the correction is welcome.",
+        "options": [
+          {
+            "value": "onTheSpot",
+            "label": "Out loud, straight away"
+          },
+          {
+            "value": "withReason",
+            "label": "Out loud, with the reason"
+          },
+          {
+            "value": "afterwards",
+            "label": "Not there — afterwards, in private"
+          },
+          {
+            "value": "signal",
+            "label": "A signal now, the detail later"
+          },
+          {
+            "value": "depends",
+            "label": "It depends how much it matters"
+          }
+        ]
+      },
+      {
+        "id": "upset-with-me",
+        "kind": "choice",
+        "prompt": "How should someone tell you they are upset with you?",
+        "section": "friction",
+        "tells": "The delivery under which you can hear that someone is angry with you, rather than the one that starts you defending yourself.",
+        "options": [
+          {
+            "value": "named",
+            "label": "Said outright, in the first sentence"
+          },
+          {
+            "value": "atOnce",
+            "label": "In the moment, before it cools"
+          },
+          {
+            "value": "nextDay",
+            "label": "The next day, once it has cooled"
+          },
+          {
+            "value": "inWriting",
+            "label": "In writing, so I can read it twice"
+          },
+          {
+            "value": "askFirst",
+            "label": "By asking if now is a good time"
+          },
+          {
+            "value": "depends",
+            "label": "It depends what it is about"
+          }
+        ]
+      },
+      {
+        "id": "drop-it",
+        "kind": "choice",
+        "prompt": "What do you need before you drop a disagreement?",
+        "section": "friction",
+        "tells": "What actually closes an argument for you, as distinct from what ends the conversation.",
+        "options": [
+          {
+            "value": "heard",
+            "label": "To have said the whole thing once"
+          },
+          {
+            "value": "reason",
+            "label": "The reasoning, not just the decision"
+          },
+          {
+            "value": "decided",
+            "label": "Someone to say plainly it is decided"
+          },
+          {
+            "value": "revisit",
+            "label": "A date to look at it again"
+          },
+          {
+            "value": "time",
+            "label": "An hour alone, then nothing"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know what settles it"
+          }
+        ]
+      },
+      {
+        "id": "going-quiet",
+        "kind": "choice",
+        "prompt": "You go quiet mid-conversation. What is happening?",
+        "section": "reading",
+        "tells": "What your pauses mean — the blank another person fills in for themselves whenever you have not said.",
+        "options": [
+          {
+            "value": "thinking",
+            "label": "I am working out what I think"
+          },
+          {
+            "value": "tooMuch",
+            "label": "It is more than I can take at once"
+          },
+          {
+            "value": "upset",
+            "label": "I am upset and not ready to say it"
+          },
+          {
+            "value": "finished",
+            "label": "I have said what I had to say"
+          },
+          {
+            "value": "yourTurn",
+            "label": "I am waiting for the other person"
+          },
+          {
+            "value": "varies",
+            "label": "It varies — ask me"
+          }
+        ]
+      },
+      {
+        "id": "asked-if-wrong",
+        "kind": "choice",
+        "prompt": "How should someone ask whether something is wrong?",
+        "section": "reading",
+        "tells": "Whether «are you all right» opens the door or closes it, and the sentence that works on you instead.",
+        "options": [
+          {
+            "value": "straight",
+            "label": "Straight out, in the moment"
+          },
+          {
+            "value": "named",
+            "label": "By naming what they noticed"
+          },
+          {
+            "value": "later",
+            "label": "Later on, once only"
+          },
+          {
+            "value": "alongside",
+            "label": "Alongside something else, like a walk"
+          },
+          {
+            "value": "notAtAll",
+            "label": "Not at all — I will raise it"
+          }
+        ]
+      },
+      {
+        "id": "praise",
+        "kind": "choice",
+        "prompt": "How should someone tell you that you did well?",
+        "section": "reading",
+        "tells": "Where praise has to land before it counts for anything with you.",
+        "options": [
+          {
+            "value": "public",
+            "label": "Out loud, in front of other people"
+          },
+          {
+            "value": "private",
+            "label": "Quietly, one to one"
+          },
+          {
+            "value": "written",
+            "label": "In writing, so I can keep it"
+          },
+          {
+            "value": "passedOn",
+            "label": "Passed to whoever it matters to"
+          },
+          {
+            "value": "lightly",
+            "label": "Briefly — do not make a thing of it"
+          },
+          {
+            "value": "unsure",
+            "label": "I have not thought about it"
+          }
+        ]
+      }
+    ],
+    "provenance": {
+      "constructName": "Stated communication preference — twelve requests about how this person has asked to be addressed, each recorded with its weight and its reason",
+      "constructOrigin": "Four-temperament schemes descending from Galen; Jung's function pairs (Psychological Types, 1921); Marston's four-quadrant description of normal emotion (Emotions of Normal People, 1928 — a book, with no assessment and no patent); the assertiveness-by-responsiveness grid published by Merrill and Reid (Personal Styles and Effective Performance, 1981); Lowry's application of colour names to four temperaments (1978). These are the lineage of the four-colour vocabulary the app talks about around this instrument. None of them is applied to an answer here, because this instrument computes nothing.",
+      "constructPublic": true,
+      "constructNote": "PUBLIC, AND THE REASON THE VOCABULARY MAY BE DISCUSSED AT ALL: the four-temperament scheme; Jung's function pairs; the two-axis grid of assertiveness by responsiveness as published and as reproduced across open management literature; Marston's four-quadrant theory, which he published in a book and never built into an instrument or patented; and the bare idea of naming four temperaments after colours, which is an idea and therefore not copyrightable subject matter. NOT USED, AND TWO SEPARATE RIGHTS ARE INVOLVED. Copyright: the item text, the option wording, the report prose, the adjective checklists and the wheel graphics of every commercial four-colour product. Trade marks: the product names themselves and the branded colour-energy epithets, which are marks and stay marks however public the underlying idea is. This bank reproduces neither. It contains no colour word anywhere in a prompt, an option, a section or a playbook line; no wheel and no eight-position ring; no forced-choice tetrad, which is the item format of the products and is refused in `rejected`; and no adjective list keyed to a colour, which is the part of Lowry's and Littauer's material that is somebody's. Nothing was reverse-engineered: no commercial questionnaire was consulted while writing, and the twelve blocks are organised by communication event rather than by colour, which is why they do not map onto any product's factor set. MAY BE CLAIMED: that these twelve answers are what this person says they want, and that they weighted them as recorded. MAY NOT BE CLAIMED: that the answers constitute a type, a temperament, a measurement, a position on either axis, or a prediction of how this person actually behaves. No answer is tallied, no colour is computed, and no result line names one. The colours are the family the instrument is descended from and declines to join, and the copy now says that rather than promising the reader a colour that never arrives.",
+      "evidenceNote": "None, and none is needed. Reliability, factor structure and criterion validity are properties of a specific item set administered to a specific sample; this bank has never been administered to any sample and has no norms. More fundamentally there is nothing here to validate — the instrument records a stated preference, and a preference cannot be correct or incorrect. Two adjacent literatures are worth naming honestly rather than borrowing from. First, no independent peer-reviewed evidence of criterion validity for commercial four-colour instruments could be found; what exists is vendor-published, and a figure of the form «over 90% of respondents rate the statements as accurate» measures how agreeable a description is, not whether it is true — that is the Barnum effect reported as validity. A British Psychological Society PTC registration is a compliance review against test-review guidelines, not a finding of criterion validity, and must not be read as one. Second, the meshing hypothesis — that matching delivery to a person's stated preference improves outcomes — has been tested properly in the learning-styles literature (Pashler, McDaniel, Rohrer and Bjork, 2008) and was not supported. This instrument therefore claims no benefit whatsoever from being obeyed. It claims only that the request was made, which is a fact about the person rather than a hypothesis about the world. That rule binds the item notes as well: no `tells` and no section note here asserts how common a misreading is, how often a thing is guessed wrong, or what most people do, because this instrument has never counted any of it. The playbook lines are the one place where a sentence may predict an outcome — «you will get a better answer», «I will stop pushing» — and only because those are the reader's own first-person reports about themselves, offered for the reader to endorse or leave unticked. They are not the app's claim about people in general, and none of them asserts anything about the recipient or about a third party.",
+      "avoided": [
+        "Insights Discovery",
+        "Insights Discovery Preference Evaluator",
+        "The Insights Wheel",
+        "Insights' branded colour energy names (Fiery Red, Sunshine Yellow, Earth Green, Cool Blue)",
+        "DiSC and Everything DiSC (John Wiley & Sons)",
+        "The DISC most/least forced-choice tetrad, as an item format",
+        "SOCIAL STYLE and Versatility (TRACOM Group)",
+        "True Colors and its colour-keyed card and adjective material (True Colors International)",
+        "MBTI and 16 Personalities",
+        "Keirsey Temperament Sorter",
+        "Personality Plus adjective lists (Littauer)"
+      ]
+    },
+    "sourceNote": "The four-colour vocabulary is a great deal older than any of the products sold under it. The four-temperament scheme descends from Galen, the function pairs are Jung's, and the two axes usually drawn underneath — how fast and how hard a person pushes, and whether they attend first to the task or to the people in the room — are published openly and belong to nobody. What does belong to somebody is every commercial version: Insights Discovery and its wheel are The Insights Group's, DiSC is John Wiley & Sons', SOCIAL STYLE is TRACOM's, True Colors is True Colors International's, and not one item, adjective, colour name or report page from any of them appears here or was worked backwards from. Every question below was written for this app. It is worth being exact about what that leaves, because the colours are the reason you are reading this note and they are not in the instrument: nothing you answer is tallied, you are not placed on either axis, and no colour is put on you at the end. Twelve questions are asked and the answers are handed back arranged. What comes out is not a type and not a measurement — it is a record of how you have asked to be addressed, and a request needs no evidence behind it. Which is as well, because there is none: no independent peer-reviewed finding shows that addressing someone in their stated preferred style improves anything, and the nearest properly designed literature, on matching teaching to stated learning preference, found the effect absent once it was tested for. The answers are worth having anyway. They are a request rather than a prediction, and the person reading them can act on a request without having to believe a theory.",
+    "playbookOk": [
+      {
+        "id": "ok.talk.straight",
+        "from": "small-talk = none | aLine",
+        "text": "Open with what you need. One line of hello is plenty, and a missing one is not rudeness to me."
+      },
+      {
+        "id": "ok.talk.warmup",
+        "from": "small-talk = fewMinutes",
+        "text": "Spend a few minutes on ordinary talk before the ask. That is the way in, not a delay."
+      },
+      {
+        "id": "ok.talk.ask",
+        "from": "small-talk = depends",
+        "text": "Ask me whether this is a conversation to warm up first. It changes with who is asking and I will tell you."
+      },
+      {
+        "id": "ok.cutin.add",
+        "from": "interrupting = anyTime | toBuild",
+        "text": "Cut in the moment you have something to add. I do not lose my thread and I would rather have your half now."
+      },
+      {
+        "id": "ok.cutin.name",
+        "from": "interrupting = askFirst",
+        "text": "Say my name and then cut in. One word hands the conversation over without dropping it."
+      },
+      {
+        "id": "ok.quiet.again",
+        "from": "no-reply = nudge",
+        "text": "Send it again if two days go by. A second message is not nagging, it is usually the thing that gets it done."
+      },
+      {
+        "id": "ok.quiet.ring",
+        "from": "no-reply = call | escalate",
+        "text": "Ring me, or say plainly that it is urgent. I will not spot urgency in a message that looks like the others."
+      },
+      {
+        "id": "ok.quiet.silence",
+        "from": "no-reply = assumeNo",
+        "text": "If two days pass with nothing, read it as a no. It is not an oversight and asking again will not move it."
+      },
+      {
+        "id": "ok.news.worst",
+        "from": "bad-news = firstSentence | shortWarning",
+        "text": "Lead with the worst part, one line of warning at most. The build-up is the part I actually find hard."
+      },
+      {
+        "id": "ok.news.context",
+        "from": "bad-news = contextFirst",
+        "text": "Give me the background before the worst part. Arriving at it is easier for me than being met with it."
+      },
+      {
+        "id": "ok.news.written",
+        "from": "bad-news = writtenFirst",
+        "text": "Put bad news in writing and let me read it on my own. I will come and find you once I have."
+      },
+      {
+        "id": "ok.problem.early",
+        "from": "unfinished = atOnce",
+        "text": "Tell me about a problem before it is solved. Half a picture on Tuesday is worth more to me than a whole one on Friday."
+      },
+      {
+        "id": "ok.problem.option",
+        "from": "unfinished = withOptions",
+        "text": "Bring the problem with one possible answer attached. I am much better at choosing than at being handed it raw."
+      },
+      {
+        "id": "ok.problem.first",
+        "from": "unfinished = onceStuck",
+        "text": "Fix what you can fix and tell me afterwards. Bring me the ones that genuinely cannot be done without me."
+      },
+      {
+        "id": "ok.sorry.name",
+        "from": "apology = named",
+        "text": "When you apologise, say what you did. Naming the thing is the part that lands with me."
+      },
+      {
+        "id": "ok.sorry.after",
+        "from": "apology = changed | shown",
+        "text": "Tell me what will be different, or just do it. What comes after an apology counts for more with me than the apology."
+      },
+      {
+        "id": "ok.sorry.once",
+        "from": "apology = said",
+        "text": "Say it once, plainly, and then let it go. One apology is enough and I would rather we both put it down."
+      },
+      {
+        "id": "ok.correct.room",
+        "from": "public-correction = onTheSpot",
+        "text": "Correct me in front of people if I have it wrong. It costs me nothing and it saves the second conversation."
+      },
+      {
+        "id": "ok.correct.why",
+        "from": "public-correction = withReason",
+        "text": "Correct me in the room as long as you say why. A bare contradiction is the only part I will argue with."
+      },
+      {
+        "id": "ok.correct.signal",
+        "from": "public-correction = signal",
+        "text": "Catch my eye rather than saying it out loud. A signal now and the detail afterwards is all I need."
+      },
+      {
+        "id": "ok.angry.plain",
+        "from": "upset-with-me = named | atOnce",
+        "text": "Tell me you are annoyed in the first sentence, while it is still live. I will not get there from your tone."
+      },
+      {
+        "id": "ok.angry.write",
+        "from": "upset-with-me = inWriting",
+        "text": "Write it down and send it. I read a hard thing twice and I answer the second reading much better."
+      },
+      {
+        "id": "ok.angry.ask",
+        "from": "upset-with-me = askFirst",
+        "text": "Ask whether now is a good time before you start. Being asked is the part that lets me listen to the rest."
+      },
+      {
+        "id": "ok.drop.said",
+        "from": "drop-it = heard",
+        "text": "Let me make the whole argument once without interruption. Having said it I can put it down."
+      },
+      {
+        "id": "ok.drop.reason",
+        "from": "drop-it = reason",
+        "text": "Give me the reasoning and not only the decision. With the reasoning I stop, and without it I keep pulling."
+      },
+      {
+        "id": "ok.drop.hour",
+        "from": "drop-it = time",
+        "text": "Give me an hour on my own and then leave it there. I do not need it resolved, I need it quiet."
+      },
+      {
+        "id": "ok.pause.think",
+        "from": "going-quiet = thinking",
+        "text": "Let my pauses run. I am composing an answer rather than withholding one."
+      },
+      {
+        "id": "ok.pause.done",
+        "from": "going-quiet = finished | yourTurn",
+        "text": "When I stop, I have finished. The silence is your turn rather than a gap you have to fill."
+      },
+      {
+        "id": "ok.pause.ask",
+        "from": "going-quiet = varies",
+        "text": "If I go quiet, ask me what the silence is. It is not the same thing twice."
+      },
+      {
+        "id": "ok.ask.named",
+        "from": "asked-if-wrong = straight | named",
+        "text": "Ask me straight out and say what you noticed. «Are you all right» only ever gets a reflex out of me."
+      },
+      {
+        "id": "ok.ask.walk",
+        "from": "asked-if-wrong = alongside",
+        "text": "Ask me while we are doing something else. Side by side I will say things I cannot say across a table."
+      },
+      {
+        "id": "ok.ask.later",
+        "from": "asked-if-wrong = later",
+        "text": "Ask me later, and only once. If I say it is nothing, take that, and I will come back when it is not."
+      },
+      {
+        "id": "ok.praise.public",
+        "from": "praise = public",
+        "text": "Say it in front of the others. Public credit lands differently for me, whatever my face is doing at the time."
+      },
+      {
+        "id": "ok.praise.quiet",
+        "from": "praise = private | lightly",
+        "text": "Say it quietly and keep it short. A word on the way out is worth more to me than an announcement."
+      },
+      {
+        "id": "ok.praise.write",
+        "from": "praise = written",
+        "text": "Put it in writing, even one line. I keep those and read them again in a bad week."
+      },
+      {
+        "id": "ok.praise.pass",
+        "from": "praise = passedOn",
+        "text": "Tell whoever it matters to rather than telling me. That is the version of it I can actually use."
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "no.talk.warmup",
+        "from": "small-talk = none | aLine",
+        "text": "Do not warm me up for five minutes. I am not being cold, I am waiting for the actual sentence."
+      },
+      {
+        "id": "no.talk.cold",
+        "from": "small-talk = fewMinutes",
+        "text": "Do not open with the ask. Cold-opened, the same question gets my worst answer."
+      },
+      {
+        "id": "no.cutin.across",
+        "from": "interrupting = wait | askFirst",
+        "text": "Do not cut in with no warning. If you take the thread without one I lose it and we start the point again."
+      },
+      {
+        "id": "no.cutin.hold",
+        "from": "interrupting = anyTime | toBuild",
+        "text": "Do not sit on something until I stop talking. I would much rather be interrupted than told it afterwards."
+      },
+      {
+        "id": "no.quiet.chase",
+        "from": "no-reply = wait | assumeNo",
+        "text": "Do not chase me after two days. A second message makes it less likely I answer rather than more."
+      },
+      {
+        "id": "no.quiet.assume",
+        "from": "no-reply = nudge | call | escalate",
+        "text": "Do not read my silence as a no. If you have not heard from me the thing is still open."
+      },
+      {
+        "id": "no.news.buildup",
+        "from": "bad-news = firstSentence | shortWarning",
+        "text": "Do not build up to it. Once I can tell something bad is coming I stop listening and start bracing."
+      },
+      {
+        "id": "no.news.headline",
+        "from": "bad-news = contextFirst",
+        "text": "Do not open with the headline. Cold, in one sentence, is the version of bad news I take worst."
+      },
+      {
+        "id": "no.news.room",
+        "from": "bad-news = writtenFirst",
+        "text": "Do not tell me in the room. Send it first and let me read it before we talk about it."
+      },
+      {
+        "id": "no.problem.rumour",
+        "from": "unfinished = onceReal | withOptions | onceStuck",
+        "text": "Do not bring me a rumour. Wait until you know what is actually true and then tell me all of it in one go."
+      },
+      {
+        "id": "no.problem.late",
+        "from": "unfinished = atOnce",
+        "text": "Do not sit on a problem until it is certain. I would rather hear it early and be wrong than late and right."
+      },
+      {
+        "id": "no.sorry.word",
+        "from": "apology = named | changed | shown",
+        "text": "Do not leave it at the word. «Sorry» with nothing attached to it gives me nothing to put down."
+      },
+      {
+        "id": "no.sorry.now",
+        "from": "apology = later",
+        "text": "Do not apologise in the first ten minutes. Give it a day and I can actually take it."
+      },
+      {
+        "id": "no.correct.public",
+        "from": "public-correction = afterwards",
+        "text": "Do not correct me out loud in front of other people. Tell me afterwards and I will fix it in the next sentence."
+      },
+      {
+        "id": "no.correct.aloud",
+        "from": "public-correction = signal",
+        "text": "Do not say it out loud in the room. A look now is enough and the rest can wait until we are alone."
+      },
+      {
+        "id": "no.correct.later",
+        "from": "public-correction = onTheSpot | withReason",
+        "text": "Do not save it for afterwards. A correction in private later means I said the wrong thing twice."
+      },
+      {
+        "id": "no.angry.hint",
+        "from": "upset-with-me = named | atOnce | askFirst",
+        "text": "Do not hint. If you are annoyed and do not say so, I will either miss it entirely or invent a worse reason."
+      },
+      {
+        "id": "no.angry.hot",
+        "from": "upset-with-me = nextDay",
+        "text": "Do not raise it while it is still hot. Cornered in the moment I defend myself instead of listening to you."
+      },
+      {
+        "id": "no.angry.spot",
+        "from": "upset-with-me = inWriting",
+        "text": "Do not do it out loud on the spot. I answer a hard thing far better on the second reading than in the room."
+      },
+      {
+        "id": "no.drop.open",
+        "from": "drop-it = decided",
+        "text": "Do not leave it ambiguous. Say plainly that it is settled and I will stop pushing at it."
+      },
+      {
+        "id": "no.drop.closed",
+        "from": "drop-it = revisit",
+        "text": "Do not tell me it is closed. Tell me when we look at it again and I will genuinely leave it alone until then."
+      },
+      {
+        "id": "no.pause.fill",
+        "from": "going-quiet = tooMuch | upset",
+        "text": "Do not talk into my silence. If I have gone quiet there is already more in the room than I can answer."
+      },
+      {
+        "id": "no.pause.read",
+        "from": "going-quiet = thinking | finished | yourTurn",
+        "text": "Do not read my quiet as sulking. Ask me what the silence is rather than deciding for yourself."
+      },
+      {
+        "id": "no.ask.twice",
+        "from": "asked-if-wrong = notAtAll | later",
+        "text": "Do not ask me twice whether something is wrong. I will bring it when I have the words, and asking again moves that further off."
+      },
+      {
+        "id": "no.ask.leave",
+        "from": "asked-if-wrong = straight | named | alongside",
+        "text": "Do not decide to leave me alone with it. I would far rather be asked badly than not asked."
+      },
+      {
+        "id": "no.praise.public",
+        "from": "praise = private | lightly",
+        "text": "Do not praise me in front of a room. In public I spend the whole thing managing my face."
+      },
+      {
+        "id": "no.praise.quiet",
+        "from": "praise = public",
+        "text": "Do not save it for a quiet word. Said where other people can hear it, the same sentence counts for more."
+      },
+      {
+        "id": "no.praise.tome",
+        "from": "praise = passedOn",
+        "text": "Do not stop at telling me. It counts once the person it actually matters to has heard it."
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "How much notice do I need before a plan changes",
+        "why": "working-style already asks exactly this as `notice`, with the same none/day/week partition. A second copy adds a weight and a reason to an answer the app already holds, and two answers to the same question in one app make both less trustworthy."
+      },
+      {
+        "idea": "How many meetings do I want",
+        "why": "working-style's `meetings`, unchanged. It is also the weakest of the brief's suggested events: meeting load is a fact about a calendar rather than about how someone should address you."
+      },
+      {
+        "idea": "Written or spoken, in general",
+        "why": "working-style's `mode` (async / mixed / sync). An average preference is not actionable. The recut version — which of these must never arrive as a message — is not available either, because digital-life owns it; see the next entry."
+      },
+      {
+        "idea": "Which of these should never reach me as a message",
+        "why": "Shipped in the draft as `not-by-message` and cut in this pass. digital-life's `not-in-writing` asks the same question with an overlapping option set (bad news, a decision about money, anything critical of me), and digital-life is the instrument the spec §7.1 gives phones and messaging to. The block that replaces it, `apology`, is the event in «when something is wrong» that no sibling instrument covers."
+      },
+      {
+        "idea": "How much context do I want before a request",
+        "why": "working-style's `brief` (headline first / background first / in writing). Same question, same answers. `bad-news` is kept because the order you want a bad sentence in is not the order you want a request in, and because working-style is a work sheet while this question is asked of anyone."
+      },
+      {
+        "idea": "How much uninterrupted time do I need in a day",
+        "why": "working-style's `interruption` (protected / mixed / open), which is about a working day. `interrupting` here is about a sentence — whether cutting across you costs you the thread — and the prompt says mid-sentence so that the two cannot be confused on a shared sheet."
+      },
+      {
+        "idea": "Where should someone disagree with me",
+        "why": "working-style's `dissent` (in the meeting / in writing afterwards / one to one). `public-correction` was checked against it and kept, because being wrong in front of people and being disagreed with in front of people are different events, and this one is asked about any room rather than a meeting. Its playbook lines were rewritten to stop naming teams and meetings, which was the only place the two were actually indistinguishable."
+      },
+      {
+        "idea": "Which of these four colours describes you best",
+        "why": "Forced-choice self-typing. Ipsative in the way the repo already rejected for Chapman's quiz and the RHETI, and it asks the person to estimate something about themselves rather than state something they know. The colours are the vocabulary this instrument is descended from, not a question we are entitled to ask."
+      },
+      {
+        "idea": "Rank the four colours in order of how much they are you",
+        "why": "The same ipsative objection, worse. Ranking forces someone who genuinely runs two hard to donate one to the other, and the resulting order would be read as a measurement."
+      },
+      {
+        "idea": "Most and least like me, from a set of four descriptions",
+        "why": "The forced-choice tetrad, which is the item format of the commercial products rather than a construct. Refused on two grounds at once: it is the closest thing in this territory to reproducing an instrument, and it is ipsative, so it cannot be answered honestly by someone for whom two of the four are equally true."
+      },
+      {
+        "idea": "How assertive are you, 1 to 10",
+        "why": "The public axis itself, as a self-rating. Breaches the rule that nothing is estimated: nobody knows their own position on a population axis, and the number would be read as a score by everyone who saw it. The 1-10 field in this format is weight, never quantity."
+      },
+      {
+        "idea": "Give each of the four sections a colour",
+        "why": "The obvious way to deliver the colour vocabulary the catalogue line promises, and a fabrication. The sections are communication events — arriving, bad news, friction, silence — and mapping them onto four temperaments would invent a correspondence that does not exist, then start tracking the products' semantics for each colour. The catalogue line is met instead by naming the lineage honestly and saying, in reader-facing copy, that no colour is applied."
+      },
+      {
+        "idea": "What is my communication style under stress",
+        "why": "Asks the person to report a pattern that is mostly visible only from outside. Where someone does know it, the `why` box catches it in their own words without the instrument pretending to."
+      },
+      {
+        "idea": "How should people communicate with my team",
+        "why": "Requires a second party's context to answer, and the answer would be about other people rather than about the person filling it in. Every block here must be answerable alone."
+      },
+      {
+        "idea": "A `grounds` list for each block (upbringing, a job, how my attention works, a bad experience)",
+        "why": "Not used, and the instrument does not need it. `grounds` earns its place in `faith` because authority is genuinely a separate question from weight and the options stay comparable across blocks. Here it would be a taxonomy of causes, and asking someone why they are the way they are collects a plausible answer rather than a known one. The reason belongs in the `why` box, where it is the person's own sentence and not one of six we chose for them."
+      },
+      {
+        "idea": "A tally showing which colour the answers came out as",
+        "why": "Not a block, but the obvious next step, and the one that would break the instrument. A count is an inference dressed as a summary, it would be read as a type, and the moment it exists the twelve careful answers collapse into a label."
+      }
+    ],
+    "sources": [
+      "https://www.insights.com/what-we-do/validity/",
+      "https://en.wikipedia.org/wiki/DISC_assessment",
+      "https://www.discprofile.com/what-is-disc/history-of-disc",
+      "https://tracom.com/wp-content/uploads/2023/01/Facilitator-Handbook_v1.1_DGT.pdf",
+      "http://paei.wikidot.com/tracom-group-social-styles-model",
+      "https://en.wikipedia.org/wiki/True_Colors_(personality)",
+      "https://info.truecolorsintl.com/hubfs/Portal%20Downloadable%20Content/The-True-Colors-Story(1).pdf",
+      "https://journals.sagepub.com/doi/10.1111/j.1539-6053.2009.01038.x",
+      "https://pubmed.ncbi.nlm.nih.gov/26162104/",
+      "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2023.1147498/full",
+      "https://www.britannica.com/science/humor-ancient-physiology",
+      "https://www.nlm.nih.gov/exhibition/shakespeare-and-the-four-humors/materials/MS-Four_Humors_Chart.pdf",
+      "https://archive.org/details/emotionsofnormal032195mbp",
+      "https://www.rewardgateway.com/blog/employee-insights-andi-lothian-profile",
+      "https://www.thecourier.co.uk/fp/business-environment/business/5326204/andy-lothian-insights-group/"
+    ]
+  },
+  "changes": [
+    "READABILITY — every English prompt passed the 80/14 gate as proposed, and every one was rewritten anyway for the pronoun fault below, so all twelve were counted again from scratch in four languages rather than estimated. English worst case is now `no-reply` at 59 characters and 12 words. Drafted renderings were counted too: German worst case is `unfinished` at «Wann soll dir jemand von einem ungelösten Problem erzählen?» = 59 characters, Polish worst case is the same block at 55, Spanish `no-reply` at 57. Twenty-one characters of headroom in the longest language is the margin the Polish and German 15-30% expansion needs. No prompt in any of the four contains ', and ' / ', but ' / ', aber ' / ', ale ' / ', pero ' / '; '. One option label did — «Later, once, and only once» — and is now «Later on, once only»; the gate does not read option labels, which is exactly why that one survived to here.",
+    "THE PRONOUN FLIPPED REFERENT MID-BANK, and this is the defect a reader would have hit first. Eleven of the twelve prompts were written in the first person («How should someone tell me bad news?», «When I go quiet mid-conversation») while all seven sibling inventories ask in the second person («Who can arrive at your home without telling you first?»). Worse, `no-reply` read «What should you do if I have not replied in two days?», in which 'you' is the sender and 'I' is the respondent — the opposite of every other bank, where 'you' is the person answering. Eight option labels had the same fault — «If you are adding to the point», «The moment you suspect it», «Once you are sure it is real», «When you have at least one option», «Only if you cannot fix it yourself», «That you are angry with me», «By naming what you noticed», «I am waiting for you» — and two more were bare imperatives aimed at the other person («Say my name first, then cut in»). All twelve prompts are now second person addressed to the respondent, and every option refers to the other person as 'they' or 'someone' and to the respondent as 'I'. The first person is kept where it belongs and where boundaries also keeps it: in the playbook lines, which are the sentences the reader hands to somebody else.",
+    "DUPLICATION OF A SIBLING INSTRUMENT — cut `not-by-message`. digital-life's `not-in-writing` asks «Which of these should never arrive as a message?» with an option set that overlaps this one four ways (bad news, a decision about money against a decision that affects my work, anything critical of me against that you are angry with me, and the none-of-these escape), and spec §7.1 gives messaging to digital-life by name. Two instruments in one batch asking the same multi-select is the fault the bank's own `rejected` list refuses working-style questions for. It also carried a second defect on its own: as a `multi` with max 3 it let «Nothing. A message is fine for all of it» be ticked alongside «Bad news», which is the exclusive-option-inside-a-multi fault the boundaries pass caught in `friend-rude`. Replaced with `apology` («How should someone apologise to you?»), which is the third event in «when something is wrong» that no sibling instrument covers, needs no device, is answerable by anybody, and is the one thing in the section people most reliably get wrong for each other. The bank is now twelve choices and no multi, as boundaries is.",
+    "FOUR MORE ADJACENCIES, CHECKED ONE BY ONE AND KEPT, WITH THE DISTINCTION MADE VISIBLE. working-style's `interruption` is about a working day (protected / mixed / open); this bank's `interrupting` is about a sentence, and the prompt now says mid-sentence so the two cannot be confused on a shared sheet. working-style's `dissent` is where to disagree with you in a meeting; `public-correction` is about being wrong in front of people in any room, which is a different event with a different cost, and its playbook lines no longer say 'the meeting' or 'the team'. working-style's `brief` is the order you want a request in; `bad-news` is the order you want a bad sentence in. digital-life's `reply-window` is how fast an answer is expected; `no-reply` is what the other person should do about a silence, including whether the silence is itself the answer. Three of the four are now recorded in `rejected` with the distinction spelled out, so the next person does not have to redo the comparison.",
+    "THE INSTRUMENT PROMISED A COLOUR IT NEVER DELIVERS — the most serious finding, because it is the one that turns a stated preference back into a type claim. `constructName` said the construct was recorded «over the public pace-and-assertiveness by task-and-people axes», which asserts that an answer here places somebody on two axes; nothing in the bank places anybody anywhere. `constructNote` closed with «the colours are a shared word offered to the reader for their own answers», and `sourceNote` carried the same promise, while no colour word appears in a single prompt, option, section or playbook line, and `rejected` correctly refuses ever to compute one. A reader who came for the colours would have read two paragraphs about them and then met twelve questions that never mention them. Fixed in all three places: the construct is now named as what it is — twelve requests about how this person has asked to be addressed, each with its weight and its reason — the colour lineage is described as the family this instrument descends from and declines to join, and the reader-facing note now says outright that nothing is tallied, that you are not placed on either axis, and that no colour is put on you at the end. Spec §7.1's catalogue line is met by naming the vocabulary honestly rather than by applying it.",
+    "LICENCE — clean, and checked prompt by prompt and option by option rather than assumed. No prompt or option uses a DISC letter word (dominance, influence, steadiness, conscientiousness), an Insights colour-energy epithet (fiery red, sunshine yellow, earth green, cool blue), a SOCIAL STYLE quadrant name (driving, expressive, amiable, analytical), a True Colors colour card, a Keirsey or Littauer temperament adjective, or the word 'energy' in the branded sense. No colour word appears anywhere in the bank at all. The item format is checked too: none of the twelve is a most-and-least forced-choice tetrad, which is the products' format rather than their construct, and that format is now refused explicitly in `rejected` and listed in `avoided`, where it was missing. Two corrections to the provenance itself. First, `constructNote` argued the whole licence question from copyright («an idea and therefore not copyrightable subject matter»), which is right about the idea and silent about the marks; it now separates the two rights and says that the product names and the branded colour epithets are trade marks and stay marks however public the underlying idea is. Second, `constructOrigin` cites Lowry (1978) as the origin of naming temperaments after colours while `avoided` lists True Colors, which is Lowry's programme — coherent, but only if it is said that no colour-keyed card or adjective list of his is reproduced, which the note now says.",
+    "MISSING HONEST ESCAPE (house rule 6) — four blocks offered a forced choice between directives with no true answer for someone who has not decided. `no-reply` gains «It depends who is asking», `upset-with-me` gains «It depends what it is about», `drop-it` gains «I do not know what settles it», and `praise` gains «I have not thought about it». All four are real answers rather than filler: a person can genuinely not know what closes an argument for them, and an instrument that does not offer that collects a guess instead, which is the estimation house rule 4 forbids. `asked-if-wrong` is left at five options deliberately — «Not at all — I will raise it» is a terminal answer rather than an evasion, and it already covers the person who wants to be left alone with it.",
+    "UNSUPPORTED BASE RATES IN THE ITEM NOTES — the same defect the boundaries pass found, in six `tells` and two section notes. «the most common misread between two people», «a question almost nobody is asked and almost everybody has a firm answer to», «which is rarely the thing the other person has been offering», «the blank most reliably filled in by the other person, and filled in worse than the truth», «which is not guessable and is guessed constantly», «not visible from your face in either case», «These are the three most reliably guessed wrong», «Every one of these gets decided in the moment, badly, by everyone». Every one of those is a frequency this instrument has never counted, in a bank whose `evidenceNote` correctly claims nothing, and each also prejudges the answer before the reader gives it. All eight rewritten to describe what the block records. The `evidenceNote` gains the rule that produced the rewrite, so the next editor is bound by it.",
+    "PLAYBOOK COVERAGE — the largest quantitative fault in the bank: 33 of its 61 options produced no sentence at all. Whole blocks were half dark — four of six `going-quiet` answers, and three of five in each of `asked-if-wrong`, `unfinished` and `public-correction` — so a reader who happened to answer in the uncovered half got a result page with nothing to hand anybody, from an instrument whose entire output is sentences to hand somebody. Now 56 of 65 options fire a line. The nine that do not are exactly the honest escapes, where there is no sentence anybody could be held to; the two escapes that do produce one are `small-talk = depends` and `going-quiet = varies`, because «ask me» is itself a handable request.",
+    "PLAYBOOK SIZE, AND WHY IT IS 36 AND 28 RATHER THAN 14 AND 14 — spec §4.1's «eight to fourteen per side» is a target for what one reader sees, not a cap on the bank, because §4.1 also requires the lines to be derived from the result. The bank was machine-checked so that no option fires more than one line per side: a reader who answers all twelve blocks substantively therefore sees at most twelve OK and twelve not-OK lines, inside the target, and a reader who takes several escapes sees fewer. digital-life (22 and 26) and good-life (30 and 23) already relied on that arithmetic without stating it; it is stated here.",
+    "PLAYBOOK DERIVATIONS NORMALISED — `from` was written as `bad-news:firstSentence`, one option per line, where the other seven banks write `bad-news = firstSentence | shortWarning`. The colon form is not merely cosmetic: one option per line is what forced the coverage gap above, because a sentence true of two adjacent answers had to be either duplicated or dropped, and it was dropped. The `=` and `|` form is now used throughout, which is what let coverage nearly double while the line count rose by less than half.",
+    "FOUR PLAYBOOK CONTRADICTIONS, found by walking every option's OK line against its not-OK line — the same check that caught `phone-read` in boundaries. `bad-news = writtenFirst` fired «do not open with the headline, cold in one sentence is the version I take worst» against its own «put it in writing and let me read it alone», which is cold and in one sentence; it now fires «do not tell me in the room» instead. `public-correction = signal` was told «tell me afterwards» by a line derived from the answer that wants it afterwards, contradicting the signal it asked for. `upset-with-me = inWriting` was told to wait a night by a line that belongs to `nextDay`. `praise = passedOn` was told to say it where other people can hear, which is not what passing it on means. Each was split off onto its own derivation. Also removed: `no.pause.read` originally ended «because usually there is nothing under it», a frequency claim smuggled into the reader's mouth by the same route as the item notes above.",
+    "PLAYBOOK LINES THAT ASSUMED A WORKPLACE — `ok-correct-in-room` said «correct me in the meeting», `no-public-correction` said «do not correct me in front of the team», and `not-by-message` offered «a decision that affects my work» as an option. This instrument is asked of anybody about anybody: a reader with no team, or one thinking about a spouse or a parent, was handed a sentence they could not give to the person it was about. All three are gone; the lines now say «in front of people» and «in the room», which is true wherever the reader is.",
+    "THE EVIDENCE NOTE AND THE PLAYBOOK WERE SAYING DIFFERENT THINGS — `evidenceNote` states, correctly and unusually, that the instrument «claims no benefit whatsoever from being obeyed», while a dozen playbook lines promise one: «you will get an answer faster», «it saves everybody the follow-up conversation», «you will get the version of me that can actually hear you». The lines are not the defect and are kept, because a playbook line is the reader's own first-person report about themselves, offered for them to tick or leave; the silence about the difference was the defect. The note now draws it: the app claims nothing about people in general, the reader may claim what they like about themselves, and no line asserts anything about the recipient or about a third party — which was checked, and none does.",
+    "BARNUM AND ALONE — no closed option in the bank is unrejectable, and none of the twelve blocks reveals something the reader could not have written alone, which is correct for this format rather than a failure of it: house rule 4 makes these instruments record rather than reveal, so both tests bite on the playbook, where they caught the base-rate clause above. The three most Barnum-vulnerable lines were then checked individually and survive, because each is derived from a subset of answers rather than offered to everybody: «do not hint» is false of the reader who asked to be told the next day, «let my pauses run» is false of the one whose silence means it is already too much, and «public credit lands differently for me» is false of the one who spends public praise managing their face. The test the whole instrument passes on is narrower and it is met: not one of the sixty-four lines could have been written before the person answered."
+  ],
+  "critiqued": true
+}

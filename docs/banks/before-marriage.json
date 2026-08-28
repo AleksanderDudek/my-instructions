@@ -1,0 +1,788 @@
+{
+  "bank": {
+    "id": "before-marriage",
+    "sections": [
+      {
+        "id": "commitment",
+        "title": "Commitment and expectations",
+        "note": "Gottman's fifth heading taken at its word. What the marriage is being entered as, what would break it, and what happens when neither of you will move. Nothing here is about how you argue — conflict-style and attachment already own that. Nothing here asks about violence either, for a reason the source note gives in plain words."
+      },
+      {
+        "id": "time",
+        "title": "Time together and apart",
+        "note": "Also the fifth heading. Togetherness against time apart, asked as numbers and durations rather than as feelings, because the number is the part a person actually knows the answer to. The evenings you claim and the evenings you leave free are one count, so they are asked on one page."
+      },
+      {
+        "id": "independence",
+        "title": "Friendships and independence",
+        "note": "The rest of the fifth heading: who is already inside your circle, what happens to the friendship you already have, and what does not get merged. Every question here is a claim about your own life, never a rule for someone else's — the rules for the other person live in boundaries."
+      },
+      {
+        "id": "careers",
+        "title": "Careers and moving",
+        "note": "From the second heading, Life Plans, and only its career sub-topic. Children went to family-plan, religion to faith, and money to money-management, so none of them is asked twice here."
+      },
+      {
+        "id": "settling",
+        "title": "Where you settle",
+        "note": "Also Life Plans: settling down. What kind of place you expect to be in, how far from your own parents, and who else ends up under the roof. Nothing else in this app asks any of it."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "marriage-means",
+        "kind": "choice",
+        "prompt": "What does being married add that living together does not?",
+        "options": [
+          {
+            "value": "permanence",
+            "label": "It takes leaving off the table"
+          },
+          {
+            "value": "vow",
+            "label": "It is a vow made before God"
+          },
+          {
+            "value": "witnessed",
+            "label": "It is said in front of witnesses"
+          },
+          {
+            "value": "legal",
+            "label": "It changes the legal facts"
+          },
+          {
+            "value": "nothing",
+            "label": "Nothing we would not already have"
+          },
+          {
+            "value": "unsure",
+            "label": "I have not worked that out"
+          }
+        ],
+        "section": "commitment",
+        "grounds": false,
+        "tells": "Whether the word means permanence, a vow, a public act or a change of legal facts to you — four people can all want the same wedding and be agreeing to four different things."
+      },
+      {
+        "id": "grounds-to-end",
+        "kind": "multi",
+        "max": 2,
+        "exclusive": [
+          "none"
+        ],
+        "prompt": "Which of these would you treat as breaking the marriage?",
+        "options": [
+          {
+            "value": "affair",
+            "label": "A physical affair"
+          },
+          {
+            "value": "emotional",
+            "label": "An affair with no sex in it"
+          },
+          {
+            "value": "money-lies",
+            "label": "A large debt hidden from me"
+          },
+          {
+            "value": "addiction",
+            "label": "An addiction left untreated"
+          },
+          {
+            "value": "drift",
+            "label": "Years of neither of us trying"
+          },
+          {
+            "value": "none",
+            "label": "None of these would"
+          }
+        ],
+        "section": "commitment",
+        "grounds": false,
+        "tells": "The two broken agreements you weigh heaviest, capped at two so the answer ranks rather than lists. Every option here is something a person did rather than something that happened to them: being hurt or frightened is deliberately not on this list and not on this page."
+      },
+      {
+        "id": "final-say",
+        "kind": "choice",
+        "prompt": "Who has the final say when a big decision is deadlocked?",
+        "options": [
+          {
+            "value": "stall",
+            "label": "Nobody. Nothing moves until we agree"
+          },
+          {
+            "value": "domain",
+            "label": "Whoever's area it falls into"
+          },
+          {
+            "value": "cares-more",
+            "label": "Whoever cares more about it"
+          },
+          {
+            "value": "husband",
+            "label": "The husband"
+          },
+          {
+            "value": "outsider",
+            "label": "Someone we both trust"
+          },
+          {
+            "value": "unsure",
+            "label": "I have not worked that out"
+          }
+        ],
+        "section": "commitment",
+        "grounds": false,
+        "tells": "The rule you would apply when agreement is impossible, which is the only situation in which a rule about deciding does any work at all."
+      },
+      {
+        "id": "evenings-together",
+        "kind": "choice",
+        "prompt": "How many evenings a week do you want to spend together?",
+        "options": [
+          {
+            "value": "nearly-all",
+            "label": "Nearly every evening"
+          },
+          {
+            "value": "most",
+            "label": "Four or five"
+          },
+          {
+            "value": "some",
+            "label": "Two or three"
+          },
+          {
+            "value": "few",
+            "label": "One, if that"
+          },
+          {
+            "value": "never-counted",
+            "label": "I have never thought about a number"
+          }
+        ],
+        "section": "time",
+        "grounds": false,
+        "tells": "A number, where two people otherwise both say «enough» and mean five evenings and two. The gap is invisible until somebody counts, and the evenings you did not claim here are the ones you are leaving free."
+      },
+      {
+        "id": "alone-time",
+        "kind": "choice",
+        "prompt": "How much time alone do you need in an ordinary week?",
+        "options": [
+          {
+            "value": "snatched",
+            "label": "An hour here and there"
+          },
+          {
+            "value": "evening",
+            "label": "One evening to myself"
+          },
+          {
+            "value": "day",
+            "label": "Most of a day"
+          },
+          {
+            "value": "more",
+            "label": "More than a day"
+          },
+          {
+            "value": "none",
+            "label": "I do not need time alone"
+          }
+        ],
+        "section": "time",
+        "grounds": false,
+        "tells": "How much solitude you are asking for, in hours rather than in adjectives. Somebody who asks for none of it will otherwise read the asking as withdrawal from them."
+      },
+      {
+        "id": "holiday-apart",
+        "kind": "choice",
+        "prompt": "Would you take a holiday without your spouse?",
+        "options": [
+          {
+            "value": "yearly",
+            "label": "Yes, most years"
+          },
+          {
+            "value": "sometimes",
+            "label": "Yes, now and then"
+          },
+          {
+            "value": "reason",
+            "label": "Only if there were a reason for it"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know"
+          }
+        ],
+        "section": "time",
+        "grounds": false,
+        "tells": "Whether a week apart is ordinary or a warning sign to you. A week is a different scale from an evening, which is why it is asked separately, and it is answered wrongly in both directions."
+      },
+      {
+        "id": "who-knows",
+        "kind": "choice",
+        "prompt": "Who has heard the honest version of your worst month?",
+        "options": [
+          {
+            "value": "nobody",
+            "label": "Nobody"
+          },
+          {
+            "value": "friend",
+            "label": "A close friend"
+          },
+          {
+            "value": "parent",
+            "label": "My mother or my father"
+          },
+          {
+            "value": "sibling",
+            "label": "A brother or a sister"
+          },
+          {
+            "value": "clergy",
+            "label": "A priest or a pastor"
+          },
+          {
+            "value": "counsellor",
+            "label": "A counsellor"
+          }
+        ],
+        "section": "independence",
+        "grounds": false,
+        "tells": "Who is already inside your circle, asked as something that has happened rather than as what you would do in a crisis you have not had. That person is also the one who will end up knowing things about the marriage that your spouse never chose to tell them."
+      },
+      {
+        "id": "closest-friend",
+        "kind": "choice",
+        "prompt": "What happens to your closest friendship after you marry?",
+        "options": [
+          {
+            "value": "unchanged",
+            "label": "It stays exactly as it is"
+          },
+          {
+            "value": "less-often",
+            "label": "It stays, seen less often"
+          },
+          {
+            "value": "becomes-ours",
+            "label": "It becomes a friendship of both of us"
+          },
+          {
+            "value": "fades",
+            "label": "It fades, which is fine"
+          },
+          {
+            "value": "unsure",
+            "label": "I have not thought about it"
+          }
+        ],
+        "section": "independence",
+        "grounds": false,
+        "tells": "What you intend for a friendship you already have, which is a position about your own life rather than a rule about your spouse's. The distance between «stays exactly as it is» and «becomes a friendship of both of us» is where most of the trouble on this subject lives."
+      },
+      {
+        "id": "kept-to-myself",
+        "kind": "multi",
+        "max": 3,
+        "exclusive": [
+          "nothing"
+        ],
+        "prompt": "Which of these would stay yours alone after marrying?",
+        "options": [
+          {
+            "value": "space",
+            "label": "A room or a desk of my own"
+          },
+          {
+            "value": "evening",
+            "label": "One evening a week"
+          },
+          {
+            "value": "friend",
+            "label": "A friendship that stays mine"
+          },
+          {
+            "value": "hobby",
+            "label": "Something I do that nobody joins"
+          },
+          {
+            "value": "quiet",
+            "label": "Hours when I am not spoken to"
+          },
+          {
+            "value": "nothing",
+            "label": "Nothing at all"
+          }
+        ],
+        "section": "independence",
+        "grounds": false,
+        "tells": "The specific things you are not planning to merge, named before somebody merges them for you and is surprised by the reaction."
+      },
+      {
+        "id": "career-lead",
+        "kind": "choice",
+        "prompt": "When two careers collide, whose should take priority?",
+        "options": [
+          {
+            "value": "mine",
+            "label": "Mine"
+          },
+          {
+            "value": "spouse",
+            "label": "My spouse's"
+          },
+          {
+            "value": "earner",
+            "label": "Whoever earns more at the time"
+          },
+          {
+            "value": "loses-more",
+            "label": "Whoever would lose more by giving way"
+          },
+          {
+            "value": "alternate",
+            "label": "It should take turns over the years"
+          },
+          {
+            "value": "unsure",
+            "label": "I have not worked that out"
+          }
+        ],
+        "section": "careers",
+        "grounds": false,
+        "tells": "The rule you would apply when both jobs cannot win, including whether you are willing to say out loud, in advance, that yours should."
+      },
+      {
+        "id": "relocation",
+        "kind": "choice",
+        "prompt": "Would you move to another country for your spouse's work?",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "fixed-term",
+            "label": "Yes, if we agreed an end date"
+          },
+          {
+            "value": "near-only",
+            "label": "Only somewhere I could get home from easily"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know"
+          }
+        ],
+        "section": "careers",
+        "grounds": false,
+        "tells": "Whether a job offer abroad is an opportunity or the end of the conversation — and, in the fixed-term answer, that the condition is a date rather than a place."
+      },
+      {
+        "id": "nights-away",
+        "kind": "choice",
+        "prompt": "How many nights a month away for work would you accept?",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "up-to-three",
+            "label": "Up to three"
+          },
+          {
+            "value": "up-to-week",
+            "label": "Up to a week"
+          },
+          {
+            "value": "more",
+            "label": "More than a week"
+          },
+          {
+            "value": "unsure",
+            "label": "I do not know"
+          }
+        ],
+        "section": "careers",
+        "grounds": false,
+        "tells": "How much of your own absence you are prepared to treat as unremarkable, stated as a ceiling you are choosing rather than a forecast about a job you may not have yet."
+      },
+      {
+        "id": "place-type",
+        "kind": "choice",
+        "prompt": "What kind of place do you expect to be living in?",
+        "options": [
+          {
+            "value": "city",
+            "label": "A big city"
+          },
+          {
+            "value": "town",
+            "label": "A town"
+          },
+          {
+            "value": "country",
+            "label": "A village or open country"
+          },
+          {
+            "value": "indifferent",
+            "label": "It makes no difference to me"
+          },
+          {
+            "value": "no-idea",
+            "label": "I have no idea"
+          }
+        ],
+        "section": "settling",
+        "grounds": false,
+        "tells": "The kind of place rather than the place. A city and a village are different lives and the difference survives translation, where «where I live now» and «near where I grew up» are the same answer for anybody who never left."
+      },
+      {
+        "id": "parents-distance",
+        "kind": "choice",
+        "prompt": "How far from your parents do you want to live?",
+        "options": [
+          {
+            "value": "same-town",
+            "label": "The same town"
+          },
+          {
+            "value": "hour",
+            "label": "Within an hour's drive"
+          },
+          {
+            "value": "hours",
+            "label": "A few hours away"
+          },
+          {
+            "value": "flight",
+            "label": "Far enough to need a flight"
+          },
+          {
+            "value": "no-preference",
+            "label": "It makes no difference to me"
+          },
+          {
+            "value": "na",
+            "label": "This does not apply to me"
+          }
+        ],
+        "section": "settling",
+        "grounds": false,
+        "tells": "How close you intend to live to your own parents, which settles a great deal about the next thirty years and is almost never said as a preference before it becomes a fact."
+      },
+      {
+        "id": "household-who",
+        "kind": "multi",
+        "max": 3,
+        "exclusive": [
+          "nobody"
+        ],
+        "prompt": "Who else could end up living in your home?",
+        "options": [
+          {
+            "value": "my-parent",
+            "label": "A parent of mine"
+          },
+          {
+            "value": "their-parent",
+            "label": "A parent of my spouse's"
+          },
+          {
+            "value": "sibling",
+            "label": "A brother or a sister"
+          },
+          {
+            "value": "friend",
+            "label": "A friend going through something"
+          },
+          {
+            "value": "lodger",
+            "label": "A lodger paying rent"
+          },
+          {
+            "value": "nobody",
+            "label": "Nobody but us"
+          }
+        ],
+        "section": "settling",
+        "grounds": false,
+        "tells": "Who you would take in, answered before anybody needs taking in — the one household question that is normally decided in a week, by whoever asked first."
+      }
+    ],
+    "sourceNote": "The five headings behind this are Gottman's and the headings are the public part — money, life plans, communication and conflict, core values, and expectations and commitment are the subject of a blog post anyone can read. Nothing else of theirs is here. The Gottman questionnaires and card decks are copyrighted, are sold and distributed under licence, and none of them has been reproduced, paraphrased or reconstructed; every question above was written for this app. Three of the five headings are also missing on purpose. Money is asked properly in Managing money, children and everything downstream of them in The family plan, belief in Faith, and how you argue in Conflict style — asking them again here would have produced fifteen questions, most of which this app already answers better elsewhere. What is left is the part nothing else in the catalogue covers: what you each take the word married to mean, how much of your week stays yours, and where two careers will let you live. One thing is missing that you might expect. This does not ask whether violence would end a marriage. Asking it would mean asking you to predict your own behaviour in a crisis you have not had, which is the one thing these instruments never do, and it would print an answer onto a sheet that could later be held against the person who wrote it. If that question is live for you, it is not a question for a web page. If you have taken none of these yet, take Conversations first. It records which of these subjects the two of you have never actually raised, which is a cheaper and more useful thing to find out, and it changes what you do with this one. Then this, then Managing money and The family plan, which go deep on the two subjects deliberately cut from here. As for whether any of it works: the two largest randomised trials of relationship education, Building Strong Families and Supporting Healthy Marriage, found no effect on whether couples stayed together, and the best-conducted meta-analysis of premarital education finds the effect on relationship quality does not survive counting the unpublished studies in. This instrument has never been tested and claims nothing. It records what you said, how much it weighs, and why.",
+    "provenance": {
+      "constructName": "Gottman's five talks before marriage (public headings only), narrowed to the two headings this app does not already cover",
+      "constructOrigin": "The Gottman Institute blog, «The 5 Most Important Talks to Have Before Marriage» — a freely readable article whose five headings are: Money; Life Plans; Communication Styles and Conflict; Core Values, Beliefs, and Worldviews; Expectations, Commitment and Decision Making.",
+      "constructPublic": true,
+      "constructNote": "A published list of topic headings is the framework, and the framework is the public part. The Gottman Method's own measurement materials are not: the Sound Relationship House questionnaires and the Gottman Card Decks carry an explicit copyright in the names of John M. Gottman and Julie Schwartz Gottman and are distributed under licence by The Gottman Institute, Inc. No item, no card, no wording and no option set from any of them has been copied, paraphrased closely, or reconstructed from memory or description. Every prompt and every option label above is original to this repo, and the item shapes were driven by this repo's own constraints (80 characters, 14 words, no double-barrelled prompts, an honest escape in every option set) rather than by anything of theirs. On scope: the design memo's table asks for one section per Gottman heading. That is not what is delivered, and the reason is the scope problem rather than a preference. Money is money-management's whole subject; children and their downstream are family-plan's; belief is faith's; how you argue is conflict-style's, communication-style's and attachment's; and whether you have raised any of it is couple-conversations'. Taking each heading literally would have produced an instrument three-fifths of which asks questions this app answers better elsewhere. So headings 1, 3 and 4 are dropped entirely, heading 5 is expanded into three sections (commitment, time, independence), and heading 2 is reduced to the two sub-topics — careers and settling down — that nothing in the catalogue touches. The lineage is still Gottman's; the coverage is deliberately partial and the sourceNote says so to the reader. On grounds: this instrument does NOT declare grounds, and should not. §1.3 reserves the fourth part for faith, where every block is about something held on an authority and the whole value is that grounds are comparable across all twelve. Here it would attach honestly to three blocks at most — marriage-means, final-say, grounds-to-end — and the cross-block pattern that justifies closed options rather than free text would not exist across the other twelve. The free-text why carries the reason for these fifteen, which is what it is for. Four decisions are worth defending individually. First, `final-say` includes «The husband» because a headship view is a real stated position held by real people who will take this, and an option set that omits it collects a false answer from them; the other five options carry no such premise, so the block insults nobody either way. It is also the one answer the playbook deliberately generates no line from, because the only handable sentence it yields is a rule for somebody else's behaviour, and every line on this sheet is a first-person claim. Second, `grounds-to-end` is capped at two rather than left open, because an uncapped list of six would be ticked five times by almost everybody and produce nothing — the cap is what turns it into a ranking. A multi permits zero selections and the runner does not block on it, so «I would rather not answer this one» remains available without an option that says so. Third, and consequent on that cap: no option in `grounds-to-end` is a harm. An earlier draft listed «being hit» alongside an affair and a hidden debt, and it was cut on two counts. In a max-of-two ranking an option almost nobody would reject eats a slot from everybody and separates nobody from anybody, which is the Barnum failure in its option-set form. Worse, a reader who spent both slots elsewhere would have produced a stored, printable document recording that they do not count being hit as grounds — a false answer collected on the one item in the bank where a false answer does real harm. The whole subject is now out of the instrument and the sourceNote tells the reader so rather than leaving its absence to be noticed. Fourth, `who-knows` asks who has already heard the honest version of a bad month rather than who you would tell if the marriage were in trouble. Those look like one question and are not: the second is a forecast of your own behaviour under stress, which rule 4 forbids and which is the exact ground on which `counselling-when` is rejected below. The first is a fact the reader already holds, and it surfaces the same six people.",
+      "evidenceNote": "None, and none is needed. This is a stated-preference inventory: it has no reliability coefficient, no factor structure, no norms and no criterion validity, because it estimates nothing and there is nothing for those statistics to be about. A person answering «two or three evenings» is not being measured against a population; they are stating a number they already knew. The only claim being made is that they said it, that they weighted it, and that they gave a reason — and all three of those are facts about an event rather than inferences about a mind. Anything stronger would have to be defended and could not be. What can honestly be said about the surrounding evidence is thin and mostly negative, and it is in the sourceNote rather than buried here: Building Strong Families (n > 4,700 couples, eight sites, random assignment) found no overall effect on relationship quality or on whether couples stayed together; Supporting Healthy Marriage found small effects on relationship quality and none on staying together; Fawcett et al. (2010) find that premarital education's effect on relationship quality does not survive the inclusion of unpublished studies, though the effect on observed communication skill holds up better. One further line of work is sometimes reached for in support of a careers section — Sandow's Swedish register study of long-distance commuters and separation risk. It is not cited here as support, and no wording above leans on it. It is observational and cannot separate the commuting from the circumstances that produce it; its exposure is a daily commute rather than the nights away this instrument asks about; and the percentage usually quoted from it travels through a university press release rather than the paper, which is why no figure from it appears anywhere in this instrument's copy. It is listed in the sources so a reader can go and judge it. No study anywhere has tested whether writing your position down in this format helps. It probably has not been tried. Say that, rather than borrowing credibility from the trials above, which mostly failed.",
+      "avoided": [
+        "The Gottman Institute's Sound Relationship House questionnaires (copyrighted, distributed under licence)",
+        "Gottman Card Decks — all fourteen decks and the app that carries them (commercial product)",
+        "Eight Dates (Gottman & Gottman) and its question sets",
+        "The Love Maps question set (copyrighted, distributed under licence)",
+        "PREPARE/ENRICH — sold per couple and gated behind paid facilitator certification",
+        "FOCCUS — sold per couple through FOCCUS Inc., facilitator training required",
+        "RELATE (RELATE Institute) — a paid premarital assessment; not consulted, and no item from it was wanted",
+        "Thomas–Kilmann Conflict Mode Instrument (commercially licensed; the conflict heading is cut here anyway)"
+      ]
+    },
+    "playbookOk": [
+      {
+        "id": "ok-first-hour",
+        "text": "Leave me alone for the first hour after I get in. I am not sulking and it is not about you.",
+        "from": "alone-time = most of a day / more than a day"
+      },
+      {
+        "id": "ok-book-tuesday",
+        "text": "Book something for yourself on a Tuesday without checking with me first.",
+        "from": "evenings-together = two or three / one, if that"
+      },
+      {
+        "id": "ok-week-away",
+        "text": "Go away for a week without me. I will not read anything into it and I do not need to be reassured about it.",
+        "from": "holiday-apart = yes, most years"
+      },
+      {
+        "id": "ok-one-friend-knows",
+        "text": "Assume one friend of mine has heard the honest version of a bad week. I need somebody outside this.",
+        "from": "who-knows = a close friend"
+      },
+      {
+        "id": "ok-friend-stays",
+        "text": "My oldest friend stays my friend. You do not have to like him and I am not dropping him.",
+        "from": "closest-friend = it stays exactly as it is"
+      },
+      {
+        "id": "ok-my-desk",
+        "text": "One desk in this house is mine. Do not tidy it and do not put your things on it.",
+        "from": "kept-to-myself includes a room or a desk of my own"
+      },
+      {
+        "id": "ok-quiet-hours",
+        "text": "Let the first hour of the morning be silent. It is not a mood and it is not about you.",
+        "from": "kept-to-myself includes hours when I am not spoken to"
+      },
+      {
+        "id": "ok-abroad-with-date",
+        "text": "Bring me the job abroad if it has an end date on it. A fixed term is a yes from me.",
+        "from": "relocation = yes, if we agreed an end date"
+      },
+      {
+        "id": "ok-send-the-listing",
+        "text": "Send me the listing in the other country. I am not being romantic about it. I mean it.",
+        "from": "relocation = yes"
+      },
+      {
+        "id": "ok-take-the-trip",
+        "text": "Take the trip. A week away is normal for my work and it is not me choosing the job over you.",
+        "from": "nights-away = up to a week / more than a week"
+      },
+      {
+        "id": "ok-your-turn",
+        "text": "Take the promotion this time. Mine is the one after. I want that said out loud now.",
+        "from": "career-lead = it should take turns over the years"
+      },
+      {
+        "id": "ok-sunday-lunch",
+        "text": "Say yes to Sunday at my parents' most weeks. Being near them is something I actively want.",
+        "from": "parents-distance = the same town / within an hour's drive"
+      },
+      {
+        "id": "ok-ask-about-parent",
+        "text": "Ask me properly about one of my parents living here before you rule it out.",
+        "from": "household-who includes a parent of mine"
+      },
+      {
+        "id": "ok-bring-someone-in",
+        "text": "Bring in someone we both trust when we are stuck. That is not going over my head and I will not treat it as one.",
+        "from": "final-say = someone we both trust"
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "no-card-then-tell",
+        "text": "Do not put something large on a card and tell me afterwards. That is the one I do not recover from quickly.",
+        "from": "grounds-to-end includes a large debt hidden from me"
+      },
+      {
+        "id": "no-follow-me",
+        "text": "Do not follow me into the other room to finish the conversation. Wait until I come back.",
+        "from": "alone-time = most of a day / more than a day"
+      },
+      {
+        "id": "no-fill-my-week",
+        "text": "Do not fill four evenings a week without checking with me. I need most nights to be ours.",
+        "from": "evenings-together = nearly every evening"
+      },
+      {
+        "id": "no-week-away",
+        "text": "Do not book a week away without me. I would take it badly and I would rather tell you that now than pretend otherwise.",
+        "from": "holiday-apart = no"
+      },
+      {
+        "id": "no-tell-your-mother",
+        "text": "Do not tell your mother about our arguments. What happens between us does not leave the house.",
+        "from": "who-knows = nobody"
+      },
+      {
+        "id": "no-secret-friendship",
+        "text": "Do not keep a friendship going that I am not allowed to know about. The secrecy is the problem, not the friend.",
+        "from": "kept-to-myself = nothing at all"
+      },
+      {
+        "id": "no-decide-then-inform",
+        "text": "Do not decide something big and inform me. Nothing moves until we have both actually agreed.",
+        "from": "final-say = nobody, nothing moves until we agree"
+      },
+      {
+        "id": "no-divorce-word",
+        "text": "Do not use the word divorce in an argument. Not once, not as a threat, not to make a point.",
+        "from": "marriage-means = it takes leaving off the table"
+      },
+      {
+        "id": "no-move-for-your-job",
+        "text": "Do not accept a move on my behalf. Where we live follows my work, and I need you to have heard that before we marry.",
+        "from": "career-lead = mine"
+      },
+      {
+        "id": "no-apply-abroad",
+        "text": "Do not apply for jobs in another country and then ask me. I am not moving abroad.",
+        "from": "relocation = no"
+      },
+      {
+        "id": "no-overnight-work",
+        "text": "Do not volunteer me for anything that keeps me away overnight. Not once a month, not once a quarter.",
+        "from": "nights-away = none"
+      },
+      {
+        "id": "no-move-us-to-a-field",
+        "text": "Do not put us somewhere I need a car to buy bread. I know how that ends for me.",
+        "from": "place-type = a big city"
+      },
+      {
+        "id": "no-near-parents",
+        "text": "Do not put us in the same town as either set of parents. I want a drive between us and them.",
+        "from": "parents-distance = far enough to need a flight"
+      },
+      {
+        "id": "no-spare-room",
+        "text": "Do not offer our spare room to anyone before you have asked me. Not your brother, not for a fortnight.",
+        "from": "household-who = nobody but us"
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "Violence as an option in `grounds-to-end` — «being hit», listed alongside an affair and a hidden debt",
+        "why": "Cut, and the whole subject with it. Two independent failures. In a max-of-two ranking, an option that no reasonable person rejects eats a slot from everybody and separates nobody from anybody, which is the Barnum failure in its option-set form. And a reader who spent both slots on an affair and a hidden debt would have produced a stored, printable document recording that they do not count being hit as grounds — a false answer collected on the one item in the bank where a false answer does real harm. Asking it at all would also breach rule 4, since what you would do the first time it happened is a forecast of your own behaviour under stress, not something you know. The sourceNote now tells the reader plainly that the question is not asked and why."
+      },
+      {
+        "idea": "`out-alone` — «How often do you want an evening out without your spouse?» (twice a week or more / about once a week / once or twice a month / a few times a year / I would not)",
+        "why": "Cut for arithmetic. It sat in the independence section while `evenings-together` sat in time, and the two count the same seven evenings from opposite ends: somebody who wants two or three evenings together has four or five free by construction. Two blocks on two screens splitting one number let a reader answer «nearly every evening» and «twice a week out» without the instrument noticing the contradiction, and a document that contains both is worse than one that contains neither. Its two playbook lines are re-derived from `evenings-together`, which loses nothing, and its slot went to `closest-friend`, which fills a hole the independence section had promised in its own note and never delivered — the original bank claimed to ask about friendships kept after marrying and did not ask about them once."
+      },
+      {
+        "idea": "`settle-where` — «Where do you expect to be living in ten years?» (where I live now / near where I grew up / a bigger city / somewhere smaller or more rural / another country / no idea)",
+        "why": "Reshaped into `place-type` rather than cut, because the option set did not partition and rule 6 requires that it does. «Where I live now» and «Near where I grew up» are the same answer for anyone who never left; «A bigger city» and «Another country» are both true at once for a great many people. A choice whose options overlap collects a coin flip. The country axis already belongs to `relocation` and the distance-from-family axis to `parents-distance`, so what was genuinely left for this block to own is the kind of place — which partitions cleanly, is knowable, and translates into Polish, Spanish and German without a per-locale rewrite."
+      },
+      {
+        "idea": "`counselling-when` — «When would you be willing to see a counsellor together?» (before anything is wrong / once we are stuck / only if the marriage were at risk / I would not go / I do not know)",
+        "why": "Cut because rule 4 says the instrument only asks what a person already knows, and what you would agree to during a crisis you have not had is a forecast of your own behaviour under stress. `who-knows` covers the same ground in the form the house rules prefer: it asks who has already heard the honest version of a bad month, which is a fact rather than a prediction, and «a counsellor» is one of its six options. Recorded here because an earlier draft of this bank cut `counselling-when` on exactly this argument while keeping a block that asked «Who would you tell first if the marriage were in trouble?» — which commits the same offence in almost the same words, and which the cut note then misdescribed as being about who is in your circle today. That block is the one now rewritten as `who-knows`, and the argument is finally consistent with itself."
+      },
+      {
+        "idea": "`spending-threshold` — the largest amount you would spend without saying anything first",
+        "why": "money-management's subject exactly, and couple-conversations already uses it as its money opener in copy (`topic.money.opener` names it in so many words). Asking it a third time would be the clearest single case of the duplication this instrument was told to remove."
+      },
+      {
+        "idea": "`prenup` — whether you would want an agreement before the wedding, and what it would cover",
+        "why": "Genuinely a commitment question rather than a money one, so the overlap argument does not dispose of it. Cut on the four-originals rule instead: the default matrimonial property regime differs so much across the four locales this ships in that no single option set partitions the space in all of them, and a block whose options are correct in English and nonsense in two other languages collects a false answer rather than a missing one."
+      },
+      {
+        "idea": "`surname` — whether you would change your name on marrying",
+        "why": "Concrete, knowable and culturally rich, which is why it was considered seriously. Cut because in at least one of the four locales the question does not arise the way it does in English, so the block would be dead weight for a large share of readers and the option set would have to be rewritten per language rather than translated."
+      },
+      {
+        "idea": "`political-views` — from Gottman's fourth heading, core values and worldviews",
+        "why": "A stated left/right label is an identity token, not an instruction. Nothing on it can be handed to another person as a sentence they could act on, which is the test §4.1 sets for every playbook line. The parts of «core values» that actually cash out into decisions are already here as `final-say`, `place-type` and `household-who`, and the rest belongs to faith and good-life."
+      },
+      {
+        "idea": "`friend-your-spouse-dislikes` — what happens to a friendship your spouse cannot stand",
+        "why": "Two failures at once. It is boundaries' declared territory (a partner's friendships), and it asks for a rule governing somebody else's behaviour rather than a position of your own — every block here is a first-person claim, and mixing in one third-person rule would blur what the document is. `closest-friend` keeps the half that is a first-person claim: what you intend for your own friendship, stated without reference to what anybody else thinks of it."
+      },
+      {
+        "idea": "`ex-contact` — whether contact with a former partner continues",
+        "why": "boundaries, explicitly, per §7.1 of the design memo."
+      },
+      {
+        "idea": "`children-number` and `children-timing`",
+        "why": "family-plan owns the whole downstream, and couple-conversations already asks both as facts (k1, k2, k3). Three instruments asking one person how many children they want is the failure mode this scope pass existed to prevent."
+      },
+      {
+        "idea": "`shared-practice` — whether faith is something you would do together",
+        "why": "faith owns it with grounds attached, and couple-conversations' f1 already records the position. Cutting it costs the Gottman lineage a whole heading and costs the reader nothing."
+      },
+      {
+        "idea": "`how-you-argue` / `after-the-argument`",
+        "why": "conflict-style measures the two concerns, attachment describes what repair needs, and couple-conversations records whether it has been discussed. Three instruments deep, and this one would have added a fourth shallow pass over the same ground."
+      },
+      {
+        "idea": "`stop-earning` — whether you would want a year at some point without income",
+        "why": "Nearly kept for the careers section. It is a money question in career clothing — the answer turns entirely on savings, debt and risk tolerance, which is money-management's declared subject, so the block would have been answered against facts recorded in another instrument."
+      },
+      {
+        "idea": "`wedding-itself` — size, cost, who pays",
+        "why": "This instrument is about the decades after the day, and the cost half is money-management's. A block about one afternoon would set the wrong register for the fourteen around it."
+      }
+    ],
+    "sources": [
+      "https://www.gottman.com/blog/the-5-most-important-talks-to-have-before-marriage/",
+      "https://www.gottman.com/couples/apps/",
+      "https://onlinelibrary.wiley.com/doi/10.1002/pam.21608",
+      "https://acf.gov/opre/report/building-strong-families-project-long-term-effects-building-strong-families",
+      "https://acf.hhs.gov/opre/resource/the-supporting-healthy-marriage-evaluation-a-family-strengthening-program-for-low-income-families-final-impacts-from-the",
+      "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1741-3729.2010.00598.x",
+      "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1741-3729.2003.00105.x",
+      "https://journals.sagepub.com/doi/abs/10.1177/0042098013498280",
+      "https://www.umu.se/en/news/long-distance-commuters-get-divorced-more-often_5833295/",
+      "https://www.prepare-enrich.com/facilitator-certification/",
+      "https://www.foccusinc.com/training-become-a-trainer.aspx"
+    ]
+  },
+  "changes": [
+    "READABILITY — no failures found, and I counted rather than estimated. All 15 original prompts were 42-60 chars and 8-12 words (limits 80 and 14), none contained ', and ' / ', but ' / '; ', and none was double-barrelled. Every revised prompt is 42-58 chars and 8-11 words, leaving >=30% headroom before the 80-char gate, which is the margin Polish and German need. The gate itself is the weakest of the four tests here and it caught nothing; every real defect below was found by the other three.",
+    "BARNUM (option set), the most serious finding — `grounds-to-end` listed 'Being hit' in a max-of-2 ranking. Two failures. (a) No reasonable person rejects it, so it eats a slot from everybody and discriminates nothing — the Barnum failure in option-set form. (b) Far worse: a reader who spends both slots on an affair and a hidden debt has produced a stored, printable document recording that they do NOT count being hit as grounds. That is a false answer collected on the one item where a false answer does real harm. Removed the option and the whole subject; it also fails rule 4 (what you would do the first time is a forecast of behaviour under stress, not something you know). Prompt reworded to 'Which of these would you treat as breaking the marriage?' so every remaining option is something a person DID rather than something that happened to them, and 'An affair with no sex in it' added in the freed slot. The sourceNote and the commitment section note now tell the reader the question is absent and why, rather than leaving its absence to be noticed.",
+    "RULE 4 / internal contradiction — `first-told` ('Who would you tell first if the marriage were in trouble?') is a forecast of your own behaviour in a crisis you have not had. This is the exact ground on which the bank's own `rejected` list cut `counselling-when`, and the cut note then misdescribed `first-told` as being about 'who is actually in your circle today', which the prompt did not ask. Rewritten as `who-knows`: 'Who has heard the honest version of your worst month?' — a past fact the reader already holds, same six options, same playbook lines, argument now consistent with itself. The `counselling-when` rejection note is rewritten to record the inconsistency instead of repeating it.",
+    "PARTITION (rule 6) — `settle-where` options overlapped badly: 'Where I live now' and 'Near where I grew up' are the same answer for anyone who never left, and 'A bigger city' and 'Another country' are both true at once for many people. A `choice` with overlapping options collects a coin flip. Reshaped as `place-type` ('What kind of place do you expect to be living in?': big city / town / village or open country / no difference / no idea). The country axis already belongs to `relocation` and the family-distance axis to `parents-distance`, so kind-of-place is the only axis this block can own cleanly — and it survives translation without a per-locale rewrite.",
+    "PARTITION (rule 6) — three more option sets fixed. `holiday-apart` mixed a frequency scale with a condition ('Only with family or old friends' overlaps 'Occasionally'); replaced with a clean ordinal ending in 'Only if there were a reason for it'. `career-lead` had 'Neither of ours', which is not a decision rule and duplicates the 'I do not know' escape; replaced with 'Whoever would lose more by giving way'. `nights-away` mixed scales ('Up to a week' vs 'Two weeks or more' skips 8-13 nights); now none / up to three / up to a week / more than a week.",
+    "HONEST ESCAPE (rule 6) — `parents-distance` forced a false answer from any reader whose parents have died: 'It makes no difference to me' is indifference, not inapplicability. Added 'This does not apply to me' as a sixth option, and changed 'Same country, a few hours away' to 'A few hours away' since the original presupposed the parents live in the same country as the reader.",
+    "CROSS-BLOCK ARITHMETIC — `out-alone` and `evenings-together` count the same seven evenings from opposite ends and sat in different sections on different screens, so a reader could answer 'nearly every evening together' and 'twice a week out' and the instrument would store both. Cut `out-alone` and re-derived its two playbook lines from `evenings-together`, which loses nothing.",
+    "GAP FILLED — the `independence` section note promised 'friendships kept after marrying' and the original bank never asked about a friendship once (only who you'd confide in, and how often you go out). Added `closest-friend`: 'What happens to your closest friendship after you marry?' in the freed slot. It is a first-person claim about your own friendship, so it stays out of boundaries' territory, and it is the block the section note was already describing.",
+    "SECTIONS REBALANCED to 3/3/3/3/3 — `holiday-apart` moved from time... to time (it stays), `who-knows` and `closest-friend` and `kept-to-myself` now make up independence. Block count unchanged at 15. Every section now actually delivers what its note promises.",
+    "PLAYBOOK — three lines put words in the reader's mouth that no answer had supplied, which is the instrument authoring a position rather than recording one. 'I will say yes to three years' invented a number the reader never stated (now 'A fixed term is a yes from me'); 'the desk in the corner' asserted a desk exists in a corner (now 'One desk in this house is mine'); 'Talk to me after the first coffee' assumed the reader drinks coffee (now 'Let the first hour of the morning be silent'). Also 'Ask me properly about my mother' was derived from an option that says 'a parent of mine' and could be a father — now 'one of my parents'.",
+    "PLAYBOOK bookkeeping — all `from` clauses re-pointed to the surviving blocks and verified programmatically: every clause names a real block id and every option label it cites exists on that block. `no-plan-my-evenings` (orphaned by the `out-alone` cut) replaced with `no-move-us-to-a-field` from `place-type`, and `ok-weekly-night` (redundant with `ok-book-tuesday`, same trigger) replaced with `ok-friend-stays` from `closest-friend`. Counts stay at 14 and 14, inside §4.1's 8-14 target.",
+    "POSITION-vs-TRAIT slippage in `tells` copy — `alone-time` said 'how much solitude you need in order to function', which is a claim about the person's functioning, not a record of what they said; now 'how much solitude you are asking for'. `nights-away` said 'the number the other person will be silently measuring every trip against', asserting a fact about a partner who has not answered anything; now framed as a ceiling the reader is choosing. Prompt also changed from 'would you spend' (a forecast about a job they may not have) to 'would you accept' (a stated position).",
+    "LICENCE — clean, no findings. I checked every prompt and option against the Gottman Sound Relationship House questionnaires, the Card Decks, Eight Dates and Love Maps, and against PREPARE/ENRICH, FOCCUS, RELATE and the TKI. Nothing tracks an item from any of them: those instruments are agree/disagree statement banks and partner-knowledge cards, and these are choice/multi blocks with option sets, which is a different item shape as well as different wording. Taking the five published blog headings as a framework is exactly the position docs/candidate-instruments.md already states (Chapman's five categories public, his 30-item quiz not; Enneagram public, RHETI not). The verbatim quotation in `constructOrigin` is an article title plus five topic headings — the framework, which is the public part.",
+    "PROVENANCE INFLATION (per the repo's own honest-provenance rule) — the evidenceNote quoted 'a roughly 40% higher separation risk' from Sandow's commuting study. That precise figure travels through a university press release rather than the paper, and the study's exposure is a daily commute, not the nights away this instrument asks about. Number removed, study still named and still cited so a reader can judge it, with the note now saying explicitly that nothing above rests on it. Also softened 'fifteen questions of which nine were already answered elsewhere' (a fabricated precision) to 'most of which'.",
+    "SOURCES trimmed — dropped https://journals.sagepub.com/doi/10.1177/01461672251355002, which no note anywhere in the bank cites and which I could not identify; an unattributable URL in a source list is exactly the borrowed credibility the repo forbids. `avoided` trimmed from ten entries to eight: Chapman's love-languages quiz, DISC, MBTI and 16Personalities were never in scope for a before-marriage instrument, and listing them reads as padding a due-diligence list. The instruments genuinely adjacent to this one (Gottman's materials, PREPARE/ENRICH, FOCCUS, RELATE, TKI) all stay.",
+    "TYPE DEFECT TO FIX IN CODE, not corrected here — every block carries `\"grounds\": false`, but §1.1 of the design memo declares `grounds?: string[]`, so `false` will not typecheck against StanceBlock. I left the field as the bank supplied it rather than silently changing the shape of all 15 blocks; either omit the key on blocks that declare no grounds, or widen the type. The decision NOT to declare grounds is right and its defence in constructNote is kept — §1.3 reserves the fourth part for faith, and grounds would attach honestly to at most three blocks here.",
+    "STILL OUTSTANDING — this bank is English only, and §8's four-originals rule (and the previous memo's §9.1) requires the Polish, Spanish and German items to be written by someone thinking in that language, not transposed from these. Two blocks will need real authorial judgement rather than translation: `parents-distance` (an hour's drive partitions a Polish or German map differently) and `place-type` ('a town' has no clean single equivalent in all four). I kept every English prompt at or under 58 characters specifically to leave that headroom.",
+    "ALONE TEST — no per-block failures, and worth stating why rather than reporting a pass. Every block here records something the reader already knew, which for a stated-position inventory is the design (rule 4), not a defect: per §1.2 the discovery lives in the weight and in `compare()`, not in the item. The test bites on result copy instead, and the copy that failed it was the three `tells` fixed above, which described the reader rather than the item.",
+    "MULTI ESCAPES — all three multis were written before `MultiItem.exclusive` existed, so each carried a floor option a reader could tick beside the very things it denies. Declared at block level, one each: `grounds-to-end` → `none` («None of these would»), `kept-to-myself` → `nothing` («Nothing at all»), `household-who` → `nobody` («Nobody but us»). Nothing was added, reworded or removed — the escapes were already there and rule 6 requires them; what is new is that the control now clears the rest when one is ticked. Each block keeps five non-exclusive options and its existing `max`, so all three remain honest multis.",
+    "RENAME, §2 of the 2026-08-27 inventory decisions. `deadlock` → `final-say`. The id collided with `family-plan.deadlock`, which asks a different question — that one asks what settles a decision about a child, this one asks who has the final say on any big decision — and both halves are renamed rather than one (`family-plan.deadlock` → `parent-deadlock`), so neither surviving id can be read as the other instrument's. Applied to the block id, both playbook `from` fields, the two mentions in `provenance.constructNote` and the one in `rejected`. The prompt keeps «deadlocked», which is the English word and not the id. The `settling` section here is untouched: §2 renames `family-plan`'s section, because «where you settle» and «settling a dispute» are a pun rather than one subject, and geography keeps the name. §1.5's routing sentence needed no addition — the `sourceNote` already carries it, closing with «take Conversations first … Then this, then Managing money and The family plan, which go deep on the two subjects deliberately cut from here», the last clause word for word."
+  ],
+  "critiqued": true
+}

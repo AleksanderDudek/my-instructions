@@ -2,12 +2,14 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@/components/ui/link";
+import { cn } from "@/lib/cn";
 import { createI18n, type Messages } from "@/core/i18n";
 import { CHANNELS } from "@/core/types";
 import type { Channel, Locale, Run } from "@/core/types";
 import { loadInstrumentModule } from "@/instruments/lazy";
 import type { InstrumentModule } from "@/core/registry";
 import { useStore } from "@/components/shell/store-provider";
+import { resolvePlaybook, isEmptyPlaybook, type ResolvedPlaybook } from "@/core/playbook";
 import { Plate, PlateHead } from "@/components/ui/primitives";
 import { Button } from "@/components/ui/button";
 
@@ -22,8 +24,23 @@ import { Button } from "@/components/ui/button";
  * It loads only the instruments the reader has actually completed. On a
  * catalogue of sixteen that is the difference between a page that ships every
  * instrument's code and one that ships the three somebody took.
+ *
+ * Some cards are not ours. A card with `lines` is the reader's own playbook —
+ * sentences they ticked and sentences they wrote — and it is the only content
+ * on the sheet that was not generated from a result. It is filed under the
+ * first channel the instrument declares rather than under a channel of its own,
+ * because the sheet's organising promise is that everything about talking to
+ * somebody is in one place; a seventh section called "their notes" would put
+ * the most actionable lines on the page furthest from the ones they answer.
  */
-type Card = { channel: Channel; title: string; body: string; from: string; id: string };
+type Card = {
+  channel: Channel;
+  title: string;
+  body: string;
+  from: string;
+  id: string;
+  lines?: ResolvedPlaybook;
+};
 
 export function Sheet({
   locale,
@@ -45,16 +62,35 @@ export function Sheet({
     let live = true;
     (async () => {
       const [runs, profile] = await Promise.all([store.runs(), store.profile()]);
-      const loaded = await Promise.all(runs.map((r) => loadInstrumentModule(r.instrumentId)));
+      const [loaded, practices] = await Promise.all([
+        Promise.all(runs.map((r) => loadInstrumentModule(r.instrumentId))),
+        Promise.all(runs.map((r) => store.practice(r.instrumentId))),
+      ]);
       if (!live) return;
 
       const cards: Card[] = [];
       runs.forEach((run, n) => {
         const instrument = loaded[n] as InstrumentModule | null;
         if (!instrument) return;
-        const scoped = i18n.scope(instrument.spec.id);
+        const { spec } = instrument;
+        const scoped = i18n.scope(spec.id);
         for (const card of instrument.spec.instructions(run.result, scoped.t)) {
-          cards.push({ ...card, from: scoped.t("title"), id: instrument.spec.id });
+          cards.push({ ...card, from: scoped.t("title"), id: spec.id });
+        }
+
+        // Regenerated from today's result rather than read back as text, so a
+        // line whose suggestion no longer exists disappears instead of being
+        // printed under somebody's name as a position they no longer hold.
+        const lines = resolvePlaybook(spec.playbook?.(run.result, scoped.t), practices[n]);
+        if (!isEmptyPlaybook(lines)) {
+          cards.push({
+            channel: spec.channels[0],
+            title: i18n.t("sheet.playbookTitle"),
+            body: "",
+            from: i18n.t("sheet.playbookFrom", { test: scoped.t("title") }),
+            id: spec.id,
+            lines,
+          });
         }
       });
       setState({ cards, runs, name: profile.displayName, note: profile.note });
@@ -121,7 +157,31 @@ export function Sheet({
               {cards.map((card, n) => (
                 <div key={`${card.id}-${n}`} className="rounded-sm border border-rule bg-panel-2 p-5">
                   <h4 className="mb-2 text-base">{card.title}</h4>
-                  <p className="mb-3 text-sm leading-relaxed text-muted">{card.body}</p>
+                  {card.lines ? (
+                    <div className="mb-3 grid gap-3">
+                      {(["ok", "notOk"] as const)
+                        .filter((side) => card.lines![side].length)
+                        .map((side) => (
+                          <div key={side}>
+                            <span
+                              className={cn(
+                                "label-caps mb-1 block border-l-2 pl-2",
+                                side === "ok" ? "border-brass" : "border-madder",
+                              )}
+                            >
+                              {i18n.t(side === "ok" ? "playbook.okHeading" : "playbook.notOkHeading")}
+                            </span>
+                            <ul className="grid gap-1 text-sm leading-relaxed text-ink/90">
+                              {card.lines![side].map((line) => (
+                                <li key={line.id}>{line.text}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                    </div>
+                  ) : (
+                    <p className="mb-3 text-sm leading-relaxed text-muted">{card.body}</p>
+                  )}
                   <Link
                     href={`/${locale}/tests/${card.id}/result`}
                     className="label-caps hover:text-ink print:hidden"

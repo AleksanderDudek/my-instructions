@@ -24,6 +24,14 @@ import workingStyle from "./working-style";
 import studyPractice from "./study-practice";
 import chronotype from "./chronotype";
 import numerology from "./numerology";
+import communicationStyle from "./communication-style";
+import boundaries from "./boundaries";
+import digitalLife from "./digital-life";
+import goodLife from "./good-life";
+import faith from "./faith";
+import beforeMarriage from "./before-marriage";
+import moneyManagement from "./money-management";
+import familyPlan from "./family-plan";
 
 const MODULES = [
   loveLanguages,
@@ -42,6 +50,14 @@ const MODULES = [
   studyPractice,
   chronotype,
   numerology,
+  communicationStyle,
+  boundaries,
+  digitalLife,
+  goodLife,
+  faith,
+  beforeMarriage,
+  moneyManagement,
+  familyPlan,
 ] as unknown as InstrumentModule[];
 
 export const registry = createRegistry(MODULES);

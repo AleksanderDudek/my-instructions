@@ -40,6 +40,8 @@ export default {
   "view.squareNote": "occurrences in the date",
   "view.meaningsHeading": "What the numbers carry",
   "view.outOfRange": "This date falls outside 1900\u20132050, so the Chinese New Year boundary is estimated at 4 February and the animal may be wrong by a few weeks.",
+  "view.reflectionHeading": "What is actually being counted",
+  "view.reflectionNote": "and from where",
 
   "pyramid.alt": "Reduction pyramid for {date}: core {a}, {b}, {c}; crown {crown}; base {base}.",
   "pyramid.row.crown": "Crown",
@@ -91,6 +93,26 @@ export default {
 
   "meanings.note": "Lit numbers are the ones this chart actually produced",
   "meanings.plusMaster": ", plus the master {number} \u2014 {name}",
+
+  /* ── what is being counted, and from where ─────────────────────── */
+  "reflection.method.title": "How the count is made",
+  "reflection.method.body": "Everything on this page comes from one place: the decimal digits of the date, written DD MM YYYY, added and folded until a single figure remains. Nothing about the person enters the arithmetic — not the hour, not the place, not a word they ever said. What is being reduced is the notation.",
+  "reflection.reach.title": "How far it reflects",
+  "reflection.reach.body": "So the honest limit is this. A chart reflects the way a day was written down, not the day. And the writing is not neutral. YYYY is not a quantity of time in the abstract; it is a count, and a count has to begin somewhere. Follow the year down and every figure in the chart turns out to rest on where the counting starts.",
+  "reflection.count.heading": "The number the chart reduces",
+  "reflection.count.since": "Years since the Nativity",
+  "reflection.count.sinceNote": "the year, as Anno Domini counts it",
+  "reflection.count.digits": "Its digits",
+  "reflection.count.digitsNote": "adding to {sum}",
+  "reflection.count.root": "Year root",
+  "reflection.count.rootNote": "folded to a single figure",
+  "reflection.count.destiny": "Destiny",
+  "reflection.count.destinyNote": "the whole date sums to {total}, then folds",
+  "reflection.count.note": "Read in order, that is the entire method. The year is not an amount of time — it is a distance, measured from one birth to this one.",
+  "reflection.ad.title": "What Anno Domini means",
+  "reflection.ad.body": "Latin for in the year of the Lord — short for anno Domini nostri Iesu Christi, in the year of our Lord Jesus Christ. The count was worked out by Dionysius Exiguus in 525, who was building Easter tables and would not go on numbering years after Diocletian, an emperor who had killed Christians. He restarted the reckoning at the Incarnation; Bede carried it into ordinary use; the civil calendar of most of the world has counted from that point ever since.",
+  "reflection.axis.title": "The axis",
+  "reflection.axis.body": "Which puts this whole page on one point. Every figure here descends from YYYY, and YYYY counts from the birth of Jesus Christ. He is the axis — the origin the entire date system is measured from, the year that had to be called one before any other year could be called anything at all. Read literally, a destiny number measures how far one life stands from His. The origin of the system is not a number. It is a Person, and a page about the way you were made is a fair place to notice it.",
 
   "instructions.destinyTitle": "Destiny {number} \u2014 {name}",
   "instructions.signsTitle": "{element} {animal}, {sign}",

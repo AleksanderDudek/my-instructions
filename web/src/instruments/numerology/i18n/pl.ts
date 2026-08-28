@@ -48,6 +48,8 @@ export default {
   "view.squareNote": "wystąpienia cyfr w dacie",
   "view.meaningsHeading": "Co niosą liczby",
   "view.outOfRange": "Ta data wypada poza zakresem 1900–2050, więc granica chińskiego Nowego Roku jest szacowana na 4 lutego, a zwierzę może być błędne o kilka tygodni.",
+  "view.reflectionHeading": "Co właściwie jest liczone",
+  "view.reflectionNote": "i od czego",
 
   "pyramid.alt": "Piramida redukcji dla daty {date}: rdzeń {a}, {b}, {c}; korona {crown}; podstawa {base}.",
   "pyramid.row.crown": "Korona",
@@ -99,6 +101,26 @@ export default {
 
   "meanings.note": "Podświetlone liczby to te, które ten wykres faktycznie dał",
   "meanings.plusMaster": ", plus liczba mistrzowska {number} — {name}",
+
+  /* ── co jest liczone i od czego ────────────────────────────────── */
+  "reflection.method.title": "Jak przebiega liczenie",
+  "reflection.method.body": "Wszystko na tej stronie pochodzi z jednego miejsca: z dziesiętnych cyfr daty zapisanej jako DD MM RRRR, dodawanych i składanych aż zostanie jedna liczba. W rachunek nie wchodzi nic z samego człowieka — ani godzina, ani miejsce, ani żadne wypowiedziane słowo. Redukcji podlega zapis.",
+  "reflection.reach.title": "Jak daleko to sięga",
+  "reflection.reach.body": "Uczciwa granica brzmi więc tak. Wykres odbija sposób, w jaki dzień został zapisany, a nie sam dzień. A ten zapis nie jest neutralny. RRRR nie jest ilością czasu w ogóle; jest liczeniem, a liczenie musi się skądś zacząć. Idź za rokiem w dół, a okaże się, że każda liczba w wykresie opiera się na tym, gdzie zaczyna się rachuba.",
+  "reflection.count.heading": "Liczba, którą wykres redukuje",
+  "reflection.count.since": "Lat od Narodzenia",
+  "reflection.count.sinceNote": "rok tak, jak liczy go Anno Domini",
+  "reflection.count.digits": "Jego cyfry",
+  "reflection.count.digitsNote": "w sumie {sum}",
+  "reflection.count.root": "Pierwiastek roku",
+  "reflection.count.rootNote": "złożony do jednej liczby",
+  "reflection.count.destiny": "Przeznaczenie",
+  "reflection.count.destinyNote": "cała data sumuje się do {total}, potem się składa",
+  "reflection.count.note": "Czytane po kolei, to cała metoda. Rok nie jest ilością czasu — jest odległością, mierzoną od jednych narodzin do tych.",
+  "reflection.ad.title": "Co znaczy Anno Domini",
+  "reflection.ad.body": "Po łacinie: w roku Pana — skrót od anno Domini nostri Iesu Christi, w roku Pana naszego Jezusa Chrystusa. Rachubę opracował Dionizjusz Mniejszy w 525 roku, układając tablice paschalne; nie chciał dalej numerować lat po Dioklecjanie, cesarzu, który zabijał chrześcijan. Zaczął liczenie od Wcielenia, Beda wprowadził je w powszechne użycie, a kalendarz cywilny większości świata liczy od tego punktu do dziś.",
+  "reflection.axis.title": "Oś",
+  "reflection.axis.body": "To stawia całą tę stronę na jednym punkcie. Każda liczba tutaj pochodzi z RRRR, a RRRR liczy od narodzin Jezusa Chrystusa. On jest osią — początkiem, od którego mierzy się cały system dat, rokiem, który musiał zostać nazwany pierwszym, zanim jakikolwiek inny rok mógł zostać nazwany. Czytana dosłownie, liczba przeznaczenia mierzy, jak daleko jedno życie stoi od Jego życia. Początkiem tego układu nie jest liczba. Jest nim Osoba, a strona o tym, jak zostałeś stworzony, to dobre miejsce, żeby to zauważyć.",
 
   "instructions.destinyTitle": "Przeznaczenie {number} — {name}",
   "instructions.signsTitle": "{animal} ({element}), {sign}",

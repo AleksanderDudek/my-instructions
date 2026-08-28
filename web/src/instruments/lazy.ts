@@ -32,6 +32,14 @@ const LOADERS: Record<string, Loader> = {
   "study-practice": () => import("./study-practice") as Promise<{ default: InstrumentModule }>,
   "chronotype": () => import("./chronotype") as Promise<{ default: InstrumentModule }>,
   "numerology": () => import("./numerology") as Promise<{ default: InstrumentModule }>,
+  "communication-style": () => import("./communication-style") as Promise<{ default: InstrumentModule }>,
+  "boundaries": () => import("./boundaries") as Promise<{ default: InstrumentModule }>,
+  "digital-life": () => import("./digital-life") as Promise<{ default: InstrumentModule }>,
+  "good-life": () => import("./good-life") as Promise<{ default: InstrumentModule }>,
+  "faith": () => import("./faith") as Promise<{ default: InstrumentModule }>,
+  "before-marriage": () => import("./before-marriage") as Promise<{ default: InstrumentModule }>,
+  "money-management": () => import("./money-management") as Promise<{ default: InstrumentModule }>,
+  "family-plan": () => import("./family-plan") as Promise<{ default: InstrumentModule }>,
 };
 
 export const hasInstrument = (id: string) => id in LOADERS;

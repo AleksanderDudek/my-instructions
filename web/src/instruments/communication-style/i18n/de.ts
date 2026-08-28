@@ -1,0 +1,198 @@
+/**
+ * Communication style — German.
+ *
+ * Zwölf Bitten, kein Typ. Die Farbfamilie, von der das Instrument abstammt,
+ * wird im `sourceNote` benannt und sonst nirgends: kein Farbwort steht in einer
+ * Frage, einer Option, einem Abschnitt oder einer Playbook-Zeile.
+ *
+ * Die Fragen sind auf Deutsch geschrieben und nicht übersetzt. Wo das Englische
+ * eine Wendung hat, die im Deutschen niemand sagt, steht hier die Wendung, die
+ * man sagt — «are you all right» ist „ob dir etwas fehlt“, „upset with you“ ist
+ * „sauer auf dich“, und einen Streit lässt man auf sich beruhen. Die Bedeutung
+ * ist dieselbe; das ist die Bedingung, unter der ein Item dasselbe Item bleibt.
+ *
+ * Deutsch läuft rund 30% länger als Englisch, und die 80-Zeichen-Grenze wird an
+ * dieser Datei gemessen. Darum stehen hier kurze Verbformen statt der
+ * Nominalisierungen, zu denen das Deutsche neigt: „Wie soll dir jemand eine
+ * schlechte Nachricht überbringen?“ und nicht „Wie sollte die Überbringung
+ * einer schlechten Nachricht erfolgen?“. Die Anrede ist durchgehend du, wie in
+ * der Shell und in den übrigen Instrumenten.
+ */
+export default {
+  "title": "Kommunikationsstil",
+  "tagline": "Zwölf Bitten darum, wie du angesprochen werden willst.",
+  "framework": "Zwölf erklärte Bitten — kein Typ, keine Farbe",
+  "sourceNote": "Das Vier-Farben-Vokabular ist erheblich älter als jedes Produkt, das darunter verkauft wird. Das Vier-Temperamente-Schema stammt von Galen, die Funktionspaare sind Jungs, und die beiden Achsen, die üblicherweise darunter gezeichnet werden — wie schnell und wie hart jemand vorangeht und ob die Aufmerksamkeit zuerst der Aufgabe oder den Menschen im Raum gilt —, sind offen veröffentlicht und gehören niemandem. Was sehr wohl jemandem gehört, ist jede kommerzielle Fassung: Insights Discovery und sein Rad gehören der Insights Group, DiSC gehört John Wiley & Sons, SOCIAL STYLE gehört TRACOM, True Colors gehört True Colors International, und kein einziges Item, kein Adjektiv, kein Farbname und keine Berichtsseite daraus steht hier oder wurde daraus zurückentwickelt. Jede Frage unten wurde für diese App geschrieben. Es lohnt sich, genau zu sagen, was das übrig lässt, denn die Farben sind der Grund, aus dem du diese Notiz liest, und im Instrument kommen sie nicht vor: Nichts, was du antwortest, wird ausgezählt, du wirst auf keiner der beiden Achsen verortet, und am Ende wird dir keine Farbe zugeschrieben. Zwölf Fragen werden gestellt und die Antworten geordnet zurückgegeben. Was herauskommt, ist kein Typ und keine Messung — es ist eine Aufzeichnung dessen, wie du darum gebeten hast, angesprochen zu werden, und eine Bitte braucht keine Belege hinter sich. Was gut ist, denn es gibt keine: Kein unabhängiger begutachteter Befund zeigt, dass es irgendetwas verbessert, jemanden in seinem erklärten Wunschstil anzusprechen, und die nächstgelegene sauber angelegte Literatur — die zum Abgleich von Unterricht mit erklärten Lernvorlieben — fand den Effekt nicht mehr, sobald sie ihn prüfte. Die Antworten sind trotzdem etwas wert. Sie sind eine Bitte und keine Vorhersage, und wer sie liest, kann einer Bitte nachkommen, ohne eine Theorie glauben zu müssen.",
+
+  "section.reaching.title": "Wie du mich erreichst",
+  "section.reaching.note": "Die Mechanik des Kontakts: wie ein Gespräch anfängt, ob man es unterbrechen darf und was zu tun ist, wenn es abbricht. Nichts davon betrifft, was du sagst. Alles davon betrifft, wie du ankommst.",
+  "section.hard.title": "Wenn etwas nicht stimmt",
+  "section.hard.note": "In welcher Reihenfolge eine schlechte Nachricht ankommen soll, wie weit ein Problem gediehen sein muss, bevor du davon hören willst, und was in einer Entschuldigung stehen muss, damit sie zählt.",
+  "section.friction.title": "Wenn wir uns uneins sind",
+  "section.friction.note": "Korrigiert werden, erfahren, dass jemand sauer auf dich ist, und was es braucht, damit du einen Streit ruhen lässt. Drei Dinge, die meist im Moment entschieden werden, von dem, der sich zuerst bewegt.",
+  "section.reading.title": "Mich lesen",
+  "section.reading.note": "Was dein Schweigen bedeutet, wie du gefragt werden willst und wo Lob ankommen muss. Drei Lücken, die die andere Person für sich selbst füllt, wenn du nichts gesagt hast.",
+
+  "stance.small-talk.prompt": "Wie viel Smalltalk, bevor jemand zur Sache kommt?",
+  "stance.small-talk.opt.none": "Direkt zur Sache, ohne Vorrede",
+  "stance.small-talk.opt.aLine": "Ein Satz zur Begrüßung, dann die Sache",
+  "stance.small-talk.opt.fewMinutes": "Erst ein paar Minuten ganz gewöhnlich reden",
+  "stance.small-talk.opt.depends": "Kommt darauf an, wer es ist",
+
+  "stance.interrupting.prompt": "Wann darf dich jemand mitten im Satz unterbrechen?",
+  "stance.interrupting.opt.anyTime": "Jederzeit — ich verliere den Faden nicht",
+  "stance.interrupting.opt.toBuild": "Nur, um etwas beizusteuern",
+  "stance.interrupting.opt.askFirst": "Erst, wenn mein Name gefallen ist",
+  "stance.interrupting.opt.wait": "Erst, wenn ich zu Ende geredet habe",
+  "stance.interrupting.opt.depends": "Kommt auf das Thema an",
+
+  "stance.no-reply.prompt": "Was soll jemand tun, wenn du zwei Tage nicht geantwortet hast?",
+  "stance.no-reply.opt.nudge": "Schick es noch einmal — es ist untergegangen",
+  "stance.no-reply.opt.call": "Ruf mich stattdessen an",
+  "stance.no-reply.opt.escalate": "Sag, dass es eilt, wenn es eilt",
+  "stance.no-reply.opt.wait": "Warte — ich komme dazu",
+  "stance.no-reply.opt.assumeNo": "Nimm das Schweigen als Nein",
+  "stance.no-reply.opt.depends": "Kommt darauf an, wer fragt",
+
+  "stance.bad-news.prompt": "Wie soll dir jemand eine schlechte Nachricht überbringen?",
+  "stance.bad-news.opt.firstSentence": "Das Schlimmste im ersten Satz",
+  "stance.bad-news.opt.shortWarning": "Kurz vorwarnen, dann das Schlimmste",
+  "stance.bad-news.opt.contextFirst": "Erst der Hintergrund, zuletzt das Schlimmste",
+  "stance.bad-news.opt.writtenFirst": "Schriftlich, damit ich es allein lese",
+  "stance.bad-news.opt.depends": "Kommt darauf an, worum es geht",
+
+  "stance.unfinished.prompt": "Wann soll dir jemand von einem ungelösten Problem erzählen?",
+  "stance.unfinished.opt.atOnce": "Sobald es jemand überhaupt ahnt",
+  "stance.unfinished.opt.onceReal": "Wenn jemand sicher ist, dass es echt ist",
+  "stance.unfinished.opt.withOptions": "Wenn es wenigstens eine Möglichkeit gibt",
+  "stance.unfinished.opt.onceStuck": "Erst, wenn es ohne mich nicht zu lösen ist",
+  "stance.unfinished.opt.depends": "Kommt darauf an, wie groß es ist",
+
+  "stance.apology.prompt": "Wie soll sich jemand bei dir entschuldigen?",
+  "stance.apology.opt.named": "Indem er genau sagt, was er getan hat",
+  "stance.apology.opt.said": "Einmal, klar, und dann gut sein lassen",
+  "stance.apology.opt.changed": "Indem er sagt, was sich jetzt ändert",
+  "stance.apology.opt.shown": "Indem er etwas dagegen tut",
+  "stance.apology.opt.later": "Nicht sofort — gib mir einen Tag",
+  "stance.apology.opt.depends": "Kommt darauf an, was passiert ist",
+
+  "stance.public-correction.prompt": "Wie soll dich jemand vor anderen korrigieren?",
+  "stance.public-correction.opt.onTheSpot": "Laut und sofort",
+  "stance.public-correction.opt.withReason": "Laut, mit der Begründung dazu",
+  "stance.public-correction.opt.afterwards": "Nicht dort — hinterher, unter vier Augen",
+  "stance.public-correction.opt.signal": "Jetzt ein Zeichen, später die Einzelheiten",
+  "stance.public-correction.opt.depends": "Kommt darauf an, wie wichtig es ist",
+
+  "stance.upset-with-me.prompt": "Wie soll dir jemand sagen, dass er sauer auf dich ist?",
+  "stance.upset-with-me.opt.named": "Rundheraus, im ersten Satz",
+  "stance.upset-with-me.opt.atOnce": "Im Moment, bevor es abkühlt",
+  "stance.upset-with-me.opt.nextDay": "Am nächsten Tag, wenn es abgekühlt ist",
+  "stance.upset-with-me.opt.inWriting": "Schriftlich, damit ich es zweimal lesen kann",
+  "stance.upset-with-me.opt.askFirst": "Indem er fragt, ob es gerade passt",
+  "stance.upset-with-me.opt.depends": "Kommt darauf an, worum es geht",
+
+  "stance.drop-it.prompt": "Was brauchst du, um einen Streit auf sich beruhen zu lassen?",
+  "stance.drop-it.opt.heard": "Einmal alles gesagt zu haben",
+  "stance.drop-it.opt.reason": "Die Begründung, nicht nur die Entscheidung",
+  "stance.drop-it.opt.decided": "Dass jemand klar sagt: Es ist entschieden",
+  "stance.drop-it.opt.revisit": "Einen Termin, um es noch einmal anzusehen",
+  "stance.drop-it.opt.time": "Eine Stunde für mich, dann nichts mehr",
+  "stance.drop-it.opt.unsure": "Ich weiß nicht, was es für mich erledigt",
+
+  "stance.going-quiet.prompt": "Du wirst mitten im Gespräch still. Was ist gerade los?",
+  "stance.going-quiet.opt.thinking": "Ich sortiere gerade, was ich denke",
+  "stance.going-quiet.opt.tooMuch": "Es ist mehr, als ich auf einmal fassen kann",
+  "stance.going-quiet.opt.upset": "Ich bin getroffen und noch nicht so weit",
+  "stance.going-quiet.opt.finished": "Ich habe gesagt, was ich zu sagen hatte",
+  "stance.going-quiet.opt.yourTurn": "Ich warte auf die andere Person",
+  "stance.going-quiet.opt.varies": "Das ist verschieden — frag mich",
+
+  "stance.asked-if-wrong.prompt": "Wie soll jemand fragen, ob dir etwas fehlt?",
+  "stance.asked-if-wrong.opt.straight": "Geradeheraus, im Moment",
+  "stance.asked-if-wrong.opt.named": "Indem er benennt, was ihm aufgefallen ist",
+  "stance.asked-if-wrong.opt.later": "Später, und nur ein einziges Mal",
+  "stance.asked-if-wrong.opt.alongside": "Nebenbei, beim Spazieren zum Beispiel",
+  "stance.asked-if-wrong.opt.notAtAll": "Gar nicht — ich fange selbst davon an",
+
+  "stance.praise.prompt": "Wie soll dir jemand sagen, dass du etwas gut gemacht hast?",
+  "stance.praise.opt.public": "Laut, vor anderen Leuten",
+  "stance.praise.opt.private": "Leise, unter vier Augen",
+  "stance.praise.opt.written": "Schriftlich, damit ich es behalten kann",
+  "stance.praise.opt.passedOn": "Weitergesagt an die, bei denen es zählt",
+  "stance.praise.opt.lightly": "Kurz — macht keine Sache daraus",
+  "stance.praise.opt.unsure": "Darüber habe ich nie nachgedacht",
+
+  "playbook.ok.talk.straight": "Fang mit dem an, was du brauchst. Ein Satz Begrüßung reicht, und wenn er fehlt, ist das für mich keine Unhöflichkeit.",
+  "playbook.ok.talk.warmup": "Nimm dir vor der Frage ein paar Minuten für ganz gewöhnliches Reden. Das ist der Weg hinein und keine Verzögerung.",
+  "playbook.ok.talk.ask": "Frag mich, ob dieses Gespräch erst ein bisschen Anlauf braucht. Das hängt davon ab, wer fragt, und ich sage es dir.",
+  "playbook.ok.cutin.add": "Unterbrich mich, sobald du etwas beizutragen hast. Ich verliere den Faden nicht und will deine Hälfte lieber sofort.",
+  "playbook.ok.cutin.name": "Sag meinen Namen und unterbrich mich dann. Ein Wort übergibt das Gespräch, ohne es fallen zu lassen.",
+  "playbook.ok.quiet.again": "Schick es nach zwei Tagen noch einmal. Eine zweite Nachricht ist kein Drängeln, sie ist meist das, was die Sache erledigt.",
+  "playbook.ok.quiet.ring": "Ruf mich an oder sag klar, dass es eilt. In einer Nachricht, die aussieht wie alle anderen, erkenne ich die Eile nicht.",
+  "playbook.ok.quiet.silence": "Wenn zwei Tage nichts kommt, lies es als Nein. Das ist kein Versehen, und noch einmal zu fragen bewegt nichts.",
+  "playbook.ok.news.worst": "Fang mit dem Schlimmsten an, höchstens ein Satz Vorwarnung. Der Anlauf ist der Teil, der mir wirklich schwerfällt.",
+  "playbook.ok.news.context": "Gib mir den Hintergrund, bevor das Schlimmste kommt. Darauf zuzugehen fällt mir leichter, als damit empfangen zu werden.",
+  "playbook.ok.news.written": "Schreib eine schlechte Nachricht auf und lass mich sie allein lesen. Ich komme zu dir, sobald ich das getan habe.",
+  "playbook.ok.problem.early": "Erzähl mir von einem Problem, bevor es gelöst ist. Ein halbes Bild am Dienstag ist mir mehr wert als ein ganzes am Freitag.",
+  "playbook.ok.problem.option": "Bring das Problem mit wenigstens einer möglichen Antwort. Ich kann viel besser auswählen, als etwas roh überreicht zu bekommen.",
+  "playbook.ok.problem.first": "Löse, was du lösen kannst, und sag es mir hinterher. Bring mir das, was wirklich nicht ohne mich geht.",
+  "playbook.ok.sorry.name": "Wenn du dich entschuldigst, sag, was du getan hast. Die Sache zu benennen ist der Teil, der bei mir ankommt.",
+  "playbook.ok.sorry.after": "Sag mir, was künftig anders wird, oder tu es einfach. Was nach einer Entschuldigung kommt, zählt bei mir mehr als sie selbst.",
+  "playbook.ok.sorry.once": "Sag es einmal, klar, und lass es dann gut sein. Eine Entschuldigung reicht, und ich lege die Sache lieber mit dir zusammen ab.",
+  "playbook.ok.correct.room": "Korrigier mich vor anderen, wenn ich falsch liege. Mich kostet das nichts, und es erspart uns das zweite Gespräch.",
+  "playbook.ok.correct.why": "Korrigier mich im Raum, solange du auch sagst, warum. Nur gegen einen blanken Widerspruch gehe ich an.",
+  "playbook.ok.correct.signal": "Such meinen Blick, statt es laut zu sagen. Ein Zeichen jetzt und die Einzelheiten hinterher reichen mir.",
+  "playbook.ok.angry.plain": "Sag mir im ersten Satz, dass du sauer bist, solange es noch frisch ist. Über deinen Ton komme ich nicht darauf.",
+  "playbook.ok.angry.write": "Schreib es auf und schick es mir. Etwas Schwieriges lese ich zweimal, und auf das zweite Lesen antworte ich viel besser.",
+  "playbook.ok.angry.ask": "Frag vorher, ob es gerade passt. Gefragt zu werden ist der Teil, der mich den Rest überhaupt hören lässt.",
+  "playbook.ok.drop.said": "Lass mich meinen Standpunkt einmal ganz ausführen, ohne Unterbrechung. Gesagt zu haben reicht mir, um ihn abzulegen.",
+  "playbook.ok.drop.reason": "Gib mir die Begründung und nicht nur die Entscheidung. Mit der Begründung höre ich auf, ohne sie ziehe ich weiter daran.",
+  "playbook.ok.drop.hour": "Gib mir eine Stunde für mich und lass es dann liegen. Ich brauche keine Klärung, ich brauche Ruhe.",
+  "playbook.ok.pause.think": "Lass meine Pausen laufen. Ich baue gerade eine Antwort und halte keine zurück.",
+  "playbook.ok.pause.done": "Wenn ich aufhöre, bin ich fertig. Die Stille ist dein Zug und keine Lücke, die du füllen musst.",
+  "playbook.ok.pause.ask": "Wenn ich still werde, frag mich, was die Stille ist. Sie bedeutet nicht zweimal dasselbe.",
+  "playbook.ok.ask.named": "Frag mich geradeheraus und sag, was dir aufgefallen ist. Auf „Alles in Ordnung?“ kommt von mir immer nur ein Reflex.",
+  "playbook.ok.ask.walk": "Frag mich, während wir etwas anderes tun. Nebeneinander sage ich Dinge, die ich über einen Tisch hinweg nicht sagen kann.",
+  "playbook.ok.ask.later": "Frag mich später, und nur ein einziges Mal. Sage ich, es sei nichts, dann nimm das so — ich komme wieder, wenn es doch etwas ist.",
+  "playbook.ok.praise.public": "Sag es vor den anderen. Anerkennung vor Leuten kommt bei mir anders an, was auch immer mein Gesicht dabei macht.",
+  "playbook.ok.praise.quiet": "Sag es leise und kurz. Ein Wort im Hinausgehen ist mir mehr wert als eine Ankündigung vor allen.",
+  "playbook.ok.praise.write": "Schreib es auf, und sei es ein Satz. So etwas hebe ich auf und lese es in einer schlechten Woche wieder.",
+  "playbook.ok.praise.pass": "Sag es denen, bei denen es zählt, statt es mir zu sagen. Das ist die Fassung, mit der ich wirklich etwas anfangen kann.",
+
+  "playbook.no.talk.warmup": "Wärm mich nicht fünf Minuten lang auf. Ich bin nicht kühl, ich warte auf den eigentlichen Satz.",
+  "playbook.no.talk.cold": "Fang nicht gleich mit dem Anliegen an. Kalt gestellt bekommt dieselbe Frage meine schlechteste Antwort.",
+  "playbook.no.cutin.across": "Unterbrich mich nicht ohne Vorwarnung. Nimmst du den Faden ohne eine, verliere ich ihn und wir fangen von vorn an.",
+  "playbook.no.cutin.hold": "Halt nichts zurück, bis ich aufhöre zu reden. Mir ist eine Unterbrechung viel lieber, als es hinterher zu erfahren.",
+  "playbook.no.quiet.chase": "Setz mir nach zwei Tagen nicht nach. Eine zweite Nachricht macht eine Antwort von mir unwahrscheinlicher statt wahrscheinlicher.",
+  "playbook.no.quiet.assume": "Lies mein Schweigen nicht als Nein. Wenn du nichts von mir gehört hast, ist die Sache noch offen.",
+  "playbook.no.news.buildup": "Bau nicht darauf hin. Sobald ich merke, dass etwas Schlechtes kommt, höre ich auf zuzuhören und mache mich steif.",
+  "playbook.no.news.headline": "Fang nicht mit der Schlagzeile an. Kalt und in einem Satz ist die Fassung schlechter Nachrichten, die ich am schlechtesten vertrage.",
+  "playbook.no.news.room": "Sag es mir nicht im Raum. Schick es vorher und lass es mich lesen, bevor wir darüber reden.",
+  "playbook.no.problem.rumour": "Bring mir kein Gerücht. Warte, bis du weißt, was wirklich stimmt, und sag mir dann alles auf einmal.",
+  "playbook.no.problem.late": "Halt ein Problem nicht zurück, bis es sicher ist. Lieber höre ich es früh und irre mich, als spät und behalte recht.",
+  "playbook.no.sorry.word": "Lass es nicht beim Wort bewenden. Ein „Tut mir leid“, an dem nichts hängt, gibt mir nichts, was ich ablegen könnte.",
+  "playbook.no.sorry.now": "Entschuldige dich nicht in den ersten zehn Minuten. Lass einen Tag vergehen, dann kann ich es wirklich annehmen.",
+  "playbook.no.correct.public": "Korrigier mich nicht laut vor anderen Leuten. Sag es mir hinterher, dann bringe ich es im nächsten Satz in Ordnung.",
+  "playbook.no.correct.aloud": "Sag es nicht laut im Raum. Ein Blick jetzt genügt, der Rest kann warten, bis wir allein sind.",
+  "playbook.no.correct.later": "Heb es nicht für hinterher auf. Eine Korrektur später unter vier Augen heißt, ich habe das Falsche zweimal gesagt.",
+  "playbook.no.angry.hint": "Deute es nicht bloß an. Wenn du sauer bist und nichts sagst, übersehe ich es ganz oder erfinde mir einen schlimmeren Grund.",
+  "playbook.no.angry.hot": "Sprich es nicht an, solange es noch heiß ist. Im Moment in die Enge getrieben verteidige ich mich, statt dir zuzuhören.",
+  "playbook.no.angry.spot": "Mach es nicht laut und aus dem Stand. Auf etwas Schwieriges antworte ich beim zweiten Lesen weit besser als im Raum.",
+  "playbook.no.drop.open": "Lass es nicht in der Schwebe. Sag klar, dass es entschieden ist, dann höre ich auf, daran zu rütteln.",
+  "playbook.no.drop.closed": "Sag mir nicht, die Sache sei erledigt. Sag mir, wann wir sie wieder ansehen, dann lasse ich sie bis dahin wirklich in Ruhe.",
+  "playbook.no.pause.fill": "Rede nicht in meine Stille hinein. Wenn ich still geworden bin, steht schon mehr im Raum, als ich beantworten kann.",
+  "playbook.no.pause.read": "Lies mein Schweigen nicht als Schmollen. Frag mich, was die Stille ist, statt es für dich selbst zu entscheiden.",
+  "playbook.no.ask.twice": "Frag mich nicht zweimal, ob mir etwas fehlt. Ich komme damit, wenn ich die Worte habe, und Nachfragen schiebt das weiter weg.",
+  "playbook.no.ask.leave": "Entscheide nicht, mich damit allein zu lassen. Mir ist eine ungeschickte Frage weit lieber als gar keine.",
+  "playbook.no.praise.public": "Lob mich nicht vor versammelter Runde. Vor Leuten bin ich die ganze Zeit damit beschäftigt, mein Gesicht zu beherrschen.",
+  "playbook.no.praise.quiet": "Heb es nicht für ein leises Wort auf. Dort gesagt, wo andere es hören, zählt derselbe Satz mehr.",
+  "playbook.no.praise.tome": "Belass es nicht dabei, es mir zu sagen. Es zählt, wenn die Person es gehört hat, bei der es wirklich zählt.",
+
+  /* ── der Anleitungsbogen ──────────────────────────────────────── */
+  "card.reaching": "Wie du mich erreichst",
+  "card.bad-news": "Schlechte Nachrichten und ungelöste Probleme",
+  "card.quiet": "Wenn ich still werde, und wie du fragst",
+  "card.praise": "Lob",
+  "card.correction": "Mich korrigieren, und mir sagen, dass du sauer bist",
+  "card.repair": "Was ich brauche, um es fallen zu lassen, und wie du dich entschuldigst",
+};

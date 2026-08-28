@@ -1,0 +1,766 @@
+{
+  "bank": {
+    "id": "money-management",
+    "sections": [
+      {
+        "id": "holding",
+        "title": "How the money is held",
+        "note": "Three decisions that everything below inherits from: where it sits, on what principle it is divided, and who keeps track of it. Answer them for whoever you live with now, or would."
+      },
+      {
+        "id": "disclosure",
+        "title": "What gets said, and when",
+        "note": "Not attitudes to honesty. A figure, a moment, and one yes-or-no that never asks for an amount."
+      },
+      {
+        "id": "building",
+        "title": "What it is being built into",
+        "note": "A rate, a rule for a fall, and the question of who is expected to be carrying you at seventy."
+      },
+      {
+        "id": "outward",
+        "title": "Money that leaves the household",
+        "note": "Giving and a parent's old age: two that cost less to settle before they arise than during."
+      },
+      {
+        "id": "strain",
+        "title": "When it goes wrong",
+        "note": "The lever you reach for first, and the line between privacy and betrayal — both worth fixing while nothing is on fire."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "accounts",
+        "kind": "choice",
+        "prompt": "How should money be held once you live with someone?",
+        "section": "holding",
+        "grounds": true,
+        "tells": "Whether their picture of a shared life has a single pot in it at all, which is the decision every other answer here inherits from.",
+        "options": [
+          {
+            "value": "one-pot",
+            "label": "One pot, both of us spending from it"
+          },
+          {
+            "value": "hybrid",
+            "label": "Joint for shared costs, own accounts too"
+          },
+          {
+            "value": "separate",
+            "label": "Fully separate, settling up between us"
+          },
+          {
+            "value": "one-manages",
+            "label": "One of us holds it, the other draws a share"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "cost-split",
+        "kind": "choice",
+        "prompt": "On what principle should shared costs be divided?",
+        "section": "holding",
+        "grounds": true,
+        "tells": "Which idea of fairness they are running on — two people can hold different ones for years and find out from a bill.",
+        "options": [
+          {
+            "value": "equal",
+            "label": "Equal halves, whatever we each earn"
+          },
+          {
+            "value": "proportional",
+            "label": "In proportion to what each of us earns"
+          },
+          {
+            "value": "one-income",
+            "label": "One income covers the household"
+          },
+          {
+            "value": "by-category",
+            "label": "Each of us owns certain bills outright"
+          },
+          {
+            "value": "whoever",
+            "label": "Whoever has money at the time pays"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "money-admin",
+        "kind": "choice",
+        "prompt": "Who should keep track of the bills and the paperwork?",
+        "section": "holding",
+        "tells": "Whether they want to hold the whole picture or hand it over, which is what decides which of the two knows the balance.",
+        "options": [
+          {
+            "value": "me",
+            "label": "Me — I would rather have the whole picture"
+          },
+          {
+            "value": "them",
+            "label": "The other person, with me kept informed"
+          },
+          {
+            "value": "by-category",
+            "label": "Split by category, each owning some"
+          },
+          {
+            "value": "together",
+            "label": "Both of us, at a fixed time each month"
+          },
+          {
+            "value": "whoever",
+            "label": "Whoever notices it needs doing"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "spend-threshold",
+        "kind": "choice",
+        "prompt": "Above what amount would you mention a purchase first?",
+        "section": "disclosure",
+        "grounds": true,
+        "tells": "The exact figure at which they expect to be told — a number two people can assume they share without either having named it.",
+        "options": [
+          {
+            "value": "any",
+            "label": "Anything at all, however small"
+          },
+          {
+            "value": "day",
+            "label": "About a day's pay"
+          },
+          {
+            "value": "week",
+            "label": "About a week's pay"
+          },
+          {
+            "value": "month",
+            "label": "A month's pay or more"
+          },
+          {
+            "value": "never",
+            "label": "Nothing — I would not mention it"
+          },
+          {
+            "value": "not-set",
+            "label": "I have never set a figure"
+          }
+        ]
+      },
+      {
+        "id": "debt-disclosure",
+        "kind": "choice",
+        "prompt": "At what point should someone see what you owe?",
+        "section": "disclosure",
+        "tells": "The moment at which they think their own debt stops being their own business, which people place anywhere from an early date to never.",
+        "options": [
+          {
+            "value": "early",
+            "label": "Before it gets serious"
+          },
+          {
+            "value": "moving-in",
+            "label": "Before moving in together"
+          },
+          {
+            "value": "marriage",
+            "label": "Before marriage"
+          },
+          {
+            "value": "if-asked",
+            "label": "Only if I am asked"
+          },
+          {
+            "value": "never",
+            "label": "Never — that stays mine"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "undisclosed-debt",
+        "kind": "choice",
+        "private": true,
+        "prompt": "Do you owe money that nobody close to you knows about?",
+        "section": "disclosure",
+        "tells": "Whether there is a debt in the room that has not been mentioned — recorded as a yes or a no, never as a figure.",
+        "options": [
+          {
+            "value": "none",
+            "label": "No — nothing I owe is hidden"
+          },
+          {
+            "value": "will-say",
+            "label": "Yes, and I mean to say so"
+          },
+          {
+            "value": "wont-say",
+            "label": "Yes, and I do not intend to"
+          },
+          {
+            "value": "unsure",
+            "label": "I am not sure what they already know"
+          },
+          {
+            "value": "decline",
+            "label": "I would rather not answer this"
+          }
+        ]
+      },
+      {
+        "id": "saving-rate",
+        "kind": "choice",
+        "prompt": "What share of your pay should go to savings each month?",
+        "section": "building",
+        "tells": "A number for how much of the present they are willing to defer, which is what separates two people who both call themselves careful.",
+        "options": [
+          {
+            "value": "none",
+            "label": "Nothing — there is none spare"
+          },
+          {
+            "value": "five",
+            "label": "Up to 5%"
+          },
+          {
+            "value": "ten",
+            "label": "Around 10%"
+          },
+          {
+            "value": "twenty",
+            "label": "Around 20%"
+          },
+          {
+            "value": "more",
+            "label": "More than 20%"
+          },
+          {
+            "value": "no-target",
+            "label": "No target — whatever is left"
+          }
+        ]
+      },
+      {
+        "id": "risk-response",
+        "kind": "choice",
+        "prompt": "What should be done if invested money falls by a third?",
+        "section": "building",
+        "grounds": true,
+        "tells": "The rule they want followed in a fall, stated while nothing is falling rather than in the week it does.",
+        "options": [
+          {
+            "value": "sell",
+            "label": "Sell, and move it all to cash"
+          },
+          {
+            "value": "wait",
+            "label": "Nothing — leave it where it is"
+          },
+          {
+            "value": "buy",
+            "label": "Put more in while it is cheap"
+          },
+          {
+            "value": "ask",
+            "label": "Ask someone who knows before deciding"
+          },
+          {
+            "value": "not-invested",
+            "label": "Nothing of mine is invested"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "retirement-source",
+        "kind": "multi",
+        "max": 2,
+        "exclusive": [
+          "unworked"
+        ],
+        "prompt": "What do you expect to live on mainly after you stop working?",
+        "section": "building",
+        "tells": "Who they expect to be carrying them at seventy — the state, an employer, themselves, or their children.",
+        "options": [
+          {
+            "value": "state",
+            "label": "The state pension, mainly"
+          },
+          {
+            "value": "workplace",
+            "label": "A workplace or employer scheme"
+          },
+          {
+            "value": "own-savings",
+            "label": "My own savings and investments"
+          },
+          {
+            "value": "property",
+            "label": "Property or a business I own"
+          },
+          {
+            "value": "family",
+            "label": "My children or other relatives"
+          },
+          {
+            "value": "unworked",
+            "label": "I have not worked that out"
+          }
+        ]
+      },
+      {
+        "id": "giving-share",
+        "kind": "choice",
+        "prompt": "What share of what you earn should be given away?",
+        "section": "outward",
+        "grounds": true,
+        "tells": "Whether giving is a fixed line in the budget or a response to being asked, and whether a tenth is a figure that means anything to them.",
+        "options": [
+          {
+            "value": "none",
+            "label": "Nothing regular"
+          },
+          {
+            "value": "when-asked",
+            "label": "Whatever is asked, when it is asked"
+          },
+          {
+            "value": "set-amount",
+            "label": "A set sum, not a share of what I earn"
+          },
+          {
+            "value": "tenth",
+            "label": "A tenth of what I earn"
+          },
+          {
+            "value": "more-than-tenth",
+            "label": "More than a tenth"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "parent-support",
+        "kind": "choice",
+        "prompt": "What do you owe a parent who cannot support themselves?",
+        "section": "outward",
+        "grounds": true,
+        "tells": "Whether a parent's old age is already a claim on their income, and how large a claim, before anyone has had to ask.",
+        "options": [
+          {
+            "value": "home",
+            "label": "Whatever it takes, a place in our home included"
+          },
+          {
+            "value": "monthly",
+            "label": "Money every month, as a matter of course"
+          },
+          {
+            "value": "top-up",
+            "label": "Whatever their pension does not cover"
+          },
+          {
+            "value": "crisis",
+            "label": "Help in a crisis, not a standing arrangement"
+          },
+          {
+            "value": "care-not-money",
+            "label": "Time and care rather than money"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not worked that out"
+          }
+        ]
+      },
+      {
+        "id": "bad-month",
+        "kind": "choice",
+        "prompt": "When money runs short in a month, what happens first?",
+        "section": "strain",
+        "tells": "The first lever they reach for under strain — savings, a card, or a phone call to a parent.",
+        "options": [
+          {
+            "value": "cut",
+            "label": "I cut spending until it is over"
+          },
+          {
+            "value": "savings",
+            "label": "I take it from savings"
+          },
+          {
+            "value": "card",
+            "label": "It goes on a credit card"
+          },
+          {
+            "value": "family",
+            "label": "I ask family for help"
+          },
+          {
+            "value": "extra-work",
+            "label": "I take on extra work"
+          },
+          {
+            "value": "never",
+            "label": "This has not happened to me"
+          }
+        ]
+      },
+      {
+        "id": "secrecy-betrayal",
+        "kind": "multi",
+        "max": 5,
+        "exclusive": [
+          "none"
+        ],
+        "prompt": "Which money secrets would you count as a betrayal?",
+        "section": "strain",
+        "tells": "Where they put the line between privacy and betrayal, and whether a private savings pot sits on the safe side of it.",
+        "options": [
+          {
+            "value": "hidden-account",
+            "label": "An account kept hidden"
+          },
+          {
+            "value": "solo-debt",
+            "label": "A debt taken out alone"
+          },
+          {
+            "value": "lied-cost",
+            "label": "A price given lower than it was"
+          },
+          {
+            "value": "family-gift",
+            "label": "A large gift to family, unmentioned"
+          },
+          {
+            "value": "private-pot",
+            "label": "A private savings pot held back"
+          },
+          {
+            "value": "none",
+            "label": "None of these — money stays each person's own"
+          }
+        ]
+      }
+    ],
+    "grounds": [
+      {
+        "value": "raised",
+        "label": "How I was raised"
+      },
+      {
+        "value": "lived",
+        "label": "Something that happened to me"
+      },
+      {
+        "value": "faith",
+        "label": "What I believe"
+      },
+      {
+        "value": "numbers",
+        "label": "The numbers as they stand now"
+      },
+      {
+        "value": "advice",
+        "label": "Advice I was given, or read"
+      },
+      {
+        "value": "not-worked-out",
+        "label": "I have not worked that out"
+      }
+    ],
+    "sourceNote": "There is no scale here and no construct being measured: what is recorded is a position you state about your own money, the weight you put on it, and your reason. Where a question says 'someone' or 'the other person', it means whoever you live with now or would — every one of the thirteen is answerable by one person sitting alone. The topic list is public — Jan Pahl's typology of household money management has described whole-wage, allowance, pooling and independent arrangements since 1980, and the contents of a household budget are nobody's intellectual property — while the instruments that measure in this area are not, and none is reproduced or paraphrased here: not the Financial Infidelity Scale (Garbinsky, Gladstone, Nikolova and Olson, 2020), not the Klontz Money Script Inventory, and not the premarital inventories whose own publishers state that their items are proprietary. Two outside findings are worth carrying while you answer, as somebody else's evidence and not ours. Olson, Rick, Small and Finkel randomly assigned 230 engaged or newly married couples to a joint account, to separate accounts, or to arrange it as they wished, and two years later only the joint-account group had escaped the usual decline in relationship quality (Journal of Consumer Research 50(4), 2023) — one experiment, on newly married American couples, which does not tell you what would happen in your house, and this page will not treat one answer to the first question as the right one. Dew, Britt and Huston found across 4,574 couples that disagreements about money predicted divorce more strongly than any other subject couples argue about; that is a reason to write these answers down rather than a forecast about you. On how many partners keep a money secret there is no solid number at all — commercial polls put it between a third and a half, on definitions that do not match each other, and the spread is the finding. Take Conversations first if you do not yet know whether money has ever been discussed between you; this is where the amounts, the thresholds and the debt get written down, and writing them down is the point. Your answer to the undisclosed-debt question never leaves this device, is never in a share link, and never asks you for an amount.",
+    "provenance": {
+      "constructName": "Household money organisation, recorded as stated positions",
+      "constructOrigin": "Jan Pahl, 'Patterns of Money Management within Marriage', Journal of Social Policy 9(3), 1980, pp. 313–335; 'The Allocation of Money and the Structuring of Inequality within Marriage', Sociological Review 31(2), 1983; and Money and Marriage (Macmillan, 1989) — for the account-structure and control categories. The remaining topics are the ordinary contents of a household budget and belong to no one.",
+      "constructPublic": true,
+      "constructNote": "What is taken is a public typology and a list of subjects — where money sits, who controls it, who pays what. Not one item, option label or response format comes from any published money instrument. Every prompt and every option in this bank was written for this repo. Five structural decisions are worth recording. (1) The undisclosed-debt block asks only yes or no and offers 'I would rather not answer this', because an option set that demands a figure from someone hiding a debt collects a false figure; the block carries private: true, so both its answer and its 'why' are absent from every share token rather than hidden by the page that renders them. (2) The playbook line 'Ask to see my statements at any time' is derived from that private answer. It stays local under §4.4, and it must be excluded by id if playbook lines are ever put into a share token: whether the line is present or absent is itself a read on a private answer, and an inference channel leaks as surely as a field does. (3) The account options are Pahl's systems written in our own words, and they are worded to be mutually exclusive — a single pot both people spend from is not the same arrangement as one person holding it and the other drawing a share, and the earlier wording let one answer be true of both. (4) An option may not be double-barrelled any more than a prompt may. 'Gambling or trading kept quiet' was cut for that reason as well as for being close to universally endorsed, which makes it a weak discriminator inside a set the rules cap at six. (5) The two multi blocks carry an exclusive escape option, and retirement-source says 'mainly' in its prompt, because a cap of two on a list of real sources is a lie unless the question asks which ones matter most.",
+      "evidenceNote": "None, and none is needed. Reliability, factor structure and criterion validity are properties of a scored item set administered to a sample; nothing here is scored, summed, banded or normed, and there is no latent thing behind these thirteen questions for a coefficient to be about. Every answer is a position the person states about arrangements they already know, so the only accuracy question is whether they answered honestly — which no psychometric number can tell you. Where outside evidence is relevant it is cited in the source note as somebody else's finding, with its limits stated, and never as support for this bank.",
+      "avoided": [
+        "Financial Infidelity Scale (FI-Scale), Garbinsky, Gladstone, Nikolova & Olson 2020",
+        "Klontz Money Script Inventory and KMSI-R",
+        "Klontz Money Behavior Inventory",
+        "Money Attitude Scale (Yamauchi & Templer 1982)",
+        "Money Beliefs and Behaviours Scale (Furnham)",
+        "Financial Management Behavior Scale (Dew & Xiao 2011)",
+        "Financial Anxiety Scale (Archuleta, Dale & Spann 2013)",
+        "InCharge Financial Distress / Financial Well-Being Scale (Prawitz et al. 2006)",
+        "PREPARE/ENRICH",
+        "SYMBIS",
+        "FOCCUS",
+        "Money Habitudes",
+        "Gottman Relationship Checkup"
+      ]
+    },
+    "playbookOk": [
+      {
+        "id": "ok-under-threshold",
+        "from": "spend-threshold → week",
+        "text": "Spend anything under a week's pay without checking with me first."
+      },
+      {
+        "id": "ok-month-threshold",
+        "from": "spend-threshold → month",
+        "text": "Spend up to a month's pay without mentioning it to me at all."
+      },
+      {
+        "id": "ok-own-account-private",
+        "from": "accounts → hybrid / separate; secrecy-betrayal without private-pot",
+        "text": "Keep your own account with your own money in it and never tell me what is in it."
+      },
+      {
+        "id": "ok-ask-what-it-cost",
+        "from": "secrecy-betrayal → lied-cost",
+        "text": "Ask me what something cost — I will tell you straight and I will not hear it as an accusation."
+      },
+      {
+        "id": "ok-pay-less-than-half",
+        "from": "cost-split → proportional",
+        "text": "Pay less than half the rent, because you earn less than half of what comes in."
+      },
+      {
+        "id": "ok-refuse-my-family",
+        "from": "parent-support → crisis",
+        "text": "Say no to my family when they ask for money, and let me be the one who tells them."
+      },
+      {
+        "id": "ok-run-the-admin",
+        "from": "money-admin → them",
+        "text": "Open the post, do the transfers and file the tax return without narrating any of it to me."
+      },
+      {
+        "id": "ok-save-first",
+        "from": "saving-rate → ten / twenty / more",
+        "text": "Move the savings out on payday, before either of us decides what the rest is for."
+      },
+      {
+        "id": "ok-tithe-unasked",
+        "from": "giving-share → tenth / more-than-tenth",
+        "text": "Give away a tenth of what you earn without running the figure past me each time."
+      },
+      {
+        "id": "ok-leave-investments-alone",
+        "from": "risk-response → wait",
+        "text": "Leave the investments exactly where they are for a year while they are down."
+      },
+      {
+        "id": "ok-use-the-buffer",
+        "from": "bad-month → savings",
+        "text": "Take what is short out of the savings in a bad month without a conversation about it first."
+      },
+      {
+        "id": "ok-say-we-cannot-afford",
+        "from": "bad-month → cut",
+        "text": "Tell me we cannot afford something instead of quietly finding a way to afford it."
+      },
+      {
+        "id": "ok-see-my-statements",
+        "from": "undisclosed-debt → none (local only, never in a share token)",
+        "text": "Ask to see my statements at any time — there is nothing in them I would move first."
+      },
+      {
+        "id": "ok-hand-back-the-admin",
+        "from": "money-admin → together / by-category",
+        "text": "Put half an hour in the diary once a month and make me sit through the numbers with you."
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "no-solo-borrowing",
+        "from": "debt-disclosure → moving-in / marriage; secrecy-betrayal → solo-debt",
+        "text": "Take out a loan or a card in your own name without telling me it exists."
+      },
+      {
+        "id": "no-hidden-account",
+        "from": "secrecy-betrayal → hidden-account",
+        "text": "Open an account I do not know about, even for a reason you think is a good one."
+      },
+      {
+        "id": "no-shade-the-price",
+        "from": "secrecy-betrayal → lied-cost",
+        "text": "Give me a lower price than the one you actually paid."
+      },
+      {
+        "id": "no-sell-in-a-fall",
+        "from": "risk-response → wait",
+        "text": "Sell the investments in the week they fall."
+      },
+      {
+        "id": "no-commit-to-a-parent",
+        "from": "parent-support → crisis / care-not-money",
+        "text": "Commit us to sending a parent money every month without the two of us having decided it."
+      },
+      {
+        "id": "no-card-instead-of-saying",
+        "from": "bad-month → card",
+        "text": "Put a shortfall on a credit card rather than telling me there is a shortfall."
+      },
+      {
+        "id": "no-big-purchase-unsaid",
+        "from": "spend-threshold → month",
+        "text": "Spend more than a month's pay on anything without saying so beforehand."
+      },
+      {
+        "id": "no-quiet-pension-stop",
+        "from": "retirement-source → workplace / own-savings",
+        "text": "Stop paying into the pension quietly because one month was tight."
+      },
+      {
+        "id": "no-dont-worry-about-it",
+        "from": "money-admin → them",
+        "text": "Handle all the admin and then tell me not to worry about the details."
+      },
+      {
+        "id": "no-unmentioned-giving",
+        "from": "giving-share → set-amount / tenth",
+        "text": "Give away more than a week's pay without mentioning it, however good the cause."
+      },
+      {
+        "id": "no-escape-fund",
+        "from": "secrecy-betrayal → private-pot",
+        "text": "Keep a private savings pot in case things go wrong between us."
+      },
+      {
+        "id": "no-ask-parents-first",
+        "from": "bad-month → family",
+        "text": "Ask your parents for money before you have asked me."
+      },
+      {
+        "id": "no-silent-resplit",
+        "from": "cost-split → equal / proportional",
+        "text": "Change how we split the bills by simply starting to pay a different amount."
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "A separate block for what the savings are for",
+        "why": "The brief's own budget is fourteen and its savings sentence is one of them. Three other blocks already name the three purposes people actually disagree about — retirement, the bad month, and a parent who runs out — so the rate is the half that is not covered elsewhere, and it is the half that is a number."
+      },
+      {
+        "idea": "How much do you earn?",
+        "why": "Not a position, and a figure that would sit in a stored answer set for no gain. The blocks that need income use it as a unit instead — a day's pay, a week's pay, a month's pay — which also survives four currencies without a conversion."
+      },
+      {
+        "idea": "How much do you have saved? / What is your net worth?",
+        "why": "Turns an inventory into a disclosure form. People answer it defensively, roundly, or not at all, and none of those three is informative."
+      },
+      {
+        "idea": "How much debt do you have?",
+        "why": "The brief forbids the number and it is right to. A banded option set is still a confession with worse resolution, and the yes-or-no version answers the question a second person actually needs answered."
+      },
+      {
+        "idea": "How careful are you with money, 1–10?",
+        "why": "An estimate, self-flattering, and unanswerable in the sense rule 4 requires. The weight question already occupies that slot honestly, attached to something concrete."
+      },
+      {
+        "idea": "What did money mean in the house you grew up in?",
+        "why": "The good version of this is Klontz's and is licensed; the version we could write is a Barnum generator. The `why` box collects the same material in the reader's own words without imposing our categories on it, and the grounds option 'How I was raised' captures the part that needs to be comparable."
+      },
+      {
+        "idea": "Do you have, or want, a prenuptial agreement?",
+        "why": "Jurisdiction-dependent to the point of meaninglessness across the four locales — the honest version would need four different option sets, and a shared one would collect a wrong answer in at least two countries."
+      },
+      {
+        "idea": "Whose is the money one of you brought in, or inherited?",
+        "why": "The same failure as the prenuptial question, one level down. The default matrimonial property regime does most of the answering — wspólność ustawowa, sociedad de gananciales against separación de bienes, Zugewinngemeinschaft, and no regime at all in England and Wales — so one option set collects a wrong answer in at least two locales. The part that is a position rather than a legal fact is already carried by `accounts` and by the `why`."
+      },
+      {
+        "idea": "Who is better with money, you or your partner?",
+        "why": "Requires a partner, which breaks rule 7, and invites a verdict rather than a position."
+      },
+      {
+        "idea": "What would you do if you came into a large sum?",
+        "why": "A fantasy question. Nobody knows the answer about themselves, so what it collects is a self-portrait rather than a stated position. The same objection was applied back to `risk-response`, which now asks what should be done in a fall instead of predicting what the person would do in one."
+      },
+      {
+        "idea": "A 'gambling or trading kept quiet' option in the betrayal block",
+        "why": "Two behaviours in one option — a person can hold that quiet trading is their own business and quiet gambling is not, and then has nothing to tick. It is also close to universally endorsed, which makes it a weak discriminator in a set the rules cap at six."
+      },
+      {
+        "idea": "Pocket money, allowances, and what children are given",
+        "why": "It belongs to `family-plan`, and §7.2 only works if each inventory keeps to its own side of the line. Money that leaves the household is this one; money inside it that is about raising children is not."
+      },
+      {
+        "idea": "Whose name is on the tenancy, the mortgage or the car?",
+        "why": "A fact about a current arrangement rather than a position, and it dates the result badly — the sheet would be wrong within a year of a move."
+      },
+      {
+        "idea": "How often do you argue about money?",
+        "why": "A frequency estimate about a shared past, which requires a partner and is remembered differently by each of them. The bad-month block asks the same subject as a plan, which one person can answer alone and truthfully."
+      }
+    ],
+    "sources": [
+      "https://academic.oup.com/jcr/article/50/4/704/7077142",
+      "https://academic.oup.com/jcr/article/47/1/1/5610529",
+      "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1741-3729.2012.00715.x",
+      "https://scholarsarchive.byu.edu/facpub/4526/",
+      "https://www.cambridge.org/core/journals/journal-of-social-policy/article/abs/patterns-of-money-management-within-marriage/82587FC8E616244AA30DD0D6F4B0212E",
+      "https://journals.sagepub.com/doi/abs/10.1111/j.1467-954X.1983.tb00389.x",
+      "https://www.semanticscholar.org/paper/Patterns-of-Money-Management-within-Marriage-Pahl/cf9dd88d1342e4d67ee511c6ef097c905ec62c7f",
+      "https://en.wikipedia.org/wiki/Jan_Pahl",
+      "https://accounseling.org/wp-content/uploads/2022/05/Prepare-Enrich-Assessment-Process.pdf",
+      "https://www.prepare-enrich.com/the-assessment/premarital/",
+      "https://www.bradklontz.com/moneyscriptstest",
+      "https://www.nefe.org/news/2021/11/2-in-5-americans-admit-to-financial-infidelity-against-their-partner.aspx",
+      "https://www.cnbc.com/2020/02/11/44percent-of-adults-admit-to-keeping-money-secrets-from-a-partner.html",
+      "https://news.iu.edu/live/news/28244-married-couples-who-merge-finances-may-be-happier"
+    ]
+  },
+  "changes": [
+    "LICENCE: no breach found. Checked every prompt and option against the FI-Scale (Likert concealment-willingness items), KMSI (belief statements), Money Attitude Scale (power-prestige / retention / distrust / anxiety Likerts), Furnham's MBBS, FMBS (frequency-of-behaviour items) and the premarital inventories. Nothing here shares an item, an option label or a response format with any of them. The closest call is secrecy-betrayal, whose option list covers the same behaviours financial-infidelity taxonomies list (hidden account, hidden debt, understated price) — that is the subject matter, which is public, not protectable expression, and the wording is ours. Reasoning recorded in constructNote rather than left implicit.",
+    "READABILITY: all fourteen English prompts already passed the 80-char / 14-word gate (counted, not estimated: 49–60 chars, 8–13 words), and none contained ', and ' / ', but ' / '; '. Six sat at 57–60 chars with no translation headroom against the 60-char English target. Rewrote those; every prompt is now 46–60 chars and ≤12 words. Draft Polish and German renderings of all fourteen were measured too: longest is 63 chars, and none exceeds 1.6× its English source, so the stretch test in readability.test.js also clears.",
+    "PARTITION, accounts: 'One account for everything' and 'All of it, managed by one of us' were not mutually exclusive — one pot managed by one person satisfied both, so a `choice` could be answered two ways truthfully. Rewritten as Pahl's distinct systems: 'One pot, both of us spending from it' against 'One of us holds it, the other draws a share'.",
+    "ESCAPE, spend-threshold: the block's own `tells` says the figure is one people have never named, and the option set then forced them to name one. Merged 'About a month's pay' and 'More than a month's pay' into 'A month's pay or more' (preserving the ordering exactly) to free a slot for 'I have never set a figure' without breaking the three-to-six rule.",
+    "RULE 4, risk-response: 'If your savings dropped by a third, what would you do?' is a prediction of own behaviour under stress — the same species of question the bank's own `rejected` list throws out as fantasy ('what would you do if you came into a large sum'). Rewritten as a stated rule — 'What should be done if invested money falls by a third?' — and 'I have not decided' added. The self-contradiction is now recorded in that rejected entry.",
+    "PARTITION + RULE 7, debt-disclosure: was a norm question about 'a couple' rather than a position about the answerer's own debt, and it mixed a timeline (before it gets serious / moving in / marriage) with an event trigger (before borrowing jointly), so two options could both be true. Reframed to first person, trigger option dropped, 'I have not decided' added.",
+    "PARTITION, parent-support: 'A place in our home' and 'Money every month' can both be held, so the choice did not partition. 'home' is now the top level of obligation ('Whatever it takes, a place in our home included'). Also replaced the escape 'I do not expect this to arise' — a prediction, and a way to dodge the question — with 'I have not worked that out'.",
+    "PARTITION, giving-share: 'A set amount every month' and 'A tenth of what I earn' overlapped for anyone who gives a tenth monthly. Now 'A set sum, not a share of what I earn'.",
+    "RULE 7 + partition, family-lending: 'Nothing — it gets discussed first' required a partner to exist, and 'I do not lend to family — I give or refuse' answered a different question from the amount options. Prompt now 'How much could you hand a relative without mentioning it?' (covers gift and loan), options are a clean magnitude scale, 'I have not decided' added, and the lend-versus-give distinction moved to the `why` with a rejected entry explaining why.",
+    "BARNUM + double-barrelled option, secrecy-betrayal: 'Gambling or trading kept quiet' is two behaviours in one option (a person can hold that quiet trading is their business and quiet gambling is not) and is close to universally endorsed, so it discriminates nothing. Cut. Added an exclusive 'None of these' escape — the set previously had none — and raised max from 4 to 5, because a cap below the number of real options forces someone who holds all of them to under-report.",
+    "FORCED FALSE ANSWER, retirement-source: max:2 over six real sources made the answer a lie for anyone expecting three. Prompt now says 'mainly', which licenses the cap. 'My children or my family' was redundant (children are family) — now 'My children or other relatives'. 'I have not worked that out' marked exclusive.",
+    "ESCAPE, money-admin: no honest escape ('Whoever notices it needs doing' is a position, not an escape). Added 'I have not decided'.",
+    "undisclosed-debt: 'No — everything I owe is visible' read oddly for someone who owes nothing; now 'No — nothing I owe is hidden'. The block also carries `private: true` in the data instead of the privacy claim living only in provenance prose, so validate() can check it rather than a reviewer having to.",
+    "PRIVACY, inference channel: the playbook line 'Ask to see my statements at any time' is derived from the private undisclosed-debt answer. It is safe today because §4.4 keeps playbooks local, but its presence or absence would be a read on a private answer if playbook ids ever entered a share token. That constraint is now written into constructNote and into the line's `from`, so the future work in §4.4 cannot leak it by accident.",
+    "PLAYBOOK, one line generated from two different answers: 'Spend anything under a week's pay without checking with me first' was fired by both `week` and `month`, understating the permission a month-threshold person meant to give. Split into two lines. Dropped ok-surprise-own-money to keep the count at fourteen — it depended on a conjunction of two blocks and its content was already covered by ok-own-account-private plus the month line.",
+    "PLAYBOOK, unhandable lines: 'Lend my brother money' assumes the reader has a brother (now 'someone in your family'); 'be out by more than a little' was not a rule anyone could follow (now 'Give me a lower price than the one you actually paid'); 'a sum I would notice' was undefined (now 'more than a week's pay', the unit the rest of the bank uses).",
+    "PROVENANCE ERROR: 'Patterns of Money Management within Marriage (1983)' fuses two different Pahl papers. Verified: that title is Journal of Social Policy 9(3), 1980, pp. 313–335; the 1983 paper is 'The Allocation of Money and the Structuring of Inequality within Marriage', Sociological Review 31(2). Both now cited alongside Money and Marriage (1989), with the Cambridge Core and SAGE URLs added to sources. The sourceNote's 'since the 1980s' is now 'since 1980'.",
+    "SOURCE CHECK: the two outside findings were verified rather than trusted. Olson, Rick, Small & Finkel is JCR 50(4), 2023, 230 engaged or newly married couples, six waves over two years, three arms — the third arm was a control left to arrange accounts as they wished, which the sourceNote now says instead of 'to decide for themselves'. Dew, Britt & Huston (Family Relations 61(4), 2012, N = 4,574) checks out as stated. Both kept with their limits attached.",
+    "UNSUPPORTED PREVALENCE CLAIMS in copy: 'which almost nobody has said out loud and everybody assumes is obvious', 'an obligation many people carry silently and assume everyone shares', 'These get decided in the moment, badly, by almost everyone', 'two people rarely discover…', and 'which is where the next argument starts' all assert frequencies this repo has no evidence for, in a bank whose whole case is that it does not assert what it cannot support. Rewritten as possibility claims about what a second person needs to know.",
+    "holding section note now carries the single-answerer frame ('answer them for whoever you live with now, or would'), and sourceNote states it too, so prompts saying 'someone' or 'the other person' stay short without becoming ambiguous for a reader with no partner — rule 7 held by framing rather than by lengthening fourteen prompts.",
+    "spend-threshold gained `grounds: true`. The threshold is one of the few blocks where the reason is genuinely comparable across people — raised that way, something that happened, or the numbers as they stand — and it was the obvious gap in the five that already declared it.",
+    "ALONE TEST: no block cut, so the count stays at fourteen. The two weakest against it were risk-response (fixed above) and saving-rate, whose 'should be saved' framing invites the received 10-per-cent answer; reworded to 'What share of your pay should go to savings each month?', tying it to pay (the unit the rest of the bank uses) and to a transfer that either happens or does not. The result copy claims nothing about the reader at all, so nothing there could be true of anyone.",
+    "rejected list grew from eleven to fifteen: money brought in or inherited (rejected on the same jurisdiction grounds as the prenuptial question — the four default matrimonial property regimes answer it differently, so one option set is wrong in at least two locales), lend-versus-give, the gambling option, and pocket money (which belongs to family-plan under §7.2).",
+    "avoided list gained the Financial Anxiety Scale (Archuleta, Dale & Spann 2013), the InCharge Financial Distress / Financial Well-Being Scale (Prawitz et al. 2006) and the Klontz Money Behavior Inventory — three money instruments in this space that a later contributor might otherwise reach for.",
+    "STRUCTURE: two optional fields added and flagged for the implementer — `private: true` on undisclosed-debt (maps to the tier the design already has) and `exclusive: true` on the two multi escape options, so 'I have not worked that out' and 'None of these' clear the other ticks instead of sitting alongside them.",
+    "SHAPE — the two escapes this bank marked `\"exclusive\": true` on the option objects, and flagged for the implementer under STRUCTURE, are now written the way the platform reads them: `exclusive` on the block, listing option values. `retirement-source` → `[\"unworked\"]` («I have not worked that out»), `secrecy-betrayal` → `[\"none\"]` («None of these — money stays each person's own»). The per-option form could never have arrived: `StanceBlock.options` is a `string[]` of value ids, so the flag would have been dropped in the expansion and the bank would have gone on believing a restriction was in force — which is the exact failure `stanceItems` now throws on. Both blocks keep five non-exclusive options, and the caps are unchanged: per `MultiItem`, `max` neither counts an escape nor disables one, so a reader who has spent all five picks on `secrecy-betrayal` and then decides none of them are true can still say so.",
+    "CUT, family-lending — 2026-08-27 inventory decisions §1.3. Deleted as a duplicate of `boundaries.money-family`: same question and the same magnitude ladder («How much could you hand a relative without mentioning it?» against «How much can you lend family without a conversation?»). `boundaries.money-family` survives because design §7.1 names money lent to family as that instrument's own example when it justifies it existing at all, and because this bank already asks its threshold ladder at `spend-threshold` — asking «above what amount would you say something» twice, of two counterparties, produces one working block and one near-identical second row on the sheet. What moved: `no-lend-then-tell`, which fired from this block alone, to `boundaries`, re-keyed on `money-family`; and the `rejected` entry «Do you lend to family, or give?», which was reasoning about this block's option set. `ok-refuse-my-family` and `no-unmentioned-giving` each fired from `family-lending` and one other block, and are re-derived on the other alone — `parent-support → crisis` and `giving-share → set-amount / tenth`. Not backfilled: thirteen is not a defect, and the counts in design §7 were a target for how much subject to cover rather than a quota.",
+    "COUNTS AFTER THE CUT. Thirteen blocks, fourteen OK lines and thirteen not-OK lines, both inside §4.1's eight-to-fourteen target. The `sourceNote` said «every one of the fourteen is answerable by one person sitting alone» and now says thirteen; `provenance.evidenceNote` said «these fourteen questions» and now says thirteen; the `outward` section note named three subjects, one of them the deleted block, and now names two. Entries above are left as written — they record what was true when they were made.",
+    "GROUNDS ESCAPE, §2. `unworked` → `not-worked-out` in the shared grounds vocabulary, the label «I have not worked that out» unchanged. `faith` already spelled it `not-worked-out`, `digital-life` and this bank spelled it `unworked`, and it is the one grounds value shared code will ever special-case — which it can only do if all three banks spell it the same. `retirement-source`'s own option value `unworked` is deliberately untouched, along with its `exclusive: [\"unworked\"]`: that is a block option in its own namespace, not the grounds escape, and §2 renames the escape only.",
+    "PRIVATE FIELD, §3.1 — checked, not added. `undisclosed-debt` already carries `private: true` as a field on the block, and `provenance.constructNote` already states that both its answer and its `why` are absent from every share token. Nothing to change here; the platform side (`StanceBlock.private?`, `StanceComparison.withheld`, `instructions()` skipping private blocks) stays in `OUTSTANDING.md`.",
+    "SOURCENOTE, §1.5. Added the decision's routing sentence immediately before the closing sentence about the undisclosed-debt answer: «Take Conversations first if you do not yet know whether money has ever been discussed between you; this is where the amounts, the thresholds and the debt get written down, and writing them down is the point.»"
+  ],
+  "critiqued": true
+}

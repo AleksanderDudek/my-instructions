@@ -1,0 +1,757 @@
+{
+  "bank": {
+    "id": "faith",
+    "blocks": [
+      {
+        "id": "god",
+        "kind": "choice",
+        "prompt": "What is God to you?",
+        "options": [
+          {
+            "value": "close",
+            "label": "Someone I can speak to and be heard by"
+          },
+          {
+            "value": "distant",
+            "label": "Someone real, whom I do not feel close to"
+          },
+          {
+            "value": "impersonal",
+            "label": "A word for something I cannot name"
+          },
+          {
+            "value": "untrue",
+            "label": "An idea I do not think is true"
+          },
+          {
+            "value": "open",
+            "label": "A question I have left open"
+          },
+          {
+            "value": "rather-not",
+            "label": "I would rather not say"
+          }
+        ],
+        "section": "belief",
+        "grounds": true,
+        "tells": "Whether there is a someone here who can be addressed, and whether the reader currently feels addressed back. The second half is the part a label never carries: a person who holds it and feels nothing gets read as a doubter by everyone who has not been told."
+      },
+      {
+        "id": "after-death",
+        "kind": "choice",
+        "prompt": "What do you think happens after you die?",
+        "options": [
+          {
+            "value": "life-with-god",
+            "label": "Life continuing in God's presence"
+          },
+          {
+            "value": "another-life",
+            "label": "Another life, lived again"
+          },
+          {
+            "value": "something",
+            "label": "Something continues, though I could not say what"
+          },
+          {
+            "value": "nothing",
+            "label": "Nothing continues"
+          },
+          {
+            "value": "not-worked-out",
+            "label": "I have not worked out what I think"
+          },
+          {
+            "value": "rather-not",
+            "label": "I would rather not say"
+          }
+        ],
+        "section": "belief",
+        "grounds": true,
+        "tells": "What the reader is holding at a funeral or a diagnosis. It is asked here because the moment it matters is the moment it is hardest to ask about."
+      },
+      {
+        "id": "suffering",
+        "kind": "choice",
+        "prompt": "Why do you think suffering happens?",
+        "options": [
+          {
+            "value": "reason-i-trust",
+            "label": "It is allowed for a reason I trust"
+          },
+          {
+            "value": "reason-unknown",
+            "label": "It is allowed, and I do not know why"
+          },
+          {
+            "value": "no-one-allows",
+            "label": "Nobody allows it — it simply happens"
+          },
+          {
+            "value": "people-do-it",
+            "label": "It is what people do to each other"
+          },
+          {
+            "value": "not-worked-out",
+            "label": "I have not worked out what I think"
+          },
+          {
+            "value": "rather-not",
+            "label": "I would rather not say"
+          }
+        ],
+        "section": "belief",
+        "grounds": true,
+        "tells": "What may and may not be said to this person in a hospital corridor. Someone who holds that there is a reason and does not know it will not take the reason being supplied for them, and nobody finds that out at a good moment."
+      },
+      {
+        "id": "prayer-last",
+        "kind": "choice",
+        "prompt": "When did you last pray on your own?",
+        "options": [
+          {
+            "value": "today",
+            "label": "Today"
+          },
+          {
+            "value": "this-week",
+            "label": "In the last week"
+          },
+          {
+            "value": "this-year",
+            "label": "In the last year"
+          },
+          {
+            "value": "longer-ago",
+            "label": "Longer ago than that"
+          },
+          {
+            "value": "never",
+            "label": "Never, as far as I know"
+          }
+        ],
+        "section": "practice",
+        "grounds": true,
+        "tells": "A date, which the reader knows, rather than a rate, which the reader would have to estimate. A stated believer who answers \"longer ago than that\" and a stated non-believer who answers \"in the last week\" have each said something no label about them would have carried."
+      },
+      {
+        "id": "belonging",
+        "kind": "choice",
+        "prompt": "Where do you belong in what you believe?",
+        "options": [
+          {
+            "value": "known-by-name",
+            "label": "A congregation that knows me by name"
+          },
+          {
+            "value": "a-face",
+            "label": "A congregation where I am a face, not a name"
+          },
+          {
+            "value": "people-not-institution",
+            "label": "People I practise with, outside any institution"
+          },
+          {
+            "value": "tradition-only",
+            "label": "A tradition, but no group of people"
+          },
+          {
+            "value": "nowhere-content",
+            "label": "Nowhere, by choice"
+          },
+          {
+            "value": "nowhere-missed",
+            "label": "Nowhere, though I would like to"
+          }
+        ],
+        "section": "practice",
+        "grounds": true,
+        "tells": "Whether the reader's belief has a room and a set of people attached to it, and — in the last two options — whether its absence is a preference or a loss. Those two are indistinguishable from outside and are answered very differently when somebody offers to take them along."
+      },
+      {
+        "id": "raised-vs-now",
+        "kind": "choice",
+        "prompt": "What changed between how you were raised and now?",
+        "options": [
+          {
+            "value": "stayed",
+            "label": "Nothing — I hold what I was raised in"
+          },
+          {
+            "value": "stayed-differently",
+            "label": "The same faith, held differently from how I was taught"
+          },
+          {
+            "value": "left",
+            "label": "I have left it and hold no faith now"
+          },
+          {
+            "value": "found",
+            "label": "I hold a faith I was not raised in"
+          },
+          {
+            "value": "none-either-way",
+            "label": "No faith then, none now"
+          },
+          {
+            "value": "still-moving",
+            "label": "I am still moving"
+          }
+        ],
+        "section": "lineage",
+        "grounds": true,
+        "tells": "Whether the position was inherited, re-chosen, or walked away from — three biographies that produce the same single word on a census form."
+      },
+      {
+        "id": "children-taught",
+        "kind": "choice",
+        "prompt": "What should a child in your care be taught about faith?",
+        "options": [
+          {
+            "value": "raised-in-it",
+            "label": "Raised in my faith by default"
+          },
+          {
+            "value": "taught-then-choose",
+            "label": "Taught my faith, then free to choose"
+          },
+          {
+            "value": "several",
+            "label": "Taught about several faiths, none of them privileged"
+          },
+          {
+            "value": "none-unless-asked",
+            "label": "Nothing religious unless they ask"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ],
+        "section": "lineage",
+        "grounds": true,
+        "tells": "A question that gets answered by default if nobody states a position out loud, recorded before the default has had its turn."
+      },
+      {
+        "id": "funeral",
+        "kind": "choice",
+        "prompt": "What should happen at your own funeral?",
+        "options": [
+          {
+            "value": "full-rite",
+            "label": "The rite of my faith, in full"
+          },
+          {
+            "value": "simple-rite",
+            "label": "A religious service, kept short"
+          },
+          {
+            "value": "words-not-religious",
+            "label": "Words said over me, none of them religious"
+          },
+          {
+            "value": "nothing-religious",
+            "label": "Nothing religious of any kind"
+          },
+          {
+            "value": "whatever-comforts",
+            "label": "Whatever comforts the people who are there"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ],
+        "section": "lineage",
+        "grounds": true,
+        "tells": "The one decision in this instrument that somebody else will have to make on the reader's behalf, on a day when they cannot ask. \"Whatever comforts the people there\" is a real position and not an absence of one, and it is the one most often mistaken for indifference."
+      },
+      {
+        "id": "money-use",
+        "kind": "multi",
+        "max": 3,
+        "exclusive": [
+          "touches-nothing",
+          "not-thought"
+        ],
+        "prompt": "Where does your belief show up in your money?",
+        "options": [
+          {
+            "value": "fixed-share",
+            "label": "A fixed share of income is given away"
+          },
+          {
+            "value": "give-when-asked",
+            "label": "I give when I am asked, with no fixed share"
+          },
+          {
+            "value": "wont-earn",
+            "label": "There is money I will not earn"
+          },
+          {
+            "value": "wont-spend",
+            "label": "There is money I will not spend"
+          },
+          {
+            "value": "touches-nothing",
+            "label": "It touches none of my money"
+          },
+          {
+            "value": "not-thought",
+            "label": "I have not thought about it"
+          }
+        ],
+        "section": "consequences",
+        "grounds": true,
+        "tells": "Whether there is a line in this household's budget that no spreadsheet argument will move. It records that the line exists, not how large it is — the size is the reader's business and is not collected here."
+      },
+      {
+        "id": "work-rest",
+        "kind": "choice",
+        "prompt": "Is there a time your belief keeps clear of work?",
+        "options": [
+          {
+            "value": "whole-day",
+            "label": "Yes, a whole day I keep clear"
+          },
+          {
+            "value": "part-day",
+            "label": "Yes, part of a day"
+          },
+          {
+            "value": "in-principle",
+            "label": "In principle, though I do not manage it"
+          },
+          {
+            "value": "no-but-rest",
+            "label": "No, though I rest for other reasons"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ],
+        "section": "consequences",
+        "grounds": true,
+        "tells": "Whether a block of the reader's week is closed to a work request, and — separately — whether they hold it or only intend to. The third option is the one worth having: it is a person telling you in advance where they will fail."
+      },
+      {
+        "id": "non-negotiable",
+        "kind": "multi",
+        "max": 3,
+        "exclusive": [
+          "nothing"
+        ],
+        "prompt": "In faith, what would you refuse to give up?",
+        "options": [
+          {
+            "value": "children",
+            "label": "How children in my care are raised"
+          },
+          {
+            "value": "practice",
+            "label": "Practising, even where it is unwelcome"
+          },
+          {
+            "value": "saying-so",
+            "label": "Saying what I believe when I am asked"
+          },
+          {
+            "value": "belonging",
+            "label": "Staying part of the people I gather with"
+          },
+          {
+            "value": "left-alone",
+            "label": "Being left alone about it"
+          },
+          {
+            "value": "nothing",
+            "label": "Nothing here is beyond discussion"
+          }
+        ],
+        "section": "edges",
+        "grounds": true,
+        "tells": "The short list where this person has no give at all, worth having in advance of the day somebody finds it by walking into it. \"Being left alone about it\" is there so the list is answerable by someone who holds no faith and is tired of being asked."
+      },
+      {
+        "id": "unsettled",
+        "kind": "multi",
+        "max": 3,
+        "exclusive": [
+          "nothing-unsure"
+        ],
+        "prompt": "Which of these are you genuinely unsure about?",
+        "options": [
+          {
+            "value": "god-exists",
+            "label": "Whether there is a God at all"
+          },
+          {
+            "value": "after-death",
+            "label": "What happens after death"
+          },
+          {
+            "value": "suffering",
+            "label": "Why suffering is allowed"
+          },
+          {
+            "value": "tradition-right",
+            "label": "Whether the tradition I came from has it right"
+          },
+          {
+            "value": "own-honesty",
+            "label": "Whether I believe it or only keep the habit"
+          },
+          {
+            "value": "nothing-unsure",
+            "label": "None of these are open for me"
+          }
+        ],
+        "section": "edges",
+        "grounds": true,
+        "tells": "Where this person's own ground is soft — the difference between a question they will enjoy over dinner and one that will cost them the evening."
+      }
+    ],
+    "grounds": [
+      {
+        "value": "scripture",
+        "label": "Scripture"
+      },
+      {
+        "value": "church",
+        "label": "The teaching of my church"
+      },
+      {
+        "value": "reason",
+        "label": "Reason and argument"
+      },
+      {
+        "value": "experience",
+        "label": "Something I have lived through"
+      },
+      {
+        "value": "upbringing",
+        "label": "How I was raised"
+      },
+      {
+        "value": "people",
+        "label": "People I trust"
+      },
+      {
+        "value": "not-worked-out",
+        "label": "I have not worked that out"
+      }
+    ],
+    "sections": [
+      {
+        "id": "belief",
+        "title": "What is held",
+        "note": "God, death, and suffering. There is no orthodox answer on this page and nothing on it is graded."
+      },
+      {
+        "id": "practice",
+        "title": "Practice and belonging",
+        "note": "One question asks when you last did it. The other asks where you belong. Neither is added to the other, and neither is a measure of devoutness."
+      },
+      {
+        "id": "lineage",
+        "title": "Where it came from, where it goes",
+        "note": "The distance between how you were raised and where you now stand, what you would want passed on, and what should happen on the day you cannot say."
+      },
+      {
+        "id": "consequences",
+        "title": "What it touches",
+        "note": "Money and time. A belief either shows up in a bank statement and a calendar or it does not, which is a fact about a household rather than about a soul."
+      },
+      {
+        "id": "edges",
+        "title": "The edges",
+        "note": "What has no give in it, and what is still open. A person holding this sheet needs the second list as much as the first."
+      }
+    ],
+    "provenance": {
+      "constructName": "Stated religious position — belief, practice, belonging, and grounds",
+      "constructOrigin": "Glock 1962, five dimensions of religiosity (belief, practice, experience, knowledge, consequences); Davie 1994, believing without belonging; Huber and Huber 2012, the centrality-of-religiosity construct (intellect, ideology, public practice, private practice, experience)",
+      "constructPublic": true,
+      "constructNote": "Public as a map of a subject area, not as an item bank, and that is the only use made of it. Glock's dimensions and Huber's centrality construct decided what the twelve blocks are about — belief, private practice, public belonging, and consequences in money and time — and contributed nothing else. No item, no response scale, no phrasing and no option list is taken from any published religiosity measure; every prompt and every option was written for this repo. Two places where an earlier draft drifted close enough to name are recorded in `avoided` and in `rejected`: a frequency-of-attendance ladder, which is the shape of DUREL's first item and of the CRS public-practice item, and a \"what do you look to for guidance on right and wrong\" item, which is the shape of a Pew Religious Landscape Study question. Both were cut rather than reworded, and what replaced them asks a different question — where you belong, and when you last prayed. The grounds vocabulary is this repo's own and is the load-bearing part: two people can hold the same belief at the same weight on entirely different grounds, and that pattern is only legible because the grounds options are identical across all twelve blocks. Grounds carries seven options rather than the house maximum of six — deliberate, and it is the format spec's own list (§7.4). It is one shared vocabulary used twelve times rather than a per-block option set, and collapsing \"scripture\" into \"the teaching of my church\", or dropping \"I have not worked that out\", would destroy the comparison the fourth part exists to make. Where a year is named it is a plain Anno Domini year with no comparative era set beside it.",
+      "evidenceNote": "None, and none is required. Reliability and validity are properties of a specific item set given to a specific sample, and they describe how well a measurement estimates something hidden. Nothing here is hidden and nothing is estimated: the reader states a position, states its weight from one to ten, and states what it rests on. There is no true score for an answer to be closer to or further from. This bank has never been administered to a sample, has no norms, and produces no score — no devoutness figure, no orthodoxy figure, and no number that could be read as either. The honest entry is \"none\", not a coefficient borrowed from an instrument whose items are not these.",
+      "avoided": [
+        "Centrality of Religiosity Scale (CRS-5 / CRS-10 / CRS-15), Huber and Huber 2012 — including its public-practice item on frequency of attending services and its private-practice item on frequency of prayer",
+        "Duke University Religion Index (DUREL), Koenig and Büssing — including item 1 (organisational activity, frequency of attendance) and item 2 (private religious activity)",
+        "Religious Orientation Scale (intrinsic / extrinsic), Allport and Ross 1967",
+        "Religious Commitment Inventory-10, Worthington and colleagues 2003",
+        "Santa Clara Strength of Religious Faith Questionnaire (SCSORF)",
+        "Brief Multidimensional Measure of Religiousness/Spirituality (Fetzer Institute / National Institute on Aging, 1999)",
+        "Batson Quest scale",
+        "Pew Religious Landscape Study item wording, including the \"guidance on questions of right and wrong\" item",
+        "European Values Study and Eurobarometer item wording, including the four-step \"which comes closest to your belief — a personal God, a spirit or life force, don't know, none\" ladder"
+      ]
+    },
+    "sourceNote": "There is no validated instrument behind this one and none is wanted. Religiosity research supplied a map of the subject area and nothing else: Glock's five dimensions of 1962 (belief, practice, experience, knowledge, consequences), Davie's observation in 1994 that believing and belonging come apart, and Huber and Huber's centrality construct of 2012 are why these twelve blocks are grouped into what is held, what is practised, where it came from and what it touches. The Centrality of Religiosity Scale, the Duke University Religion Index, Allport and Ross's Religious Orientation Scale, the Religious Commitment Inventory-10, the Santa Clara Strength of Religious Faith Questionnaire and the Fetzer/NIA measure were all read; none of their items appear here. Reading them is also why two questions an earlier draft carried are not here. An attendance-frequency ladder is the shape of DUREL's first item and of the CRS public-practice item, so this instrument asks where you belong instead of how often you go. A \"what settles right and wrong\" item is the shape of a Pew question, and it duplicated the grounds vocabulary that already runs under every block, so it was cut rather than reworded. Nothing is scored. There is no devoutness figure and no orthodoxy figure, and there is no reliability coefficient or factor structure either, because a position you state has none and needs none — you are not being placed against a sample, you are writing down what you hold and what you think it rests on. Every block that assumes a belief carries an option declining the assumption, so the form runs straight through for someone who holds a faith firmly, for someone who has left one and for someone who never had one, and none of those three is treated as the incomplete answer. No block asks about anyone but you: there is no question here that a person answering alone has to invent a partner in order to reach.",
+    "playbookOk": [
+      {
+        "id": "ok-call-me-on-the-day",
+        "text": "You can call me on the day I keep clear if something is actually wrong. I would rather be called.",
+        "from": "work-rest = whole-day"
+      },
+      {
+        "id": "ok-pray-around-me",
+        "text": "You can carry on talking and moving around me while I pray. It does not need the room to go quiet.",
+        "from": "prayer-last = today"
+      },
+      {
+        "id": "ok-ask-me-straight",
+        "text": "You can ask me outright whether I believe it. You will get a plain answer and it will not be a long one.",
+        "from": "god = open"
+      },
+      {
+        "id": "ok-say-i-dont-look-it",
+        "text": "You can say that I do not look like someone who believes this. I know how it looks. It is still true.",
+        "from": "god = distant"
+      },
+      {
+        "id": "ok-say-grace",
+        "text": "You can say grace at your own table with me sitting there. I will be quiet and it costs me nothing.",
+        "from": "god = untrue"
+      },
+      {
+        "id": "ok-invite-me-anyway",
+        "text": "You can invite me to a service for your wedding or your child's baptism and I will come.",
+        "from": "belonging = nowhere-content"
+      },
+      {
+        "id": "ok-ask-me-along",
+        "text": "You can ask me to come with you. Asking a second time is fine; I am not avoiding it on purpose.",
+        "from": "belonging = nowhere-missed"
+      },
+      {
+        "id": "ok-name-the-old-parish",
+        "text": "You can mention the church I grew up in without lowering your voice. It is not a wound.",
+        "from": "raised-vs-now = left"
+      },
+      {
+        "id": "ok-answer-my-kids-honestly",
+        "text": "You can answer my children's questions about what you believe honestly, including where you disagree with me.",
+        "from": "children-taught = taught-then-choose"
+      },
+      {
+        "id": "ok-take-them-along",
+        "text": "Take a child along to whatever you go to. I want them to have seen it before they are old enough to choose.",
+        "from": "children-taught = taught-then-choose"
+      },
+      {
+        "id": "ok-ask-what-i-give",
+        "text": "You can ask me what I give away and who receives it. The number is not a secret.",
+        "from": "money-use = fixed-share"
+      },
+      {
+        "id": "ok-call-out-the-slip",
+        "text": "You can point out that I said I would keep the time clear and then worked straight through it. That is fair.",
+        "from": "work-rest = in-principle"
+      },
+      {
+        "id": "ok-plain-speech-about-death",
+        "text": "You can talk about someone dying in front of me without hunting for a form of words. Plain speech is easier for me.",
+        "from": "after-death = not-worked-out"
+      },
+      {
+        "id": "ok-bring-hard-questions",
+        "text": "You can bring me the hardest question you have about suffering. I am not going to defend anything.",
+        "from": "unsettled = suffering"
+      },
+      {
+        "id": "ok-ask-in-public",
+        "text": "You can ask me what I believe in front of other people. I would rather answer than be protected from it.",
+        "from": "non-negotiable = saying-so"
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "no-small-work-messages",
+        "text": "Do not send me work messages on the day I keep clear, not even the short ones.",
+        "from": "work-rest = whole-day"
+      },
+      {
+        "id": "no-phase-talk",
+        "text": "Do not describe my praying as a mood I am in or a phase I am going through.",
+        "from": "prayer-last = today"
+      },
+      {
+        "id": "no-praying-over-me",
+        "text": "Do not pray over me without asking me first.",
+        "from": "god = untrue"
+      },
+      {
+        "id": "no-treating-it-as-taste",
+        "text": "Do not treat what I hold as a preference of mine rather than a claim I think is actually true.",
+        "from": "god = close"
+      },
+      {
+        "id": "no-fixing-the-distance",
+        "text": "Do not treat the distance I feel from God as a problem for you to solve for me.",
+        "from": "god = distant"
+      },
+      {
+        "id": "no-you-will-return",
+        "text": "Do not tell me I will come back to it when I am older. I have heard it, and it lands as contempt.",
+        "from": "raised-vs-now = left"
+      },
+      {
+        "id": "no-unexamined-assumption",
+        "text": "Do not assume I have never examined this just because I was raised in it.",
+        "from": "raised-vs-now = stayed"
+      },
+      {
+        "id": "no-service-detour",
+        "text": "Do not take my children into another faith's service without asking me first.",
+        "from": "children-taught = raised-in-it"
+      },
+      {
+        "id": "notok-baptism-without-me",
+        "text": "Do not have a child baptised or dedicated without me in the room.",
+        "from": "children-taught ≠ undecided"
+      },
+      {
+        "id": "no-filling-in-my-view",
+        "text": "Do not tell people what I think happens after death when somebody has died. I have not settled it.",
+        "from": "after-death = not-worked-out"
+      },
+      {
+        "id": "no-supplying-the-reason",
+        "text": "Do not hand me a reason for what happened. I hold that there is one and that I do not get to know it.",
+        "from": "suffering = reason-unknown"
+      },
+      {
+        "id": "no-raiding-the-giving",
+        "text": "Do not treat what I give away as money that was available for something else.",
+        "from": "money-use = fixed-share"
+      },
+      {
+        "id": "no-improvising-the-funeral",
+        "text": "Do not improvise at my funeral. The rite is written down and I want it followed as written.",
+        "from": "funeral = full-rite"
+      },
+      {
+        "id": "no-doubt-as-ammunition",
+        "text": "Do not bring up my doubts in an argument that is about something else.",
+        "from": "unsettled = own-honesty"
+      },
+      {
+        "id": "no-deciding-without-me",
+        "text": "Do not settle anything about how my children are raised in faith while I am not in the room.",
+        "from": "non-negotiable = children"
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "\"How strong is your faith, from 1 to 10?\"",
+        "why": "That is a devoutness score with the label filed off, and §7.4 forbids one. The weight question already asks how much each stated position matters, which is a different quantity: it grades the stake, not the believer."
+      },
+      {
+        "idea": "\"How often are you at a service or a religious gathering?\", with a five-step frequency ladder",
+        "why": "Carried in the first draft of this bank and cut on the licence rule. It is DUREL item 1 in a paraphrase — same frame (how often + attend + church or other religious meetings), same coarsened frequency ladder — and it is also the shape of the CRS public-practice item. Both are copyrighted and both are on the avoided list, so a near-paraphrase of them cannot ship. The belonging block asks a different question and gets a better answer: not a rate, but whether there is a room and a set of people, and whether their absence is a preference or a loss."
+      },
+      {
+        "idea": "\"How often do you pray or practise on your own?\", with a five-step frequency ladder",
+        "why": "Same problem from the other side — DUREL item 2 and the CRS private-practice item. It also asks the reader to estimate a rate, which house rule 4 rules out: a person knows when they last prayed and does not know how many times they prayed last year. Replaced by the recency question, which has crisp boundaries and needs no estimating."
+      },
+      {
+        "idea": "\"When right and wrong are in question, what settles it?\" — scripture, church, conscience, reason, consequences",
+        "why": "Two faults. It tracks the Pew Religious Landscape Study item on where you look for guidance on questions of right and wrong, which is on the avoided list. And it duplicates the grounds vocabulary that already runs under all twelve blocks — four of its five options are grounds options — so it collected the same fact twice and, being declared a single choice, forced a false one: scripture and conscience together is the modal position for a great many people, and church teaching and reason together for a great many more."
+      },
+      {
+        "idea": "\"Which of these is closest to what you hold about God?\" — a personal God, something beyond us that is not a person, do not know, no God",
+        "why": "The stem and the four-step ladder are the European Values Study and Eurobarometer belief item, which the avoided list already names. What replaced it asks about standing rather than existence, and gains the option that ladder has never had: someone real, whom I do not feel close to."
+      },
+      {
+        "idea": "\"If a partner's belief moved away from yours, what follows?\"",
+        "why": "Three faults, and it was in the first draft. It requires a partner, which house rule 7 forbids of every block. Its options — it would end the relationship, a serious strain, hard then liveable — are a forecast of the reader's own future feelings about an event that has not happened, which is an estimate wearing a stated position's clothes. And its options do not partition: \"it depends what it would mean for children\" is a conditional on a different axis from the three severities beside it. The funeral block took its place in the lineage section: also about something that has not happened yet, but a decision the reader makes now and somebody else has to carry out."
+      },
+      {
+        "idea": "A doctrinal checklist — resurrection, Trinity, real presence, scriptural inerrancy",
+        "why": "It grades orthodoxy, which the spec rules out, and it cannot be answered without insult by a Muslim, a Jew or an atheist, all of whom would be marked \"wrong\" by an option set built for one confession. It would also make the instrument partisan, which the brief forbids outright."
+      },
+      {
+        "idea": "\"Which denomination do you belong to?\"",
+        "why": "There are hundreds and six options cannot partition them, so every version of this question either lies or has an \"other\" bucket doing all the work. Worse, it invites a reader to substitute a label for the twelve answers underneath it, which is the exact move the instrument exists to prevent. The `why` field can name it if the person wants it named."
+      },
+      {
+        "idea": "\"Have you ever had a religious experience?\"",
+        "why": "Glock's experiential dimension is real research territory, but as a closed question it is either a boast or a wound, and no option list of six partitions it honestly. It belongs in the open `why` under the belief blocks, where it stays private and unscored."
+      },
+      {
+        "idea": "\"How often do you read scripture?\"",
+        "why": "A third frequency question, at finer grain, whose only conceivable use is to be added to the others. Adding frequencies is scoring, and this instrument does not score."
+      },
+      {
+        "idea": "\"Do you tithe, and if so how much?\"",
+        "why": "Double-barrelled, so it fails the readability gate on its own. The money-use block already records whether a fixed share exists; the size of it is the reader's business and the tells copy no longer claims otherwise."
+      },
+      {
+        "idea": "\"How well does your church teach on money and marriage?\"",
+        "why": "An opinion poll about an institution rather than a stated position of the reader's, and it would push the instrument into arguing for or against a body. Neither the reader nor the person holding their sheet gains anything actionable."
+      },
+      {
+        "idea": "\"Would you marry someone of another faith?\"",
+        "why": "It requires a partner the reader may not have, so it produces a hypothetical about a person who does not exist. What it was reaching for — what the reader will not concede — is asked directly and without a second person in the non-negotiable block."
+      },
+      {
+        "idea": "\"Whose faith is stronger, yours or your partner's?\"",
+        "why": "It requires a partner, which no block may. It also grades, and grades two people against each other, which is three separate violations in eleven words."
+      },
+      {
+        "idea": "\"What do you think of people who believe differently from you?\"",
+        "why": "It collects a statement about absent third parties into a document meant to be handed to one named person, and there is no honest closed partition of it — every option is either a slur or a platitude."
+      },
+      {
+        "idea": "\"How has your faith changed since the last time you filled this in?\"",
+        "why": "It would require a previous run to mean anything, and a stated-position inventory that quietly tracks drift over time turns into a measurement of the person after all. Retaking the whole instrument shows the change without inventing a scale for it. Note the difference from the prayer block, which is kept: \"when did you last\" is a date the reader knows today and needs no earlier run to be readable."
+      },
+      {
+        "idea": "\"What does your belief stop you doing?\" — food, sex, earning, speech",
+        "why": "A good question, cut for room rather than for principle. Twelve blocks is the count in §7, and the money and rest blocks already carry the consequences dimension. Recorded here so the next revision does not have to rediscover it."
+      }
+    ],
+    "sources": [
+      "https://osf.io/7wvhe/",
+      "https://www.researchgate.net/publication/267408150_The_Centrality_of_Religiosity_Scale_CRS",
+      "https://journal.equinoxpub.com/JASR/article/view/2472",
+      "https://hirr.hartfordinternational.edu/articles/4540/",
+      "https://en.wikipedia.org/wiki/Consequences_of_religiosity",
+      "https://www.mdpi.com/2077-1444/1/1/78/notes",
+      "https://elcentro.sonhs.miami.edu/research/measures-library/durel/index.html",
+      "https://link.springer.com/chapter/10.1007/978-3-658-15250-5_51",
+      "https://en.wikipedia.org/wiki/Grace_Davie",
+      "https://hirr.hartfordinternational.edu/articles/4361/",
+      "https://www.sciencedirect.com/science/article/abs/pii/S0191886906004429",
+      "https://link.springer.com/article/10.1007/s11089-017-0754-4",
+      "https://pages.ucsd.edu/~memccullough/Papers/RCI-A%202013.pdf",
+      "https://fetzer.org/wp-content/uploads/2025/05/Multidimensional_Measurement_of_Religousness_Spirituality.pdf",
+      "https://link.springer.com/article/10.1007/s10943-025-02505-1"
+    ]
+  },
+  "changes": [
+    "LICENCE — cut `gathering` (\"How often are you at a service or a religious gathering?\" + five-step ladder). It is a paraphrase of DUREL item 1 (Koenig and Büssing, organisational religious activity: \"How often do you attend church or other religious meetings?\" with a six-step frequency ladder) and of the CRS public-practice item (Huber and Huber 2012). Both are copyrighted and the bank's own `avoided` list named them while shipping their shape. Replaced by `belonging` (\"Where do you belong in what you believe?\"), which asks for a place and a set of people rather than a rate, and whose last two options — nowhere by choice, nowhere though I would like to — collect something no attendance ladder has ever separated.",
+    "LICENCE — cut `prayer-practice` (\"How often do you pray or practise on your own?\"). Same fault from the private side: DUREL item 2 (\"private religious activities, such as prayer, meditation or Bible study\") and the CRS private-practice item. Replaced by `prayer-last` (\"When did you last pray on your own?\"), which is also a house-rule-4 fix: a rate is estimated, a date is known.",
+    "LICENCE — cut `god`'s stem and ladder (\"Which of these is closest to what you hold about God?\" → personal God / something beyond us that is not a person / do not know / no God). That is the European Values Study and Eurobarometer belief item, which the bank's own `avoided` list already names. Rewrote it as \"What is God to you?\" on an axis of standing rather than existence, and added the option that ladder has never carried: \"Someone real, whom I do not feel close to\" — the believer who feels nothing, who is read as a doubter by everyone not told.",
+    "LICENCE + REDUNDANCY — cut `moral-authority` (\"When right and wrong are in question, what settles it?\"). It tracks the Pew Religious Landscape Study \"guidance on questions of right and wrong\" item (also on the `avoided` list), and four of its five options are already grounds options, so it collected the grounds fact twice. Replaced by `suffering` (\"Why do you think suffering happens?\"), which is a position no scale in the avoided set asks for and which is the most handable belief fact there is — it tells the person holding the sheet what may be said in a hospital corridor.",
+    "PARTITION — `moral-authority` was declared `kind: choice` over a space that is not exclusive: scripture-and-conscience is the modal Protestant position, church-teaching-and-reason the modal Catholic one, so the item forced a false answer from most respondents. Recorded in `rejected` rather than patched.",
+    "PARTNER RULE (house rule 7) — cut `partner-change` (\"If a partner's belief moved away from yours, what follows?\"). It requires a partner; its options are a forecast of the reader's own future feelings, which is an estimate, not a stated position (house rule 4); and \"It depends what it would mean for children\" is a conditional sitting on a different axis from the three severities beside it, so the set does not partition. The bank's own `rejected` entry then contradicted itself by defending block eight as being about \"a real relationship the reader can actually picture\". Replaced by `funeral` (\"What should happen at your own funeral?\") — still in the lineage section, still about something that has not happened, but a decision the reader makes now and somebody else has to execute, answerable alone, and answerable without insult by an atheist.",
+    "BARNUM — `no-teaching-behind-my-back` (\"Do not teach my children something about God that I have told you I do not want them taught\") is circular: it forbids doing what the reader has already forbidden, so it cannot plausibly be false of anyone. Replaced with `no-service-detour`: \"Do not take my children into another faith's service without asking me first\", which many parents would not mind and is therefore a real disclosure.",
+    "PARTISAN ASSUMPTION — `no-sunday-booking` and `ok-sunday-afternoon` named Sunday off a `gathering = weekly` answer, which hands a Muslim or a Jewish reader a line about the wrong day and breaks §7.4's \"answerable without insult\". Both cut; the calendar fact now comes from `work-rest` and the lines name \"the day I keep clear\" instead.",
+    "OVERCLAIM in result copy — `money-use`'s tells promised \"roughly how large it is\", which the block does not collect and the bank's own `rejected` list refuses to collect. Rewritten to say the line exists and that its size is not recorded. `god`'s \"invisible from outside\", `after-death`'s \"nobody has the composure\" and `children-taught`'s \"the one question here\" were similarly trimmed to what is true.",
+    "BARNUM in section copy — the `edges` note asserted \"Most people carry both\", a claim about people in general that no reader can check and that the instrument has no basis for. Cut. The `consequences` note said \"The two places\" immediately after listing three nouns; rewritten to money and time. The `practice` note's protest that it \"will not be made to\" convert a rate into devoutness was defusing a temptation created by shipping two frequency ladders side by side — with one of them gone, the note states the fact plainly instead.",
+    "NORMATIVE-TO-FACTUAL — `money-use` asked \"Should what you believe shape what you do with money?\" (an opinion) while its options reported behaviour (\"a fixed share of income is given away\"), so a person who thinks it should and does not was pushed onto a wrong option. Rewritten as \"Where does your belief show up in your money?\" and converted to `multi` (max 3), because refusing certain earnings and giving a fixed share are independent facts that a single-choice item forced into a false ranking.",
+    "MULTI ESCAPES — `non-negotiable` and `unsettled` carried \"Nothing here is beyond discussion\" and \"Nothing here troubles me\" inside multi-selects with nothing stopping a reader ticking them alongside a real answer, which records a contradiction. Added `\"exclusive\": true` on those options and on the two escapes in the new `money-use` block; the runner must clear the other selections when one is picked.",
+    "OPTION FIX — `non-negotiable` dropped \"What I hold about marriage\" (vague, and duplicated by `before-marriage`) for \"Being left alone about it\", so the list is answerable by a reader who holds no faith and is tired of being asked — §7.4's requirement, which the old list failed. `unsettled` changed \"Whether my church has it right\" to \"Whether the tradition I came from has it right\", so a reader who has left can tick it.",
+    "TRAIT-ESTIMATION SMELL — `raised-vs-now` asked \"How far is what you hold now from how you were raised?\", inviting a distance reading over categorical options. Reworded to \"What changed between how you were raised and now?\", with \"Nothing\" made explicit in the first option.",
+    "READABILITY — every English prompt was recounted, not estimated, then hand-translated into German and Polish and recounted again. The original twelve all passed at 40–58 characters in English but several ran close once translated; the rewritten set is 19–55 characters and 5–11 words in English, and 21–55 characters in both German and Polish, with no `, and ` / `, but ` / `; ` in any of them and no translation over 1.6× its source. Longest is `children-taught` at 55/53/53.",
+    "PROVENANCE — `avoided` now names the specific items that were being tracked (DUREL items 1 and 2, the CRS public and private practice items, Pew's right-and-wrong guidance item, the EVS/Eurobarometer belief ladder) rather than only the instruments, since naming the instrument while shipping its item is the failure mode this list exists to prevent. `sourceNote` says what reading those measures caused to be cut, drops the sentence about partners of differing religion (the block it defended is gone), and states the no-partner rule. `evidenceNote` and the seven-option grounds defence are unchanged — both were correct.",
+    "REJECTED LIST — four new entries record the cuts above with the instrument and item named, the \"would you marry someone of another faith\" entry no longer cites the removed block eight, and the recency entry now distinguishes a since-last-time delta item (still rejected: it needs a previous run and turns the inventory into a measurement) from \"when did you last\" (kept: a date known today). Added \"What does your belief stop you doing?\" as cut for the twelve-block count rather than on principle, so the next revision does not rediscover it.",
+    "COUNT — twelve blocks in, twelve blocks out, and the per-section counts are unchanged too: belief 3, practice 2, lineage 3, consequences 2, edges 2. Playbook holds at 14 OK and 14 not-OK (§4.1's target is 8–14), every line re-derived so that all 28 `from` clauses resolve to a block id and option value that exist in this bank — three in the original pointed at options on blocks that are now gone.",
+    "SHAPE — the four escapes marked by the earlier MULTI ESCAPES pass were written as `\"exclusive\": true` on the option objects. The platform declares them on the block instead, as `exclusive: string[]` over option values (`StanceBlock.exclusive`, passed through to `MultiItem.exclusive`), and a per-option flag structurally cannot survive that declaration because `StanceBlock.options` is a `string[]` of value ids with nowhere to hang a flag. Converted with no change of meaning: `money-use` → `[\"touches-nothing\", \"not-thought\"]`, `non-negotiable` → `[\"nothing\"]`, `unsettled` → `[\"nothing-unsure\"]`. Re-checked against the platform's rule while converting: `money-use` keeps four non-exclusive options, `non-negotiable` and `unsettled` five each, so no block is a choice wearing the wrong kind, and `max: 3` neither counts nor disables an escape.",
+    "MOVED IN, from `family-plan` — 2026-08-27 inventory decisions §1.2. `family-plan.faith-formation` is cut as a duplicate of `children-taught`, which survives because it is the one of the two that declares grounds. Its two playbook lines fired from it and nothing else and land here. `ok-take-them-along` is re-keyed on `children-taught = taught-then-choose`, the option §1.2 maps «Shown it, then left to choose» onto. `notok-baptism-without-me` had no counterpart trigger to inherit: it was scoped to `faith-formation ≠ «However the other parent wants»`, and `children-taught` has no option that defers to another parent. Re-keyed on `children-taught ≠ undecided`, which keeps the original's shape — every reader who has taken a position on a child's formation gets the line, and the reader who has not taken one does not, so it is still derived from the answer rather than handed to everybody. Both line ids are kept as the decision names them, which leaves `notok-baptism-without-me` in a list whose other ids begin `no-`; renaming it would have made the decision's own reference unfollowable. Each side is now fifteen lines, one over §4.1's eight-to-fourteen target — recorded rather than fixed by dropping a line, because the decision moves these two by name.",
+    "RENAMES, §2. `money` → `money-use`, because `couple-conversations` already uses `money` as a topic id (`money.status`, `money.predict`) and a block id becomes a message key and a stored answer id. `unsure` → `unsettled`, because `unsure` is an option *value* in six of the eight inventory banks and a block whose id is another block's answer is a grep trap. Applied to the block ids, the four playbook `from` fields, the `rejected` entry that named the money block, and the five entries in this list that name either id. The grounds escape here was already `not-worked-out`; §2 unifies `digital-life` and `money-management` onto this bank's spelling rather than the other way round."
+  ],
+  "critiqued": true
+}

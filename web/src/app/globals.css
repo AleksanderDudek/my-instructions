@@ -73,6 +73,9 @@
   html {
     background: var(--color-ground);
     color: var(--color-ink);
+    /* The banner is sticky and opaque. Without this, every in-page anchor —
+       the skip link included — scrolls its target underneath it. */
+    scroll-padding-top: 4.5rem;
   }
 
   body {

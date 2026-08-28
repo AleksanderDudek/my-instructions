@@ -1,0 +1,681 @@
+{
+  "bank": {
+    "id": "boundaries",
+    "sections": [
+      {
+        "id": "home",
+        "title": "The door and the evening",
+        "note": "Three things decided by whoever moves first: who arrives, who walks in, and how long you wait."
+      },
+      {
+        "id": "people",
+        "title": "Everyone else in it",
+        "note": "Exes, friends, family, and what any of them get told."
+      },
+      {
+        "id": "body",
+        "title": "Your body and your sleep",
+        "note": "Two things that are easier to say now than in the moment."
+      },
+      {
+        "id": "yours",
+        "title": "Yours to give",
+        "note": "Your things, your money, your time — what leaves without a conversation first."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "unannounced-visit",
+        "kind": "choice",
+        "prompt": "Who can arrive at your home without telling you first?",
+        "section": "home",
+        "grounds": false,
+        "tells": "Who currently arrives unannounced, and whether that is an arrangement this person made or one they were handed.",
+        "options": [
+          {
+            "value": "nobody",
+            "label": "Nobody — they message first"
+          },
+          {
+            "value": "parent",
+            "label": "A parent can"
+          },
+          {
+            "value": "family",
+            "label": "Any close family can"
+          },
+          {
+            "value": "anyone",
+            "label": "Anyone close to me can"
+          },
+          {
+            "value": "notMine",
+            "label": "Not something I decide"
+          },
+          {
+            "value": "never",
+            "label": "It has never come up"
+          }
+        ]
+      },
+      {
+        "id": "closed-door",
+        "kind": "choice",
+        "prompt": "What does a closed door in your home mean?",
+        "section": "home",
+        "grounds": false,
+        "tells": "Whether a shut door is a request that gets honoured, a formality, or a thing this household does not do.",
+        "options": [
+          {
+            "value": "nobody",
+            "label": "Nobody comes in at all"
+          },
+          {
+            "value": "knockWait",
+            "label": "Knock and wait for an answer"
+          },
+          {
+            "value": "knockIn",
+            "label": "Knock and come straight in"
+          },
+          {
+            "value": "openHouse",
+            "label": "Doors are not closed here"
+          },
+          {
+            "value": "never",
+            "label": "It has never come up"
+          }
+        ]
+      },
+      {
+        "id": "lateness",
+        "kind": "choice",
+        "prompt": "How late can someone be before you expect a message?",
+        "section": "home",
+        "grounds": false,
+        "tells": "The number of minutes after which silence stops being neutral for this person.",
+        "options": [
+          {
+            "value": "always",
+            "label": "Any lateness at all"
+          },
+          {
+            "value": "ten",
+            "label": "About ten minutes"
+          },
+          {
+            "value": "thirty",
+            "label": "About half an hour"
+          },
+          {
+            "value": "hour",
+            "label": "An hour or more"
+          },
+          {
+            "value": "never",
+            "label": "I never need a message"
+          }
+        ]
+      },
+      {
+        "id": "partner-ex-friend",
+        "kind": "choice",
+        "prompt": "A partner stays friends with an ex. What do you need?",
+        "section": "people",
+        "grounds": false,
+        "tells": "What this person needs for themselves — information, notice, or nothing — rather than what they would require of somebody else.",
+        "options": [
+          {
+            "value": "nothing",
+            "label": "Nothing — it is theirs"
+          },
+          {
+            "value": "toKnow",
+            "label": "Only to know it exists"
+          },
+          {
+            "value": "told",
+            "label": "To be told before they meet"
+          },
+          {
+            "value": "met",
+            "label": "To have met them myself"
+          },
+          {
+            "value": "hard",
+            "label": "I find it hard either way"
+          },
+          {
+            "value": "unknown",
+            "label": "I do not know yet"
+          }
+        ]
+      },
+      {
+        "id": "own-ex-contact",
+        "kind": "choice",
+        "prompt": "An ex sends you a message. What do you do?",
+        "section": "people",
+        "grounds": false,
+        "tells": "What this person already does when an ex writes, recorded before anybody has to guess at it.",
+        "options": [
+          {
+            "value": "sayFirst",
+            "label": "Say so at home before replying"
+          },
+          {
+            "value": "replyThenSay",
+            "label": "Reply, then mention it"
+          },
+          {
+            "value": "replyQuiet",
+            "label": "Reply and keep it to myself"
+          },
+          {
+            "value": "noReply",
+            "label": "I do not reply"
+          },
+          {
+            "value": "blocked",
+            "label": "They cannot reach me"
+          },
+          {
+            "value": "never",
+            "label": "It has not happened"
+          }
+        ]
+      },
+      {
+        "id": "friend-rude",
+        "kind": "multi",
+        "max": 2,
+        "exclusive": [
+          "nothing",
+          "notHappened"
+        ],
+        "prompt": "A friend is cruel about someone you love. What do you do?",
+        "section": "people",
+        "grounds": false,
+        "tells": "Whether a friend's remark gets answered in the room, answered later, or never answered.",
+        "options": [
+          {
+            "value": "thereAndThen",
+            "label": "Say something there and then"
+          },
+          {
+            "value": "after",
+            "label": "Say something to them later"
+          },
+          {
+            "value": "tellThem",
+            "label": "Tell the person it was about"
+          },
+          {
+            "value": "nothing",
+            "label": "Nothing — I let it go"
+          },
+          {
+            "value": "distance",
+            "label": "See less of that friend"
+          },
+          {
+            "value": "notHappened",
+            "label": "It has not happened"
+          }
+        ]
+      },
+      {
+        "id": "told-outside",
+        "kind": "choice",
+        "prompt": "Who gets to hear about an argument at home?",
+        "section": "people",
+        "grounds": false,
+        "tells": "How wide the circle of people who hear about the arguments already is.",
+        "options": [
+          {
+            "value": "nobody",
+            "label": "Nobody outside the room"
+          },
+          {
+            "value": "onePerson",
+            "label": "One person I trust"
+          },
+          {
+            "value": "friends",
+            "label": "Close friends"
+          },
+          {
+            "value": "family",
+            "label": "Family too"
+          },
+          {
+            "value": "anyone",
+            "label": "I do not mind who"
+          },
+          {
+            "value": "undecided",
+            "label": "I have not decided"
+          }
+        ]
+      },
+      {
+        "id": "public-touch",
+        "kind": "choice",
+        "prompt": "What touch in public is fine with you?",
+        "section": "body",
+        "grounds": false,
+        "tells": "Where the line falls in public, stated by the only person entitled to place it.",
+        "options": [
+          {
+            "value": "none",
+            "label": "Nothing at all"
+          },
+          {
+            "value": "hand",
+            "label": "A hand or an arm"
+          },
+          {
+            "value": "kiss",
+            "label": "A short kiss too"
+          },
+          {
+            "value": "anything",
+            "label": "Anything I would do at home"
+          },
+          {
+            "value": "depends",
+            "label": "It depends who is watching"
+          }
+        ]
+      },
+      {
+        "id": "woken",
+        "kind": "choice",
+        "prompt": "What is a good enough reason to wake you?",
+        "section": "body",
+        "grounds": false,
+        "tells": "What counts as worth waking this person for, stated before somebody has to guess it at three in the morning.",
+        "options": [
+          {
+            "value": "never",
+            "label": "Do not wake me for anything"
+          },
+          {
+            "value": "emergency",
+            "label": "An emergency only"
+          },
+          {
+            "value": "today",
+            "label": "Anything that changes today"
+          },
+          {
+            "value": "anything",
+            "label": "Wake me for anything"
+          },
+          {
+            "value": "depends",
+            "label": "It depends on the hour"
+          }
+        ]
+      },
+      {
+        "id": "things-read",
+        "kind": "choice",
+        "prompt": "Who can go through your things without asking?",
+        "section": "yours",
+        "grounds": false,
+        "tells": "Whether the access to this person's things is an arrangement, the absence of one, or not theirs to set.",
+        "options": [
+          {
+            "value": "nobody",
+            "label": "Nobody goes through my things"
+          },
+          {
+            "value": "ask",
+            "label": "Anyone who asks first"
+          },
+          {
+            "value": "partner",
+            "label": "The person I live with"
+          },
+          {
+            "value": "notMine",
+            "label": "Not something I decide"
+          },
+          {
+            "value": "never",
+            "label": "It has never come up"
+          }
+        ]
+      },
+      {
+        "id": "money-family",
+        "kind": "choice",
+        "prompt": "How much can you lend family without a conversation?",
+        "section": "yours",
+        "grounds": false,
+        "tells": "The largest amount that can leave without a conversation, as a number rather than as a feeling about money.",
+        "options": [
+          {
+            "value": "discussFirst",
+            "label": "Nothing without discussing it"
+          },
+          {
+            "value": "dayPay",
+            "label": "A day's pay"
+          },
+          {
+            "value": "weekPay",
+            "label": "A week's pay"
+          },
+          {
+            "value": "monthPay",
+            "label": "A month's pay"
+          },
+          {
+            "value": "whatever",
+            "label": "Whatever they needed"
+          },
+          {
+            "value": "neverLend",
+            "label": "I do not lend to family"
+          }
+        ]
+      },
+      {
+        "id": "volunteered",
+        "kind": "choice",
+        "prompt": "Someone commits you to something. What do you do?",
+        "section": "yours",
+        "grounds": false,
+        "tells": "What this person does about a commitment made on their behalf — refuse it, undo it, or carry it.",
+        "options": [
+          {
+            "value": "sayNo",
+            "label": "I say no on the spot"
+          },
+          {
+            "value": "pullOut",
+            "label": "I get out of it later"
+          },
+          {
+            "value": "sayLater",
+            "label": "I do it, then say so afterwards"
+          },
+          {
+            "value": "doIt",
+            "label": "I do it and say nothing"
+          },
+          {
+            "value": "notHappened",
+            "label": "It has not happened to me"
+          }
+        ]
+      }
+    ],
+    "sourceNote": "There is no validated instrument behind this one and there could not be: what you would lend a brother, and how late is too late before you want a message, are not psychological constructs. They are facts about how you live. The word «boundary» reaches this page from two directions — family systems theory, where it describes where one part of a family stops and another begins, and a self-help literature that has produced no outcome study worth citing — so it is used here as an ordinary English word with nothing claimed for it. Nothing is scored, banded, or compared to anybody. One thing is worth saying plainly rather than in a footnote: everything you write here is either a statement about your own conduct or a request, and a request is something the other person is free to decline. That rule is why no question here asks you to set a rule over another adult — not who they may see, not who they may write to, not where they are. Where an answer describes an arrangement you did not agree to, this page records it as exactly that and does not call it a preference. And nothing on this page reads your answers for signs of anything.",
+    "provenance": {
+      "constructName": "Stated household boundaries — a threshold or current practice, its weight, and the reason",
+      "constructOrigin": "«Boundary» as ordinary English, with the family-systems sense (Minuchin, structural family therapy, 1974) as background only. No scale, no typology, no dimensions. The safety design — what is asked, what is deliberately not asked, and the symmetry of the option sets — is informed by the CPS and Home Office statutory guidance on controlling or coercive behaviour under s.76 of the Serious Crime Act 2015, which is used to decide what this instrument refuses to collect, never to assess anybody.",
+      "constructPublic": true,
+      "constructNote": "No published instrument is used, adapted, abbreviated or paraphrased; every item is original wording written for this repo. Hartmann's Boundary Questionnaire and its short forms measure permeability of mental boundaries — a different construct — and are under publisher copyright. Skowron and Friedlander's Differentiation of Self Inventory is APA-copyrighted and is a scored trait measure, which is the thing this format exists not to be. Cloud and Townsend's Boundaries and the quiz on its site are copyrighted commercial self-help and are not drawn on for content or structure; the nearest brush is `volunteered`, which is why it asks what you did about a specific commitment rather than how hard you find it to say no — the second is their territory and is a trait rating besides. The Duluth Power and Control Wheel is neither reproduced nor adapted: DAIP permit reproduction only exactly as published with credit, and more to the point, an abuse-education graphic turned into a questionnaire becomes a screen, which this is not. Item ideas were refused outright on the same ground the intimacy instrument refuses an activity checklist — the list is the harm: no question asks what another adult may do with their own contacts or friendships, no question asks for access to somebody else's device, and no question asks where anybody is. Two blocks carry «Not something I decide» so that a person for whom the arrangement is not an arrangement has a true answer available that reads innocuously to anyone else, and that option is deliberately wired to produce no playbook line at all — the page must not hand somebody a sentence to be held to. Nothing is flagged, scored for distress, or interpreted back at the reader.",
+      "evidenceNote": "None — reliability, factor structure and criterion validity are all absent, and none is needed, because nothing here is inferred. The instrument records a threshold, a current practice, a weight and a reason, all four of which the person answering already knows. There is also, honestly, nothing to borrow: searching for outcome evidence that writing boundaries down in advance changes anything returns therapist blog posts and no trial. The boundary scales that do exist measure something else and are copyrighted besides, so a reliability figure quoted on this page would be a figure about a different instrument measuring a different thing. The same restraint applies to the item notes: this bank makes no claim about what most people answer, because it has never counted.",
+      "avoided": [
+        "Hartmann Boundary Questionnaire (and BQ-18 short forms)",
+        "Differentiation of Self Inventory (DSI-R, short form, brief version)",
+        "Cloud and Townsend, Boundaries — the book and its online quiz",
+        "Duluth Power and Control Wheel",
+        "Family Boundary Ambiguity scales (Boss)",
+        "DASH and any other domestic abuse risk checklist",
+        "any coercive-control screening instrument"
+      ]
+    },
+    "playbookOk": [
+      {
+        "id": "ok.door.open",
+        "from": "unannounced-visit = parent | family | anyone",
+        "text": "Let yourself in if the door is open. You never have to ring first."
+      },
+      {
+        "id": "ok.door.hour",
+        "from": "unannounced-visit = nobody | never",
+        "text": "Message me an hour before you come over and the answer will almost always be yes."
+      },
+      {
+        "id": "ok.doorclosed.knock",
+        "from": "closed-door = knockIn | openHouse",
+        "text": "Knock if my door is shut, then come straight in. I am not hiding from you."
+      },
+      {
+        "id": "ok.late.relax",
+        "from": "lateness = hour | never",
+        "text": "Do not apologise for being ten minutes late. I genuinely had not noticed."
+      },
+      {
+        "id": "ok.late.line",
+        "from": "lateness = thirty",
+        "text": "If you are under half an hour late, do not bother texting. I will order for us."
+      },
+      {
+        "id": "ok.ex.theirs",
+        "from": "partner-ex-friend = nothing | toKnow",
+        "text": "See your ex as often as you like. I do not need a report on it afterwards."
+      },
+      {
+        "id": "ok.myex.reply",
+        "from": "own-ex-contact = replyQuiet | replyThenSay",
+        "text": "If my ex messages me I will reply. It is not a secret and it is not the start of anything."
+      },
+      {
+        "id": "ok.myex.ask",
+        "from": "own-ex-contact = sayFirst",
+        "text": "Ask me directly whether I have heard from my ex. You will get a straight answer, every time."
+      },
+      {
+        "id": "ok.friend.push",
+        "from": "friend-rude = thereAndThen | tellThem",
+        "text": "Push back in front of everyone if I say something unfair. I would rather have it out there."
+      },
+      {
+        "id": "ok.told.talk",
+        "from": "told-outside = friends | family | anyone",
+        "text": "Tell someone you trust when we have argued. I would rather that than you sitting on it."
+      },
+      {
+        "id": "ok.touch.street",
+        "from": "public-touch = kiss | anything",
+        "text": "Hold my hand in the street. Kiss me at the station. None of that embarrasses me."
+      },
+      {
+        "id": "ok.wake.me",
+        "from": "woken = anything | today",
+        "text": "Wake me if you need me. I would rather lose an hour of sleep than hear about it at breakfast."
+      },
+      {
+        "id": "ok.things.open",
+        "from": "things-read = partner",
+        "text": "You can go through my things. I am not going to move anything first."
+      },
+      {
+        "id": "ok.money.lend",
+        "from": "money-family = weekPay | monthPay | whatever",
+        "text": "If your family needs money, lend it to them. Tell me afterwards rather than asking me first."
+      }
+    ],
+    "playbookNotOk": [
+      {
+        "id": "no.door.message",
+        "from": "unannounced-visit = nobody | never",
+        "text": "Do not turn up at my door without messaging first. Having a key is not an invitation."
+      },
+      {
+        "id": "no.doorclosed.open",
+        "from": "closed-door = nobody | knockWait",
+        "text": "Do not open my door without knocking. Wait for me to answer before you come in."
+      },
+      {
+        "id": "no.late.silence",
+        "from": "lateness = always | ten",
+        "text": "Do not leave me standing there. If you are more than ten minutes away, send me one line."
+      },
+      {
+        "id": "no.ex.afterwards",
+        "from": "partner-ex-friend = told | met",
+        "text": "Do not arrange to see your ex and tell me afterwards. Tell me beforehand instead."
+      },
+      {
+        "id": "no.ex.pretend",
+        "from": "partner-ex-friend = hard",
+        "text": "Do not ask me to be relaxed about this. I am not, and pretending otherwise would be worse."
+      },
+      {
+        "id": "no.myex.number",
+        "from": "own-ex-contact = noReply | blocked",
+        "text": "Do not pass my number to my ex, whatever reason they give you for wanting it."
+      },
+      {
+        "id": "no.friend.jokes",
+        "from": "friend-rude = thereAndThen | after | distance",
+        "text": "Do not make jokes about the people I love in front of others. Not even the good ones."
+      },
+      {
+        "id": "no.told.story",
+        "from": "told-outside = nobody | onePerson",
+        "text": "Do not repeat what I said in a fight to your family. Not even as a funny story at dinner."
+      },
+      {
+        "id": "no.touch.colleagues",
+        "from": "public-touch = hand | depends",
+        "text": "Do not kiss me in front of your colleagues. A hand on my back is fine."
+      },
+      {
+        "id": "no.touch.any",
+        "from": "public-touch = none",
+        "text": "Do not reach for me in public. It is not about you and it is not going to change."
+      },
+      {
+        "id": "no.wake.morning",
+        "from": "woken = never | emergency",
+        "text": "Do not wake me to tell me something that will still be true in the morning."
+      },
+      {
+        "id": "no.things.out",
+        "from": "things-read = nobody | ask",
+        "text": "Do not go through my things while I am out. Ask me and I will show you myself."
+      },
+      {
+        "id": "no.money.promise",
+        "from": "money-family = discussFirst | dayPay | neverLend",
+        "text": "Do not promise money to your family before you have said the number out loud to me."
+      },
+      {
+        "id": "no-lend-then-tell",
+        "from": "money-family = discussFirst",
+        "text": "Do not lend money to someone in your family and tell me about it afterwards."
+      },
+      {
+        "id": "no.volunteer.yes",
+        "from": "volunteered = sayNo | pullOut | sayLater | doIt",
+        "text": "Do not say yes on my behalf. Tell them you will check with me — I will usually say yes anyway."
+      }
+    ],
+    "rejected": [
+      {
+        "idea": "A `grounds` list on every block (raised how you were brought up, something that happened before, thought it through, would want it for them, no idea why)",
+        "why": "Grounds is a shared field, unlike `why`, which is private by construction. An option reading «something that happened to me before» would then be a comparable, packable, shareable trauma marker sitting next to a named person's household rules — precisely the answer-that-reads-as-an-admission that couple-conversations keeps off the wire. The spec's default is that only `faith` uses grounds; boundaries keeps that default and the private free text carries the reason instead."
+      },
+      {
+        "idea": "What happens when work calls during dinner?",
+        "why": "Cut from the proposed bank. §7.1 assigns «phone at dinner» to `digital-life` by name, so the block was building a sibling instrument's item — the same objection this bank already makes against a location question. Its option set was also not exclusive: «I let it ring» and «My phone is not at the table» are both true of the same person. Replaced by `closed-door`, which is the interruption question this instrument actually owns."
+      },
+      {
+        "idea": "Who can look through your phone?",
+        "why": "Narrowed rather than kept. §7.1 assigns phones and passwords to `digital-life`, and a device-specific question invites the reader to think about a device rather than about access. `things-read` asks who goes through your things, which covers the phone, the bag and the drawer, belongs to this instrument, and keeps the «Not something I decide» option that was the original block's best feature."
+      },
+      {
+        "idea": "«I would ask for it to end» as an answer to the ex-friendship question",
+        "why": "Removed. The bank rejects «Who may your partner text late at night?» because it collects a rule over another adult's contacts and CPS guidance lists controlling who somebody may see as coercive behaviour — and then offered ending a named friendship as a tickable preference three blocks later. Either the rejection is wrong or the option is. The replacement, «I find it hard either way», is true of the same reader, is a statement about themselves rather than a rule over somebody else, and still fires `no.ex.pretend`, which is the handable version of the same thing."
+      },
+      {
+        "idea": "An OK playbook line derived from «I do it and say nothing»",
+        "why": "The proposed `ok.volunteer.small` told the recipient «I will not mind and I will not bring it up» on the strength of an answer that says the reader complies silently. Silent compliance is not consent and the instrument cannot tell the difference — inferring contentment from it is the estimation this format exists to refuse, in the one place it does most damage. That answer now produces a not-OK line asking to be consulted."
+      },
+      {
+        "idea": "Who may your partner text late at night?",
+        "why": "Collects a rule over another adult's contacts. That is the exact pattern the CPS guidance lists under controlling behaviour — «controlling who they can see». An instrument that offers it as an option set has told the reader it is a preference."
+      },
+      {
+        "idea": "Do you know your partner's phone passcode?",
+        "why": "An access-to-someone-else's-device question. Refused on the same ground the intimacy instrument refuses an activity checklist: removing the score does not remove the harm, because the record is the harm. The surviving block asks only about the reader's own things."
+      },
+      {
+        "idea": "Whose location is shared with whom?",
+        "why": "Twice wrong. It is a monitoring question dressed as logistics, and the spec assigns phones, availability and what gets posted to `digital-life` (§7.1), so building it here would also duplicate a sibling instrument."
+      },
+      {
+        "idea": "Has anyone ever ignored a boundary you set?",
+        "why": "Collects an incident rather than a position. It cannot be partitioned into honest options, and any option set that could hold the true answer becomes a distress flag in a field that can be shared with the person it is about."
+      },
+      {
+        "idea": "How do you react when a boundary is crossed?",
+        "why": "Asks the person to estimate their own conduct under stress. That is the «how conscientious are you» failure — nobody reliably knows the answer, so the block would collect a self-image and report it as a fact."
+      },
+      {
+        "idea": "How good are you at saying no?",
+        "why": "A trait rating, and Cloud and Townsend's ground besides. It fails the alone test outright: the reader could have written the answer before opening the app, and it infers rather than records. `volunteered` asks what you did about a specific commitment instead."
+      },
+      {
+        "idea": "What may be said about you in front of the children?",
+        "why": "A strong block and the wrong folder. It presupposes children, which is a premise a boundaries instrument should not require, and everything downstream of children belongs to `family-plan`."
+      },
+      {
+        "idea": "How long may a guest stay in the spare room?",
+        "why": "Real and common, but it overlaps `unannounced-visit` on the same underlying question — who is in the house and on whose say-so — and twelve blocks is the budget."
+      },
+      {
+        "idea": "How much does anyone drink at family gatherings?",
+        "why": "Drags a health behaviour into an instrument with no clinical footing, no duration data and no distress judgement. The same reasoning that keeps diagnostic vocabulary out of intimacy-conditions keeps this out."
+      },
+      {
+        "idea": "A closing block asking whether any of these has ever been a problem",
+        "why": "It is a screen with a friendlier name. The house rule is no flagging and no scoring of distress: a page that concludes something about the reader's safety can escalate the danger if somebody else is looking at the screen."
+      },
+      {
+        "idea": "Do you lend to family, or give?",
+        "why": "It was inside the money-family option set, where it did not partition against the amounts: someone who gives rather than lends still has a sum that passes without mention. Two questions wearing one option list. The distinction is worth having and the `why` box collects it in the reader's own words."
+      }
+    ],
+    "sources": [
+      "https://www.cps.gov.uk/prosecution-guidance/controlling-or-coercive-behaviour-intimate-or-family-relationship",
+      "https://assets.publishing.service.gov.uk/media/642d3f9e7de82b001231364d/Controlling_or_Coercive_Behaviour_Statutory_Guidance_-_final.pdf",
+      "https://www.legislation.gov.uk/ukpga/2015/9/section/76",
+      "https://www.theduluthmodel.org/wheels/",
+      "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9833613/",
+      "https://psycnet.apa.org/doiLanding?doi=10.1037/t46408-000",
+      "https://www.boundariesbooks.com/",
+      "https://www.helpguide.org/relationships/social-connection/setting-healthy-boundaries-in-relationships"
+    ]
+  },
+  "changes": [
+    "READABILITY — every English prompt passed the 80/14 gate as proposed (longest: money-family and volunteered at 61 chars), so nothing failed outright. Two would have failed in translation. `money-family` at 61ch renders as «Was ist der höchste Betrag, den du der Familie ohne Absprache leihen würdest?» = 77 characters in German, three under the limit and over it on any less clipped phrasing; rewritten to «How much can you lend family without a conversation?» (52ch), German 53ch. `volunteered` at 61ch also leaned on «volunteered», which has no clean Polish or German equivalent; rewritten to «Someone commits you to something. What do you do?» (49ch), German 43ch, Polish 42ch. All twelve final prompts were counted, not estimated, in English plus a drafted German and Polish rendering; the worst case is now friend-rude in German at 66ch. No prompt contains ', and ' / ', but ' / '; ' in any of the four locales.",
+    "DUPLICATION OF A SIBLING INSTRUMENT — cut `work-at-dinner`. Spec §7.1 assigns «phone at dinner» to `digital-life` by name, so the bank was building digital-life's item while rejecting a location question partly for that exact reason. Its options also failed to partition: «I let it ring» and «My phone is not at the table» are simultaneously true of the same person in a single-select. Replaced with `closed-door` («What does a closed door in your home mean?»), which is the interruption boundary this instrument actually owns, needs no device, and delivers the section note's 'who walks in'.",
+    "SAFETY / INTERNAL CONTRADICTION, the most serious finding — `partner-ex-friend` offered «I would ask for it to end» as a tickable option. The bank's own rejected list refuses «Who may your partner text late at night?» because it collects a rule over another adult's contacts and CPS guidance names controlling who somebody may see as coercive behaviour. Ending a named friendship is the same act, offered as a preference. Replaced with «I find it hard either way» — true of the same reader, a statement about themselves rather than a rule over somebody else — and the prompt now reads «A partner stays friends with an ex. What do you need?». The `no.ex.pretend` playbook line still fires, so the reader keeps the handable sentence without the app printing the demand.",
+    "DIGITAL-LIFE OVERLAP, second instance — `phone-read` narrowed rather than deleted. §7.1 assigns phones and passwords to `digital-life`. Reframed as `things-read`, «Who can go through your things without asking?», which covers the phone, the bag and the drawer, is unambiguously this instrument's, and keeps «Not something I decide» — the block's best feature. Section note updated from «your phone» to «your things».",
+    "PARTITION FAILURE — `friend-rude` was a `multi` with max 2, which let «Nothing — I let it go» and «It has not happened» be ticked alongside «Say something there and then». A multi cannot express an exclusive option. Converted to `choice`; «Tell my partner about it» became «Tell the person it was about», which no longer presupposes one.",
+    "REQUIRES A PARTNER (house rule 7) — six places presupposed a current partner and are fixed: friend-rude's prompt («your partner» → «someone you love»); own-ex-contact's options, which said «mention it» without a person to mention it to; told-outside's «One person each» and «We have not agreed anything» → «One person I trust» and «I have not decided»; public-touch's «Anything we would do at home» → «Anything I would do at home»; unannounced-visit's «Anyone close to us» → «Anyone close to me»; phone-read's «My partner, any time» → «The person I live with», which also covers a flatmate or a parent.",
+    "MISSING HONEST ESCAPE — added «Not something I decide» to `unannounced-visit`. The block's own `tells` promised to distinguish a standing arrangement from a thing that has never been refused, and the option set could not deliver that distinction; the person whose parent has a key against their wishes had no true answer. The bank already argued for this affordance on the phone block and needed it more on the door.",
+    "PLAYBOOK LOGIC BUG — `phone-read = ask` fired both `ok.phone.open` ('read it whenever you want') and `no.phone.shower` ('do not read my phone'), handing one reader two contradictory sentences. The OK line is now derived from `partner` only and rephrased as the reader's own statement rather than a standing invitation to search them. Every derivation was machine-checked afterwards: no option value now appears on both sides in a way that contradicts, no line references an option that does not exist, and no id is duplicated.",
+    "PLAYBOOK INFERENCE — deleted `ok.volunteer.small`, which told the recipient «I will not mind and I will not bring it up» on the strength of «I do it and say nothing». Silent compliance is not consent and the instrument cannot tell the difference; inferring contentment from it is the estimation house rule 4 forbids, in the place it does most harm. That answer now feeds the not-OK line asking to be consulted. Same defect, milder, in `ok.friend.say`, which read candour-welcome off «I let it go» — replaced by `ok.friend.push`, derived from the answers that actually welcome confrontation.",
+    "PLAYBOOK LINES THAT ASSERT FACTS ABOUT THIRD PARTIES OR PRESUPPOSE RELATIVES — `no.told.mother` said 'She keeps them long after we have dropped them', which is the app putting a claim about the recipient's mother into the reader's mouth. `ok.told.talk` named a sister, `ok.money.lend` named a brother. All three now name a category the reader supplies ('someone you trust', 'your family') and assert nothing about anybody.",
+    "PLAYBOOK COVERAGE — four options produced no line at all: lateness=thirty, money-family=dayPay, public-touch=none (which was worse than uncovered, since `no.touch.colleagues` told a reader who wants no touch that a hand on the back is fine), unannounced-visit=parent. All four are now covered by `ok.late.line`, an extended `no.money.promise`, a new `no.touch.any`, and an extended `ok.door.open`. Counts are 14 and 14, inside the spec §4.1 target of 8–14 per side. Options that remain deliberately uncovered are the honest escapes and `notMine` — the safety option is wired to produce no sentence anybody could be held to, and the provenance now says so explicitly.",
+    "UNSUPPORTED BASE RATES IN THE ITEM NOTES — five `tells` and one section note asserted frequencies the instrument has never measured: 'rarely what anyone else assumes', 'almost never where somebody watching would place it', 'usually wider than assumed', 'most often to comply and say nothing', 'nobody states out loud until after it has gone wrong once'. In an instrument whose evidenceNote correctly claims nothing, these are Barnum flourishes that also prejudge the answer. All rewritten to describe what the block records. The evidenceNote gains one sentence holding the item notes to the same standard.",
+    "LICENCE — clean, with one caveat now documented. No prompt or option tracks Hartmann's Boundary Questionnaire (mental-boundary permeability, a different construct), the DSI-R (agree-disagree trait statements), or the Duluth wheel. The one real adjacency is `volunteered` against Cloud and Townsend's 'trouble saying no' territory; the rewrite keeps it on the safe side by asking what you did about a specific commitment rather than how hard you find refusing, and the constructNote now names that distinction instead of leaving it implicit.",
+    "BARNUM / ALONE — no closed option in the bank is unrejectable, and none of the twelve blocks records something the reader could not have written alone, which is correct for this format: house rule 4 makes these instruments record rather than reveal, so the tests bite on the playbook, where they caught the three lines above. The three most Barnum-vulnerable playbook lines were checked individually and survive: 'I genuinely had not noticed', 'do not pass my number to my ex' and 'said the number out loud to me' are all plausibly false of a large number of people.",
+    "SOURCENOTE — added one sentence stating the rule that the rest of the fixes enforce: no question here asks you to set a rule over another adult, not who they may see, not who they may write to, not where they are. That was true of the design intent and not true of the shipped option set until the ex-friendship fix; saying it in reader-facing copy is what makes it checkable.",
+    "RESTORED — `friend-rude` is a `multi` with `max: 2` again, and carries `exclusive: [\"nothing\", \"notHappened\"]`. It was demoted to a `choice` for one reason only: a multi could not express an exclusive option, so «Nothing — I let it go» and «It has not happened» could be ticked alongside «Say something there and then». `MultiItem.exclusive` shipped on 2026-08-27 (OUTSTANDING §1) and the reason is gone. Four non-exclusive options remain — say something there and then, say something later, tell the person it was about, see less of that friend — so the block is a real multi and not a choice wearing the wrong kind, and the question it was demoted to ask («which do you mainly do») is again the question it was written to ask: which of these you do, up to two. The «Tell the person it was about» rewording made during the demotion stands; it fixed a presupposition and never depended on the kind. This supersedes the earlier PARTITION FAILURE entry in this list, and the matching entry has been moved out of `rejected`, where it no longer describes anything rejected.",
+    "MOVED IN, from `money-management` — 2026-08-27 inventory decisions §1.3. `money-management.family-lending` is cut as a duplicate of `money-family`, which survives because design §7.1 names money lent to family as this instrument's own example. `no-lend-then-tell` fired from the cut block alone and lands here, re-keyed on `money-family = discussFirst` — the option that matches its old trigger word for word, «Nothing without saying so first» against «Nothing without discussing it». It is the exact mirror of `ok.money.lend`, which tells the reader who set a week's pay or more that hearing about it afterwards is fine. Deliberately not extended to `dayPay` or `neverLend`: `no.money.promise` already covers both, and two not-OK lines off one option is two sentences about one answer. The text gains the «Do not …» opening this bank's not-OK lines all carry and the money bank's do not, since these are rendered as written; the id is kept as the decision names it, which leaves one dotted-id list holding one hyphenated id. The not-OK side is now fifteen, one over §4.1's eight-to-fourteen target — recorded rather than fixed by dropping a line.",
+    "MOVED IN, `rejected`. «Do you lend to family, or give?» came across with the line, since it was reasoning about the option set the two blocks shared: a giver rather than a lender still has a sum that passes without mention, so it did not partition against the amounts. The block it names is now `money-family`; nothing else in the entry changed."
+  ],
+  "critiqued": true
+}

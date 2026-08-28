@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { IDS, LOCALES } from "./instruments";
 import { path } from "./paths";
 
 /**
@@ -9,14 +10,10 @@ import { path } from "./paths";
  * machine, that is exactly the failure to expect. So this walks all of them:
  * cheap, and the only test that would notice a single broken translation table
  * or a view that reads a field its scoring no longer produces.
+ *
+ * "All of them" is the registry's answer, not a copy of it kept here. See
+ * `./instruments` for why a written-out list is worse than no list at all.
  */
-const IDS = [
-  "love-languages", "attachment", "couple-conversations", "intimacy-conditions",
-  "attraction", "intimacy-map", "conflict-style", "enneagram", "big-five",
-  "hexaco", "jungian", "riasec", "working-style", "study-practice",
-  "chronotype", "numerology",
-];
-const LOCALES = ["en", "pl", "es", "de"];
 
 for (const locale of LOCALES) {
   test(`every instrument has a readable page in ${locale}`, async ({ page }) => {
@@ -27,7 +24,7 @@ for (const locale of LOCALES) {
       const response = await page.goto(path(`/${locale}/tests/${id}/`));
       if (response?.status() !== 200) {
         broken.push(`${id}: HTTP ${response?.status()}`);
-        continue;
+        return;
       }
       const heading = await page.getByRole("heading", { level: 1 }).first().textContent();
       // A page that renders its own message key instead of a sentence means
@@ -40,10 +37,24 @@ for (const locale of LOCALES) {
   });
 }
 
-test("every instrument produces a result without throwing", async ({ page }) => {
-  const broken: string[] = [];
-
-  for (const id of IDS) {
+/**
+ * One test per instrument, not one test for all of them.
+ *
+ * This walked the whole registry inside a single `test()` until the catalogue
+ * reached twenty-four. Filling in eight inventories — each a dozen blocks of
+ * position, weight and reason, over four or five pages — does not fit in one
+ * test's timeout, and what the runner reported was a stale "element is not
+ * stable" on whichever radio the clock happened to stop on. That reads as a
+ * flaky control and is really a budget that ran out.
+ *
+ * A test each gives every instrument its own budget and, more usefully, its own
+ * name in the output: the failure now says which instrument, before anybody
+ * opens a trace. The `broken` array stays because an instrument can fail in
+ * several ways at once and all of them are worth printing together.
+ */
+for (const id of IDS) {
+  test(`${id} produces a result without throwing`, async ({ page }) => {
+    const broken: string[] = [];
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(String(e)));
     await page.goto(path(`/en/tests/${id}/take/`));
@@ -76,7 +87,7 @@ test("every instrument produces a result without throwing", async ({ page }) => 
     const finish = page.getByTestId("finish");
     if (!(await finish.isVisible().catch(() => false))) {
       broken.push(`${id}: never reached a finish button`);
-      continue;
+      return;
     }
     await finish.click();
 
@@ -86,7 +97,7 @@ test("every instrument produces a result without throwing", async ({ page }) => 
       .catch(() => false);
     if (!arrived) {
       broken.push(`${id}: never reached a result`);
-      continue;
+      return;
     }
 
     // The result page reads local storage before it can draw, so it shows a
@@ -107,7 +118,7 @@ test("every instrument produces a result without throwing", async ({ page }) => 
       broken.push(`${id}: result stalled showing "${shown}"`);
     }
     if (errors.length) broken.push(`${id}: ${errors[0].slice(0, 140)}`);
-  }
 
-  expect(broken).toEqual([]);
-});
+    expect(broken).toEqual([]);
+  });
+}

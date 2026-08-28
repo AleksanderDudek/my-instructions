@@ -86,6 +86,20 @@ export default async function LocaleLayout({
           >
             {t("a11y.skipToContent")}
           </a>
+          {/*
+            The line the whole app is answered by.
+
+            It sits above the navigation rather than inside it because it is
+            not a control: nothing here is clickable, and a reader tabbing
+            through the header should not have to pass it. Sticky, so the
+            claim stays on screen while the tests below it do their measuring.
+          */}
+          <div className="sticky top-0 z-40 border-b border-brass/25 bg-ground/85 backdrop-blur-sm">
+            <p className="mx-auto max-w-5xl px-5 py-2.5 text-center font-display text-[0.95rem] leading-snug text-balance text-brass-hi">
+              {t("app.benediction")}
+            </p>
+          </div>
+
           <div className="mx-auto w-full max-w-5xl px-5 pb-32">
             <Nav
               locale={locale as Locale}

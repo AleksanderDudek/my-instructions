@@ -251,4 +251,16 @@ export default {
   "num.22.blurb": "Eine 4 im Großen — macht aus einer Vision etwas mit Fundament.",
   "num.33.name": "Der Lehrer",
   "num.33.blurb": "Eine 6 ohne Grenze — Fürsorge, über den Haushalt hinaus verlängert.",
+
+  /* ── dein Diagramm gegen ein beliebiges Datum ──────────────────── */
+  "fit.eyebrow": "Premium",
+  "fit.heading": "Ein Datum mit deinem vergleichen",
+  "fit.lead": "Gib ein beliebiges Geburtsdatum ein: die Traditionen werden darauf angewandt und neben dein eigenes Diagramm gestellt. Du kannst so viele prüfen, wie du willst.",
+  "fit.name": "Von wem (freiwillig)",
+  "fit.check": "Ausrechnen",
+  "fit.against": "Du und {name}",
+  "fit.union": "Zusammengezählt und reduziert ergeben die beiden Diagramme {n}.",
+  "fit.forget": "Diesen vergessen",
+  "fit.privacy": "Nichts, was du hier eingibst, wird gespeichert. Das Geburtsdatum einer anderen Person gehört nicht dir zum Aufbewahren, und dies ist die einzige Stelle der App, an der du eines eingeben kannst — es bleibt also in diesem Tab, steht in keinem Export und keinem Link und ist weg, sobald du die Seite schließt.",
+  "fit.caveat": "Diese Summe ist Rechnen mit zwei Daten, genau so ausgeführt, wie die Traditionen es vorschreiben. Sie ist kein Beleg für irgendetwas und sagt nicht voraus, wie zwei Menschen miteinander auskommen. Lies sie als Vokabular für ein Gespräch und nicht als Befund — und beachte, dass niemand darin auch nur eine Frage über sich selbst beantwortet hat.",
 };

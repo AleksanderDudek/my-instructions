@@ -2,6 +2,7 @@ import { digits, sumd } from "./compute";
 import { ANIMALS, ELEMENTS, WEST } from "./data";
 import type { T } from "@/core/types";
 import type { NumerologyResult } from "./spec";
+import { Compatibility } from "./Compatibility";
 
 /**
  * The chart, drawn.
@@ -398,6 +399,12 @@ export function View({ result, t, locale = "en" }: { result: NumerologyResult; t
       {result.outOfRange ? (
         <div className="mt-8 border-l-2 border-madder pl-5 text-[0.95rem] text-ink/90">{t("view.outOfRange")}</div>
       ) : null}
+
+      {/* The reader's own chart against any date they know. Everything it
+          computes lives in memory for the visit and nowhere else — see the
+          header of Compatibility.tsx for why that is stricter here than
+          anywhere else in the app. */}
+      <Compatibility mine={result} t={t} />
     </>
   );
 }

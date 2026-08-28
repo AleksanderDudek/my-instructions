@@ -252,4 +252,16 @@ export default {
   "num.22.blurb": "Un 4 a escala: convierte una visión en algo con cimientos.",
   "num.33.name": "El Maestro",
   "num.33.blurb": "Un 6 sin límite: el cuidado extendido más allá de la casa.",
+
+  /* ── tu carta frente a cualquier fecha ─────────────────────────── */
+  "fit.eyebrow": "Premium",
+  "fit.heading": "Compara una fecha con la tuya",
+  "fit.lead": "Escribe cualquier fecha de nacimiento: se le aplican las tradiciones y se pone junto a tu carta. Puedes comprobar tantas como quieras.",
+  "fit.name": "De quién (opcional)",
+  "fit.check": "Calcular",
+  "fit.against": "Tú y {name}",
+  "fit.union": "Sumadas y reducidas, las dos cartas dan {n}.",
+  "fit.forget": "Olvidar esta",
+  "fit.privacy": "Nada de lo que escribas aquí se guarda. La fecha de nacimiento de otra persona no es tuya para guardarla, y este es el único sitio de la aplicación donde puedes introducir una — así que se queda en esta pestaña, no está en ninguna exportación ni enlace, y desaparece al cerrar la página.",
+  "fit.caveat": "Este total es aritmética sobre dos fechas, hecha tal como especifican las tradiciones. No es prueba de nada y no predice cómo se llevarán dos personas. Léelo como un vocabulario para una conversación, no como un hallazgo — y fíjate en que a nadie se le ha preguntado nada sobre sí mismo.",
 };

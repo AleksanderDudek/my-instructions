@@ -246,4 +246,16 @@ export default {
   "num.22.blurb": "A 4 at scale — turns a vision into something with foundations.",
   "num.33.name": "The Teacher",
   "num.33.blurb": "A 6 without limit — care extended past the household.",
+
+  /* ── your chart against any date ───────────────────────────────── */
+  "fit.eyebrow": "Premium",
+  "fit.heading": "Check a date against yours",
+  "fit.lead": "Type any date of birth and the traditions are applied to it, then set beside your own chart. You can check as many as you like.",
+  "fit.name": "Whose (optional)",
+  "fit.check": "Work it out",
+  "fit.against": "Yours and {name}",
+  "fit.union": "Added together and reduced, the two charts make {n}.",
+  "fit.forget": "Forget this one",
+  "fit.privacy": "Nothing you type here is saved. Someone else's date of birth is not yours to keep, and this is the only place in the app where you can enter one — so it stays in this tab, is in no export and no link, and is gone when you close the page.",
+  "fit.caveat": "This total is arithmetic on two dates, done exactly as the traditions specify. It is not evidence of anything and it does not predict how two people will get on. Read it as a vocabulary for a conversation, not as a finding — and notice that nobody in it has been asked a single question about themselves.",
 };

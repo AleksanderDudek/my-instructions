@@ -81,6 +81,9 @@ export function Profiles({ locale, copy, titleOf, identityLabels, identityValues
   const [busy, setBusy] = useState<string | null>(null);
   const [said, setSaid] = useState<Record<string, string>>({});
   const [confirming, setConfirming] = useState<string | null>(null);
+  // Separate from `confirming`: revoking and deleting are different acts and a
+  // shared flag would arm one button by pressing the other.
+  const [confirmingDelete, setConfirmingDelete] = useState<string | null>(null);
 
   const endpoint = publishEndpoint();
   /**
@@ -209,6 +212,39 @@ export function Profiles({ locale, copy, titleOf, identityLabels, identityValues
     }
   };
 
+  /**
+   * Delete, and never leave a live link behind.
+   *
+   * `manageToken` is the only thing that can ever withdraw a published link,
+   * and it exists in one place: this record. Deleting the record while the link
+   * is live therefore does not remove the link — it makes it **permanent**, and
+   * silently, which is the exact opposite of what the button appears to do.
+   *
+   * So a published profile is withdrawn first and deleted only if that
+   * succeeded. When it fails the deletion is refused and says why, because
+   * losing the key is worse than keeping a row somebody wanted gone: the row
+   * can be deleted tomorrow, the link cannot ever be.
+   */
+  const doDelete = async (profile: ShareProfile) => {
+    setBusy(profile.id);
+    try {
+      if (endpoint && profile.remote) {
+        const gone = await revoke(endpoint, profile.remote.id, profile.remote.manageToken);
+        if (!gone) {
+          say(profile.id, copy["profiles.deleteBlocked"] ?? "");
+          setConfirmingDelete(null);
+          return;
+        }
+      }
+      await store.deleteShareProfile(profile.id);
+      if (open === profile.id) setOpen(null);
+      await reload();
+    } finally {
+      setBusy(null);
+      setConfirmingDelete(null);
+    }
+  };
+
   const doRevoke = async (profile: ShareProfile) => {
     if (!endpoint || !profile.remote) return;
     setBusy(profile.id);
@@ -258,9 +294,27 @@ export function Profiles({ locale, copy, titleOf, identityLabels, identityValues
                     {profile.remote ? ` · ${copy["profiles.live"]}` : ""}
                   </p>
                 </div>
-                <Button onClick={() => setOpen(isOpen ? null : profile.id)}>
-                  {isOpen ? copy["profiles.close"] : copy["profiles.edit"]}
-                </Button>
+                <div className="flex flex-wrap gap-2">
+                  {/*
+                      Delete belongs on the row, not inside the editor.
+                      Removing a profile is something a reader does *to* a list
+                      — after a breakup, after leaving a job — and making them
+                      open the thing first asks them to look at it again on the
+                      way past.
+                   */}
+                  {confirmingDelete === profile.id ? (
+                    <Button variant="primary" disabled={busy === profile.id} onClick={() => void doDelete(profile)} data-testid="confirm-delete">
+                      {profile.remote ? copy["profiles.deleteConfirmLive"] : copy["profiles.deleteConfirm"]}
+                    </Button>
+                  ) : (
+                    <Button onClick={() => setConfirmingDelete(profile.id)} data-testid="delete-profile">
+                      {copy["profiles.delete"]}
+                    </Button>
+                  )}
+                  <Button onClick={() => setOpen(isOpen ? null : profile.id)}>
+                    {isOpen ? copy["profiles.close"] : copy["profiles.edit"]}
+                  </Button>
+                </div>
               </div>
 
               {said[profile.id] ? (
@@ -396,14 +450,6 @@ export function Profiles({ locale, copy, titleOf, identityLabels, identityValues
                       <p className="max-w-[52ch] text-sm leading-relaxed text-muted">{copy["profiles.noEndpoint"]}</p>
                     )}
 
-                    <Button
-                      onClick={async () => {
-                        await store.deleteShareProfile(profile.id);
-                        await reload();
-                      }}
-                    >
-                      {copy["profiles.delete"]}
-                    </Button>
                   </div>
 
                   {endpoint && profile.remote ? (

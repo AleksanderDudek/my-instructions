@@ -6,7 +6,7 @@ compatibility_date = "2026-08-01"
 # the account that owns it, which is the point — see src/index.ts.
 [[kv_namespaces]]
 binding = "PROFILES"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "ecafb2df1f2b4039abb2feda3abb1824"
 
 [vars]
 # Comma-separated. No wildcard: an unlisted origin gets no CORS header, and the

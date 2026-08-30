@@ -365,4 +365,7 @@ export default {
   "track.statement.title": "Powiedzieć ludziom, kim jestem",
   "track.statement.lead": "Trzy, celowo. Publiczna strona złożona z pięciu narzędzi to teczka; z trzech — przedstawienie się. Każde z nich to coś, co sam postanowiłeś powiedzieć, a nie coś zmierzonego o tobie.",
   "nav.paths": "Od czego zacząć",
+  "profiles.deleteConfirm": "Usuń — kliknij ponownie",
+  "profiles.deleteConfirmLive": "Odbierz i usuń — kliknij ponownie",
+  "profiles.deleteBlocked": "Nie udało się odebrać linku, więc nic nie zostało usunięte. Usunięcie teraz wyrzuciłoby jedyną rzecz, która potrafi ten link kiedykolwiek cofnąć. Spróbuj za chwilę.",
 };

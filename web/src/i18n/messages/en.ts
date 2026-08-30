@@ -373,4 +373,7 @@ export default {
   "track.statement.title": "Telling people who I am",
   "track.statement.lead": "Three, deliberately. A public page assembled from five instruments is a dossier; from three it is an introduction. Every one of them is something you chose to say rather than something measured about you.",
   "nav.paths": "Where to start",
+  "profiles.deleteConfirm": "Delete — click again",
+  "profiles.deleteConfirmLive": "Withdraw and delete — click again",
+  "profiles.deleteBlocked": "The link could not be withdrawn, so this was not deleted. Deleting it now would throw away the only thing that can ever take that link back. Try again in a moment.",
 };

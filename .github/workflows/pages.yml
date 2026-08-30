@@ -88,6 +88,13 @@ jobs:
           NEXT_OUTPUT: export
           NEXT_BASE_PATH: /my-instructions
           NEXT_PUBLIC_SITE_URL: https://aleksanderdudek.github.io
+          # Where a published profile is stored, so a link can later be
+          # withdrawn. A repository *variable* rather than a secret: it is a
+          # public URL that ends up in the shipped JavaScript, and calling it a
+          # secret would be theatre. Unset is the supported state — with no
+          # endpoint the app is self-contained tokens and honest expiry, and
+          # the withdraw control simply does not appear.
+          NEXT_PUBLIC_PUBLISH_ENDPOINT: ${{ vars.PUBLISH_ENDPOINT }}
         run: npm run build:static
 
       - name: Install Playwright

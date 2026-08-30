@@ -111,6 +111,28 @@ test("a half-finished run is still there after a reload", async ({ page }) => {
   await page.getByRole("radiogroup").first().getByRole("radio").nth(1).click();
   await expect(page.getByTestId("progress")).toContainText("1");
 
+  /**
+   * Wait for the draft, not for the counter.
+   *
+   * The counter is React state and updates on the click; the draft is written
+   * from an effect on the next macrotask, so a reload can beat it. That is a
+   * race in this test rather than in the app — a person cannot reload within
+   * one macrotask of clicking — but the test was asserting persistence while
+   * waiting on something that is not persistence, and it failed once the suite
+   * grew enough to slow a worker down.
+   */
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i) ?? "";
+          if (key.startsWith("mi:1:draft:")) return true;
+        }
+        return false;
+      }),
+    )
+    .toBe(true);
+
   await page.reload();
   await expect(page.getByRole("radiogroup").first()).toBeVisible();
   await expect(page.getByRole("radiogroup").first().getByRole("radio").nth(1)).toBeChecked();

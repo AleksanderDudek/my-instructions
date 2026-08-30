@@ -44,20 +44,38 @@ their links were withdrawable.
 
 ## Deploying it
 
-```sh
-npm install -g wrangler          # or npx wrangler
-wrangler login
-wrangler kv namespace create PROFILES
-```
-
-Put the printed namespace id into `wrangler.toml`, set `ALLOWED_ORIGINS` to the
-site's own origin, then:
+Everything that could be checked without an account has been: `npm run
+typecheck` passes and `npx wrangler deploy --dry-run` bundles it at 4.3 KiB with
+both bindings resolved. What is left needs your Cloudflare login, which is a
+browser flow and cannot be done for you.
 
 ```sh
-wrangler deploy
+cd worker
+npm install
+npx wrangler login                      # opens a browser
+npx wrangler kv namespace create PROFILES
 ```
 
-Take the deployed URL and give it to the app at build time:
+Put the printed namespace id into `wrangler.toml` in place of
+`REPLACE_WITH_YOUR_KV_NAMESPACE_ID`, check `ALLOWED_ORIGINS` is the site's own
+origin, then:
+
+```sh
+npm run deploy
+```
+
+**Then check that it does what it claims**, before anything depends on it:
+
+```sh
+npm run smoke -- https://my-instructions-links.<you>.workers.dev/p
+```
+
+That publishes a record, reads it back, tries to revoke it with the wrong token,
+revokes it properly and confirms the link is dead — plus the size and expiry
+ceilings. The promise this service makes is the kind that gets believed rather
+than checked, and the moment to check it is the moment it goes live.
+
+Finally, give the app the endpoint at build time:
 
 ```sh
 NEXT_PUBLIC_PUBLISH_ENDPOINT="https://my-instructions-links.<you>.workers.dev/p"

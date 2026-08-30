@@ -348,4 +348,29 @@ export default {
   "opened.unreadable": "This link is incomplete",
   "opened.missing": "This address carries nothing to open",
   "profiles.linkLabel": "The link for this profile",
+
+  /* ── five routes through a long catalogue ─────────────────────────── */
+  "paths.heading": "Where to start",
+  "paths.lead": "Twenty-four instruments is a good catalogue and a poor first screen. Here are five reasons people open this, and the order worth taking them in.",
+  "paths.taken": "taken",
+  "paths.next": "start here",
+  "paths.count": "{done} of {total}",
+  "paths.endsAt": "This one produces something to hand over. The {profile} profile is where it lands.",
+  "paths.toSharing": "Build it",
+  "paths.note": "A route is an order, not a course. There is nothing to complete and nothing here is hidden from the catalogue — take two and stop if two is what you needed. The order runs from the questions that cost least to answer honestly to the ones that cost most, which is the only claim it makes.",
+
+  "track.self.title": "Just for me",
+  "track.self.lead": "Nobody else has to see any of this. Attachment first, because it is the one most people recognise themselves in fastest, and recognition is what makes the next forty questions worth answering honestly.",
+  "track.self.endsWith": "This one ends at your own instruction sheet. There is no link at the end of it, because nobody asked for one.",
+
+  "track.dating.title": "Someone new",
+  "track.dating.lead": "For working out who you are actually sitting across from, and what you are like to be with. The last one is fifteen positions on commitment — the wrong second date and the right eighth.",
+  "track.work.title": "The people I work with",
+  "track.work.lead": "The one that produces something usable after a single sitting, and the only route whose first instrument can be shared with a whole team without a ceiling on it.",
+  "track.couple.title": "Someone I am already with",
+  "track.couple.lead": "Conversations first, always: it is the only one that reports what the two of you have never discussed, and it is the map for everything under it. Money before family, because a disagreement about money is survivable.",
+  "track.couple.endsWith": "This one ends in a conversation rather than a document. The thing to do with it is have the conversation.",
+  "track.statement.title": "Telling people who I am",
+  "track.statement.lead": "Three, deliberately. A public page assembled from five instruments is a dossier; from three it is an introduction. Every one of them is something you chose to say rather than something measured about you.",
+  "nav.paths": "Where to start",
 };

@@ -106,6 +106,7 @@ export default async function LocaleLayout({
               labels={{
                 title: t("app.title"),
                 home: t("nav.home"),
+                paths: t("nav.paths"),
                 tests: t("nav.tests"),
                 instructions: t("nav.instructions"),
                 sharing: t("nav.sharing"),

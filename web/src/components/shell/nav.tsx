@@ -13,6 +13,7 @@ export type NavLabels = {
   instructions: string;
   sharing: string;
   panel: string;
+  paths: string;
   language: string;
 };
 
@@ -28,6 +29,10 @@ export function Nav({
   const pathname = usePathname();
   const items = [
     { href: `/${locale}`, label: labels.home, exact: true },
+    // Before the catalogue, because it is the answer to the question somebody
+    // arrives with; the catalogue is the answer to a question they only have
+    // once they know what they are looking for.
+    { href: `/${locale}/paths`, label: labels.paths },
     { href: `/${locale}/tests`, label: labels.tests },
     { href: `/${locale}/instructions`, label: labels.instructions },
     { href: `/${locale}/sharing`, label: labels.sharing },

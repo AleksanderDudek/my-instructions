@@ -340,4 +340,29 @@ export default {
   "opened.unreadable": "Ten link jest niekompletny",
   "opened.missing": "Ten adres nie niesie nic do otwarcia",
   "profiles.linkLabel": "Link do tego profilu",
+
+  /* ── pięć dróg przez długi katalog ────────────────────────────────── */
+  "paths.heading": "Od czego zacząć",
+  "paths.lead": "Dwadzieścia cztery narzędzia to dobry katalog i kiepski pierwszy ekran. Oto pięć powodów, dla których ludzie tu wchodzą, i kolejność, w jakiej warto je robić.",
+  "paths.taken": "zrobione",
+  "paths.next": "zacznij tu",
+  "paths.count": "{done} z {total}",
+  "paths.endsAt": "Ta droga daje coś, co można komuś podać. Kończy się na profilu „{profile}”.",
+  "paths.toSharing": "Zbuduj go",
+  "paths.note": "Droga to kolejność, nie kurs. Nie ma tu czego ukończyć i nic nie jest ukryte przed katalogiem — zrób dwa i przestań, jeśli dwa ci wystarczą. Kolejność idzie od pytań, które najmniej kosztują przy szczerej odpowiedzi, do tych, które kosztują najwięcej. To jedyne, co ta kolejność twierdzi.",
+
+  "track.self.title": "Tylko dla siebie",
+  "track.self.lead": "Nikt inny nie musi tego widzieć. Przywiązanie na początku, bo w nim najszybciej się rozpoznajemy, a rozpoznanie się jest tym, co sprawia, że warto odpowiedzieć szczerze na następne czterdzieści pytań.",
+  "track.self.endsWith": "Ta droga kończy się twoją własną instrukcją. Nie ma na jej końcu linku, bo nikt o niego nie prosił.",
+
+  "track.dating.title": "Ktoś nowy",
+  "track.dating.lead": "Żeby zorientować się, kto naprawdę siedzi naprzeciwko i jak jest z tobą. Ostatnie to piętnaście stanowisk o zobowiązaniu — zła druga randka i dobra ósma.",
+  "track.work.title": "Ludzie, z którymi pracuję",
+  "track.work.lead": "Ta droga daje coś użytecznego po jednym posiedzeniu i jako jedyna zaczyna się od narzędzia, które można pokazać całemu zespołowi bez żadnego sufitu.",
+  "track.couple.title": "Ktoś, z kim już jestem",
+  "track.couple.lead": "Zawsze najpierw Rozmowy: to jedyne narzędzie, które pokazuje, o czym nigdy nie rozmawialiście, i jest mapą dla wszystkiego poniżej. Pieniądze przed rodziną, bo spór o pieniądze da się przeżyć.",
+  "track.couple.endsWith": "Ta droga kończy się rozmową, a nie dokumentem. To, co z nią zrobić, to odbyć tę rozmowę.",
+  "track.statement.title": "Powiedzieć ludziom, kim jestem",
+  "track.statement.lead": "Trzy, celowo. Publiczna strona złożona z pięciu narzędzi to teczka; z trzech — przedstawienie się. Każde z nich to coś, co sam postanowiłeś powiedzieć, a nie coś zmierzonego o tobie.",
+  "nav.paths": "Od czego zacząć",
 };

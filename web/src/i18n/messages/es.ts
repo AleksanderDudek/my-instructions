@@ -338,4 +338,29 @@ export default {
   "opened.unreadable": "Este enlace está incompleto",
   "opened.missing": "Esta dirección no lleva nada que abrir",
   "profiles.linkLabel": "El enlace de este perfil",
+
+  /* ── cinco rutas por un catálogo largo ────────────────────────────── */
+  "paths.heading": "Por dónde empezar",
+  "paths.lead": "Veinticuatro instrumentos son un buen catálogo y una mala primera pantalla. Aquí están las cinco razones por las que la gente abre esto, y el orden en que vale la pena hacerlos.",
+  "paths.taken": "hecho",
+  "paths.next": "empieza aquí",
+  "paths.count": "{done} de {total}",
+  "paths.endsAt": "Esta ruta produce algo que puedes darle a alguien. Termina en el perfil «{profile}».",
+  "paths.toSharing": "Créalo",
+  "paths.note": "Una ruta es un orden, no un curso. No hay nada que completar y nada está oculto en el catálogo — haz dos y para, si dos era lo que necesitabas. El orden va de las preguntas que menos cuesta responder con sinceridad a las que más cuestan, y eso es lo único que afirma.",
+
+  "track.self.title": "Solo para mí",
+  "track.self.lead": "Nadie más tiene por qué ver nada de esto. El apego primero, porque es en el que la mayoría se reconoce más rápido, y reconocerse es lo que hace que valga la pena responder con sinceridad a las siguientes cuarenta preguntas.",
+  "track.self.endsWith": "Esta ruta termina en tu propia hoja de instrucciones. No hay ningún enlace al final, porque nadie lo pidió.",
+
+  "track.dating.title": "Alguien nuevo",
+  "track.dating.lead": "Para averiguar quién está de verdad enfrente, y cómo eres tú para estar contigo. El último son quince posturas sobre el compromiso: la segunda cita equivocada y la octava acertada.",
+  "track.work.title": "La gente con la que trabajo",
+  "track.work.lead": "La que produce algo utilizable en una sola sentada, y la única ruta cuyo primer instrumento se puede compartir con un equipo entero sin ningún techo.",
+  "track.couple.title": "Alguien con quien ya estoy",
+  "track.couple.lead": "Conversaciones primero, siempre: es la única que informa de lo que nunca habéis hablado, y es el mapa de todo lo que va debajo. El dinero antes que la familia, porque una discusión sobre dinero se sobrevive.",
+  "track.couple.endsWith": "Esta ruta termina en una conversación, no en un documento. Lo que hay que hacer con ella es tener la conversación.",
+  "track.statement.title": "Decirle a la gente quién soy",
+  "track.statement.lead": "Tres, a propósito. Una página pública montada con cinco instrumentos es un expediente; con tres es una presentación. Cada uno es algo que elegiste decir, no algo medido sobre ti.",
+  "nav.paths": "Por dónde empezar",
 };

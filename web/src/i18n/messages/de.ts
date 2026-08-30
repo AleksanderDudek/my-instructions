@@ -340,4 +340,29 @@ export default {
   "opened.unreadable": "Dieser Link ist unvollständig",
   "opened.missing": "Unter dieser Adresse gibt es nichts zu öffnen",
   "profiles.linkLabel": "Der Link zu diesem Profil",
+
+  /* ── fünf Wege durch einen langen Katalog ─────────────────────────── */
+  "paths.heading": "Wo anfangen",
+  "paths.lead": "Vierundzwanzig Instrumente sind ein guter Katalog und ein schlechter erster Bildschirm. Hier sind fünf Gründe, aus denen Leute das hier öffnen, und die Reihenfolge, in der es sich lohnt.",
+  "paths.taken": "gemacht",
+  "paths.next": "hier anfangen",
+  "paths.count": "{done} von {total}",
+  "paths.endsAt": "Dieser Weg bringt etwas hervor, das du weitergeben kannst. Er endet beim Profil „{profile}“.",
+  "paths.toSharing": "Anlegen",
+  "paths.note": "Ein Weg ist eine Reihenfolge, kein Kurs. Es gibt nichts abzuschließen und nichts ist im Katalog versteckt — mach zwei und hör auf, wenn zwei war, was du brauchtest. Die Reihenfolge geht von den Fragen, die ehrlich zu beantworten am wenigsten kostet, zu denen, die am meisten kosten. Mehr behauptet sie nicht.",
+
+  "track.self.title": "Nur für mich",
+  "track.self.lead": "Niemand sonst muss davon etwas sehen. Bindung zuerst, weil sich darin die meisten am schnellsten wiedererkennen, und Wiedererkennen ist das, was die nächsten vierzig Fragen wert macht, ehrlich beantwortet zu werden.",
+  "track.self.endsWith": "Dieser Weg endet bei deiner eigenen Gebrauchsanweisung. Am Ende steht kein Link, weil niemand danach gefragt hat.",
+
+  "track.dating.title": "Jemand Neues",
+  "track.dating.lead": "Um herauszufinden, wer dir wirklich gegenübersitzt, und wie du selbst bist. Das letzte sind fünfzehn Haltungen zur Verbindlichkeit — das falsche zweite Date und das richtige achte.",
+  "track.work.title": "Die Leute, mit denen ich arbeite",
+  "track.work.lead": "Der Weg, der nach einem einzigen Durchgang etwas Brauchbares ergibt, und der einzige, dessen erstes Instrument ohne jede Obergrenze mit einem ganzen Team geteilt werden kann.",
+  "track.couple.title": "Jemand, mit dem ich schon zusammen bin",
+  "track.couple.lead": "Immer zuerst Gespräche: es ist das einzige, das zeigt, worüber ihr beide nie geredet habt, und es ist die Karte für alles darunter. Geld vor Familie, weil ein Streit über Geld zu überleben ist.",
+  "track.couple.endsWith": "Dieser Weg endet in einem Gespräch, nicht in einem Dokument. Was damit zu tun ist: das Gespräch führen.",
+  "track.statement.title": "Leuten sagen, wer ich bin",
+  "track.statement.lead": "Drei, mit Absicht. Eine öffentliche Seite aus fünf Instrumenten ist eine Akte; aus dreien ist sie eine Vorstellung. Jedes davon ist etwas, das du sagen wolltest, und nichts, das an dir gemessen wurde.",
+  "nav.paths": "Wo anfangen",
 };

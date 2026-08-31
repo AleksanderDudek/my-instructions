@@ -366,4 +366,14 @@ export default {
   "profiles.deleteConfirm": "Borrar — pulsa otra vez",
   "profiles.deleteConfirmLive": "Retirar y borrar — pulsa otra vez",
   "profiles.deleteBlocked": "No se pudo retirar el enlace, así que no se ha borrado nada. Borrarlo ahora tiraría lo único capaz de retirar ese enlace algún día. Inténtalo en un momento.",
+
+  /* ── cuánto te importa esto, y por qué ────────────────────────────── */
+  "reflect.heading": "¿Qué significa esto para ti?",
+  "reflect.note": "Una puntuación es una descripción, no un veredicto, y la misma le importa enormemente a una persona y nada a la siguiente. Aquí dices cuál de las dos — y se queda en este dispositivo.",
+  "reflect.weight": "¿Qué importancia tiene esto para ti?",
+  "reflect.weightLow": "ninguna",
+  "reflect.weightHigh": "más que casi nada",
+  "reflect.why": "¿Por qué te importa, o por qué no?",
+  "reflect.whyPlaceholder": "Lo que se te ocurra. Nadie más lo lee.",
+  "reflect.saved": "Se guarda mientras escribes, solo en este dispositivo. No está en ningún enlace ni en ninguna hoja de instrucciones, y se va cuando borras el resultado.",
 };

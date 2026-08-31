@@ -368,4 +368,14 @@ export default {
   "profiles.deleteConfirm": "Usuń — kliknij ponownie",
   "profiles.deleteConfirmLive": "Odbierz i usuń — kliknij ponownie",
   "profiles.deleteBlocked": "Nie udało się odebrać linku, więc nic nie zostało usunięte. Usunięcie teraz wyrzuciłoby jedyną rzecz, która potrafi ten link kiedykolwiek cofnąć. Spróbuj za chwilę.",
+
+  /* ── ile to dla ciebie znaczy i dlaczego ──────────────────────────── */
+  "reflect.heading": "Co to dla ciebie znaczy?",
+  "reflect.note": "Wynik to opis, nie wyrok, a ten sam bywa dla jednej osoby ogromnie ważny, a dla drugiej obojętny. Tutaj mówisz, który — i zostaje to na tym urządzeniu.",
+  "reflect.weight": "Jak ważne jest to dla ciebie?",
+  "reflect.weightLow": "wcale",
+  "reflect.weightHigh": "bardziej niż prawie wszystko",
+  "reflect.why": "Dlaczego jest to dla ciebie ważne albo nieważne?",
+  "reflect.whyPlaceholder": "Cokolwiek ci przyjdzie do głowy. Nikt inny tego nie czyta.",
+  "reflect.saved": "Zapisuje się w trakcie pisania, wyłącznie na tym urządzeniu. Nie ma tego w żadnym linku ani na arkuszu instrukcji, i znika razem z usuniętym wynikiem.",
 };

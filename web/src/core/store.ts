@@ -131,6 +131,7 @@ export type Practice = { ok: string[]; notOk: string[]; ownOk: string[]; ownNotO
 import type { Locale } from "./types";
 import { validateProfile, type ShareProfile } from "./profiles";
 import { validateFit, type Fit } from "./fits";
+import type { Reflections } from "./reflect";
 
 export function makeStore(adapter: Adapter) {
   const subs = new Set<() => void>();
@@ -274,6 +275,34 @@ export function makeStore(adapter: Adapter) {
       announce();
     },
 
+    /**
+     * What the reader said their own reading is worth to them.
+     *
+     * One key per instrument rather than per scale: unlike a profile or a kept
+     * date, these are read and written together — the result page draws all of
+     * an instrument's scales at once — and there is no delete-one operation
+     * that a shared record would make unsafe.
+     *
+     * Kept apart from the run for the reason a practice is: a run is answers
+     * submitted once, a reflection is a sentence written afterwards, possibly
+     * months afterwards. Folding them together would mean every rating rewrites
+     * the record of what somebody answered.
+     */
+    async reflections(instrumentId: string): Promise<Reflections> {
+      return (await adapter.get<Reflections>(`reflect:${instrumentId}`)) ?? {};
+    },
+    async saveReflection(instrumentId: string, key: string, patch: { weight?: number; why?: string }) {
+      const all = await store.reflections(instrumentId);
+      const next = { ...all, [key]: { ...all[key], ...patch, updatedAt: new Date().toISOString() } };
+      await adapter.set(`reflect:${instrumentId}`, next);
+      announce();
+      return next;
+    },
+    async clearReflections(instrumentId: string) {
+      await adapter.del(`reflect:${instrumentId}`);
+      announce();
+    },
+
     async run<R>(instrumentId: string, slot: string | null = null): Promise<Run<R> | null> {
       if (slot) return (ephemeral.get(slotKey(instrumentId, slot)) as Run<R>) ?? null;
       return (ephemeral.get(instrumentId) as Run<R>) ?? (await adapter.get<Run<R>>(`run:${instrumentId}`));
@@ -318,6 +347,7 @@ export function makeStore(adapter: Adapter) {
       }
       await adapter.del(`run:${instrumentId}`);
       await adapter.del(`draft:${instrumentId}`);
+      await adapter.del(`reflect:${instrumentId}`);
       // Deleting a result must mean everything derived from it is gone. A set
       // of notes surviving the result they were written against is a surprise,
       // and it is the surprise in the wrong direction: the reader asked for the

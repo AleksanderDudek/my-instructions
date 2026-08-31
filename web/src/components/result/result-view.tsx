@@ -9,6 +9,8 @@ import type { InstrumentModule } from "@/core/registry";
 import type { Locale, Run } from "@/core/types";
 import { useStore } from "@/components/shell/store-provider";
 import { Plate, PlateHead } from "@/components/ui/primitives";
+import { Reflect } from "./reflect";
+import { reflectablesOf } from "@/core/reflect";
 import { Button } from "@/components/ui/button";
 import { Playbook } from "@/components/result/playbook";
 
@@ -98,6 +100,25 @@ export function ResultView({
             result, and a result is the only thing a share token can carry. The
             sentence lives in the answers, on this device, and is drawn here. */}
         <View result={run.result} answers={run.answers} t={scoped.t} />
+
+        {/* Directly under the reading, because it is about the reading. An
+            inventory returns no rows here: it already asked for a weight and a
+            reason on every block it has, and asking again on the result would
+            be the same question twice with the second one worse. */}
+        <Reflect
+          instrumentId={id}
+          rows={reflectablesOf(spec, run.result, scoped.t)}
+          copy={{
+            heading: i18n.t("reflect.heading"),
+            note: i18n.t("reflect.note"),
+            weight: i18n.t("reflect.weight"),
+            weightLow: i18n.t("reflect.weightLow"),
+            weightHigh: i18n.t("reflect.weightHigh"),
+            why: i18n.t("reflect.why"),
+            whyPlaceholder: i18n.t("reflect.whyPlaceholder"),
+            saved: i18n.t("reflect.saved"),
+          }}
+        />
       </Plate>
 
       <Plate>

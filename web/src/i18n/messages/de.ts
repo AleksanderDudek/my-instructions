@@ -368,4 +368,14 @@ export default {
   "profiles.deleteConfirm": "Löschen — noch einmal klicken",
   "profiles.deleteConfirmLive": "Zurückholen und löschen — noch einmal klicken",
   "profiles.deleteBlocked": "Der Link ließ sich nicht zurückholen, also wurde nichts gelöscht. Jetzt zu löschen würde das Einzige wegwerfen, das diesen Link je zurücknehmen kann. Versuch es gleich noch einmal.",
+
+  /* ── wie viel dir das bedeutet, und warum ─────────────────────────── */
+  "reflect.heading": "Was bedeutet dir das?",
+  "reflect.note": "Ein Wert ist eine Beschreibung und kein Urteil, und derselbe ist der einen Person enorm wichtig und der nächsten völlig gleichgültig. Hier sagst du, welches von beidem — und es bleibt auf diesem Gerät.",
+  "reflect.weight": "Wie wichtig ist dir das?",
+  "reflect.weightLow": "gar nicht",
+  "reflect.weightHigh": "wichtiger als fast alles",
+  "reflect.why": "Warum ist es dir wichtig oder nicht wichtig?",
+  "reflect.whyPlaceholder": "Was dir einfällt. Niemand sonst liest das.",
+  "reflect.saved": "Wird beim Tippen gespeichert, nur auf diesem Gerät. Es steht in keinem Link und auf keinem Anweisungsblatt, und es verschwindet, wenn du das Ergebnis löschst.",
 };

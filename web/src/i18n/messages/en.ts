@@ -376,4 +376,14 @@ export default {
   "profiles.deleteConfirm": "Delete — click again",
   "profiles.deleteConfirmLive": "Withdraw and delete — click again",
   "profiles.deleteBlocked": "The link could not be withdrawn, so this was not deleted. Deleting it now would throw away the only thing that can ever take that link back. Try again in a moment.",
+
+  /* ── how much this matters to you, and why ────────────────────────── */
+  "reflect.heading": "What does this mean to you?",
+  "reflect.note": "A score is a description, not a verdict, and the same one matters enormously to one person and not at all to the next. This is where you say which — and it stays on this device.",
+  "reflect.weight": "How important is this to you?",
+  "reflect.weightLow": "not at all",
+  "reflect.weightHigh": "more than almost anything",
+  "reflect.why": "Why is it important, or not important, to you?",
+  "reflect.whyPlaceholder": "Whatever comes to mind. Nobody else reads this.",
+  "reflect.saved": "Saved as you type, on this device only. It is in no share link and on no instruction sheet, and it goes when you delete the result.",
 };

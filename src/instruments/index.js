@@ -21,8 +21,11 @@ import conflictStyle from "./conflict-style/index.js";
 import workingStyle from "./working-style/index.js";
 import riasec from "./riasec/index.js";
 import studyPractice from "./study-practice/index.js";
+import workValues from "./work-values/index.js";
+import workShape from "./work-shape/index.js";
+import strengthEvidence from "./strength-evidence/index.js";
 
-const INSTRUMENTS = [loveLanguages, attachment, coupleConversations, intimacyConditions, attraction, intimacyMap, conflictStyle, enneagram, bigFive, hexaco, jungian, riasec, workingStyle, studyPractice, chronotype, numerology];
+const INSTRUMENTS = [loveLanguages, attachment, coupleConversations, intimacyConditions, attraction, intimacyMap, conflictStyle, enneagram, bigFive, hexaco, jungian, riasec, workValues, workShape, workingStyle, strengthEvidence, studyPractice, chronotype, numerology];
 
 const registry = createRegistry();
 for (const spec of INSTRUMENTS) registry.register(spec);

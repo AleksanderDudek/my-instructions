@@ -39,7 +39,27 @@ const CHOICES = [
   { id: "check", options: ["reread", "recall", "explain", "problem"] },
   { id: "wrong", options: ["moveOn", "reread", "redo", "findWhy"] },
   { id: "start", options: ["earlySpread", "earlyOnce", "nightBefore"] },
+  { id: "known", options: ["explain", "newProblem", "recognise", "feels"] },
+  { id: "stuck", options: ["ask", "dig", "away", "restart"] },
+  { id: "notes", options: ["verbatim", "condensed", "questions", "none"] },
+  { id: "mark", options: ["redo", "understand", "next", "nothing"] },
 ];
+
+/**
+ * The two ways of answering "how do I know I have understood this" that are
+ * feelings rather than checks.
+ *
+ * Recognising the material and finding it clear while reading are the fluency
+ * illusions the desirable-difficulties literature is built on: both are
+ * produced reliably by rereading, and neither survives being asked to produce
+ * the thing without the page in front of you. Explaining it unaided and
+ * solving an unseen problem are the checks that discriminate.
+ *
+ * This is the one field in the folder that has a better and a worse answer, so
+ * it is reported as advice and never as a score — the same treatment the six
+ * techniques get.
+ */
+const FLUENCY_CHECKS = ["recognise", "feels"];
 
 /** Used at least sometimes counts as part of the repertoire. */
 const USES = (value) => HOW_OFTEN.indexOf(value) >= HOW_OFTEN.indexOf("sometimes");
@@ -85,7 +105,11 @@ function score(answers) {
   const choices = {};
   for (const f of CHOICES) choices[f.id] = f.options.includes(answers[f.id]) ? answers[f.id] : f.options[0];
 
-  return { v: 1, uses, choices, repertoire, missing, leaning, total: high.length };
+  return {
+    v: 2, uses, choices, repertoire, missing, leaning, total: high.length,
+    /** Whether "I have understood it" is decided by a feeling or by a check. */
+    fluencyTrap: FLUENCY_CHECKS.includes(choices.known),
+  };
 }
 
 function view(result, { t }) {
@@ -114,6 +138,15 @@ function view(result, { t }) {
       </div>
     </section>
 
+    <section class="sub-plate">
+      <h4>${t("view.knownHeading")} <span class="label">${t("view.knownNote")}</span></h4>
+      <div class="card pad instruction-card">
+        <span class="label">${t(`answer.known.${result.choices.known}`)}</span>
+        <h4>${t(result.fluencyTrap ? "view.knownFeelingTitle" : "view.knownCheckTitle")}</h4>
+        <p class="prose">${t(result.fluencyTrap ? "view.knownFeelingBody" : "view.knownCheckBody")}</p>
+      </div>
+    </section>
+
     ${factsHTML(CHOICES.map((f) => [t(`field.${f.id}.label`), t(`answer.${f.id}.${result.choices[f.id]}`)]))}
     <div class="note prose"><p>${t("view.notAStyleNote")}</p></div>
     <div class="note prose"><p>${t("view.countNote")}</p></div>`;
@@ -123,7 +156,11 @@ function instructions(result, t) {
   const cards = [
     { channel: "work", title: t("instructions.repertoireTitle", { count: result.repertoire, total: result.total }), body: t(`instructions.leaning.${result.leaning}`) },
     { channel: "work", title: t("instructions.checkTitle"), body: t(`ask.check.${result.choices.check}`) },
+    { channel: "work", title: t("instructions.stuckTitle"), body: t(`ask.stuck.${result.choices.stuck}`) },
   ];
+  if (result.fluencyTrap) {
+    cards.push({ channel: "work", title: t("instructions.fluencyTitle"), body: t("instructions.fluencyBody") });
+  }
   if (result.missing.length) {
     cards.push({
       channel: "work",
@@ -161,14 +198,14 @@ function compare(a, b, { nameA = "A", nameB = "B", t }) {
     ])}`;
 }
 
-export { TECHNIQUES, HOW_OFTEN, USES };
+export { TECHNIQUES, HOW_OFTEN, USES, CHOICES, FLUENCY_CHECKS };
 
 export default {
   id: "study-practice",
-  version: 1,
+  version: 2,
   family: "profiler",
   glyph: "✍",
-  minutes: 3,
+  minutes: 4,
   channels: ["work"],
   messages: {
     en: () => import("./i18n/en.js"),

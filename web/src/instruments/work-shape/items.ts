@@ -16,7 +16,7 @@
  *
  * The two ends of a contrast are scored **independently**, and that is the
  * whole design. Every consumer instrument in this space forces a choice, which
- * is the ipsative trap `love-languages/items.js` argues against at length.
+ * is the ipsative trap `love-languages/items.ts` argues against at length.
  * Here both ends can be high — and someone high on `depth` and high on
  * `variety` is not confused, they need variety *between* long projects, and a
  * forced choice would have deleted them.
@@ -24,22 +24,27 @@
  * Five items per scale, four forward and one reverse-keyed.
  */
 
-const GLYPHS = {
+export type ShapeKey =
+  | "depth" | "variety" | "structure" | "openEnded"
+  | "making" | "people" | "improving" | "starting";
+
+const GLYPHS: Record<ShapeKey, string> = {
   depth: "⌖", variety: "⁘", structure: "▤", openEnded: "◌",
   making: "⚒", people: "☍", improving: "↻", starting: "✦",
 };
 
 /** The four contrasts, each as [a, b]. Order is presentation order. */
-const CONTRASTS = [
+const CONTRASTS: [ShapeKey, ShapeKey][] = [
   ["depth", "variety"],
   ["structure", "openEnded"],
   ["making", "people"],
   ["improving", "starting"],
 ];
 
-const ORDER = CONTRASTS.flat();
+const ORDER: ShapeKey[] = CONTRASTS.flat();
 
-const row = (id, scale, reverse = false) => ({ id, kind: "likert", scale, reverse });
+const row = (id: string, scale: ShapeKey, reverse = false) =>
+  ({ id, kind: "likert" as const, scaleName: "agree5", scale, reverse });
 
 const ITEMS = [
   row("dep1", "depth"), row("dep2", "depth"), row("dep3", "depth"), row("dep4", "depth"), row("dep5", "depth", true),

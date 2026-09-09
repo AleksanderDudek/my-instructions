@@ -52,6 +52,19 @@ export function View({ result, t }: { result: StudyResult; t: T }) {
         </div>
       </section>
 
+      <section className="my-8">
+        <PlateHead title={t("view.knownHeading")} note={t("view.knownNote")} />
+        <Card>
+          <Label>{t(`answer.known.${result.choices.known}`)}</Label>
+          <h4 className="mt-1 mb-2 text-lg">
+            {t(result.fluencyTrap ? "view.knownFeelingTitle" : "view.knownCheckTitle")}
+          </h4>
+          <Prose className="text-[0.95rem]">
+            {t(result.fluencyTrap ? "view.knownFeelingBody" : "view.knownCheckBody")}
+          </Prose>
+        </Card>
+      </section>
+
       <Facts
         pairs={CHOICES.map((f): [string, string] => [
           t(`field.${f.id}.label`),

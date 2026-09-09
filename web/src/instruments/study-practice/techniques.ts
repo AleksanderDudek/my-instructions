@@ -53,7 +53,27 @@ export const CHOICES: ChoiceField[] = [
   { id: "check", options: ["reread", "recall", "explain", "problem"] },
   { id: "wrong", options: ["moveOn", "reread", "redo", "findWhy"] },
   { id: "start", options: ["earlySpread", "earlyOnce", "nightBefore"] },
+  { id: "known", options: ["explain", "newProblem", "recognise", "feels"] },
+  { id: "stuck", options: ["ask", "dig", "away", "restart"] },
+  { id: "notes", options: ["verbatim", "condensed", "questions", "none"] },
+  { id: "mark", options: ["redo", "understand", "next", "nothing"] },
 ];
+
+/**
+ * The two ways of answering "how do I know I have understood this" that are
+ * feelings rather than checks.
+ *
+ * Recognising the material and finding it clear while reading are the fluency
+ * illusions the desirable-difficulties literature is built on: both are
+ * produced reliably by rereading, and neither survives being asked to produce
+ * the thing without the page in front of you. Explaining it unaided and
+ * solving an unseen problem are the checks that discriminate.
+ *
+ * This is the one field in the folder that has a better and a worse answer, so
+ * it is reported as advice and never as a score — the same treatment the six
+ * techniques get.
+ */
+export const FLUENCY_CHECKS = ["recognise", "feels"];
 
 /** Used at least sometimes counts as part of the repertoire. */
 export const USES = (value: HowOften | undefined): boolean =>

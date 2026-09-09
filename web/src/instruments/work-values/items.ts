@@ -14,15 +14,27 @@
  * Six items per value, five forward and one reverse-keyed.
  */
 
-const GLYPHS = {
-  achievement: "◆", independence: "⌁", recognition: "★",
-  relationships: "◎", support: "⛨", conditions: "▤",
+export type ValueKey =
+  | "achievement" | "independence" | "recognition"
+  | "relationships" | "support" | "conditions";
+
+/* Glyphs are not words and do not travel to the translators. Everything the
+   reader sees in a language lives in i18n/, keyed by the ids below. */
+const GLYPHS: Record<ValueKey, string> = {
+  achievement: "◆",
+  independence: "⌁",
+  recognition: "★",
+  relationships: "◎",
+  support: "⛨",
+  conditions: "▤",
 };
 
 /** Registration order, which is also the order of the O*NET six. */
-const ORDER = ["achievement", "independence", "recognition", "relationships", "support", "conditions"];
+const ORDER: ValueKey[] = ["achievement", "independence", "recognition", "relationships", "support", "conditions"];
 
-const row = (id, scale, reverse = false) => ({ id, kind: "likert", scale, reverse });
+/** kind/scaleName are constant across this bank, so the rows stay readable. */
+const row = (id: string, scale: ValueKey, reverse = false) =>
+  ({ id, kind: "likert" as const, scaleName: "agree5", scale, reverse });
 
 const ITEMS = [
   row("ach1", "achievement"), row("ach2", "achievement"), row("ach3", "achievement"),

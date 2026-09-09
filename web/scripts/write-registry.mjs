@@ -15,7 +15,13 @@ import { readdir, writeFile, access } from "node:fs/promises";
 const ORDER = [
   "love-languages", "attachment", "couple-conversations", "intimacy-conditions",
   "attraction", "intimacy-map", "conflict-style", "enneagram", "big-five",
-  "hexaco", "jungian", "riasec", "working-style", "study-practice",
+  "hexaco", "jungian", "riasec",
+  // The career trio, after riasec and before the preference profilers, because
+  // that is the order they answer in: which subject holds you (riasec), what
+  // the doing is made of (work-shape), what a job has to supply (work-values),
+  // and then what you can actually produce a receipt for.
+  "work-shape", "work-values", "strength-evidence",
+  "working-style", "study-practice",
   "chronotype", "numerology",
   // The inventories, as one contiguous run. `registry.groups()` files them
   // between the profilers and the questionnaires by family, so where the run

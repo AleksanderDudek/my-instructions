@@ -1,5 +1,5 @@
 import type { Answers, Form, InstructionCard, InstrumentSpec, T } from "@/core/types";
-import { CHOICES, HOW_OFTEN, TECHNIQUES, USES, asOften, type HowOften, type Technique } from "./techniques";
+import { CHOICES, FLUENCY_CHECKS, HOW_OFTEN, TECHNIQUES, USES, asOften, type HowOften, type Technique } from "./techniques";
 
 /**
  * A profiler that measures nothing.
@@ -22,6 +22,8 @@ export type StudyResult = {
   missing: string[];
   leaning: Leaning;
   total: number;
+  /** Whether "I have understood it" is decided by a feeling or by a check. */
+  fluencyTrap: boolean;
 };
 
 export function form(t: T): Form {
@@ -74,7 +76,10 @@ export function score(answers: Answers): StudyResult {
     choices[f.id] = typeof given === "string" && f.options.includes(given) ? given : f.options[0];
   }
 
-  return { v: 1, uses, choices, repertoire, missing, leaning, total: high.length };
+  return {
+    v: 2, uses, choices, repertoire, missing, leaning, total: high.length,
+    fluencyTrap: FLUENCY_CHECKS.includes(choices.known),
+  };
 }
 
 export function instructions(result: StudyResult, t: T): InstructionCard[] {
@@ -85,7 +90,11 @@ export function instructions(result: StudyResult, t: T): InstructionCard[] {
       body: t(`instructions.leaning.${result.leaning}`),
     },
     { channel: "work", title: t("instructions.checkTitle"), body: t(`ask.check.${result.choices.check}`) },
+    { channel: "work", title: t("instructions.stuckTitle"), body: t(`ask.stuck.${result.choices.stuck}`) },
   ];
+  if (result.fluencyTrap) {
+    cards.push({ channel: "work", title: t("instructions.fluencyTitle"), body: t("instructions.fluencyBody") });
+  }
   if (result.missing.length) {
     cards.push({
       channel: "work",
@@ -131,10 +140,10 @@ export function compare(a: StudyResult, b: StudyResult): StudySwap {
 
 export const spec: InstrumentSpec<StudyResult> = {
   id: "study-practice",
-  version: 1,
+  version: 2,
   family: "profiler",
   glyph: "✍",
-  minutes: 3,
+  minutes: 4,
   channels: ["work"],
   tier: "free",
   messages: {

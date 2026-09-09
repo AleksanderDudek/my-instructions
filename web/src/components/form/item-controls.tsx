@@ -48,13 +48,51 @@ const dot = (checked: boolean) =>
  *
  * The button carries its own text, so it names itself and needs no label.
  */
-function Radio({ value, label, checked }: { value: string; label: string; checked: boolean }) {
+/**
+ * `tone` colours the two ends of a rating scale on the phone layout, the way
+ * the vanilla app did: disagreement in madder, agreement in verdigris, the
+ * midpoint neutral. On a bare row of five identical circles there is nothing
+ * to tell you which end you are at, and the end captions are outside the
+ * group; the colour is the thing that survives a glance.
+ */
+type Tone = "low" | "mid" | "high";
+
+const TONE: Record<Tone, string> = {
+  low: "data-[state=checked]:border-madder data-[state=checked]:bg-madder",
+  mid: "data-[state=checked]:border-brass data-[state=checked]:bg-brass",
+  high: "data-[state=checked]:border-verdigris data-[state=checked]:bg-verdigris",
+};
+
+function Radio({
+  value,
+  label,
+  checked,
+  tone,
+}: {
+  value: string;
+  label: string;
+  checked: boolean;
+  tone?: Tone;
+}) {
   return (
-    <RadioGroup.Item value={value} className={optionStyles(checked)}>
-      <span className={dot(checked)} aria-hidden>
+    <RadioGroup.Item
+      value={value}
+      className={cn(
+        // The phone control: a circle with a 44px touch box around it.
+        "grid size-11 shrink-0 cursor-pointer place-items-center rounded-full border transition-colors",
+        checked ? "border-brass" : "border-rule hover:border-brass/50",
+        tone ? TONE[tone] : null,
+        // From `sm` it stops being a circle and becomes the labelled row.
+        "sm:size-auto sm:rounded-sm sm:data-[state=checked]:bg-brass/10",
+        "sm:flex sm:w-full sm:items-center sm:gap-3 sm:px-4 sm:py-3 sm:text-left",
+        checked ? "sm:border-brass sm:text-ink" : "sm:border-rule sm:bg-panel-2 sm:text-ink/80",
+        tone && checked ? "sm:!bg-brass/10" : null,
+      )}
+    >
+      <span className={cn(dot(checked), "hidden sm:grid")} aria-hidden>
         {checked ? <span className="block size-2 rounded-full bg-brass" /> : null}
       </span>
-      <span>{label}</span>
+      <span className="sr-only sm:not-sr-only">{label}</span>
     </RadioGroup.Item>
   );
 }
@@ -169,16 +207,62 @@ export function ItemControl({
           <Subject subject={subject} />
           {item.prompt}
         </legend>
-        <RadioGroup.Root
-          aria-labelledby={labelId}
-          value={value === undefined ? "" : String(value)}
-          onValueChange={(next) => onChange(Number(next))}
-          className="grid gap-2 sm:grid-cols-5"
-        >
-          {points.map((point, i) => (
-            <Radio key={point} value={String(point)} label={scale.labels[i]} checked={value === point} />
-          ))}
-        </RadioGroup.Root>
+        {/*
+          One radio group, drawn two ways.
+
+          It used to be `grid gap-2 sm:grid-cols-5` — a single column on a
+          phone, five across from `sm`. That is desktop-first with the penalty
+          landing on the phone: five full-width rows per item and eight items to
+          a page is a 6,700px screen for one page of a forty-item questionnaire,
+          and answering it means scrolling past your own previous answer to
+          reach the next question.
+
+          So on a phone the points are a row of dots — the vanilla app's
+          control, and the one that fits — and from `sm` they become the
+          labelled rows, which is what a mouse and a wide column are for. The
+          markup is the same group either way: rendering a second group for the
+          other breakpoint would put two radio groups with one legend into the
+          accessibility tree, and a screen reader would meet every question
+          twice.
+
+          The dots carry their labels in `sr-only` text, so each point is still
+          announced as "Strongly disagree" rather than as a nameless button, and
+          the captions at either end are `aria-hidden` because they would
+          otherwise repeat what the first and last dots already say.
+        */}
+        <div>
+          {/*
+            The end captions sit above the dots rather than beside them. Beside
+            them they are two fixed columns competing with five circles for
+            390px, and "Strongly agree" loses — it clipped at the viewport edge
+            without ever widening the document, so the overflow check stayed
+            green while the words were being cut in half.
+          */}
+          <div className="mb-2 flex items-baseline justify-between gap-4 sm:hidden">
+            <span aria-hidden className="label-caps">
+              {scale.labels[0]}
+            </span>
+            <span aria-hidden className="label-caps text-right">
+              {scale.labels[points.length - 1]}
+            </span>
+          </div>
+          <RadioGroup.Root
+            aria-labelledby={labelId}
+            value={value === undefined ? "" : String(value)}
+            onValueChange={(next) => onChange(Number(next))}
+            className="flex items-center justify-between gap-1 sm:grid sm:grid-cols-5 sm:gap-2"
+          >
+            {points.map((point, i) => (
+              <Radio
+                key={point}
+                value={String(point)}
+                label={scale.labels[i]}
+                checked={value === point}
+                tone={i < points.length / 2 - 0.5 ? "low" : i > points.length / 2 - 0.5 ? "high" : "mid"}
+              />
+            ))}
+          </RadioGroup.Root>
+        </div>
       </fieldset>
     );
   }

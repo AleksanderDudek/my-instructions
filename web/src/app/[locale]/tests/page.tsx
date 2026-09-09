@@ -1,4 +1,3 @@
-import { Link } from "@/components/ui/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getI18n, isLocale, loadInstrument, TAGS } from "@/core/locales";
@@ -6,6 +5,7 @@ import { registry } from "@/instruments";
 import type { Locale } from "@/core/types";
 import { Plate, PlateHead } from "@/components/ui/primitives";
 import { AdultGate } from "@/components/shell/adult-gate";
+import { Catalogue, type CatalogueItem } from "@/components/shell/catalogue";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -22,7 +22,7 @@ export function generateStaticParams() {
   return TAGS.map((locale) => ({ locale }));
 }
 
-export default async function Catalogue({ params }: { params: Promise<{ locale: string }> }) {
+export default async function CataloguePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
 
@@ -31,15 +31,49 @@ export default async function Catalogue({ params }: { params: Promise<{ locale: 
   const extra = Object.assign({}, ...(await Promise.all(registry.all().map((m) => loadInstrument(m.spec, locale)))));
   const { t } = await getI18n(locale as Locale, extra);
 
+  const groups = registry.groups();
+
+  /** The words a card shows, resolved here so the client list ships no `t`. */
+  const itemsOf = (group: (typeof groups)[number]): CatalogueItem[] =>
+    group.items.map(({ spec }) => ({
+      id: spec.id,
+      glyph: spec.glyph,
+      title: t(`${spec.id}.title`),
+      tagline: t(`${spec.id}.tagline`),
+      minutes: t("common.minutes", { count: spec.minutes }),
+      framework: t(`${spec.id}.framework`),
+      premium: spec.tier === "premium" ? t("tier.premium") : null,
+    }));
+
   return (
     <>
-      <header className="flex flex-col gap-4 py-12">
-        <h1 className="text-3xl">{t("catalog.heading")}</h1>
+      <header className="flex flex-col gap-4 py-8 sm:py-12">
+        <h1>{t("catalog.heading")}</h1>
         <p className="max-w-[62ch] leading-relaxed text-muted">{t("catalog.lead")}</p>
+
+        {/*
+          A jump index, because twenty-seven instruments in four groups is
+          fourteen thousand pixels of phone scroll and the group you want may be
+          the last one. Anchors rather than a filter: a filter would hide things,
+          and every instrument staying reachable is the rule the catalogue is
+          built on.
+        */}
+        <nav aria-label={t("catalog.heading")} className="flex flex-wrap gap-2">
+          {groups.map((group) => (
+            <a
+              key={group.family}
+              href={`#group-${group.family}`}
+              className="tap rounded-full border border-rule px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-muted transition-colors hover:border-brass hover:text-ink"
+            >
+              {t(group.labelKey)}
+              <span className="num ml-2 text-faint">{group.items.length}</span>
+            </a>
+          ))}
+        </nav>
       </header>
 
-      {registry.groups().map((group) => (
-        <Plate key={group.family}>
+      {groups.map((group) => (
+        <Plate key={group.family} className="scroll-mt-24" id={`group-${group.family}`}>
           <PlateHead title={t(group.labelKey)} note={t(group.noteKey)} />
           {group.gated ? (
             <AdultGate
@@ -50,54 +84,13 @@ export default async function Catalogue({ params }: { params: Promise<{ locale: 
                 confirm: t("catalog.gate.confirm"),
               }}
             >
-              <Cards locale={locale as Locale} items={group.items} t={t} />
+              <Catalogue locale={locale as Locale} items={itemsOf(group)} takenLabel={t("paths.taken")} />
             </AdultGate>
           ) : (
-            <Cards locale={locale as Locale} items={group.items} t={t} />
+            <Catalogue locale={locale as Locale} items={itemsOf(group)} takenLabel={t("paths.taken")} />
           )}
         </Plate>
       ))}
     </>
-  );
-}
-
-function Cards({
-  locale,
-  items,
-  t,
-}: {
-  locale: Locale;
-  items: ReturnType<typeof registry.all>;
-  t: (key: string, vars?: Record<string, string | number>) => string;
-}) {
-  return (
-    <div className="grid gap-3">
-      {items.map(({ spec }) => (
-        <Link
-          key={spec.id}
-          href={`/${locale}/tests/${spec.id}`}
-          className="group flex items-start gap-4 rounded-sm border border-rule bg-panel-2 p-5 transition-colors hover:border-brass"
-        >
-          <span aria-hidden className="font-display text-2xl text-brass">
-            {spec.glyph}
-          </span>
-          <span className="flex-1">
-            <span className="mb-1 block font-display text-lg font-semibold">{t(`${spec.id}.title`)}</span>
-            <span className="mb-3 block max-w-[58ch] text-sm leading-relaxed text-muted">{t(`${spec.id}.tagline`)}</span>
-            <span className="flex flex-wrap gap-2">
-              <span className="label-caps rounded-full border border-rule px-2 py-0.5">
-                {t("common.minutes", { count: spec.minutes })}
-              </span>
-              <span className="label-caps rounded-full border border-rule px-2 py-0.5">{t(`${spec.id}.framework`)}</span>
-              {spec.tier === "premium" ? (
-                <span className="label-caps rounded-full border border-brass/50 px-2 py-0.5 text-brass">
-                  {t("tier.premium")}
-                </span>
-              ) : null}
-            </span>
-          </span>
-        </Link>
-      ))}
-    </div>
   );
 }

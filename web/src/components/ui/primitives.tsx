@@ -6,9 +6,19 @@ import { cn } from "@/lib/cn";
  * — the device that makes a panel read as an instrument plate rather than a
  * card in a dashboard. Padding starts at phone size and grows.
  */
-export function Plate({ children, className }: { children: ReactNode; className?: string }) {
+export function Plate({
+  children,
+  className,
+  id,
+}: {
+  children: ReactNode;
+  className?: string;
+  /** Set when the plate is an anchor target, as the catalogue's groups are. */
+  id?: string;
+}) {
   return (
     <section
+      id={id}
       className={cn(
         "plate-edge mb-8 overflow-hidden rounded-sm border border-rule bg-panel p-5 shadow-plate sm:mb-10 sm:p-8",
         className,

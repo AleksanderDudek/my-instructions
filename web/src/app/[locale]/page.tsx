@@ -4,7 +4,19 @@ import { registry } from "@/instruments";
 import type { Locale } from "@/core/types";
 import { notFound } from "next/navigation";
 import { Plate, PlateHead, Prose } from "@/components/ui/primitives";
+import { Rail } from "@/components/onboarding/rail";
 
+/**
+ * The home page is the onboarding.
+ *
+ * There is no separate welcome route and no modal, per §1 of the approved
+ * onboarding design: the explanation belongs where somebody needs it, and a
+ * reader who dismisses a carousel has learned nothing and spent the app's one
+ * first impression. What is here instead is the claim, the two buttons, and a
+ * rail of three steps whose state comes from what is actually in the store —
+ * so the same page serves a first visit and a fifth one without a flag
+ * deciding which of two pages to render.
+ */
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
@@ -13,24 +25,55 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <header className="flex flex-col gap-6 py-16">
-        <h1 className="max-w-[18ch] text-4xl sm:text-5xl">{t("home.titleAnon")}</h1>
-        <Prose className="text-lg">{t("home.lead")}</Prose>
-        <div className="flex flex-wrap gap-3">
+      <header className="flex flex-col gap-5 py-10 sm:gap-6 sm:py-16">
+        <h1 className="max-w-[16ch]">{t("home.titleAnon")}</h1>
+        <Prose className="text-[1.05rem] sm:text-lg">{t("home.lead")}</Prose>
+        {/*
+          Full-width buttons on a phone and shrink-wrapped from `sm`. A pair of
+          auto-width buttons at 390px leaves a ragged half-row that reads as a
+          layout fault, and the primary action ends up under the thumb either
+          way — so let them fill the column instead of pretending to be a
+          desktop toolbar.
+        */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
-            href={`/${locale}/tests`}
-            className="rounded-sm border border-brass bg-brass/10 px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-brass-hi hover:bg-brass/20"
+            href={`/${locale}/paths`}
+            className="tap justify-center rounded-sm border border-brass bg-brass/10 px-5 py-3 text-center font-mono text-[0.7rem] uppercase tracking-[0.14em] text-brass-hi hover:bg-brass/20"
           >
             {t("home.startFirst")}
           </Link>
           <Link
             href={`/${locale}/instructions`}
-            className="rounded-sm border border-rule px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink hover:border-brass"
+            className="tap justify-center rounded-sm border border-rule px-5 py-3 text-center font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink hover:border-brass"
           >
             {t("home.readSheet")}
           </Link>
         </div>
       </header>
+
+      <Rail
+        locale={locale as Locale}
+        copy={{
+          heading: t("start.heading"),
+          lead: t("start.lead"),
+          stepLabels: [1, 2, 3].map((n) => t("start.stepLabel", { n })),
+          doneLabel: t("start.doneLabel"),
+          nowLabel: t("start.nowLabel"),
+          step1Title: t("start.step1Title"),
+          step1Body: t("start.step1Body"),
+          step1Cta: t("start.step1Cta"),
+          step2Title: t("start.step2Title"),
+          step2Body: t("start.step2Body"),
+          step2Cta: t("start.step2Cta"),
+          step2Locked: t("start.step2Locked"),
+          step3Title: t("start.step3Title"),
+          step3Body: t("start.step3Body"),
+          step3Cta: t("start.step3Cta"),
+          doneTitle: t("start.doneTitle"),
+          doneBody: t("start.doneBody"),
+          doneCta: t("start.doneCta"),
+        }}
+      />
 
       <Plate>
         <PlateHead title={t("home.howHeading")} />

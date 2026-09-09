@@ -1,20 +1,40 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
+/**
+ * The app's one surface. `plate-edge` draws the gilded hairline across the top
+ * — the device that makes a panel read as an instrument plate rather than a
+ * card in a dashboard. Padding starts at phone size and grows.
+ */
 export function Plate({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <section className={cn("mb-10 rounded-sm border border-rule bg-panel p-6 shadow-plate sm:p-8", className)}>
+    <section
+      className={cn(
+        "plate-edge mb-8 overflow-hidden rounded-sm border border-rule bg-panel p-5 shadow-plate sm:mb-10 sm:p-8",
+        className,
+      )}
+    >
       {children}
     </section>
   );
 }
 
+/**
+ * A heading, its hairline rule, and an optional note.
+ *
+ * The note used to be `shrink-0` on one line with the title, which is correct
+ * on a desktop column and forces 232px of horizontal scroll at 390px: notes in
+ * this app are sentences ("facts about you, read as a pattern"), and a sentence
+ * that may not shrink sets the width of the whole document. The row wraps
+ * instead, so on a phone the note falls under the title and the rule keeps the
+ * line it was drawn for.
+ */
 export function PlateHead({ title, note }: { title: string; note?: string }) {
   return (
-    <div className="mb-5 flex items-baseline gap-4">
-      <h2 className="text-xl">{title}</h2>
-      <span className="h-px flex-1 bg-rule" aria-hidden />
-      {note ? <span className="label-caps shrink-0">{note}</span> : null}
+    <div className="mb-5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+      <h2 className="min-w-0 text-xl">{title}</h2>
+      <span className="h-px min-w-6 flex-1 bg-rule" aria-hidden />
+      {note ? <span className="label-caps w-full sm:w-auto sm:shrink-0">{note}</span> : null}
     </div>
   );
 }

@@ -77,8 +77,24 @@ export default async function LocaleLayout({
   const { t } = await getI18n(locale as Locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className={`${fraunces.variable} ${spectral.variable} ${plexMono.variable}`}>
+    /*
+     * The font variables go on <html>, not <body>, and the difference is the
+     * whole typographic identity.
+     *
+     * `@theme` declares `--font-display: var(--font-fraunces), Georgia, serif`
+     * on `:root`. A custom property is substituted at the element that
+     * *declares* it, so that inner `var()` is resolved against `:root` — and
+     * with next/font's classes on <body>, `--font-fraunces` is undefined
+     * there. `--font-display` then computes to guaranteed-invalid, every
+     * `font-family: var(--font-display)` is invalid at computed-value time,
+     * and the whole app silently renders in Tailwind's default sans stack.
+     *
+     * It looked fine, which is why it survived the port: a serif app rendering
+     * in system sans is not a broken page, just a different and much duller
+     * one. Putting the classes on the element that `:root` selects is the fix.
+     */
+    <html lang={locale} className={`${fraunces.variable} ${spectral.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <body>
         <StoreProvider>
           <a
             href="#main"
@@ -95,12 +111,18 @@ export default async function LocaleLayout({
             claim stays on screen while the tests below it do their measuring.
           */}
           <div className="sticky top-0 z-40 border-b border-brass/25 bg-ground/85 backdrop-blur-sm">
-            <p className="mx-auto max-w-5xl px-5 py-2.5 text-center font-display text-[0.95rem] leading-snug text-balance text-brass-hi">
+            <p className="mx-auto max-w-5xl px-4 py-2 text-center font-display text-[0.82rem] leading-snug text-balance text-brass-hi sm:px-5 sm:py-2.5 sm:text-[0.95rem]">
               {t("app.benediction")}
             </p>
           </div>
 
-          <div className="mx-auto w-full max-w-5xl px-5 pb-32">
+          {/*
+            `pb` clears the phone tab bar (56px plus the safe-area inset) with
+            room to spare, so the last card on a page is never the one sitting
+            under the navigation. From `sm` the bar is gone and the padding is
+            only page-bottom breathing room.
+          */}
+          <div className="mx-auto w-full max-w-5xl px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:px-5 sm:pb-32">
             <Nav
               locale={locale as Locale}
               labels={{

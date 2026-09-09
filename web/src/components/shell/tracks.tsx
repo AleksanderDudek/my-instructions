@@ -75,12 +75,23 @@ export function Tracks({
                 {track.steps.map((step, index) => (
                   <li key={step} data-step={step} className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-4">
                     <span className="num w-6 shrink-0 text-muted">{index + 1}</span>
-                    <span className="min-w-48 flex-1">
-                      <Link href={`/${locale}/tests/${step}`} className="block hover:text-brass">
-                        {titleOf[step] ?? step}
-                      </Link>
+                    {/*
+                      The link covers the tagline as well as the title.
+
+                      A 24px-tall title was the only tappable thing in the row,
+                      on the page whose whole job is getting somebody into their
+                      first instrument — well under the 44px every mobile
+                      platform's guidance asks for, with the sentence explaining
+                      the link sitting inert underneath it. Still one link per
+                      row, which is what `e2e/paths.spec.ts` checks.
+                    */}
+                    <Link
+                      href={`/${locale}/tests/${step}`}
+                      className="min-w-48 flex-1 py-1 hover:text-brass sm:py-0"
+                    >
+                      <span className="block">{titleOf[step] ?? step}</span>
                       <span className="block text-sm text-muted">{taglineOf[step] ?? ""}</span>
-                    </span>
+                    </Link>
                     <span
                       className={cn(
                         "label-caps shrink-0",

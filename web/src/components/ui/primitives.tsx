@@ -35,16 +35,20 @@ export function Plate({
  * The note used to be `shrink-0` on one line with the title, which is correct
  * on a desktop column and forces 232px of horizontal scroll at 390px: notes in
  * this app are sentences ("facts about you, read as a pattern"), and a sentence
- * that may not shrink sets the width of the whole document. The row wraps
- * instead, so on a phone the note falls under the title and the rule keeps the
- * line it was drawn for.
+ * that may not shrink sets the width of the whole document.
+ *
+ * So the note may shrink and the row may wrap, and which happens is left to
+ * the content: the sheet's notes are a single digit and stay on the heading's
+ * line, the catalogue's are clauses and drop below it. Forcing `w-full` on a
+ * phone did fix the overflow and left every one-character count stranded on a
+ * line of its own.
  */
 export function PlateHead({ title, note }: { title: string; note?: string }) {
   return (
     <div className="mb-5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
       <h2 className="min-w-0 text-xl">{title}</h2>
       <span className="h-px min-w-6 flex-1 bg-rule" aria-hidden />
-      {note ? <span className="label-caps w-full sm:w-auto sm:shrink-0">{note}</span> : null}
+      {note ? <span className="label-caps min-w-0">{note}</span> : null}
     </div>
   );
 }

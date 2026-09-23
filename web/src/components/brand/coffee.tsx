@@ -7,8 +7,9 @@ import { Moment } from "./moments";
 /**
  * Coffee with Uriel: an invitation to a toast, never a plea.
  *
- * It exists only when the deploy carries a support link — the same shape as
- * the publish endpoint: no variable, no feature, and nothing on the page
+ * The link is Uriel's page on buycoffee.to. A deploy can point it elsewhere
+ * with NEXT_PUBLIC_SUPPORT_URL, or set that to an empty string to take the
+ * invitation out entirely — no link, no feature, and nothing on the page
  * pointing at a door that is not there. When it does exist it appears only
  * after a moment of value (the caller decides which), at most once a
  * session, is dismissible from the corner or from "not now", and never
@@ -18,7 +19,7 @@ import { Moment } from "./moments";
  * page cannot see the payment, and thanking someone for the gesture is the
  * honest thing it can say.
  */
-const SUPPORT_URL = process.env.NEXT_PUBLIC_SUPPORT_URL ?? "";
+const SUPPORT_URL = process.env.NEXT_PUBLIC_SUPPORT_URL ?? "https://buycoffee.to/uriel";
 const SEEN = "mi:coffee";
 
 export type CoffeeCopy = {

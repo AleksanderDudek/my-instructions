@@ -1,98 +1,116 @@
 @import "tailwindcss";
 
 /* ── the palette ──────────────────────────────────────────────────
-   Ported from the vanilla app so the identity survives the rewrite.
-   Dark is the primary world; light is a full redefinition rather than
-   a filter, because a filtered dark palette reads as muddy paper.     */
+   Cut from Uriel's stained glass: wine, gold, crimson, sage and flame,
+   bounded by lead. The names are the ones the app has always used —
+   `brass`, `verdigris`, `madder` — so every class in the codebase takes
+   the new glass in place; `wine`, `on-wine`, `lead`, `flame` and `glass`
+   are the colours the window added.
+
+   Three themes, each a full set: dark (a chapel at night, the primary
+   world), light (daylight on the alb) and white (white & gold, clear
+   glass). A theme is never a filter over another — every colour is
+   redefined, so no half-themed state is reachable.
+
+   Which one is on is decided before first paint by the script in the
+   root layout (`core/theme.ts`), which always writes a resolved
+   `data-theme` — "system" becomes dark or light there, not here. So each
+   set is written exactly once. Without JavaScript the page stays in dark,
+   the primary world, which is a legible fallback rather than a broken one. */
 
 @theme {
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-body: var(--font-spectral), "Iowan Old Style", Georgia, serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
-  --color-ground: #0c0d13;
-  --color-panel: #14161f;
-  --color-panel-2: #191c27;
-  --color-rule: #262a38;
-  --color-ink: #e7e0d3;
-  --color-muted: #948d7e;
-  --color-faint: #5d5849;
-  --color-brass: #d9a441;
-  --color-brass-hi: #f0c674;
-  --color-verdigris: #4f9b8f;
-  --color-madder: #c05a44;
+  --color-ground: #130c0b;
+  --color-panel: #1e1412;
+  --color-panel-2: #281a17;
+  --color-rule: #47302a;
+  --color-lead: #0a0605;
+  --color-ink: #f3ead3;
+  --color-muted: #bba98c;
+  --color-faint: #6f5b4a;
+  --color-brass: #e5b04a;
+  --color-brass-hi: #f2cf72;
+  --color-wine: #5c1522;
+  --color-on-wine: #f3ead3;
+  --color-verdigris: #9bb46c;
+  --color-madder: #e0654a;
+  --color-flame: #e8843a;
+  --color-glass: #efe4bf;
 
-  --shadow-plate: 0 18px 44px -22px rgba(0, 0, 0, 0.85);
+  --radius-plate: 3px;
+  --radius-arch: 120px;
+
+  --shadow-plate: 0 18px 44px -22px rgba(0, 0, 0, 0.9);
 }
 
-/* The tokens above are the dark values. Light overrides them as a set:
-   every colour is redefined, never inherited, so no half-themed state
-   is reachable. */
 @layer base {
   :root {
     color-scheme: dark;
-    --grain-opacity: 0.05;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      color-scheme: light;
-      --color-ground: #efe9dc;
-      --color-panel: #f7f3ea;
-      --color-panel-2: #efe8d9;
-      --color-rule: #d7cdb9;
-      --color-ink: #1e1c18;
-      --color-muted: #6c6558;
-      --color-faint: #a79c88;
-      --color-brass: #96690f;
-      --color-brass-hi: #7a5408;
-      --color-verdigris: #2c6d63;
-      --color-madder: #a13e29;
-      --shadow-plate: 0 16px 38px -24px rgba(60, 44, 16, 0.45);
-      --grain-opacity: 0.045;
-    }
+    /* Leading widths. Glass is always bounded by lead. */
+    --lead-hair: 1px;
+    --lead-line: 2px;
+    --lead-frame: 4px;
   }
 
   :root[data-theme="light"] {
     color-scheme: light;
-    --color-ground: #efe9dc;
-    --color-panel: #f7f3ea;
-    --color-panel-2: #efe8d9;
-    --color-rule: #d7cdb9;
-    --color-ink: #1e1c18;
-    --color-muted: #6c6558;
-    --color-faint: #a79c88;
-    --color-brass: #96690f;
-    --color-brass-hi: #7a5408;
-    --color-verdigris: #2c6d63;
-    --color-madder: #a13e29;
-    --shadow-plate: 0 16px 38px -24px rgba(60, 44, 16, 0.45);
-    --grain-opacity: 0.045;
+    --color-ground: #efe6d2;
+    --color-panel: #f8f2e4;
+    --color-panel-2: #efe4bf;
+    --color-rule: #cbb892;
+    --color-lead: #1d1511;
+    --color-ink: #1d1511;
+    --color-muted: #65513f;
+    --color-faint: #ad9a7a;
+    --color-brass: #875a0c;
+    --color-brass-hi: #6c4406;
+    --color-wine: #5c1522;
+    --color-on-wine: #f3ead3;
+    --color-verdigris: #4b6629;
+    --color-madder: #9a2419;
+    --color-flame: #a8481a;
+    --color-glass: #efe4bf;
+    --shadow-plate: 0 16px 38px -24px rgba(70, 30, 16, 0.4);
+  }
+
+  /* White & gold: the same window with clear glass. Blue is the voice here —
+     `wine` becomes Marian blue — and red stays only for danger. */
+  :root[data-theme="white"] {
+    color-scheme: light;
+    --color-ground: #f9f8f4;
+    --color-panel: #ffffff;
+    --color-panel-2: #eef4fb;
+    --color-rule: #d3dbe6;
+    --color-lead: #1c2a3a;
+    --color-ink: #14202e;
+    --color-muted: #556275;
+    --color-faint: #aab4c2;
+    --color-brass: #8c6400;
+    --color-brass-hi: #6e4e00;
+    --color-wine: #1f4f8f;
+    --color-on-wine: #ffffff;
+    --color-verdigris: #2c7a4b;
+    --color-madder: #b3261e;
+    --color-flame: #9a5a00;
+    --color-glass: #eef4fb;
+    --shadow-plate: 0 16px 38px -24px rgba(28, 42, 58, 0.28);
   }
 
   /*
-   * Grain, vignette, and ruled ground.
+   * The ground: a window, at night or by day.
    *
-   * The vanilla app's identity was never only its palette — it was a paper
-   * surface: fractal-noise grain at 5%, a brass glow off the top edge, and
-   * hairlines everywhere. The rewrite ported the colours and left the surface
-   * behind, which is why a correct palette still read as a flat cream page.
+   * A quarry lattice — `rule` hairlines at 45° both ways every 32px — and a
+   * gold sunburst falling from the top edge. The paper grain the app carried
+   * from the vanilla port is gone: this surface is glass, and glass has no
+   * tooth.
    *
-   * Both layers are `position: fixed` so they never scroll (a scrolling grain
-   * reads as a rendering artefact) and `pointer-events: none` so they are
-   * invisible to every hit test. They sit at z-index 0 with the app above at 1.
+   * The layer is `position: fixed` so it never scrolls (a scrolling lattice
+   * reads as a rendering artefact) and `pointer-events: none` so it is
+   * invisible to every hit test. It sits at z-index 0 with the app above at 1.
    */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: var(--grain-opacity);
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
-  }
-
   body::after {
     content: "";
     position: fixed;
@@ -100,15 +118,12 @@
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(120% 80% at 50% -10%, color-mix(in srgb, var(--color-brass) 11%, transparent), transparent 62%),
-      repeating-linear-gradient(
-        to bottom,
-        transparent 0 31px,
-        color-mix(in srgb, var(--color-rule) 26%, transparent) 31px 32px
-      );
+      radial-gradient(120% 70% at 50% -12%, color-mix(in srgb, var(--color-brass) 16%, transparent), transparent 60%),
+      repeating-linear-gradient(45deg, transparent 0 31px, color-mix(in srgb, var(--color-rule) 30%, transparent) 31px 32px),
+      repeating-linear-gradient(-45deg, transparent 0 31px, color-mix(in srgb, var(--color-rule) 30%, transparent) 31px 32px);
   }
 
-  /* Everything the reader can touch sits above the two texture layers. */
+  /* Everything the reader can touch sits above the texture layer. */
   body > * {
     position: relative;
     z-index: 1;
@@ -152,9 +167,10 @@
 
   /* Focus is never removed, only restyled. The vanilla app lost focus on
      every repaint, which is the bug this rewrite exists to make
-     structurally impossible — hiding the ring would hide the evidence. */
+     structurally impossible — hiding the ring would hide the evidence.
+     A `lead-line` of gold: 8.5:1 on the night ground, ≥4.7:1 by day. */
   :focus-visible {
-    outline: 2px solid var(--color-brass);
+    outline: var(--lead-line) solid var(--color-brass);
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -182,34 +198,85 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* ── the plate ────────────────────────────────────────────────────
-   The app's one surface, and the reason it looks like a catalogue of
-   instruments rather than a dashboard: a panel on ruled ground with a
-   gilded top edge. The edge is a gradient hairline rather than a solid
-   border because a solid one reads as a table cell, and a gradient that
-   fades at both ends reads as light catching a bevel.                */
+/* ── the pane ─────────────────────────────────────────────────────
+   The app's one surface, cut like a pane of Uriel's window: `panel` glass
+   bounded by leading — a 2px `lead` line inside a 1px `rule` hairline —
+   with a gilded top edge. The hairline is a box-shadow ring rather than an
+   outline so it can never be confused with, or clobber, a focus ring.    */
+@utility leaded {
+  border: var(--lead-line) solid var(--color-lead);
+  box-shadow: 0 0 0 var(--lead-hair) var(--color-rule);
+}
+
 @utility plate {
   position: relative;
   background: var(--color-panel);
-  border: 1px solid var(--color-rule);
-  border-radius: 3px;
-  box-shadow: var(--shadow-plate);
+  border: var(--lead-line) solid var(--color-lead);
+  border-radius: var(--radius-plate);
+  box-shadow: 0 0 0 var(--lead-hair) var(--color-rule), var(--shadow-plate);
 }
 
+/* The gilded edge: a gradient rather than a solid border, because a solid
+   one reads as a table cell and a gradient that fades at both ends reads
+   as light catching a bevel. */
 @utility plate-edge {
   position: relative;
   &::before {
     content: "";
     position: absolute;
     inset: 0 0 auto;
-    height: 1px;
+    height: 2px;
     background: linear-gradient(
       to right,
       transparent,
-      color-mix(in srgb, var(--color-brass) 55%, transparent) 22%,
-      color-mix(in srgb, var(--color-brass) 55%, transparent) 78%,
+      var(--color-brass) 18%,
+      var(--color-brass-hi) 50%,
+      var(--color-brass) 82%,
       transparent
     );
+  }
+}
+
+/* The lancet: a pane with an arched head, for feature moments only — the
+   sheet's cover, Uriel's empty states, milestones. It carries no gilded
+   edge (the arch is the ornament), and it is only for panes 240px wide or
+   more, where the arch has room to be an arch rather than a pill. */
+@utility lancet {
+  border-radius: var(--radius-arch) var(--radius-arch) var(--radius-plate) var(--radius-plate);
+  padding-top: 3rem;
+  &::before {
+    display: none;
+  }
+}
+
+/* The active nav pill: a wine pane with a gold inner line. Its label is
+   gold in dark and `on-wine` in the daylight themes, where gold on wine
+   would be the one pairing under 4.5:1. */
+@utility pill-on {
+  background: var(--color-wine);
+  color: var(--color-brass-hi);
+  box-shadow: inset 0 0 0 1px var(--color-brass);
+  :root[data-theme="light"] &,
+  :root[data-theme="white"] & {
+    color: var(--color-on-wine);
+  }
+}
+
+/* ── the art ──────────────────────────────────────────────────────
+   Uriel and the roundels come in two cuts: the stained-glass set and the
+   White & gold set. `<Art>` renders both and this pair decides which is
+   seen, so the swap follows `data-theme` with no hydration step and the
+   two sets can never share a screen.                                  */
+@utility art-glass {
+  :root[data-theme="white"] & {
+    display: none;
+  }
+}
+
+@utility art-white {
+  display: none;
+  :root[data-theme="white"] & {
+    display: block;
   }
 }
 
@@ -228,18 +295,21 @@
 }
 
 /* ── the stamped numeral ──────────────────────────────────────────
-   A step number in a bordered square, in brass, in the mono face. Used
-   by the onboarding rail and the how-it-works row so that a sequence
-   reads as a sequence without a progress bar — this app does not tell
-   anybody they are 40% of a person.                                 */
+   A step number in a leaded square, in gold, in the mono face. Used by the
+   onboarding rail and the how-it-works row so that a sequence reads as a
+   sequence without a progress bar — this app does not tell anybody they are
+   40% of a person. Done turns the numeral and its hairline sage, and the
+   caller always says so in words too: sage and crimson sit close in
+   lightness, so colour alone never carries a state.                  */
 @utility stamp {
   flex: none;
   display: grid;
   place-items: center;
   width: 2rem;
   height: 2rem;
-  border: 1px solid var(--color-rule);
-  border-radius: 3px;
+  border: var(--lead-line) solid var(--color-lead);
+  box-shadow: 0 0 0 var(--lead-hair) var(--color-rule);
+  border-radius: var(--radius-plate);
   background: var(--color-panel-2);
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -248,7 +318,7 @@
 }
 
 @utility stamp-done {
-  border-color: color-mix(in srgb, var(--color-verdigris) 55%, var(--color-rule));
+  box-shadow: 0 0 0 var(--lead-hair) var(--color-verdigris);
   color: var(--color-verdigris);
 }
 
@@ -265,6 +335,6 @@
     flex: 1 1 0;
     min-width: 0;
     height: 1px;
-    background: var(--color-rule);
+    background: linear-gradient(to right, var(--color-brass), var(--color-rule) 40%);
   }
 }

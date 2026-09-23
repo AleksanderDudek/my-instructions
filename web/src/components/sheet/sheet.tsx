@@ -12,6 +12,11 @@ import { useStore } from "@/components/shell/store-provider";
 import { resolvePlaybook, isEmptyPlaybook, type ResolvedPlaybook } from "@/core/playbook";
 import { Plate, PlateHead } from "@/components/ui/primitives";
 import { Button } from "@/components/ui/button";
+import { buttonClass } from "@/components/ui/button-styles";
+import { CHANNEL_ICON } from "@/components/brand/art";
+import { EmptyState } from "@/components/brand/moments";
+import { CoffeeInvite } from "@/components/brand/coffee";
+import { SHEET_READY } from "@/core/moments";
 
 /**
  * The instruction sheet — the thing the whole app is for.
@@ -110,16 +115,18 @@ export function Sheet({
 
   if (!state.cards.length) {
     return (
-      <div className="py-16">
-        <h2 className="mb-3 text-2xl">{copy.emptyTitle}</h2>
-        <p className="mb-6 max-w-[62ch] leading-relaxed text-muted">{copy.emptyBody}</p>
-        <Link
-          href={`/${locale}/tests`}
-          className="inline-block rounded-sm border border-brass bg-brass/10 px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-brass-hi"
-        >
-          {copy.emptyAction}
-        </Link>
-      </div>
+      <EmptyState
+        mood="sleepy"
+        title={copy.emptyTitle}
+        action={
+          <Link href={`/${locale}/tests`} className={buttonClass({ variant: "primary" })}>
+            {copy.emptyAction}
+          </Link>
+        }
+      >
+        <p>{copy.emptyBody}</p>
+        <p className="mt-3 font-display text-ink">{i18n.t("uriel.emptyLine")}</p>
+      </EmptyState>
     );
   }
 
@@ -142,8 +149,8 @@ export function Sheet({
         </p>
         <div className="flex flex-wrap gap-3 print:hidden">
           <Button onClick={() => window.print()}>{copy.print}</Button>
-          <Link href={`/${locale}/panel`}>
-            <Button>{copy.edit}</Button>
+          <Link href={`/${locale}/panel`} className={buttonClass()}>
+            {copy.edit}
           </Link>
         </div>
       </header>
@@ -152,10 +159,10 @@ export function Sheet({
         const cards = byChannel.get(ch)!;
         return (
           <Plate key={ch}>
-            <PlateHead title={i18n.t(`channel.${ch}`)} note={String(cards.length)} />
+            <PlateHead title={i18n.t(`channel.${ch}`)} note={String(cards.length)} icon={CHANNEL_ICON[ch]} />
             <div className="grid gap-3 sm:grid-cols-2">
               {cards.map((card, n) => (
-                <div key={`${card.id}-${n}`} className="rounded-sm border border-rule bg-panel-2 p-5">
+                <div key={`${card.id}-${n}`} className="leaded rounded-sm bg-panel-2 p-5">
                   <h4 className="mb-2 text-base">{card.title}</h4>
                   {card.lines ? (
                     <div className="mb-3 grid gap-3">
@@ -194,6 +201,23 @@ export function Sheet({
           </Plate>
         );
       })}
+
+      {/* After the sheet, never before it: the invitation follows value. */}
+      {state.runs.length >= SHEET_READY ? (
+        <CoffeeInvite
+          copy={{
+            label: i18n.t("coffee.label"),
+            title: i18n.t("coffee.title"),
+            line: i18n.t("coffee.line"),
+            cta: i18n.t("coffee.cta"),
+            notNow: i18n.t("coffee.notNow"),
+            close: i18n.t("uriel.close"),
+            thanksKicker: i18n.t("coffee.thanksKicker"),
+            thanksTitle: i18n.t("coffee.thanksTitle"),
+            thanksLine: i18n.t("coffee.thanksLine"),
+          }}
+        />
+      ) : null}
     </article>
   );
 }

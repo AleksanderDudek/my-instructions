@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { DropdownMenu } from "radix-ui";
 import type { Locale } from "@/core/types";
 import { cn } from "@/lib/cn";
+import { Roundel, Uriel, type IconName } from "@/components/brand/art";
 
 export type NavLabels = {
   title: string;
@@ -36,8 +37,26 @@ export type NavLabels = {
  * home in the top bar at every width, where a settings control belongs.
  */
 
-/** Glyphs, not icons. The app has a typographic vocabulary; a sprite would be a second one. */
-const GLYPH = { home: "⌂", paths: "⋔", tests: "⬡", instructions: "▤", sharing: "↗" } as const;
+/**
+ * The glass roundels, one per destination. They replace the typographic
+ * glyphs the bar used to carry: the window has one visual vocabulary, and
+ * every roundel sits above its word. Home is Uriel's medallion — the same
+ * mark that leads the wordmark.
+ */
+const ROUNDEL: Record<"paths" | "tests" | "instructions" | "sharing", IconName> = {
+  paths: "paths",
+  tests: "tests",
+  instructions: "sheet",
+  sharing: "share",
+};
+type Key = "home" | keyof typeof ROUNDEL;
+
+/** An inline pill: mono caps, `pill-on` (wine glass, gold line) when it is the page. */
+const pill = (on: boolean) =>
+  cn(
+    "rounded-full px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] transition-colors",
+    on ? "pill-on" : "text-muted hover:text-ink",
+  );
 
 export function Nav({
   locale,
@@ -49,7 +68,7 @@ export function Nav({
   locales: { tag: string; endonym: string }[];
 }) {
   const pathname = usePathname();
-  const items: { key: keyof typeof GLYPH; href: string; label: string; exact?: boolean }[] = [
+  const items: { key: Key; href: string; label: string; exact?: boolean }[] = [
     { key: "home", href: `/${locale}`, label: labels.home, exact: true },
     // Before the catalogue, because it is the answer to the question somebody
     // arrives with; the catalogue is the answer to a question they only have
@@ -73,21 +92,22 @@ export function Nav({
   return (
     <>
       <header className="flex items-center justify-between gap-3 border-b border-rule py-4 sm:py-6">
-        <Link href={`/${locale}`} className="font-display text-lg font-semibold text-ink">
-          {labels.title}
+        <Link href={`/${locale}`} className="flex min-w-0 items-center gap-2.5 font-display text-lg font-semibold text-ink">
+          <Uriel mood="avatar" width={32} className="size-8" />
+          <span className="truncate">{labels.title}</span>
         </Link>
 
         {/* The inline row. Hidden on phones, where the bar at the bottom is it. */}
-        <nav aria-label={labels.home} className="hidden items-center gap-1 sm:flex">
+        <nav
+          aria-label={labels.home}
+          className="hidden items-center gap-0.5 rounded-full border border-rule bg-panel p-[3px] sm:flex"
+        >
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isOn(item.href, item.exact) ? "page" : undefined}
-              className={cn(
-                "rounded-full px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] transition-colors",
-                isOn(item.href, item.exact) ? "bg-brass/15 text-brass-hi" : "text-muted hover:text-ink",
-              )}
+              className={pill(isOn(item.href, item.exact))}
             >
               {item.label}
             </Link>
@@ -98,10 +118,7 @@ export function Nav({
           <Link
             href={`/${locale}/panel`}
             aria-current={panelOn ? "page" : undefined}
-            className={cn(
-              "tap rounded-full px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] transition-colors",
-              panelOn ? "bg-brass/15 text-brass-hi" : "text-muted hover:text-ink",
-            )}
+            className={cn("tap", pill(panelOn))}
           >
             {labels.panel}
           </Link>
@@ -166,9 +183,11 @@ export function Nav({
                     on ? "text-brass-hi" : "text-muted",
                   )}
                 >
-                  <span aria-hidden className="text-lg leading-none">
-                    {GLYPH[item.key]}
-                  </span>
+                  {item.key === "home" ? (
+                    <Uriel mood="avatar" width={28} className="size-7" />
+                  ) : (
+                    <Roundel name={ROUNDEL[item.key]} size={28} className="size-7" />
+                  )}
                   <span className="w-full truncate text-center font-mono text-[0.55rem] uppercase tracking-[0.1em]">
                     {item.label}
                   </span>

@@ -140,7 +140,7 @@ export function Reflect({
         {rows.map((row) => {
           const weight = saved[row.key]?.weight;
           return (
-            <div key={row.key} data-reflect-row={row.key} className="rounded-sm border border-rule bg-panel-2 p-5">
+            <div key={row.key} data-reflect-row={row.key} className="leaded rounded-sm bg-panel-2 p-5">
               <h4 className="mb-4 text-base">{row.label}</h4>
 
               <fieldset className="mb-5">

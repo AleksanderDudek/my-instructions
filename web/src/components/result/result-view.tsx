@@ -12,6 +12,9 @@ import { Plate, PlateHead } from "@/components/ui/primitives";
 import { Reflect } from "./reflect";
 import { reflectablesOf } from "@/core/reflect";
 import { Button } from "@/components/ui/button";
+import { buttonClass } from "@/components/ui/button-styles";
+import { EmptyState, Moment } from "@/components/brand/moments";
+import { isMoment, type Moment as MomentKind } from "@/core/moments";
 import { Playbook } from "@/components/result/playbook";
 
 /**
@@ -44,6 +47,18 @@ export function ResultView({
   const [instrument, setInstrument] = useState<InstrumentModule | null>(null);
   const [run, setRun] = useState<Run | null | undefined>(undefined);
   const [armed, setArmed] = useState(false);
+  // Read once, on arrival from the runner. The query is then dropped from the
+  // address so a reload or a bookmark does not announce the same step twice.
+  const [moment, setMoment] = useState<MomentKind | null>(() => {
+    const m = search.get("moment");
+    return isMoment(m) && !slot ? m : null;
+  });
+  useEffect(() => {
+    if (!search.get("moment")) return;
+    const url = new URL(window.location.href);
+    url.searchParams.delete("moment");
+    window.history.replaceState(window.history.state, "", url);
+  }, [search]);
 
   const i18n = useMemo(() => createI18n({ locale, messages, fallbackMessages }), [locale, messages, fallbackMessages]);
   const scoped = useMemo(() => i18n.scope(id), [i18n, id]);
@@ -71,16 +86,17 @@ export function ResultView({
 
   if (!run) {
     return (
-      <div className="py-16">
-        <h2 className="mb-3 text-2xl">{copy.empty}</h2>
-        <p className="mb-6 max-w-[62ch] leading-relaxed text-muted">{copy.emptyBody}</p>
-        <Link
-          href={`/${locale}/tests/${id}/take`}
-          className="inline-block rounded-sm border border-brass bg-brass/10 px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-brass-hi"
-        >
-          {copy.emptyAction}
-        </Link>
-      </div>
+      <EmptyState
+        mood="curious"
+        title={copy.empty}
+        action={
+          <Link href={`/${locale}/tests/${id}/take`} className={buttonClass({ variant: "primary" })}>
+            {copy.emptyAction}
+          </Link>
+        }
+      >
+        <p>{copy.emptyBody}</p>
+      </EmptyState>
     );
   }
 
@@ -92,6 +108,46 @@ export function ResultView({
     <>
       {stale ? (
         <div className="mb-8 border-l-2 border-madder pl-5 text-[0.95rem] text-ink/90">{copy.stale}</div>
+      ) : null}
+
+      {/* Above the result, never over it: Uriel marks the step and the plate
+          below says what it means. */}
+      {moment === "first" ? (
+        <Moment
+          mood="proud"
+          kicker={i18n.t("uriel.firstKicker")}
+          kickerTone="done"
+          title={i18n.t("uriel.firstTitle")}
+          line={i18n.t("uriel.firstLine")}
+          actions={
+            <>
+              <Link href={`/${locale}/instructions`} className={buttonClass({ variant: "primary" })}>
+                {i18n.t("uriel.firstCta")}
+              </Link>
+              <Button variant="ghost" onClick={() => setMoment(null)}>
+                {i18n.t("uriel.later")}
+              </Button>
+            </>
+          }
+        />
+      ) : moment === "sheet" ? (
+        <Moment
+          mood="celebrate"
+          icon="achievement"
+          kicker={i18n.t("uriel.sheetKicker")}
+          title={i18n.t("uriel.sheetTitle")}
+          line={i18n.t("uriel.sheetLine")}
+          actions={
+            <>
+              <Link href={`/${locale}/sharing`} className={buttonClass({ variant: "primary" })}>
+                {i18n.t("uriel.sheetCta")}
+              </Link>
+              <Button variant="ghost" onClick={() => setMoment(null)}>
+                {i18n.t("uriel.later")}
+              </Button>
+            </>
+          }
+        />
       ) : null}
 
       <Plate>
@@ -125,7 +181,7 @@ export function ResultView({
         <PlateHead title={i18n.t("result.addedHeading")} note={i18n.t("result.addedNote")} />
         <div className="grid gap-3 sm:grid-cols-2">
           {cards.map((card, n) => (
-            <div key={`${card.channel}-${n}`} className="rounded-sm border border-rule bg-panel-2 p-5">
+            <div key={`${card.channel}-${n}`} className="leaded rounded-sm bg-panel-2 p-5">
               <span className="label-caps mb-2 block">{i18n.t(`channel.${card.channel}`)}</span>
               <h4 className="mb-2 text-base">{card.title}</h4>
               <p className="text-sm leading-relaxed text-muted">{card.body}</p>
@@ -174,11 +230,11 @@ export function ResultView({
       ) : null}
 
       <div className="flex flex-wrap gap-3">
-        <Link href={`/${locale}/instructions`}>
-          <Button variant="primary">{copy.sheet}</Button>
+        <Link href={`/${locale}/instructions`} className={buttonClass({ variant: moment ? "default" : "primary" })}>
+          {copy.sheet}
         </Link>
-        <Link href={`/${locale}/tests/${id}/take`}>
-          <Button>{copy.retake}</Button>
+        <Link href={`/${locale}/tests/${id}/take`} className={buttonClass()}>
+          {copy.retake}
         </Link>
         {/* The reader's way out, and the only caller of `clearRun`.
             Without it the run, its draft and the practice written against it

@@ -5,6 +5,7 @@ import { getInstrumentI18n, isLocale, TAGS } from "@/core/locales";
 import { registry } from "@/instruments";
 import type { Locale } from "@/core/types";
 import { Plate, PlateHead, Prose } from "@/components/ui/primitives";
+import { buttonClass } from "@/components/ui/button-styles";
 
 /**
  * The indexable page for one instrument.
@@ -104,7 +105,7 @@ export default async function InstrumentPage({ params }: { params: Promise<{ loc
         <div>
           <Link
             href={`/${locale}/tests/${id}/take`}
-            className="inline-block rounded-sm border border-brass bg-brass/10 px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-brass-hi hover:bg-brass/20"
+            className={buttonClass({ variant: "primary" })}
           >
             {t("instrument.start")}
           </Link>

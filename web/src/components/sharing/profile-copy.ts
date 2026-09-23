@@ -12,6 +12,9 @@
  */
 export const PROFILE_COPY_KEYS = [
   "profiles.heading",
+  "uriel.shareKicker",
+  "uriel.shareTitle",
+  "uriel.shareLine",
   "profiles.note",
   "profiles.empty",
   "profiles.add.public",

@@ -15,6 +15,7 @@ const KEYS = [
   "pronouns", "pronounsPlaceholder", "opening", "openingPlaceholder", "save", "saved",
   "resultsSection", "noResults", "dataSection", "storageOk", "storageBad",
   "export", "import", "imported", "wipe", "wipeConfirm", "languageSection", "languageNote",
+  "themeSection", "themeNote", "theme.system", "theme.dark", "theme.light", "theme.white",
 ] as const;
 
 export default async function PanelPage({ params }: { params: Promise<{ locale: string }> }) {

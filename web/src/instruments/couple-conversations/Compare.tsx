@@ -35,7 +35,7 @@ export function Compare({
 
       <div className="grid gap-3 sm:grid-cols-2">
         {rows.map((row) => (
-          <div key={row.id} className="rounded-sm border border-rule bg-panel-2 p-5">
+          <div key={row.id} className="leaded rounded-sm bg-panel-2 p-5">
             <span className="label-caps mb-2 block">
               {t(`topic.${row.id}.label`)} · {t(`status.${row.status ?? "never"}`)}
             </span>

@@ -40,7 +40,7 @@ export function Compare({
       {clashes.length ? (
         <div className="grid gap-3 sm:grid-cols-2">
           {clashes.map((id) => (
-            <div key={id} className="rounded-sm border border-rule bg-panel-2 p-5">
+            <div key={id} className="leaded rounded-sm bg-panel-2 p-5">
               <span className="label-caps mb-2 block">{t(`field.${id}.label`)}</span>
               <h4 className="mb-2 text-base">
                 {t("compare.clashHeading", {

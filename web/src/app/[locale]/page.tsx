@@ -5,6 +5,9 @@ import type { Locale } from "@/core/types";
 import { notFound } from "next/navigation";
 import { Plate, PlateHead, Prose } from "@/components/ui/primitives";
 import { Rail } from "@/components/onboarding/rail";
+import { buttonClass } from "@/components/ui/button-styles";
+import { Uriel } from "@/components/brand/art";
+import { cn } from "@/lib/cn";
 
 /**
  * The home page is the onboarding.
@@ -26,7 +29,15 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <>
       <header className="flex flex-col gap-5 py-10 sm:gap-6 sm:py-16">
-        <h1 className="max-w-[16ch]">{t("home.titleAnon")}</h1>
+        {/*
+          Uriel greets beside the claim rather than above it: at 390px a
+          panel on its own row pushes the two buttons below the fold, and the
+          buttons are the point of this screen.
+        */}
+        <div className="flex items-end justify-between gap-4">
+          <h1 className="max-w-[16ch] min-w-0">{t("home.titleAnon")}</h1>
+          <Uriel mood="hello" className="w-[120px] sm:w-[160px]" width={160} />
+        </div>
         <Prose className="text-[1.05rem] sm:text-lg">{t("home.lead")}</Prose>
         {/*
           Full-width buttons on a phone and shrink-wrapped from `sm`. A pair of
@@ -38,13 +49,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
             href={`/${locale}/paths`}
-            className="tap justify-center rounded-sm border border-brass bg-brass/10 px-5 py-3 text-center font-mono text-[0.7rem] uppercase tracking-[0.14em] text-brass-hi hover:bg-brass/20"
+            className={cn(buttonClass({ variant: "primary" }), "text-center")}
           >
             {t("home.startFirst")}
           </Link>
           <Link
             href={`/${locale}/instructions`}
-            className="tap justify-center rounded-sm border border-rule px-5 py-3 text-center font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink hover:border-brass"
+            className={cn(buttonClass(), "text-center")}
           >
             {t("home.readSheet")}
           </Link>

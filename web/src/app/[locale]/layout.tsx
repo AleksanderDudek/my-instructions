@@ -5,6 +5,7 @@ import { TAGS, isLocale, getI18n, LOCALES } from "@/core/locales";
 import type { Locale } from "@/core/types";
 import { Nav } from "@/components/shell/nav";
 import { StoreProvider } from "@/components/shell/store-provider";
+import { THEME_SCRIPT } from "@/core/theme";
 import "../globals.css";
 
 /**
@@ -41,8 +42,8 @@ export function generateStaticParams() {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0c0d13" },
-    { media: "(prefers-color-scheme: light)", color: "#efe9dc" },
+    { media: "(prefers-color-scheme: dark)", color: "#130c0b" },
+    { media: "(prefers-color-scheme: light)", color: "#efe6d2" },
   ],
 };
 
@@ -94,6 +95,15 @@ export default async function LocaleLayout({
      * one. Putting the classes on the element that `:root` selects is the fix.
      */
     <html lang={locale} className={`${fraunces.variable} ${spectral.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/*
+          Before first paint, so the window is never shown in the wrong glass
+          and then swapped. It writes a resolved `data-theme` onto <html> —
+          which is why <html> carries `suppressHydrationWarning` — and the
+          source, with the reasons, is `core/theme.ts`.
+        */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body>
         <StoreProvider>
           <a
@@ -110,7 +120,7 @@ export default async function LocaleLayout({
             through the header should not have to pass it. Sticky, so the
             claim stays on screen while the tests below it do their measuring.
           */}
-          <div className="sticky top-0 z-40 border-b border-brass/25 bg-ground/85 backdrop-blur-sm">
+          <div className="sticky top-0 z-40 border-b border-brass/40 bg-ground/88 backdrop-blur-sm">
             <p className="mx-auto max-w-5xl px-4 py-2 text-center font-display text-[0.82rem] leading-snug text-balance text-brass-hi sm:px-5 sm:py-2.5 sm:text-[0.95rem]">
               {t("app.benediction")}
             </p>

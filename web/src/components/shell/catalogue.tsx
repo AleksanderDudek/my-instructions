@@ -65,7 +65,7 @@ export function Catalogue({
             key={item.id}
             href={`/${locale}/tests/${item.id}`}
             className={cn(
-              "group flex items-start gap-3 rounded-sm border border-rule bg-panel-2 p-4 transition-colors hover:border-brass sm:gap-4 sm:p-5",
+              "group leaded flex items-start gap-3 rounded-sm bg-panel-2 p-4 transition-colors hover:border-brass sm:gap-4 sm:p-5",
               done && "border-verdigris/40",
             )}
           >

@@ -50,6 +50,8 @@ export default async function PublishedPage({ params }: { params: Promise<{ loca
           unreadable: t("opened.unreadable"),
           missing: t("opened.missing"),
           home: t("common.goHome"),
+          oopsKicker: t("uriel.oopsKicker"),
+          oopsLine: t("uriel.oopsLine"),
         }}
       />
     </Suspense>

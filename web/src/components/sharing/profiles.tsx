@@ -5,6 +5,7 @@ import { Checkbox } from "radix-ui";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 import { Plate, PlateHead } from "@/components/ui/primitives";
+import { Roundel, Uriel } from "@/components/brand/art";
 import { useStore } from "@/components/shell/store-provider";
 import {
   IDENTITY_ELEMENTS,
@@ -285,7 +286,7 @@ export function Profiles({ locale, copy, titleOf, identityLabels, identityValues
         {profiles.map((profile) => {
           const isOpen = open === profile.id;
           return (
-            <section key={profile.id} className="rounded-sm border border-rule bg-panel-2 p-5" data-profile={profile.id}>
+            <section key={profile.id} className="leaded rounded-sm bg-panel-2 p-5" data-profile={profile.id}>
               <div className="flex flex-wrap items-baseline justify-between gap-3">
                 <div>
                   <h4 className="text-base">{profile.name}</h4>
@@ -495,6 +496,8 @@ function Reach({
    * to learn something that never changes — the cascade the lint names.
    */
   const native = useSyncExternalStore(subscribeToNothing, canShareNatively, readFalse);
+  /** Set once the link has actually left: copied, or handed to the share sheet. */
+  const [sent, setSent] = useState(false);
 
   const text = copy["profiles.shareText"] ?? "";
   const title = copy["profiles.shareTitle"]?.replace("{name}", name) ?? name;
@@ -503,6 +506,22 @@ function Reach({
   return (
     <div className="border-t border-rule pt-5">
       <span className="label-caps mb-3 block">{copy["profiles.send"]}</span>
+
+      {/* Uriel marks the send, beside it and never over the link. Only after
+          it has happened: a moment announced before it is true is a claim. */}
+      {sent ? (
+        <div role="status" className="leaded mb-4 flex items-center gap-4 rounded-sm bg-panel-2 p-4">
+          <Uriel mood="share" width={120} />
+          <div className="min-w-0">
+            <span className="flex items-center gap-2">
+              <Roundel name="share" size={24} />
+              <span className="label-caps">{copy["uriel.shareKicker"]}</span>
+            </span>
+            <h3 className="mt-1.5 text-[1.2rem]">{copy["uriel.shareTitle"]}</h3>
+            <p className="mt-1 leading-relaxed text-ink/90">{copy["uriel.shareLine"]}</p>
+          </div>
+        </div>
+      ) : null}
 
       {/*
           The link itself, on the page, selectable.
@@ -526,6 +545,7 @@ function Reach({
           variant="primary"
           onClick={async () => {
             const ok = await copyLink(url);
+            if (ok) setSent(true);
             onSaid(ok ? (copy["profiles.copied"] ?? "") : (copy["profiles.copyFailed"] ?? ""));
           }}
         >
@@ -538,7 +558,8 @@ function Reach({
               // A dismissed sheet is not a failure, and saying so would tell
               // somebody sharing broke when they simply changed their mind.
               try {
-                await shareNatively({ title, text, url });
+                // `false` is a dismissed sheet: nothing left, so nothing to mark.
+                if (await shareNatively({ title, text, url })) setSent(true);
               } catch {
                 onSaid(copy["profiles.shareFailed"] ?? "");
               }

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { momentAfter } from "@/core/moments";
 import type { Answers, Form, InstrumentSpec, ItemsForm, Locale, T } from "@/core/types";
 import { loadInstrumentModule } from "@/instruments/lazy";
 import { ItemControl, FieldControl, type ItemValue } from "@/components/form/item-controls";
@@ -423,13 +424,14 @@ export function Runner({
         setSaving(false);
         return;
       }
+      const moment = momentAfter((await store.runs()).map((r) => r.instrumentId), id);
       await store.saveRun({
         instrumentId: id,
         instrumentVersion: meta.version,
         answers: values,
         result: instrument!.spec.score(values),
       });
-      router.push(`/${locale}/tests/${id}/result`);
+      router.push(`/${locale}/tests/${id}/result${moment ? `?moment=${moment}` : ""}`);
     };
 
     return (
@@ -500,6 +502,9 @@ export function Runner({
     draftDue.current = null;
     const instrument = await loadInstrumentModule(id);
     if (!instrument) return;
+    // The second person of a pair is not a step in this reader's sheet, so
+    // their finish marks nothing.
+    const moment = slot ? null : momentAfter((await store.runs()).map((r) => r.instrumentId), id);
     await store.saveRun(
       {
         instrumentId: id,
@@ -509,7 +514,8 @@ export function Runner({
       },
       { session: sessionOnly, slot },
     );
-    router.push(`/${locale}/tests/${id}/result${slot ? `?who=${slot}` : ""}`);
+    const query = slot ? `?who=${slot}` : moment ? `?moment=${moment}` : "";
+    router.push(`/${locale}/tests/${id}/result${query}`);
   };
 
   return (

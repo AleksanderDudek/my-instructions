@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { Link } from "@/components/ui/link";
 import { useStore, useStoreVersion } from "@/components/shell/store-provider";
 import { cn } from "@/lib/cn";
+import { buttonClass } from "@/components/ui/button-styles";
+import { Plate } from "@/components/ui/primitives";
+import { SHEET_READY } from "@/core/moments";
 import type { Locale } from "@/core/types";
 
 /**
@@ -39,8 +42,8 @@ import type { Locale } from "@/core/types";
  * them they failed at something they were not attempting.
  */
 
-/** Runs before the sheet is worth opening. Two channels of six is not a sheet. */
-const SHEET_READY = 3;
+/* `SHEET_READY` — runs before the sheet is worth opening; two channels of six
+   is not a sheet — lives in `core/moments`, where the runner reads it too. */
 
 export type RailCopy = {
   heading: string;
@@ -127,21 +130,18 @@ export function Rail({ locale, copy }: { locale: Locale; copy: RailCopy }) {
 
   if (allDone) {
     return (
-      <section className="plate-edge mb-8 overflow-hidden rounded-sm border border-rule bg-panel p-5 shadow-plate sm:mb-10 sm:p-8">
+      <Plate>
         <h2 className="text-xl">{copy.doneTitle}</h2>
         <p className="mt-2 max-w-[62ch] leading-relaxed text-muted">{copy.doneBody}</p>
-        <Link
-          href={`/${locale}/instructions`}
-          className="tap mt-5 inline-flex rounded-sm border border-rule px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink hover:border-brass"
-        >
+        <Link href={`/${locale}/instructions`} className={cn(buttonClass(), "mt-5")}>
           {copy.doneCta}
         </Link>
-      </section>
+      </Plate>
     );
   }
 
   return (
-    <section className="plate-edge mb-8 overflow-hidden rounded-sm border border-rule bg-panel p-5 shadow-plate sm:mb-10 sm:p-8">
+    <Plate>
       <div className="rule-head mb-2">
         <h2 className="min-w-0 text-xl">{copy.heading}</h2>
         <span className="rule" aria-hidden />
@@ -154,24 +154,21 @@ export function Rail({ locale, copy }: { locale: Locale; copy: RailCopy }) {
           return (
             <li
               key={step.n}
-              className={cn("flex gap-4 bg-panel px-1 py-5 sm:px-2", step.done && "opacity-60")}
+              className="flex gap-4 bg-panel px-1 py-5 sm:px-2"
             >
               <span aria-hidden className={cn("stamp mt-0.5", step.done && "stamp-done")}>
-                {step.done ? "✓" : step.n}
+                {String(step.n).padStart(2, "0")}
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <h3 className="text-base sm:text-lg">{step.title}</h3>
-                  <span className="label-caps">
+                  <span className={cn("label-caps", step.done && "text-verdigris")}>
                     {step.done ? copy.doneLabel : isCurrent ? copy.nowLabel : copy.stepLabels[step.n - 1]}
                   </span>
                 </div>
                 <p className="mt-1.5 max-w-[58ch] text-[0.95rem] leading-relaxed text-muted">{step.body}</p>
                 {isCurrent ? (
-                  <Link
-                    href={step.href}
-                    className="tap mt-4 inline-flex rounded-sm border border-brass bg-brass/10 px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-brass-hi hover:bg-brass/20"
-                  >
+                  <Link href={step.href} className={cn(buttonClass({ variant: "primary" }), "mt-4")}>
                     {step.cta}
                   </Link>
                 ) : null}
@@ -180,6 +177,6 @@ export function Rail({ locale, copy }: { locale: Locale; copy: RailCopy }) {
           );
         })}
       </ol>
-    </section>
+    </Plate>
   );
 }

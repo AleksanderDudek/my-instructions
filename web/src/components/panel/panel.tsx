@@ -8,6 +8,7 @@ import { useStore } from "@/components/shell/store-provider";
 import { Plate, PlateHead } from "@/components/ui/primitives";
 import { Button } from "@/components/ui/button";
 import { FieldControl } from "@/components/form/item-controls";
+import { ThemePicker } from "./theme-picker";
 
 /**
  * The panel: who the sheet is addressed from, which language, and the data.
@@ -129,6 +130,19 @@ export function Panel({
             </Link>
           ))}
         </div>
+      </Plate>
+
+      <Plate>
+        <PlateHead title={copy.themeSection} note={copy.themeNote} />
+        <ThemePicker
+          label={copy.themeSection}
+          names={{
+            system: copy["theme.system"],
+            dark: copy["theme.dark"],
+            light: copy["theme.light"],
+            white: copy["theme.white"],
+          }}
+        />
       </Plate>
 
       <Plate>

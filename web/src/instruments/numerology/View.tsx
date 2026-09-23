@@ -366,7 +366,7 @@ export function View({ result, t, locale = "en" }: { result: NumerologyResult; t
         <h4 className="mb-4 text-lg">
           {t("view.pyramidHeading")} <span className="label-caps ml-2">{t("view.pyramidNote")}</span>
         </h4>
-        <div className="rounded-sm border border-rule bg-panel-2 p-5">
+        <div className="leaded rounded-sm bg-panel-2 p-5">
           <Pyramid p={result} t={t} locale={locale} />
         </div>
       </section>
@@ -375,7 +375,7 @@ export function View({ result, t, locale = "en" }: { result: NumerologyResult; t
         <h4 className="mb-4 text-lg">
           {t("view.squareHeading")} <span className="label-caps ml-2">{t("view.squareNote")}</span>
         </h4>
-        <div className="rounded-sm border border-rule bg-panel-2 p-5">
+        <div className="leaded rounded-sm bg-panel-2 p-5">
           <Square p={result} t={t} />
         </div>
       </section>
@@ -391,7 +391,7 @@ export function View({ result, t, locale = "en" }: { result: NumerologyResult; t
         <h4 className="mb-4 text-lg">
           {t("view.reflectionHeading")} <span className="label-caps ml-2">{t("view.reflectionNote")}</span>
         </h4>
-        <div className="rounded-sm border border-rule bg-panel-2 p-5">
+        <div className="leaded rounded-sm bg-panel-2 p-5">
           <Reflection p={result} t={t} />
         </div>
       </section>

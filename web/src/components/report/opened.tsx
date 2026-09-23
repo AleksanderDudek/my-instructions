@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@/components/ui/link";
 import { Report } from "./report";
+import { EmptyState } from "@/components/brand/moments";
 import { decryptToken, fetchPublished, handleFromFragment, publishEndpoint } from "@/core/publish";
 import type { Messages } from "@/core/i18n";
 import type { Locale } from "@/core/types";
@@ -39,7 +40,16 @@ export function Opened({
   messages: Messages;
   fallbackMessages: Messages;
   ids: string[];
-  copy: { loading: string; gone: string; goneBody: string; unreadable: string; missing: string; home: string };
+  copy: {
+    loading: string;
+    gone: string;
+    goneBody: string;
+    unreadable: string;
+    missing: string;
+    home: string;
+    oopsKicker: string;
+    oopsLine: string;
+  };
 }) {
   const [state, setState] = useState<
     { at: "loading" } | { at: "ready"; token: string } | { at: "gone" | "unreadable" | "missing" }
@@ -85,15 +95,21 @@ export function Opened({
   if (state.at !== "ready") {
     const headline = state.at === "gone" ? copy.gone : state.at === "unreadable" ? copy.unreadable : copy.missing;
     return (
-      <div className="py-16">
-        <h1 className="mb-3 text-2xl">{headline}</h1>
-        {state.at === "gone" ? (
-          <p className="mb-6 max-w-[62ch] leading-relaxed text-muted">{copy.goneBody}</p>
-        ) : null}
-        <Link href={`/${locale}`} className="label-caps hover:text-ink">
-          {copy.home}
-        </Link>
-      </div>
+      <EmptyState
+        mood="oops"
+        level={1}
+        tone="error"
+        kicker={copy.oopsKicker}
+        title={headline}
+        action={
+          <Link href={`/${locale}`} className="label-caps tap hover:text-ink">
+            {copy.home}
+          </Link>
+        }
+      >
+        {state.at === "gone" ? <p>{copy.goneBody}</p> : null}
+        <p className="mt-3 font-display text-ink">{copy.oopsLine}</p>
+      </EmptyState>
     );
   }
 

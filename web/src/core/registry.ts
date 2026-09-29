@@ -11,13 +11,9 @@ import type { ComponentType } from "react";
 import type { Answers, Audience, InstrumentSpec, Item, T, Tier } from "./types";
 import { AUDIENCE_ORDER } from "./audience";
 
-export type ProvenanceRecord = {
-  construct: { name: string; origin?: string; public: boolean; note?: string };
-  items: { origin: string; writtenFor?: string };
-  evidence: { reliability: string; factorStructure: string; criterion: string; note?: string };
-  reproduces: string[];
-  avoided?: string[];
-};
+import { validateProvenance, type ProvenanceRecord } from "./provenance";
+
+export type { ProvenanceRecord };
 
 export type InstrumentModule<R = unknown> = {
   spec: InstrumentSpec<R>;
@@ -69,6 +65,7 @@ export function validate(module: InstrumentModule): void {
     if (spec?.[k] == null) throw new TypeError(`${where}: missing "${k}"`);
   }
   if (typeof module.View !== "function") throw new TypeError(`${where}: missing a View component`);
+  validateProvenance(module.provenance, where);
   if (!FAMILIES.has(spec.family)) throw new TypeError(`${where}: family must be one of ${[...FAMILIES].join(", ")}`);
   if (!TIERS.has(spec.tier)) throw new TypeError(`${where}: tier must be "free" or "premium"`);
 

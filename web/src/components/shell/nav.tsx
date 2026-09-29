@@ -18,6 +18,8 @@ export type NavLabels = {
   panel: string;
   paths: string;
   language: string;
+  /** Short forms for the phone tab bar, where each label gets a fifth of the width. */
+  tabs: Record<"home" | "paths" | "tests" | "instructions" | "sharing", string>;
 };
 
 /**
@@ -207,8 +209,11 @@ export function Nav({
           <ul className="mx-auto flex max-w-lg items-stretch">
             {items.map((item) => {
               const on = isOn(item.href, item.exact);
+              // `min-w-0` on the <li>: a flex item will not shrink below its
+              // content unless told to, and one long label used to widen its
+              // tab until the fifth ran off the right edge of the screen.
               return (
-                <li key={item.href} className="flex-1">
+              <li key={item.href} className="min-w-0 flex-1">
                   {/* The active tab carries an indicator behind its roundel — the
                       wine pill of the desktop row, cut to fit — so the state
                       reads from shape and colour at once, not a label tint. */}
@@ -232,8 +237,8 @@ export function Nav({
                         <Roundel name={ROUNDEL[item.key]} size={26} className="size-[26px]" />
                       )}
                     </span>
-                    <span className="w-full truncate text-center font-mono text-[0.55rem] uppercase tracking-[0.1em]">
-                      {item.label}
+                    <span className="w-full truncate text-center font-mono text-[0.55rem] uppercase tracking-[0.06em]">
+                      {labels.tabs[item.key]}
                     </span>
                   </Link>
                 </li>

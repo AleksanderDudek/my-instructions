@@ -363,6 +363,12 @@ export default {
   "track.statement.title": "Decirle a la gente quién soy",
   "track.statement.lead": "Tres, a propósito. Una página pública montada con cinco instrumentos es un expediente; con tres es una presentación. Cada uno es algo que elegiste decir, no algo medido sobre ti.",
   "nav.paths": "Por dónde empezar",
+  /* The phone tab bar: five fifths of a narrow screen, so one short word each. */
+  "nav.tab.home": "Inicio",
+  "nav.tab.paths": "Rutas",
+  "nav.tab.tests": "Tests",
+  "nav.tab.instructions": "Manual",
+  "nav.tab.sharing": "Compartir",
   "profiles.deleteConfirm": "Borrar — pulsa otra vez",
   "profiles.deleteConfirmLive": "Retirar y borrar — pulsa otra vez",
   "profiles.deleteBlocked": "No se pudo retirar el enlace, así que no se ha borrado nada. Borrarlo ahora tiraría lo único capaz de retirar ese enlace algún día. Inténtalo en un momento.",

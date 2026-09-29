@@ -1,0 +1,241 @@
+/**
+ * Character strengths — Polish.
+ *
+ * The result prints each strength beside its virtue — "Odwaga · męstwo" — so a
+ * strength and its virtue must not share a word. Courage the virtue is męstwo
+ * and bravery the strength is odwaga; justice the virtue is sprawiedliwość and
+ * fairness the strength is bezstronność.
+ *
+ * `trait.*.inline` is nominative: the one sentence that takes it puts it after
+ * a colon. The headline takes the label instead and opens with it, so the
+ * capital sits at the start of the sentence rather than after a colon.
+ */
+export default {
+  "title": "Mocne strony charakteru",
+  "tagline": "Po które z dwudziestu czterech mocnych stron charakteru sięgasz najpierw, a po które najrzadziej.",
+  "framework": "Klasyfikacja mocnych stron charakteru i cnót (24 mocne strony)",
+  "sourceNote": "Autorskie pytania oparte na publicznej klasyfikacji dwudziestu czterech mocnych stron charakteru w obrębie sześciu cnót (Peterson i Seligman, 2004), po trzy na każdą mocną stronę, z czego jedno odwrócone. Nie użyto pytań z żadnego komercyjnego kwestionariusza. Istnieją publiczne skale IPIP dla tych samych mocnych stron i można je podstawić jako dane, jeśli wolisz angielskie sformułowania o opublikowanej rzetelności.",
+
+  "virtue.wisdom": "mądrość",
+  "virtue.courage": "męstwo",
+  "virtue.humanity": "człowieczeństwo",
+  "virtue.justice": "sprawiedliwość",
+  "virtue.temperance": "umiarkowanie",
+  "virtue.transcendence": "transcendencja",
+
+  "trait.creativity.label": "Kreatywność",
+  "trait.creativity.inline": "kreatywność",
+  "trait.creativity.blurb": "Znajduje nowe sposoby robienia rzeczy i woli wymyślać, niż powtarzać.",
+  "trait.creativity.ask": "Daj mi problem, a nie metodę. Najlepiej pracuję, kiedy mogę po swojemu znaleźć do niego drogę.",
+
+  "trait.curiosity.label": "Ciekawość",
+  "trait.curiosity.inline": "ciekawość",
+  "trait.curiosity.blurb": "Zadaje pytania dla samej przyjemności odpowiedzi. Interesuje się niemal wszystkim.",
+  "trait.curiosity.ask": "Mów mi dlaczego, a nie tylko co. Moje pytanie to zaciekawienie, a nie powątpiewanie.",
+
+  "trait.judgment.label": "Krytyczne myślenie",
+  "trait.judgment.inline": "krytyczne myślenie",
+  "trait.judgment.blurb": "Rozważa sprawę z kilku stron i zmienia zdanie pod wpływem dowodów.",
+  "trait.judgment.ask": "Przynieś mi kontrargument. Bardziej ufam decyzji, kiedy widzę, że przeszła próbę.",
+
+  "trait.learning.label": "Zamiłowanie do nauki",
+  "trait.learning.inline": "zamiłowanie do nauki",
+  "trait.learning.blurb": "Celowo poszerza swoją wiedzę i najlepiej się czuje, gdy uczy się czegoś nowego.",
+  "trait.learning.ask": "Pokaż mi coś, czego jeszcze nie wiem. Praca, w której nie ma już czego się nauczyć, mnie wyczerpuje.",
+
+  "trait.perspective.label": "Szeroka perspektywa",
+  "trait.perspective.inline": "szeroka perspektywa",
+  "trait.perspective.blurb": "W gąszczu spraw widzi to, co ważne. Ktoś, kogo przyjaciele pytają o radę.",
+  "trait.perspective.ask": "Kiedy grzęźniesz w szczegółach, zapytaj mnie o szerszy obraz. Spojrzenie z dystansu to moja mocna strona.",
+
+  "trait.bravery.label": "Odwaga",
+  "trait.bravery.inline": "odwaga",
+  "trait.bravery.blurb": "Zabiera głos i działa, nawet gdy to straszne albo niepopularne.",
+  "trait.bravery.ask": "Jeśli coś jest nie tak, powiedz mi. Wolę zmierzyć się z tym razem z tobą, niż żeby mnie przed tym chroniono.",
+
+  "trait.perseverance.label": "Wytrwałość",
+  "trait.perseverance.inline": "wytrwałość",
+  "trait.perseverance.blurb": "Ciągnie trudne sprawy dalej, gdy inni już przestali.",
+  "trait.perseverance.ask": "Daj mi długą, trudną robotę. Powiedz wprost, kiedy czas przestać, bo ja tego nie zauważę.",
+
+  "trait.honesty.label": "Uczciwość",
+  "trait.honesty.inline": "uczciwość",
+  "trait.honesty.blurb": "Mówi prawdę i pokazuje, kim naprawdę jest, nawet jeśli to coś kosztuje.",
+  "trait.honesty.ask": "Mów mi prawdę, także tę niezręczną część. Jeśli coś pominiesz, zauważę lukę.",
+
+  "trait.zest.label": "Zapał",
+  "trait.zest.inline": "zapał",
+  "trait.zest.blurb": "Wchodzi we wszystko z rozmachem. Wnosi energię, gdziekolwiek się pojawi.",
+  "trait.zest.ask": "Pozwól mi zacząć. Energię biorę z rozpędu, a długie czekanie mi ją odbiera.",
+
+  "trait.love.label": "Miłość",
+  "trait.love.inline": "miłość",
+  "trait.love.blurb": "Ceni bliskość i daje ważnym dla siebie ludziom to odczuć.",
+  "trait.love.ask": "Podtrzymuj bliskość. Cichy tydzień odbieram jako dystans, nawet kiedy nim nie jest.",
+
+  "trait.kindness.label": "Życzliwość",
+  "trait.kindness.inline": "życzliwość",
+  "trait.kindness.blurb": "Pomaga bez proszenia i zauważa, komu jest ciężko.",
+  "trait.kindness.ask": "Pozwól mi pomagać i mów, kiedy przesadzam. Innym mówię „tak” wcześniej niż sobie.",
+
+  "trait.social.label": "Inteligencja społeczna",
+  "trait.social.inline": "inteligencja społeczna",
+  "trait.social.blurb": "Wyczuwa, co czują inni, i umie się odnaleźć w bardzo różnym towarzystwie.",
+  "trait.social.ask": "Nie musisz mi tłumaczyć, co czujesz. Pewnie już to widzę, więc lepiej ze mną porozmawiaj, niż to ukrywaj.",
+
+  "trait.teamwork.label": "Praca zespołowa",
+  "trait.teamwork.inline": "praca zespołowa",
+  "trait.teamwork.blurb": "Robi całą swoją część i stawia cel grupy ponad osobiste zasługi.",
+  "trait.teamwork.ask": "Traktuj mnie jak część zespołu. Wykluczenie ze wspólnego celu boli mnie bardziej niż ciężka praca.",
+
+  "trait.fairness.label": "Bezstronność",
+  "trait.fairness.inline": "bezstronność",
+  "trait.fairness.blurb": "Traktuje ludzi jednakowo i wysłuchuje każdego, czy go lubi, czy nie.",
+  "trait.fairness.ask": "Stosuj te same zasady wobec wszystkich, łącznie ze mną. Faworyzowania nie potrafię puścić płazem.",
+
+  "trait.leadership.label": "Przywództwo",
+  "trait.leadership.inline": "przywództwo",
+  "trait.leadership.blurb": "Organizuje ludzi wokół celu i zwykle w końcu przejmuje stery.",
+  "trait.leadership.ask": "Powiedz mi, czy mam prowadzić, czy nie. Jeśli nikt nie powie inaczej, przejmę dowodzenie.",
+
+  "trait.forgiveness.label": "Przebaczanie",
+  "trait.forgiveness.inline": "przebaczanie",
+  "trait.forgiveness.blurb": "Daje drugą szansę i odpuszcza sprawę, kiedy zostanie naprawiona.",
+  "trait.forgiveness.ask": "Przeproś szczerze i sprawa jest zamknięta. Nie prowadzę rachunku krzywd.",
+
+  "trait.humility.label": "Skromność",
+  "trait.humility.inline": "skromność",
+  "trait.humility.blurb": "Pozwala, żeby praca mówiła sama za siebie, i nie uważa się za kogoś wyjątkowego.",
+  "trait.humility.ask": "Zauważaj, co robię, bo nie będę się tym chwalić. Uznanie, o które muszę prosić, nie smakuje jak uznanie.",
+
+  "trait.prudence.label": "Roztropność",
+  "trait.prudence.inline": "roztropność",
+  "trait.prudence.blurb": "Najpierw przemyśli konsekwencje i unika ryzyka, które odbija się później.",
+  "trait.prudence.ask": "Daj mi czas, żeby przemyśleć decyzję. Moja ostrożność to troska, a nie niechęć.",
+
+  "trait.regulation.label": "Samokontrola",
+  "trait.regulation.inline": "samokontrola",
+  "trait.regulation.blurb": "Trzyma się nawyków i opiera pokusom, także gdy nikt nie patrzy.",
+  "trait.regulation.ask": "Ustal ze mną stały rytm, a będę się go trzymać. Zmiany pod wpływem kaprysu wytrącają mnie z równowagi bardziej, niż widać.",
+
+  "trait.beauty.label": "Wrażliwość na piękno",
+  "trait.beauty.inline": "wrażliwość na piękno",
+  "trait.beauty.blurb": "Dostrzega piękno i kunszt w zwykłych rzeczach i daje się nimi poruszyć.",
+  "trait.beauty.ask": "Dziel się ze mną dobrymi rzeczami: widokiem, utworem, czymś dobrze zrobionym. Tak ładuję baterie.",
+
+  "trait.gratitude.label": "Wdzięczność",
+  "trait.gratitude.inline": "wdzięczność",
+  "trait.gratitude.blurb": "Czuje wdzięczność, mówi o niej i pamięta, kto pomógł.",
+  "trait.gratitude.ask": "Pozwól mi porządnie podziękować. Kiedy to zbywasz, coś mi odbierasz.",
+
+  "trait.hope.label": "Nadzieja",
+  "trait.hope.inline": "nadzieja",
+  "trait.hope.blurb": "Spodziewa się, że wszystko dobrze się skończy, i pracuje na przyszłość, którą potrafi sobie wyobrazić.",
+  "trait.hope.ask": "Mów o tym, dokąd zmierzamy, a nie tylko o tym, co poszło źle. Najlepiej pracuję, kiedy patrzę przed siebie.",
+
+  "trait.humor.label": "Poczucie humoru",
+  "trait.humor.inline": "poczucie humoru",
+  "trait.humor.blurb": "Rozśmiesza ludzi i widzi zabawną stronę własnych pomyłek.",
+  "trait.humor.ask": "Śmiej się ze mną, kiedy jest ciężko. Mój żart to sposób, w jaki dźwigam ciężar, a nie znak, że mi nie zależy.",
+
+  "trait.spirituality.label": "Duchowość",
+  "trait.spirituality.inline": "duchowość",
+  "trait.spirituality.blurb": "Żyje wiarą albo poczuciem sensu, który sięga dalej niż własne życie.",
+  "trait.spirituality.ask": "Traktuj moją wiarę poważnie, nawet jeśli jej nie podzielasz. Kształtuje moje wybory bardziej, niż to widać.",
+
+  "view.eyebrow": "Mocne strony charakteru",
+  "view.headline": "{strength} — ty w najlepszym wydaniu",
+  "view.headlineFlat": "Żadna mocna strona się nie wyróżnia",
+  "view.bodyRanked": "Pięć najwyższych to miejsca, w których jesteś najbardziej sobą. Ten odczyt może dać ci kolejność: przy trzech pytaniach na mocną stronę potrafi ułożyć dwadzieścia cztery w szereg, ale nie potrafi zmierzyć żadnej z nich.",
+  "view.bodyFlat": "Twoje dwadzieścia cztery wyniki mieszczą się w paru krokach od siebie, więc każda pierwsza piątka byłaby kolejnością, której odpowiedzi nie uzasadniają. To prawdziwy wynik: sięgasz po wiele mocnych stron mniej więcej po równo.",
+  "view.signatureHeading": "Twoja pierwsza piątka",
+  "view.tiedAtCut": "Piąta i szósta pozycja mają ten sam wynik. O tym, która weszła do piątki, zdecydowała kolejność listy, a nie ty.",
+  "view.leastHeading": "Najrzadziej w użyciu",
+  "view.leastNote": "Dół listy to to, po co sięgasz najrzadziej, a nie to, czego ci brakuje. Nikt nie korzysta ze wszystkich dwudziestu czterech po równo i nic tutaj nie jest słabością.",
+  "view.tiedAtFloor": "Trzecia od końca ma ten sam wynik co ta nad nią, więc o tym, która trafiła tutaj, zdecydowała kolejność listy, a nie ty.",
+  "view.allHeading": "Wszystkie dwadzieścia cztery",
+  "view.straightlining": "Każde pytanie dostało tę samą odpowiedź. Co trzecie stwierdzenie jest celowo sformułowane odwrotnie, więc identyczna odpowiedź we wszystkich siedemdziesięciu dwóch daje płaską listę — kimkolwiek jesteś. Warto powtórzyć.",
+  "view.researchNote": "To mocne strony charakteru, a nie umiejętności. Cechy mierzy się zwykle tak, że ludzie sami opisują, jacy są; samoocena tego, w czym jest się dobrym, to dużo słabszy dowód — i dlatego test „Dowody mocnych stron” prosi zamiast niej o paragony.",
+
+  "instructions.title": "Ja w najlepszym wydaniu: {strength}",
+  "instructions.flatTitle": "Wiele mocnych stron, żadna na czele",
+  "instructions.flatBody": "Żadna z moich mocnych stron się nie wyróżnia. Zamiast odczytywać to z listy, zapytaj mnie, co wnoszę do tej konkretnej sprawy.",
+
+  "item.cr1": "Wymyślam nowe sposoby robienia zwyczajnych rzeczy.",
+  "item.cr2": "Ludzie przychodzą do mnie, kiedy potrzebują świeżego pomysłu.",
+  "item.cr3": "Wolę robić rzeczy tak, jak robiło się je zawsze.",
+  "item.cu1": "Zadaję pytania o rzeczy, które większość ludzi uważa za oczywiste.",
+  "item.cu2": "Wciąga mnie dochodzenie do tego, jak coś działa.",
+  "item.cu3": "Rzadko zastanawiam się nad sprawami spoza mojego życia.",
+  "item.ju1": "Zanim zdecyduję, patrzę na sprawę z kilku stron.",
+  "item.ju2": "Zmieniam zdanie, kiedy dowody wskazują w drugą stronę.",
+  "item.ju3": "Kiedy już mam zdanie, przestaję słuchać innych argumentów.",
+  "item.le1": "Uczę się nowych umiejętności dla samej przyjemności.",
+  "item.le2": "Najlepiej się czuję, kiedy uczę się czegoś nowego.",
+  "item.le3": "Uczę się czegoś nowego tylko wtedy, gdy muszę.",
+  "item.pe1": "Przyjaciele proszą mnie o radę, kiedy życie się komplikuje.",
+  "item.pe2": "W sytuacji, w której inni się gubią, widzę, co jest ważne.",
+  "item.pe3": "Szczegóły przesłaniają mi szerszy obraz.",
+
+  "item.br1": "Mówię głośno, gdy coś jest nie w porządku, nawet jeśli to niepopularne.",
+  "item.br2": "Robię, co trzeba, nawet kiedy się boję.",
+  "item.br3": "Wolę milczeć, niż wejść w konfrontację.",
+  "item.ps1": "Ciągnę trudne zadanie dalej, gdy inni już się poddali.",
+  "item.ps2": "Przeszkody tylko mnie mobilizują, żeby doprowadzić sprawę do końca.",
+  "item.ps3": "Poddaję się, kiedy robi się trudno.",
+  "item.ho1": "Mówię prawdę, nawet gdy małe kłamstwo byłoby łatwiejsze.",
+  "item.ho2": "Przy ludziach pokazuję, kim naprawdę jestem.",
+  "item.ho3": "Naginam prawdę, żeby wypaść lepiej.",
+  "item.ze1": "Budzę się z ochotą na nowy dzień.",
+  "item.ze2": "Angażuję się bez reszty we wszystko, co robię.",
+  "item.ze3": "Często brakuje mi energii.",
+
+  "item.lo1": "Mam bliskich, którzy znają mnie na wylot.",
+  "item.lo2": "Łatwo mi okazywać czułość ludziom, których kocham.",
+  "item.lo3": "Nawet najbliższych trzymam na dystans.",
+  "item.ki1": "Nie szczędzę wysiłku, żeby pomóc komuś, komu jest ciężko.",
+  "item.ki2": "Wyświadczam ludziom przysługi, zanim o nie poproszą.",
+  "item.ki3": "Mam za dużo na głowie, żeby zajmować się cudzymi kłopotami.",
+  "item.so1": "Wyczuwam, co ktoś czuje, zanim to powie.",
+  "item.so2": "Umiem się odnaleźć w bardzo różnych grupach ludzi.",
+  "item.so3": "Często nie zauważam, co czują inni.",
+
+  "item.te1": "W grupie robię całą swoją część pracy.",
+  "item.te2": "Cel grupy stawiam wyżej niż własne zasługi.",
+  "item.te3": "W grupie zostawiam ciężar pracy innym.",
+  "item.fa1": "Traktuję ludzi tak samo, niezależnie od tego, czy ich lubię.",
+  "item.fa2": "Uczciwie wysłuchuję każdego, także tych, z którymi się nie zgadzam.",
+  "item.fa3": "Dla ludzi, których lubię, przymykam oko na zasady.",
+  "item.ld1": "W grupie zwykle to ja w końcu wszystko organizuję.",
+  "item.ld2": "Potrafię sprawić, że ludzie razem pracują na wspólny cel.",
+  "item.ld3": "Unikam przejmowania dowodzenia, nawet gdy nikt inny się go nie podejmie.",
+
+  "item.fo1": "Daję ludziom drugą szansę.",
+  "item.fo2": "Kiedy ktoś przeprasza, puszczam sprawę w niepamięć.",
+  "item.fo3": "Długo chowam urazę.",
+  "item.hu1": "Pozwalam, by moja praca mówiła sama za siebie, zamiast ją zachwalać.",
+  "item.hu2": "Nie uważam się za kogoś wyjątkowego na tle innych.",
+  "item.hu3": "Dbam o to, żeby ludzie wiedzieli o moich osiągnięciach.",
+  "item.pr1": "Zanim zacznę działać, zastanawiam się nad konsekwencjami.",
+  "item.pr2": "Unikam ryzyka, które mogłoby mi później zaszkodzić.",
+  "item.pr3": "Ważne decyzje podejmuję pod wpływem impulsu.",
+  "item.re1": "Potrafię oprzeć się pokusie, kiedy wiem, że tak trzeba.",
+  "item.re2": "Trzymam się swoich nawyków, nawet gdy nikt tego nie sprawdza.",
+  "item.re3": "Ulegam pokusom wbrew własnym postanowieniom.",
+
+  "item.be1": "Zatrzymuję się, żeby dostrzec piękno w codziennym życiu.",
+  "item.be2": "Wzrusza mnie widok kogoś, kto robi coś po mistrzowsku.",
+  "item.be3": "Prawie nie zauważam piękna wokół siebie.",
+  "item.gr1": "Często czuję wdzięczność za to, co mam.",
+  "item.gr2": "Pilnuję, żeby dziękować ludziom, którzy mi pomogli.",
+  "item.gr3": "Rzadko myślę o tym, co inni dla mnie zrobili.",
+  "item.hp1": "Spodziewam się, że w końcu wszystko dobrze się ułoży.",
+  "item.hp2": "Wyraźnie widzę przyszłość, na którą pracuję.",
+  "item.hp3": "Kiedy myślę o przyszłości, zwykle spodziewam się najgorszego.",
+  "item.hm1": "Potrafię rozśmieszyć ludzi nawet w kiepski dzień.",
+  "item.hm2": "Widzę zabawną stronę własnych wpadek.",
+  "item.hm3": "Ludzie mówią mi, że biorę wszystko zbyt poważnie.",
+  "item.sp1": "Moja wiara kształtuje to, jak żyję na co dzień.",
+  "item.sp2": "Czuję się częścią czegoś większego ode mnie.",
+  "item.sp3": "Rzadko zastanawiam się nad sensem swojego życia.",
+};

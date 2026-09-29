@@ -80,7 +80,8 @@ export function reflectablesOf(spec: InstrumentSpec, result: unknown, t: T): Ref
   const scores = (result as Scored)?.scores;
   if (scores && typeof scores === "object") {
     const rows: Reflectable[] = [];
-    for (const key of Object.keys(scores)) {
+    const asked = spec.reflectOn ? spec.reflectOn(result).filter((key) => key in scores) : Object.keys(scores);
+    for (const key of asked) {
       const label = labelFor(key, t);
       // A scale whose name cannot be found is skipped rather than shown under
       // its own key. The test is what stops that being a silent hole.

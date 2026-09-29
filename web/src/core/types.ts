@@ -207,6 +207,17 @@ export interface InstrumentSpec<R = unknown> {
    * is stored separately from the run.
    */
   playbook?(result: R, t: T): Playbook;
+
+  /**
+   * Which scales the result page asks "how much does this matter to you"
+   * about, when not all of them.
+   *
+   * Every scale is asked by default, which is right for four or six and wrong
+   * for twenty-four: a reader who has just seen their five strongest character
+   * strengths does not owe the app a weight and a reason for the nineteen
+   * others. Keys not in the result's `scores` are ignored.
+   */
+  reflectOn?(result: R): string[];
 }
 
 export type Audience = "private" | "partner" | "friends" | "public";

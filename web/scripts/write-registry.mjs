@@ -15,12 +15,20 @@ import { readdir, writeFile, access } from "node:fs/promises";
 const ORDER = [
   "love-languages", "attachment", "couple-conversations", "intimacy-conditions",
   "attraction", "intimacy-map", "conflict-style", "enneagram", "big-five",
-  "hexaco", "jungian", "riasec",
+  "hexaco",
+  // How the traits above hold up under strain, read on their own scales; after
+  // the two broad models it borrows vocabulary from, before the type systems.
+  "under-pressure",
+  "jungian", "riasec",
   // The career trio, after riasec and before the preference profilers, because
   // that is the order they answer in: which subject holds you (riasec), what
   // the doing is made of (work-shape), what a job has to supply (work-values),
   // and then what you can actually produce a receipt for.
   "work-shape", "work-values", "strength-evidence",
+  // Straight after the receipts, because it answers the question they refuse
+  // to: not what you can prove you are good at, but what you are like at your
+  // best. Each result points at the other.
+  "character-strengths",
   "working-style", "study-practice",
   "chronotype", "numerology",
   // The inventories, as one contiguous run. `registry.groups()` files them

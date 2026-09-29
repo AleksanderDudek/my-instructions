@@ -18,11 +18,13 @@ import conflictStyle from "./conflict-style";
 import enneagram from "./enneagram";
 import bigFive from "./big-five";
 import hexaco from "./hexaco";
+import underPressure from "./under-pressure";
 import jungian from "./jungian";
 import riasec from "./riasec";
 import workShape from "./work-shape";
 import workValues from "./work-values";
 import strengthEvidence from "./strength-evidence";
+import characterStrengths from "./character-strengths";
 import workingStyle from "./working-style";
 import studyPractice from "./study-practice";
 import chronotype from "./chronotype";
@@ -47,11 +49,13 @@ const MODULES = [
   enneagram,
   bigFive,
   hexaco,
+  underPressure,
   jungian,
   riasec,
   workShape,
   workValues,
   strengthEvidence,
+  characterStrengths,
   workingStyle,
   studyPractice,
   chronotype,

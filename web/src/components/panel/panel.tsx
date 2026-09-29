@@ -9,6 +9,7 @@ import { Plate, PlateHead } from "@/components/ui/primitives";
 import { Button } from "@/components/ui/button";
 import { FieldControl } from "@/components/form/item-controls";
 import { ThemePicker } from "./theme-picker";
+import { InstallApp } from "./install-app";
 
 /**
  * The panel: who the sheet is addressed from, which language, and the data.
@@ -130,6 +131,13 @@ export function Panel({
             </Link>
           ))}
         </div>
+      </Plate>
+
+      <Plate>
+        <PlateHead title={copy.installSection} note={copy.installNote} />
+        <InstallApp
+          copy={{ cta: copy.installCta, ios: copy.installIos, manual: copy.installManual, done: copy.installDone }}
+        />
       </Plate>
 
       <Plate>

@@ -29,7 +29,7 @@ export function Bars({ rows, showShare = false }: { rows: BarRow[]; showShare?: 
               <span className={cn("text-[0.95rem]", lead ? "text-ink" : "text-ink/75")}>{r.label}</span>
               <span className="num text-sm text-muted">
                 <span className={lead ? "text-brass" : undefined}>{r.score}</span>
-                {showShare && r.share != null ? <span className="ml-2 text-faint">{r.share}%</span> : null}
+                {showShare && r.share != null ? <span className="ml-2 text-muted">{r.share}%</span> : null}
               </span>
             </div>
             {/* The bar is decoration for a number that is already written above

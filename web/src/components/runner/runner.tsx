@@ -11,6 +11,13 @@ import { useStore } from "@/components/shell/store-provider";
 import { createI18n, format, type Messages } from "@/core/i18n";
 
 /**
+ * The runner's Back / Next bar. Pinned to the bottom edge on phones, with the
+ * home indicator cleared; an ordinary row under the page from `sm` up.
+ */
+const ACTION_BAR =
+  "sticky bottom-0 z-30 -mx-4 mt-8 flex items-center justify-between gap-3 border-t border-rule bg-ground/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-sm sm:static sm:mx-0 sm:bg-transparent sm:px-0 sm:pb-0 sm:pt-6 sm:backdrop-blur-none";
+
+/**
  * The runner.
  *
  * Client-only on purpose, and rendered behind a loading state rather than
@@ -451,9 +458,11 @@ export function Runner({
           />
         ))}
         {form.note ? <p className="mb-6 max-w-[62ch] text-sm text-muted">{form.note}</p> : null}
-        <Button type="submit" variant="primary" disabled={saving} data-testid="finish">
-          {copy.finish}
-        </Button>
+        <div className={ACTION_BAR}>
+          <Button type="submit" variant="primary" disabled={saving} data-testid="finish" className="ml-auto sm:ml-0">
+            {copy.finish}
+          </Button>
+        </div>
       </form>
     );
   }
@@ -576,7 +585,10 @@ export function Runner({
         })}
       </div>
 
-      <nav className="mt-8 flex items-center justify-between gap-4 border-t border-rule pt-6">
+      {/* On a phone the page's controls ride the bottom edge, where the thumb
+          is and where the tab bar was (it steps aside while a test is taken).
+          The page may be long; the way on should not be at the end of it. */}
+      <nav className={ACTION_BAR}>
         <Button onClick={() => goto(state.page - 1)} disabled={state.page === 0} data-testid="prev">
           {copy.back}
         </Button>

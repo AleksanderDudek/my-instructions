@@ -49,7 +49,7 @@ export default async function ResultPage({
   return (
     <>
       <header className="flex flex-col gap-3 py-10">
-        <Link href={`/${locale}/tests`} className="label-caps hover:text-ink">
+        <Link href={`/${locale}/tests`} className="label-caps hidden self-start hover:text-ink sm:inline">
           {t("common.allTests")}
         </Link>
         <h1 className="text-3xl">{messages[`${spec.id}.title`]}</h1>

@@ -56,7 +56,7 @@ export default async function Take({
       <header className="flex flex-col gap-3 py-10">
         <Link
           href={`/${locale}/tests/${id}`}
-          className="label-caps hover:text-ink"
+          className="label-caps hidden self-start hover:text-ink sm:inline"
         >
           {i18n.t("common.back")}
         </Link>

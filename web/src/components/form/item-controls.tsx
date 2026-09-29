@@ -341,7 +341,7 @@ export function ItemControl({
           ))}
         </RadioGroup.Root>
         {item.minLabel || item.maxLabel ? (
-          <div aria-hidden className="mt-2 flex justify-between gap-6 text-sm text-faint">
+          <div aria-hidden className="mt-2 flex justify-between gap-6 text-sm text-muted">
             <span>{item.minLabel}</span>
             <span className="text-right">{item.maxLabel}</span>
           </div>

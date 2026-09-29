@@ -5,7 +5,8 @@ import { TAGS, isLocale, getI18n, LOCALES } from "@/core/locales";
 import type { Locale } from "@/core/types";
 import { Nav } from "@/components/shell/nav";
 import { StoreProvider } from "@/components/shell/store-provider";
-import { THEME_SCRIPT } from "@/core/theme";
+import { GROUND, THEME_SCRIPT } from "@/core/theme";
+import { ServiceWorker } from "@/components/shell/pwa";
 import "../globals.css";
 
 /**
@@ -40,11 +41,17 @@ export function generateStaticParams() {
   return TAGS.map((locale) => ({ locale }));
 }
 
+/*
+ * `viewport-fit=cover` lets the page run under a notch and a home indicator,
+ * which it then clears itself with `env(safe-area-inset-*)` — the banner at
+ * the top, the tab bar at the bottom, the column at the sides in landscape.
+ * The theme colour is not declared here: a media-query pair can only follow
+ * the OS, so the pre-paint script sets it from the chosen theme instead.
+ */
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#130c0b" },
-    { media: "(prefers-color-scheme: light)", color: "#efe6d2" },
-  ],
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -63,6 +70,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       languages: { ...Object.fromEntries(TAGS.map((tag) => [tag, `/${tag}`])), "x-default": "/en" },
     },
     openGraph: { type: "website", locale, siteName: t("app.title"), title: t("app.title"), description: t("app.tagline") },
+    // Each language installs as itself; see the manifest route.
+    manifest: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/${locale}/manifest.webmanifest`,
+    appleWebApp: { capable: true, title: t("app.shortName"), statusBarStyle: "default" },
+    // Dates and scores are not phone numbers; iOS would otherwise link them.
+    formatDetection: { telephone: false },
   };
 }
 
@@ -102,6 +114,7 @@ export default async function LocaleLayout({
           which is why <html> carries `suppressHydrationWarning` — and the
           source, with the reasons, is `core/theme.ts`.
         */}
+        <meta name="theme-color" content={GROUND.dark} />
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body>
@@ -120,7 +133,7 @@ export default async function LocaleLayout({
             through the header should not have to pass it. Sticky, so the
             claim stays on screen while the tests below it do their measuring.
           */}
-          <div className="sticky top-0 z-40 border-b border-brass/40 bg-ground/88 backdrop-blur-sm">
+          <div className="sticky top-0 z-40 border-b border-brass/40 bg-ground/88 pt-[env(safe-area-inset-top)] backdrop-blur-sm">
             <p className="mx-auto max-w-5xl px-4 py-2 text-center font-display text-[0.82rem] leading-snug text-balance text-brass-hi sm:px-5 sm:py-2.5 sm:text-[0.95rem]">
               {t("app.benediction")}
             </p>
@@ -132,11 +145,12 @@ export default async function LocaleLayout({
             under the navigation. From `sm` the bar is gone and the padding is
             only page-bottom breathing room.
           */}
-          <div className="mx-auto w-full max-w-5xl px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:px-5 sm:pb-32">
+          <div className="mx-auto w-full max-w-5xl pb-[calc(6rem+env(safe-area-inset-bottom))] pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-5 sm:pb-32">
             <Nav
               locale={locale as Locale}
               labels={{
                 title: t("app.title"),
+                back: t("common.back"),
                 home: t("nav.home"),
                 paths: t("nav.paths"),
                 tests: t("nav.tests"),
@@ -148,6 +162,7 @@ export default async function LocaleLayout({
               locales={LOCALES.map((l) => ({ tag: l.tag, endonym: l.endonym }))}
             />
             <main id="main">{children}</main>
+            <ServiceWorker />
           </div>
         </StoreProvider>
       </body>

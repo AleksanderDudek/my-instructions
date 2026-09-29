@@ -16,6 +16,7 @@ const KEYS = [
   "resultsSection", "noResults", "dataSection", "storageOk", "storageBad",
   "export", "import", "imported", "wipe", "wipeConfirm", "languageSection", "languageNote",
   "themeSection", "themeNote", "theme.system", "theme.dark", "theme.light", "theme.white",
+  "installSection", "installNote", "installCta", "installIos", "installManual", "installDone",
 ] as const;
 
 export default async function PanelPage({ params }: { params: Promise<{ locale: string }> }) {

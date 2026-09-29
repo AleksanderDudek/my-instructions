@@ -17,6 +17,16 @@ export type Theme = Exclude<ThemeChoice, "system">;
 
 export const THEME_KEY = "mi:theme";
 
+/**
+ * Each theme's `ground`, for the browser's own chrome — the address bar, the
+ * task switcher, an installed app's title bar. A media-query pair of
+ * theme-color tags can only follow the OS, so a reader on a dark phone who
+ * chose White & gold would get a black bar over a white page; the script
+ * below sets the one tag from the resolved theme instead. A test holds these
+ * equal to `--color-ground` in globals.css.
+ */
+export const GROUND: Record<Theme, string> = { dark: "#130c0b", light: "#efe6d2", white: "#f9f8f4" };
+
 export const isThemeChoice = (value: unknown): value is ThemeChoice => THEMES.includes(value as ThemeChoice);
 
 /** A stored choice wins; anything else follows the OS. */
@@ -35,7 +45,7 @@ export function resolveTheme(stored: string | null | undefined, prefersLight: bo
  * Storage that throws (private mode, a sandboxed frame) leaves the dark
  * default in place, which is the primary world rather than a broken page.
  */
-export const THEME_SCRIPT = `(function(){try{var d=document.documentElement,m=matchMedia("(prefers-color-scheme: light)");function a(){var s=null;try{s=localStorage.getItem(${JSON.stringify(THEME_KEY)})}catch(e){}d.dataset.theme=s==="dark"||s==="light"||s==="white"?s:m.matches?"light":"dark"}a();m.addEventListener("change",a)}catch(e){}})()`;
+export const THEME_SCRIPT = `(function(){try{var d=document.documentElement,m=matchMedia("(prefers-color-scheme: light)"),g=${JSON.stringify(GROUND)};function a(){var s=null;try{s=localStorage.getItem(${JSON.stringify(THEME_KEY)})}catch(e){}var t=s==="dark"||s==="light"||s==="white"?s:m.matches?"light":"dark";d.dataset.theme=t;paintChrome(t)}function paintChrome(t){var c=document.querySelector('meta[name="theme-color"]');if(!c){c=document.createElement("meta");c.name="theme-color";document.head.appendChild(c)}c.content=g[t]}a();m.addEventListener("change",a)}catch(e){}})()`;
 
 /** Fired on `window` whenever this page changes the choice, for anything showing it. */
 export const THEME_EVENT = "mi:theme";
@@ -68,6 +78,9 @@ export function applyThemeChoice(choice: ThemeChoice): void {
     // Unstorable: the choice still applies to this page view.
   }
   const prefersLight = matchMedia("(prefers-color-scheme: light)").matches;
-  document.documentElement.dataset.theme = choice === "system" ? resolveTheme(null, prefersLight) : choice;
+  const theme = choice === "system" ? resolveTheme(null, prefersLight) : choice;
+  document.documentElement.dataset.theme = theme;
+  const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+  if (meta) meta.content = GROUND[theme];
   window.dispatchEvent(new Event(THEME_EVENT));
 }

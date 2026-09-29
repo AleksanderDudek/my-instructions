@@ -17,10 +17,10 @@ export const buttonClass = cva(
   {
     variants: {
       variant: {
-        default: "border-rule bg-panel-2 text-ink hover:border-brass",
-        primary: "border-brass bg-wine text-on-wine shadow-[inset_0_0_0_1px_var(--color-lead)] hover:border-brass-hi",
-        danger: "border-madder bg-transparent text-madder hover:bg-madder/10",
-        ghost: "border-transparent bg-transparent text-muted hover:text-ink",
+        default: "border-rule bg-panel-2 text-ink hover:border-brass active:border-brass-hi active:bg-panel",
+        primary: "border-brass bg-wine text-on-wine shadow-[inset_0_0_0_1px_var(--color-lead)] hover:border-brass-hi active:bg-wine/85",
+        danger: "border-madder bg-transparent text-madder hover:bg-madder/10 active:bg-madder/15",
+        ghost: "border-transparent bg-transparent text-muted hover:text-ink active:text-ink",
       },
     },
     defaultVariants: { variant: "default" },

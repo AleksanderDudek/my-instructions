@@ -110,7 +110,7 @@ export function Tracks({
               {track.preset ? (
                 <p className="mt-6 max-w-[62ch] border-l-2 border-rule pl-5 text-sm leading-relaxed text-muted">
                   {copy["paths.endsAt"].replace("{profile}", copy[`profiles.preset.${track.preset}`])}{" "}
-                  <Link href={`/${locale}/sharing`} className="text-brass hover:text-brass-hi">
+                  <Link href={`/${locale}/sharing`} className="text-brass underline underline-offset-4 hover:text-brass-hi">
                     {copy["paths.toSharing"]}
                   </Link>
                 </p>

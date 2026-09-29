@@ -1,7 +1,7 @@
 /**
  * Provenance for under-pressure.
  *
- * See src/core/provenance.js for what each field means and why the evidence
+ * See src/core/provenance.ts for what each field means and why the evidence
  * block is allowed to be embarrassing. The licence research behind the
  * `avoided` list is reports/Six test sources and licences.md.
  */

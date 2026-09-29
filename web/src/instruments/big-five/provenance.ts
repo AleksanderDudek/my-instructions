@@ -1,7 +1,7 @@
 /**
  * Provenance for big-five.
  *
- * Checked by test/instruments/provenance.test.js. See src/core/provenance.js
+ * Checked by test/instruments/provenance.test.ts. See src/core/provenance.ts
  * for what each field means and why the evidence block is allowed to be
  * embarrassing.
  */

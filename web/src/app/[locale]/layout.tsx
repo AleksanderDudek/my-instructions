@@ -158,6 +158,13 @@ export default async function LocaleLayout({
                 sharing: t("nav.sharing"),
                 panel: t("nav.panel"),
                 language: t("app.language"),
+                tabs: {
+                  home: t("nav.tab.home"),
+                  paths: t("nav.tab.paths"),
+                  tests: t("nav.tab.tests"),
+                  instructions: t("nav.tab.instructions"),
+                  sharing: t("nav.tab.sharing"),
+                },
               }}
               locales={LOCALES.map((l) => ({ tag: l.tag, endonym: l.endonym }))}
             />

@@ -1,7 +1,7 @@
 /**
  * Provenance for intimacy-conditions.
  *
- * Checked by test/instruments/provenance.test.js.
+ * Checked by test/instruments/provenance.test.ts.
  */
 export default {
   construct: {

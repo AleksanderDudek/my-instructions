@@ -53,8 +53,16 @@ const spec: InstrumentSpec<unknown> = {
   playbook: () => ({ ok: [{ id: "o1", text: "one" }], notOk: [{ id: "n1", text: "two" }] }),
 };
 
+/** The least provenance the registry accepts, so these checks reach the form. */
+const PROVENANCE = {
+  construct: { name: "fixture", public: true },
+  items: { origin: "original" },
+  evidence: { reliability: "none", factorStructure: "none", criterion: "none" },
+  reproduces: [],
+};
+
 const asModule = (override: Partial<InstrumentSpec<unknown>> = {}) =>
-  ({ spec: { ...spec, ...override }, View: () => null, provenance: {} }) as unknown as InstrumentModule;
+  ({ spec: { ...spec, ...override }, View: () => null, provenance: PROVENANCE }) as unknown as InstrumentModule;
 
 /** A one-item bank, for the checks that are about the item and nothing else. */
 const withItems = (items: unknown[]) =>

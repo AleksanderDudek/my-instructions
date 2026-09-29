@@ -1,7 +1,7 @@
 /**
  * Provenance for character-strengths.
  *
- * See src/core/provenance.js for what each field means. The licence research
+ * See src/core/provenance.ts for what each field means. The licence research
  * behind the `avoided` list is reports/Six test sources and licences.md.
  */
 export default {

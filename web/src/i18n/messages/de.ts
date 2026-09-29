@@ -365,6 +365,12 @@ export default {
   "track.statement.title": "Leuten sagen, wer ich bin",
   "track.statement.lead": "Drei, mit Absicht. Eine öffentliche Seite aus fünf Instrumenten ist eine Akte; aus dreien ist sie eine Vorstellung. Jedes davon ist etwas, das du sagen wolltest, und nichts, das an dir gemessen wurde.",
   "nav.paths": "Wo anfangen",
+  /* The phone tab bar: five fifths of a narrow screen, so one short word each. */
+  "nav.tab.home": "Start",
+  "nav.tab.paths": "Wege",
+  "nav.tab.tests": "Tests",
+  "nav.tab.instructions": "Anleitung",
+  "nav.tab.sharing": "Teilen",
   "profiles.deleteConfirm": "Löschen — noch einmal klicken",
   "profiles.deleteConfirmLive": "Zurückholen und löschen — noch einmal klicken",
   "profiles.deleteBlocked": "Der Link ließ sich nicht zurückholen, also wurde nichts gelöscht. Jetzt zu löschen würde das Einzige wegwerfen, das diesen Link je zurücknehmen kann. Versuch es gleich noch einmal.",

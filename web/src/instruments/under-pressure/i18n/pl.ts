@@ -17,6 +17,7 @@ export default {
   "tagline": "Jak się trzymasz, gdy plan się sypie, praca się dłuży albo ktoś stawia opór.",
   "framework": "Hardiness i model 4C odporności psychicznej",
   "sourceNote": "Autorskie pytania oparte na publicznym konstrukcie hardiness (Kobasa, 1979) i na wyrosłym z niego modelu 4C odporności psychicznej (Clough, Earle i Sewell, 2002), połowa z nich odwrócona. Nie użyto żadnego pytania z MTQ48. Publiczne skale IPIP mierzące poczucie własnej skuteczności, podatność na stres, asertywność i pracowitość można podstawić jako dane, jeśli wolisz sformułowania o opublikowanej rzetelności.",
+  "lineage": "Kobasa (1979) opisała hardiness jako zaangażowanie, kontrolę i otwartość na wyzwania; Clough, Earle i Sewell (2002) dodali pewność siebie, tworząc model 4C. Niezależne badania nie potwierdziły jednoznacznie podziału na cztery składniki, a pytania z MTQ48 nie są tu użyte.",
 
   "trait.control.label": "Kontrola",
   "trait.control.inline": "kontroli",

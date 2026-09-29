@@ -12,6 +12,7 @@ export default {
   "tagline": "Fünfzig konkrete Dinge, was du von jedem hältst und wo ihr euch wirklich trefft — nur für diesen Tab.",
   "framework": "Gerichtete Items, über ein Paar hinweg zusammengeführt",
   "sourceNote": "Fünfzig Items, einzeln gefragt, und jedes davon hier geschrieben. Keine der kursierenden Listen trägt eine brauchbare Inhaltslizenz — die, die freizügig lizenziert aussehen, lizenzieren den Code, während ihr Wortlaut von älteren, nicht zugeschriebenen Listen abstammt — also ist nichts daraus zitiert. Übernommen ist eine einzige Idee, weil sie eine Idee und keine Formulierung ist und weil sie der beste Fund jener Tradition ist: die beiden Richtungen einer Handlung müssen getrennt gefragt werden, denn «geben» und «bekommen» ist das falsche Paar fürs Obensein und ein Unsinn fürs Zusehen. Was hier daraus wird, ist neu. Wo jene Bögen beide Richtungen bewerten und dann jede mit ihrem eigenen Zwilling vergleichen, steht hier dein Geben ihrem Bekommen gegenüber — und genau diese Paarung entscheidet, ob ein Abend funktioniert. Nichts davon wird gespeichert, exportiert oder verlinkbar.",
+  "lineage": "Übernommen ist eine Idee aus den Verhandlungs-Checklisten, die Paare seit Langem benutzen: Jede Handlung wird in beiden Richtungen, Geben und Bekommen, getrennt gefragt. Von keiner Checkliste wird Wortlaut übernommen; jedes Item ist hier geschrieben.",
   "section.pace": "Tempo und Nähe",
   "section.acts": "Handlungen",
   "section.positions": "Stellungen",

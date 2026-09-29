@@ -6,6 +6,7 @@ export default {
   "tagline": "What a job has to give you before the subject matter starts to matter.",
   "framework": "The six work values of the Theory of Work Adjustment",
   "sourceNote": "The six values are Dawis and Lofquist's, reduced from the Minnesota Importance Questionnaire's twenty needs by factor analysis, and adopted under these names by the US Department of Labor for the O*NET Work Importance Locator — a federal work product released under CC BY 4.0. The taxonomy is free to use with attribution; the Minnesota questionnaire is not, and none of its items are here. These thirty-six sentences are ours, which means the six-factor structure is a property of the Minnesota data and not of this bank. It has never been given to a sample and has no norms.",
+  "lineage": "The six work values come from Dawis and Lofquist's Theory of Work Adjustment and were adopted by the US Department of Labor for O*NET, which publishes them under CC BY 4.0. The Minnesota Importance Questionnaire's items are not used.",
 
   "value.achievement.label": "Achievement",
   "value.achievement.blurb": "Using what you are good at, and being able to see that something got done.",

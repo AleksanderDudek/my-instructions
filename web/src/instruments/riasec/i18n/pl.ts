@@ -10,6 +10,7 @@ export default {
   "tagline": "Sześć rodzajów pracy, które dodają energii, zamiast ją zabierać — i kształt, jaki razem tworzą.",
   "framework": "Sześciokąt RIASEC Hollanda",
   "sourceNote": "Sześć typów zainteresowań Hollanda i sześciokąt, na którym leżą, są publiczne, a publiczne pule pozycji istnieją — markery Liao, Armstronga i Roundsa oraz Interest Profiler Departamentu Pracy USA. Te pozycje napisano od nowa wobec tych samych sześciu definicji i pytają o czynności, a nie o nazwy zawodów: nazwa zawodu niesie ze sobą pensję, status i stereotyp, i ludzie odpowiadają na te rzeczy zamiast na pracę.",
+  "lineage": "Sześć typów zainteresowań Johna Hollanda i ich sześciokąt były rozwijane od 1959 roku i są publiczne. Istnieją pule pozycji w domenie publicznej; mimo to pozycje tutaj napisano od nowa.",
 
   "type.realistic.label": "Realistyczny",
   "type.realistic.blurb": "Praca z rzeczami — maszynami, materiałami, światem fizycznym. Preferencja problemu, który da się wziąć do ręki.",

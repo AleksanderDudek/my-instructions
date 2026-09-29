@@ -6,6 +6,7 @@ export default {
   "tagline": "Wie hart du für dein eigenes Ergebnis drückst und wie viel Gewicht du dem der anderen Person gibst.",
   "framework": "Modell der doppelten Anliegen",
   "sourceNote": "Das Modell der doppelten Anliegen ist öffentliche Theorie: Die fünf bekannten Modi sind Regionen einer Ebene aus dem Anliegen am eigenen Ergebnis und dem am Ergebnis der anderen Person. Das Instrument von Thomas und Kilmann, das dies operationalisiert, ist kommerziell lizenziert und wird hier nicht wiedergegeben. Dies sind eigene Fragen, und der Modus wird aus den beiden Anliegen abgeleitet statt direkt erfragt.",
+  "lineage": "Das Modell der doppelten Anliegen — das Anliegen am eigenen Ergebnis, abgewogen gegen das Anliegen am Ergebnis der anderen Person — stammt von Blake und Mouton sowie von Pruitt und Rubin. Das darauf aufbauende Thomas-Kilmann-Instrument ist kommerziell lizenziert und wird nicht verwendet.",
 
   "dim.assertiveness.label": "Durchsetzung",
   "dim.assertiveness.blurb": "Wie hart du für das Ergebnis drückst, das du wirklich willst.",

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getInstrumentI18n, isLocale, TAGS } from "@/core/locales";
 import { registry } from "@/instruments";
 import type { Locale } from "@/core/types";
-import { Plate, PlateHead, Prose } from "@/components/ui/primitives";
+import { Card, Plate, PlateHead, Prose } from "@/components/ui/primitives";
 import { buttonClass } from "@/components/ui/button-styles";
 
 /**
@@ -117,22 +117,55 @@ export default async function InstrumentPage({ params }: { params: Promise<{ loc
         <Prose>{it("sourceNote")}</Prose>
       </Plate>
 
+      {/*
+        Where it comes from: the framework's record beside ours. Putting them
+        side by side is the argument — the idea may be old, serious and
+        replicated, and these questions are still unmeasured, and a reader
+        should see both claims without being able to mistake one for the
+        other. Every value is a translated word, never a field printed raw;
+        the long disclaimer is one tap away rather than a wall under it.
+      */}
       <Plate>
         <PlateHead title={t("instrument.provenance")} note={t("instrument.provenanceNote")} />
-        <dl className="grid gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-2">
-          {[
-            [t("instrument.construct"), provenance.construct.name],
-            [t("instrument.items"), provenance.items.origin],
-            [t("instrument.reliability"), provenance.evidence.reliability],
-            [t("instrument.factors"), provenance.evidence.factorStructure],
-          ].map(([k, v]) => (
-            <div key={k} className="bg-panel p-4">
-              <dt className="label-caps mb-1">{k}</dt>
-              <dd className="text-[0.95rem] text-ink/90">{v}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-4 max-w-[62ch] text-sm leading-relaxed text-muted">{t("app.noValidation")}</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Card className="flex flex-col gap-2">
+            <span className="label-caps">{t("provenance.framework")}</span>
+            <h3 className="text-lg">{it("framework")}</h3>
+            <p className="text-[0.95rem] leading-relaxed text-ink/90">{it("lineage")}</p>
+          </Card>
+
+          <Card className="flex flex-col gap-3">
+            <span className="label-caps">{t("provenance.ours")}</span>
+            <p className="font-display text-lg">{t(`provenance.origin.${provenance.items.origin}`)}</p>
+            {spec.family === "inventory" ? (
+              // An inventory measures nothing by design; three rows of "not
+              // measured" would read as a shortfall rather than as the point.
+              <p className="text-[0.95rem] leading-relaxed text-ink/90">{t("provenance.inventory")}</p>
+            ) : (
+              <dl className="flex flex-col">
+                {(["reliability", "factorStructure", "criterion"] as const).map((k) => (
+                  <div key={k} className="flex items-baseline justify-between gap-4 border-t border-rule py-2">
+                    <dt className="label-caps">{t(`provenance.${k}`)}</dt>
+                    <dd className="text-right text-[0.95rem] text-ink/90">
+                      {t(`provenance.evidence.${provenance.evidence[k]}`)}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+          </Card>
+        </div>
+
+        <p className="mt-6 max-w-[62ch] leading-relaxed text-ink/90">{t("provenance.readAs")}</p>
+        <details className="group mt-2 max-w-[62ch]">
+          <summary className="tap flex cursor-pointer list-none items-center gap-2 text-[0.95rem] text-brass hover:text-brass-hi [&::-webkit-details-marker]:hidden">
+            <span aria-hidden className="inline-block text-lg leading-none group-open:rotate-90">
+              ›
+            </span>
+            <span className="underline underline-offset-4">{t("provenance.why")}</span>
+          </summary>
+          <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{t("app.noValidation")}</p>
+        </details>
       </Plate>
     </>
   );

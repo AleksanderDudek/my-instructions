@@ -10,6 +10,7 @@ export default {
   "tagline": "What closeness costs you, and what distance does to you.",
   "framework": "Two-dimensional attachment (anxiety × avoidance)",
   "sourceNote": "The two-dimensional model of adult attachment is the public part and is what these original items are written against; the ECR-R itself is Fraley, Waller and Brennan's and is not reproduced here. Both dimensions are scored on their own 1–100, and the four familiar style names are quadrants of that plane rather than categories a person belongs to.",
+  "lineage": "Adult attachment is read on two dimensions, anxiety and avoidance, following Brennan, Clark and Shaver (1998) and Fraley, Waller and Brennan (2000). That structure is public; the ECR-R's own items belong to their authors and are not used here.",
 
   "dim.anxiety.label": "Anxiety",
   "dim.anxiety.blurb": "How much the possibility of being left occupies you.",

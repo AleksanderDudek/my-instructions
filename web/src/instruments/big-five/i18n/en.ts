@@ -6,6 +6,7 @@ export default {
   "tagline": "The five dimensions that survived a century of factor analysis.",
   "framework": "Five-factor model (OCEAN)",
   "sourceNote": "Original items on the public five-factor structure, half of them reverse-keyed. The IPIP public-domain markers can be substituted as pure data if you want the validated wording.",
+  "lineage": "The five-factor model grew out of Tupes and Christal's analyses (1961) and was developed by Costa and McCrae; its structure has been replicated across many languages. The NEO-PI-R's items are not used.",
 
   "factor.openness.inline": "openness",
   "factor.conscientiousness.inline": "conscientiousness",

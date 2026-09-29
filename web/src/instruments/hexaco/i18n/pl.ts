@@ -10,6 +10,7 @@ export default {
   "tagline": "Sześć czynników, w tym ten, którego Wielka Piątka nie widzi.",
   "framework": "Model sześcioczynnikowy (Ashton i Lee)",
   "sourceNote": "Struktura sześcioczynnikowa pochodzi od Ashtona i Lee i jest publiczna; pytania samego HEXACO-PI-R należą do nich i nie są tu powielane. To autorskie pozycje napisane wobec opublikowanych definicji czynników, punktowane niezależnie w skali 1–100.",
+  "lineage": "Model HEXACO, opracowany przez Ashtona i Lee w latach dwutysięcznych, dodaje do pięciu czynników Wielkiej Piątki szósty: uczciwość–pokorę. Pytania samego HEXACO-PI-R nie są tu użyte.",
 
   "factor.honesty.label": "Uczciwość–Pokora",
   "factor.honesty.inline": "uczciwość–pokora",

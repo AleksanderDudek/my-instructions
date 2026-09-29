@@ -14,6 +14,7 @@ export default {
   "tagline": "A cuáles de veinticuatro fortalezas del carácter recurres primero, y a cuáles menos.",
   "framework": "Fortalezas del carácter y virtudes (24 fortalezas)",
   "sourceNote": "Preguntas propias sobre la clasificación pública de veinticuatro fortalezas del carácter agrupadas en seis virtudes (Peterson y Seligman, 2004): tres por fortaleza, una de ellas invertida. No se usa ninguna pregunta de ningún inventario comercial. Existen escalas de dominio público del IPIP para estas mismas fortalezas, y podrían sustituirse como datos si prefieres una redacción en inglés con fiabilidad publicada.",
+  "lineage": "Las veinticuatro fortalezas agrupadas en seis virtudes vienen de la clasificación de Peterson y Seligman (2004). Los nombres de las fortalezas son palabras corrientes; no se usa ninguna pregunta de ningún inventario comercial.",
 
   "virtue.wisdom": "sabiduría",
   "virtue.courage": "coraje",

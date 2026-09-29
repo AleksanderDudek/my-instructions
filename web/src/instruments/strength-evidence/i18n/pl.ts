@@ -6,6 +6,7 @@ export default {
   "tagline": "Nie to, na ile się oceniasz — to, do czego umiesz podać okazję.",
   "framework": "Deklaracje z dołączonym paragonem",
   "sourceNote": "Nie stoi za tym żadne narzędzie i celowo nie stoi. Samoocena umiejętności koreluje z mierzoną skutecznością na poziomie około r = .29, co czyni suwak «jestem w tym dobry» najmniej wiarygodną rzeczą, jaką taka strona mogłaby wydrukować. Ocena jest więc zastąpiona przypadkiem: nazwij okazję, powiedz, co zrobiłeś, i pozwól, żeby wzór z trzech okazji zrobił robotę, której ocena zrobić nie może. Nic tu nie jest punktowane i nic nie jest zweryfikowane — to twoje deklaracje, posortowane wedle tego, czy coś do nich dołączyłeś.",
+  "lineage": "Celowo nie stoi za tym żaden konstrukt. Samoocena umiejętności tylko słabo pokrywa się z mierzoną skutecznością (około r = .29; Zell i Krizan, 2014), więc zamiast oceny narzędzie prosi o okazje, które możesz wskazać.",
 
   "shape.depth.label": "Długie skupienie",
   "shape.variety.label": "Wiele rzeczy naraz",

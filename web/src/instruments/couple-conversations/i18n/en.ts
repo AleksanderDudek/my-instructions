@@ -9,6 +9,7 @@ export default {
   "tagline": "Five things couples are expected to have settled, and whether you two have actually talked about them.",
   "framework": "An agenda, not a compatibility test",
   "sourceNote": "This deliberately produces no compatibility score, and there is a reason beyond taste. Similarity between two people predicts attraction when they first meet and stops predicting once a relationship exists; a percentage built by subtracting one questionnaire from another measures something the literature says does not predict what you care about; and averaging two people into one number destroys the only information a two-person instrument has. What is left is worth more anyway: whether a conversation has happened is a fact about an event, not a guess about a mind. Even the modest claim behind that — that premarital conversation helps — should be held lightly: the two largest randomised trials of relationship education, Building Strong Families and Supporting Healthy Marriage, found effects on relationship quality that were null to trivial and none on whether couples stayed together.",
+  "lineage": "The topic areas are the ones every premarital inventory covers, and the approach follows Stanley, Rhoades and Markman's research on deciding rather than sliding into commitments. Nothing is taken from PREPARE/ENRICH, FOCCUS, RELATE or SYMBIS.",
 
   "status.never": "Never come up",
   "status.passing": "Mentioned in passing",

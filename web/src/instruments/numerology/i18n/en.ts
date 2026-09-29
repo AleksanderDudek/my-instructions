@@ -10,6 +10,7 @@ export default {
   "tagline": "A birth date, reduced. Zodiacs east and west, the destiny number, the pyramid, the square of nine.",
   "framework": "Pythagorean numerology, Chinese and Western zodiac",
   "sourceNote": "Traditional systems, computed exactly as the traditions specify \u2014 including the Chinese New Year boundary that most software gets wrong. No part of it is empirically supported. It is here for the vocabulary, not the prediction.",
+  "lineage": "Pythagorean numerology and the two zodiacs are traditional systems, computed as the traditions specify. None of it has empirical support, and the result says so.",
 
   "element.Metal": "Metal",
   "element.Wood": "Wood",

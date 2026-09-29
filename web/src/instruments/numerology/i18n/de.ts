@@ -13,6 +13,7 @@ export default {
   "tagline": "Ein Geburtsdatum, reduziert. Tierkreise aus Ost und West, die Schicksalszahl, die Pyramide und das Quadrat der Neun.",
   "framework": "Pythagoreische Numerologie, chinesischer und westlicher Tierkreis",
   "sourceNote": "Traditionelle Systeme, genau so gerechnet, wie die Tradition es vorschreibt — einschließlich der Grenze des chinesischen Neujahrs, die die meiste Software falsch macht. Nichts davon ist empirisch belegt. Es steht hier des Vokabulars wegen, nicht der Vorhersage.",
+  "lineage": "Die pythagoreische Numerologie und die beiden Tierkreise sind traditionelle Systeme, gerechnet so, wie die Traditionen es vorschreiben. Nichts davon ist empirisch belegt, und das Ergebnis sagt das auch.",
 
   "element.Fire": "Feuer",
   "element.Earth": "Erde",

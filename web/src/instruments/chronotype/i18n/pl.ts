@@ -6,6 +6,7 @@ export default {
   "tagline": "Kiedy twój mózg naprawdę działa i jak daleko to jest od tego, kiedy tydzień chce, żeby działał.",
   "framework": "Środek snu w dni wolne, skorygowany o dług senny",
   "sourceNote": "Metoda pochodzi od Roenneberga: chronotyp odczytuje się ze środka snu w dni wolne, a nie z opinii o porankach, z korektą o sen odsypiany w te dni. Sam Monachijski Kwestionariusz Chronotypu nie jest tu powielany — to nasze własne sześć pól zasilających opublikowane obliczenie. Czas snu jest realną zmienną fizjologiczną, ale to są cztery liczby, które wpisałeś, a nie badanie snu.",
+  "lineage": "Chronotyp jest liczony tak, jak robi to Monachijski Kwestionariusz Chronotypu (Roenneberg i współpracownicy): ze środka snu w dni wolne, skorygowanego o dług senny. Metoda jest opublikowana; pytania samego kwestionariusza nie są tu użyte.",
 
   "form.workBed": "Godzina zaśnięcia w nocy przed dniem pracy",
   "form.workWake": "Godzina pobudki w dzień pracy",

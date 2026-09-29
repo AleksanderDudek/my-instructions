@@ -14,6 +14,7 @@ export default {
   "tagline": "Una fecha de nacimiento, reducida. Zodiacos de oriente y occidente, el número del destino, la pirámide y el cuadrado de nueve.",
   "framework": "Numerología pitagórica, zodiaco chino y occidental",
   "sourceNote": "Sistemas tradicionales, calculados exactamente como especifica la tradición, incluida la frontera del Año Nuevo chino que casi todo el software se salta. Nada de esto tiene respaldo empírico. Está aquí por el vocabulario, no por la predicción.",
+  "lineage": "La numerología pitagórica y los dos zodiacos son sistemas tradicionales, calculados como especifican las tradiciones. Nada de ello tiene respaldo empírico, y el resultado lo dice.",
 
   "element.Fire": "Fuego",
   "element.Earth": "Tierra",

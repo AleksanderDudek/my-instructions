@@ -15,6 +15,7 @@ export default {
   "tagline": "Wie du standhältst, wenn ein Plan platzt, eine Arbeit sich zieht oder jemand dagegenhält.",
   "framework": "Hardiness und das 4C-Modell",
   "sourceNote": "Eigene Fragen zum öffentlichen Konstrukt der Hardiness (Kobasa, 1979) und zu den vier C der mentalen Stärke, die daraus hervorgegangen sind (Clough, Earle und Sewell, 2002), die Hälfte davon umgekehrt gepolt. Keine einzige Frage des MTQ48 wird verwendet. Gemeinfreie IPIP-Skalen für Selbstwirksamkeit, Verletzlichkeit, Durchsetzungsvermögen und Fleiß ließen sich als reine Daten einsetzen, wenn du einen Wortlaut mit veröffentlichter Reliabilität möchtest.",
+  "lineage": "Kobasa (1979) beschrieb Hardiness als Engagement, Kontrolle und Herausforderung; Clough, Earle und Sewell (2002) fügten Selbstvertrauen hinzu und kamen so auf die vier C. Unabhängige Studien haben die Aufteilung in vier nicht sauber bestätigt, und die Items des MTQ48 werden nicht verwendet.",
 
   "trait.control.label": "Kontrolle",
   "trait.control.inline": "Kontrolle",

@@ -6,6 +6,7 @@ export default {
   "tagline": "Ocho cosas sobre las que un colega puede actuar mañana, y ninguna afirma nada sobre tu personalidad.",
   "framework": "Preferencias, no medición",
   "sourceNote": "Detrás de esto no hay ningún instrumento validado y no hace falta: cuánto aviso quieres antes de que cambie un plan no es un constructo psicológico, es un hecho sobre cómo te gustaría que te trataran. Aquí no se puntúa, no se clasifica en bandas y no se compara con ninguna población. Hace ocho preguntas y devuelve las respuestas ordenadas.",
+  "lineage": "Detrás de esto no hay ningún instrumento, y no hace falta. Cuánto aviso quieres antes de que cambie un plan es un hecho sobre cómo te gusta que te traten, no un rasgo que haya que medir.",
 
   "form.note": "Responde según como trabajas de verdad, no como crees que deberías. Nadie ve esto hasta que tú decidas, y una respuesta favorecedora es una pregunta desperdiciada.",
   "form.pickOne": "Elige al menos una.",

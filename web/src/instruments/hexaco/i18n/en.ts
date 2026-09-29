@@ -6,6 +6,7 @@ export default {
   "tagline": "Six factors, including the one the Big Five cannot see.",
   "framework": "Six-factor model (Ashton & Lee)",
   "sourceNote": "The six-factor structure is Ashton and Lee's and is public; the HEXACO-PI-R's own items are theirs and are not reproduced here. These are original items written against the published factor definitions, scored independently on 1–100.",
+  "lineage": "The HEXACO model, from Ashton and Lee in the 2000s, adds a sixth factor, honesty–humility, to the five of the Big Five. The HEXACO-PI-R's own items are not used.",
 
   "factor.honesty.label": "Honesty–Humility",
   "factor.honesty.inline": "honesty–humility",

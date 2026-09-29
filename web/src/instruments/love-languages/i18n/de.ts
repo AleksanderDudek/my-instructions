@@ -13,6 +13,7 @@ export default {
   "tagline": "Der Kanal, auf dem Zuneigung ankommen muss, damit sie überhaupt registriert wird.",
   "framework": "Chapmans Fünf-Kategorien-Modell",
   "sourceNote": "Die fünf Kategorien stammen von Gary Chapman. Die Fragen sind unsere und werden unabhängig von 1 bis 100 ausgewertet, nicht gegeneinander — alle fünf können also hoch ausfallen oder keine.",
+  "lineage": "Die fünf Sprachen der Liebe stammen von Gary Chapman (1992) und sind öffentlich. Sein eigener Test mit 30 Items ist urheberrechtlich geschützt und erzwingt Entscheidungen zwischen den Sprachen, deshalb wird er nicht verwendet.",
 
   "lang.words.inline": "Lob und Anerkennung",
   "lang.time.inline": "Zweisamkeit",

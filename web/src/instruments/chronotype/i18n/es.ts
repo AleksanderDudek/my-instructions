@@ -6,6 +6,7 @@ export default {
   "tagline": "Cuándo funciona de verdad tu cabeza, y cuánto se aleja eso de cuándo tu semana quiere que funcione.",
   "framework": "Punto medio del sueño en días libres, corregido por deuda de sueño",
   "sourceNote": "El método es el de Roenneberg: el cronotipo se lee del punto medio del sueño en los días libres y no de una opinión sobre las mañanas, corregido por el sueño que se recupera esos días. El propio Cuestionario de Cronotipo de Múnich no se reproduce aquí: estos son nuestros seis campos alimentando el cálculo publicado. El horario del sueño es una variable fisiológica real, pero esto son cuatro números que has escrito, no un estudio del sueño.",
+  "lineage": "El cronotipo se calcula como lo hace el Cuestionario de Cronotipo de Múnich (Roenneberg y colaboradores): el punto medio del sueño en los días libres, corregido por la deuda de sueño. El método está publicado; los ítems del propio cuestionario no se usan.",
 
   "form.workBed": "Hora de acostarte la noche antes de un día laborable",
   "form.workWake": "Hora de levantarte un día laborable",

@@ -13,6 +13,7 @@ export default {
   "tagline": "Fifty specific things, what you make of each, and where the two of you actually meet — held for this tab only.",
   "framework": "Directional items, matched across a couple",
   "sourceNote": "Fifty items, asked one at a time, and every one of them written here. No checklist in circulation carries a usable content licence — the ones that look permissively licensed license the code while their wording descends from older unattributed lists — so nothing is quoted from any of them. One idea is taken, because it is an idea rather than an expression and it is the best finding in that tradition: the two directions of an act have to be asked separately, since «giving» and «receiving» is the wrong pair for being on top and a nonsense pair for being watched. What is done with it is new. Where those worksheets rate both directions and then compare each against its own twin, this faces your giving against their receiving, which is the pairing that decides whether an evening works. Nothing here is stored, exported or linkable.",
+  "lineage": "One idea is taken from the negotiation checklists couples have long used: every act is asked in both directions, giving and receiving, separately. No checklist's wording is used; every item is written here.",
 
   "section.pace": "Pace and closeness",
   "section.acts": "Acts",

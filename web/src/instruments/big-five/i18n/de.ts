@@ -11,6 +11,7 @@ export default {
   "tagline": "Die fünf Dimensionen, die ein Jahrhundert Faktorenanalyse überlebt haben.",
   "framework": "Fünf-Faktoren-Modell (OCEAN)",
   "sourceNote": "Eigene Fragen zur öffentlichen Fünf-Faktoren-Struktur, die Hälfte davon umgekehrt gepolt. Die gemeinfreien IPIP-Marker lassen sich als reine Daten einsetzen, wenn du den validierten Wortlaut möchtest.",
+  "lineage": "Das Fünf-Faktoren-Modell ist aus den Analysen von Tupes und Christal (1961) hervorgegangen und wurde von Costa und McCrae weiterentwickelt; seine Struktur ist in vielen Sprachen repliziert worden. Die Items des NEO-PI-R werden nicht verwendet.",
 
   "factor.openness.inline": "Offenheit für Erfahrung",
   "factor.conscientiousness.inline": "Gewissenhaftigkeit",

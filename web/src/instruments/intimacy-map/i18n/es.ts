@@ -12,6 +12,7 @@ export default {
   "tagline": "Cincuenta cosas concretas, qué te parece cada una y dónde os encontráis de verdad — solo en esta pestaña.",
   "framework": "Ítems direccionales, cruzados en pareja",
   "sourceNote": "Cincuenta ítems, preguntados de uno en uno, y todos escritos aquí. Ninguna lista en circulación tiene una licencia de contenido utilizable — las que parecen tener licencia permisiva licencian el código mientras su redacción desciende de listas anteriores sin atribuir — así que no se cita nada de ellas. Se toma una sola idea, porque es una idea y no una redacción, y porque es el mejor hallazgo de esa tradición: las dos direcciones de un acto hay que preguntarlas por separado, ya que «dar» y «recibir» es el par equivocado para estar encima y un sinsentido para ser mirado. Lo que se hace con ella es nuevo. Donde esas hojas puntúan ambas direcciones y luego comparan cada una con su propio gemelo, aquí tu dar se enfrenta a su recibir, que es el cruce que decide si una noche funciona. Nada de esto se guarda, se exporta ni se puede enlazar.",
+  "lineage": "De las listas de negociación que las parejas llevan mucho tiempo usando se toma una idea: cada acto se pregunta en las dos direcciones, dar y recibir, por separado. No se usa la redacción de ninguna lista; cada ítem se escribió aquí.",
   "section.pace": "Ritmo y cercanía",
   "section.acts": "Actos",
   "section.positions": "Posturas",

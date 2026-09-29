@@ -6,6 +6,7 @@ export default {
   "tagline": "Co praca musi ci dać, zanim jej temat zacznie mieć znaczenie.",
   "framework": "Sześć wartości pracy z teorii przystosowania zawodowego",
   "sourceNote": "Sześć wartości pochodzi od Dawisa i Lofquista, którzy analizą czynnikową zredukowali dwadzieścia potrzeb z Minnesota Importance Questionnaire, a pod tymi nazwami przyjął je Departament Pracy USA na potrzeby O*NET Work Importance Locator — dzieło federalne udostępnione na licencji CC BY 4.0. Sama taksonomia jest wolna do użycia z podaniem źródła; kwestionariusz z Minnesoty nie jest, i nie ma tu żadnej jego pozycji. Te trzydzieści sześć zdań jest nasze, więc struktura sześciu czynników jest własnością danych z Minnesoty, a nie tej puli. Nikt jej nigdy nie badał na próbie i nie ma norm.",
+  "lineage": "Sześć wartości pracy pochodzi z teorii przystosowania zawodowego Dawisa i Lofquista, a Departament Pracy USA przyjął je na potrzeby O*NET, który publikuje je na licencji CC BY 4.0. Pozycje z Minnesota Importance Questionnaire nie są tu użyte.",
 
   "value.achievement.label": "Osiągnięcia",
   "value.achievement.blurb": "Używanie tego, w czym jesteś dobry, i widok czegoś doprowadzonego do końca.",

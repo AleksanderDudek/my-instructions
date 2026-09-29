@@ -6,6 +6,7 @@ export default {
   "tagline": "How hard you push for your own outcome, and how much weight you give the other person's.",
   "framework": "Dual-concern model",
   "sourceNote": "The dual-concern model is public theory: the five familiar modes are regions of a plane made by concern for your own outcome and concern for the other person's. The Thomas–Kilmann instrument that operationalises it is commercially licensed and is not reproduced here. These are original items, and the mode is derived from the two concerns rather than asked for directly.",
+  "lineage": "The dual-concern model — concern for your own outcome weighed against concern for the other person's — comes from Blake and Mouton and from Pruitt and Rubin. The Thomas-Kilmann instrument built on it is commercially licensed and not used.",
 
   "dim.assertiveness.label": "Assertiveness",
   "dim.assertiveness.blurb": "How hard you push for the outcome you actually want.",

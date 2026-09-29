@@ -6,6 +6,7 @@ export default {
   "tagline": "No de qué campo, sino de qué está hecho el hacer — largo o corto, acotado o sin acotar, fabricado o negociado.",
   "framework": "Cuatro contrastes sobre el trabajo mismo",
   "sourceNote": "No hay ningún instrumento publicado detrás de esto. Los tipos de interés de Holland ordenan el trabajo por su materia y la taxonomía de actividades de O*NET ordena las tareas por lo que se hace; ninguna pregunta si el hacer es largo o corto, acotado o sin acotar, fabricado o negociado. Esas preguntas se hacen aquí porque son las que deciden si alguien aguanta en un trabajo que sobre el papel parecía correcto. Las ocho escalas se afirman, no se descubren: nadie ha factorizado este banco, nadie lo ha repetido y no hay pruebas de que ajustar tu forma al trabajo te haga mejor en él.",
+  "lineage": "Detrás de esto no hay ningún instrumento publicado. Los contrastes son distinciones corrientes sobre el trabajo —largo o corto, acotado o sin acotar, fabricado o negociado—, elegidas porque los tipos de interés no las ven.",
 
   "shape.depth.label": "Profundidad",
   "shape.depth.blurb": "Una sola cosa, sostenida mucho tiempo. Lo bueno empieza tras la primera hora.",

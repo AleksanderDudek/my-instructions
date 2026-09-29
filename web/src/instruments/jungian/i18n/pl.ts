@@ -11,6 +11,7 @@ export default {
   "tagline": "Osiem sposobów przyjmowania świata i rozstrzygania o nim — w kolejności, w której naprawdę ich używasz.",
   "framework": "Typy psychologiczne Junga (1921)",
   "sourceNote": "„Typy psychologiczne” Junga są w domenie publicznej; czteroliterowe narzędzie zbudowane na nich to znak towarowy z chronionymi pytaniami i nic z niego nie jest tu powielane. To autorskie pozycje o ośmiu funkcjach, każda punktowana osobno w skali 1–100, a nie przeciwko swojej przeciwności — więc kod u góry wynika z twojego stosu, a nie jest pytaniem wprost. Traktuj kod jako skrót. To stos jest twierdzeniem.",
+  "lineage": "Jung przedstawił typy psychologiczne w 1921 roku, a jego tekst jest w domenie publicznej. Czteroliterowy kod wynika tu ze stosu funkcji, a nie z pytania wprost; chronione znakiem towarowym pytania MBTI nie zostały użyte.",
 
   "temperament.steward.label": "Zarządca",
   "temperament.steward.blurb": "Konkretny i osiadły. Utrzymuje rzecz w ruchu, pamięta, jak zostało ustalone, i traktuje zobowiązanie jako element nośny.",

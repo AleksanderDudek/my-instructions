@@ -12,6 +12,7 @@ export default {
   "tagline": "Pięćdziesiąt konkretów, co o każdym sądzisz i gdzie naprawdę się spotykacie — trzymane tylko w tej karcie.",
   "framework": "Pozycje kierunkowe, zestawiane w parze",
   "sourceNote": "Pięćdziesiąt pozycji, każda pytana osobno i każda napisana tutaj. Żadna krążąca po sieci lista nie ma nadającej się do użycia licencji na treść — te, które wyglądają na liberalnie licencjonowane, licencjonują kod, a ich treść pochodzi ze starszych, nieprzypisanych list — więc nic nie jest z nich cytowane. Zapożyczony jest jeden pomysł, bo to pomysł, a nie sformułowanie, i bo to najlepsze odkrycie tamtej tradycji: o dwa kierunki tej samej czynności trzeba pytać osobno, skoro «dawanie» i «przyjmowanie» to zła para dla bycia na górze i bezsensowna dla bycia oglądanym. To, co się z tym tutaj robi, jest nowe. Tamte arkusze oceniają oba kierunki, a potem zestawiają każdy z jego własnym bliźniakiem; tutaj twoje dawanie staje naprzeciw jej przyjmowania, bo to właśnie ta para decyduje o tym, czy wieczór wyjdzie. Nic z tego nie jest zapisywane, eksportowane ani linkowalne.",
+  "lineage": "Jeden pomysł pochodzi z list negocjacyjnych, których pary używają od dawna: o każdą czynność pyta się osobno w obu kierunkach — dawania i przyjmowania. Nie użyto sformułowań z żadnej listy; każda pozycja została napisana tutaj.",
   "section.pace": "Tempo i bliskość",
   "section.acts": "Czynności",
   "section.positions": "Pozycje",

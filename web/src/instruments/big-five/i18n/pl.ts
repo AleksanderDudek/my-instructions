@@ -15,6 +15,7 @@ export default {
   "tagline": "Pięć wymiarów, które przetrwały stulecie analizy czynnikowej.",
   "framework": "Model pięcioczynnikowy (OCEAN)",
   "sourceNote": "Autorskie pytania oparte na publicznej strukturze pięcioczynnikowej, połowa z nich odwrócona. Publiczne markery IPIP można podstawić jako czyste dane, jeśli wolisz zwalidowane sformułowania.",
+  "lineage": "Model pięcioczynnikowy wyrósł z analiz Tupesa i Christala (1961), a rozwinęli go Costa i McCrae; jego strukturę zreplikowano w wielu językach. Pytania z NEO-PI-R nie są tu użyte.",
 
   "factor.openness.inline": "otwartość na doświadczenie",
   "factor.conscientiousness.inline": "sumienność",

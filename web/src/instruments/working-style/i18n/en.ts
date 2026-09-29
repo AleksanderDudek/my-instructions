@@ -6,6 +6,7 @@ export default {
   "tagline": "Eight things a colleague could act on tomorrow, none of which claim anything about your personality.",
   "framework": "Preferences, not measurement",
   "sourceNote": "There is no validated instrument behind this one and there does not need to be: how much notice you want before a plan changes is not a psychological construct, it is a fact about how you would like to be treated. Nothing here is scored, banded or compared to a population. It asks eight questions and hands the answers back arranged.",
+  "lineage": "There is no instrument behind this, and no need for one. How much notice you want before a plan changes is a fact about how you like to be treated, not a trait to be measured.",
 
   "form.note": "Answer for how you actually work rather than how you think you ought to. Nobody sees this until you decide they do, and a flattering answer is a wasted question.",
   "form.pickOne": "Pick at least one.",

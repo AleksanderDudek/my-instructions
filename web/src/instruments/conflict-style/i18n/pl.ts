@@ -6,6 +6,7 @@ export default {
   "tagline": "Jak mocno naciskasz na swój wynik i ile wagi dajesz wynikowi drugiej strony.",
   "framework": "Model podwójnej troski",
   "sourceNote": "Model podwójnej troski jest teorią publiczną: pięć znanych trybów to obszary płaszczyzny wyznaczonej przez troskę o własny wynik i troskę o wynik drugiej osoby. Narzędzie Thomasa–Kilmanna, które to operacjonalizuje, jest licencjonowane komercyjnie i nie jest tu powielane. To autorskie pozycje, a tryb wynika z dwóch trosk, zamiast być pytany wprost.",
+  "lineage": "Model podwójnej troski — troska o własny wynik zestawiona z troską o wynik drugiej osoby — pochodzi od Blake'a i Mouton oraz od Pruitta i Rubina. Zbudowane na nim narzędzie Thomasa–Kilmanna jest licencjonowane komercyjnie i nie zostało tu użyte.",
 
   "dim.assertiveness.label": "Asertywność",
   "dim.assertiveness.blurb": "Jak mocno naciskasz na wynik, którego naprawdę chcesz.",

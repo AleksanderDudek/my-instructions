@@ -6,6 +6,7 @@ export default {
   "tagline": "How you hold up when a plan breaks, a job drags or someone pushes back.",
   "framework": "Hardiness and the four Cs",
   "sourceNote": "Original items on the public hardiness construct (Kobasa, 1979) and the four Cs of mental toughness that grew out of it (Clough, Earle and Sewell, 2002), half of them reverse-keyed. None of MTQ48's items are used. Public-domain IPIP scales for self-efficacy, vulnerability, assertiveness and industry could be substituted as data if you want wording with published reliability.",
+  "lineage": "Kobasa (1979) described hardiness as commitment, control and challenge; Clough, Earle and Sewell (2002) added confidence to make the four Cs. Independent studies have not confirmed the four-way split cleanly, and MTQ48's items are not used.",
 
   "trait.control.label": "Control",
   "trait.control.inline": "control",

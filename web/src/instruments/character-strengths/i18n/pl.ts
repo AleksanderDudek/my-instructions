@@ -15,6 +15,7 @@ export default {
   "tagline": "Po które z dwudziestu czterech mocnych stron charakteru sięgasz najpierw, a po które najrzadziej.",
   "framework": "Klasyfikacja mocnych stron charakteru i cnót (24 mocne strony)",
   "sourceNote": "Autorskie pytania oparte na publicznej klasyfikacji dwudziestu czterech mocnych stron charakteru w obrębie sześciu cnót (Peterson i Seligman, 2004), po trzy na każdą mocną stronę, z czego jedno odwrócone. Nie użyto pytań z żadnego komercyjnego kwestionariusza. Istnieją publiczne skale IPIP dla tych samych mocnych stron i można je podstawić jako dane, jeśli wolisz angielskie sformułowania o opublikowanej rzetelności.",
+  "lineage": "Dwadzieścia cztery mocne strony w obrębie sześciu cnót pochodzą z klasyfikacji Petersona i Seligmana (2004). Nazwy mocnych stron to zwykłe słowa; nie użyto pytań z żadnego komercyjnego kwestionariusza.",
 
   "virtue.wisdom": "mądrość",
   "virtue.courage": "męstwo",

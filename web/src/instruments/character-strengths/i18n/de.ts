@@ -10,6 +10,7 @@ export default {
   "tagline": "Zu welcher von vierundzwanzig Charakterstärken du zuerst greifst und zu welcher am wenigsten.",
   "framework": "Charakterstärken und Tugenden (24 Stärken)",
   "sourceNote": "Eigene Fragen zur öffentlichen Klassifikation von vierundzwanzig Charakterstärken unter sechs Tugenden (Peterson und Seligman, 2004), drei pro Stärke, eine davon umgekehrt gepolt. Fragen aus kommerziellen Inventaren werden nicht verwendet. Für dieselben Stärken gibt es gemeinfreie IPIP-Skalen, die sich als reine Daten einsetzen ließen, wenn du englischen Wortlaut mit veröffentlichter Reliabilität möchtest.",
+  "lineage": "Die vierundzwanzig Stärken unter sechs Tugenden stammen aus der Klassifikation von Peterson und Seligman (2004). Die Namen der Stärken sind gewöhnliche Wörter; Fragen aus kommerziellen Inventaren werden nicht verwendet.",
 
   "virtue.wisdom": "Weisheit",
   "virtue.courage": "Mut",

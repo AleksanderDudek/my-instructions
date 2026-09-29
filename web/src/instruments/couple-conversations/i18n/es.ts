@@ -6,6 +6,7 @@ export default {
   "tagline": "Cinco cosas que se supone que una pareja tiene resueltas, y si vosotros dos habéis hablado de ellas de verdad.",
   "framework": "Una agenda, no un test de compatibilidad",
   "sourceNote": "Esto no produce ninguna puntuación de compatibilidad, a propósito, y hay una razón más allá del gusto. El parecido entre dos personas predice la atracción cuando se conocen y deja de predecir en cuanto existe una relación; un porcentaje construido restando un cuestionario de otro mide algo que, según la literatura, no predice lo que a ti te importa; y promediar a dos personas en un número destruye la única información que tiene un instrumento de dos. Lo que queda vale más igualmente: si una conversación ha ocurrido es un hecho sobre un suceso, no una conjetura sobre una mente. Incluso la afirmación modesta que hay detrás —que hablar antes de casarse ayuda— conviene sostenerla con suavidad: los dos mayores ensayos aleatorizados de educación para la pareja, Building Strong Families y Supporting Healthy Marriage, encontraron efectos entre nulos y triviales sobre la calidad de la relación y ninguno sobre si las parejas seguían juntas.",
+  "lineage": "Las áreas temáticas son las que cubre todo inventario prematrimonial, y el enfoque sigue la investigación de Stanley, Rhoades y Markman sobre decidir los compromisos en vez de deslizarse hacia ellos. No se toma nada de PREPARE/ENRICH, FOCCUS, RELATE ni SYMBIS.",
 
   "status.never": "Nunca ha salido",
   "status.passing": "Mencionado de pasada",

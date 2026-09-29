@@ -14,6 +14,7 @@ export default {
   "tagline": "Neun Motive. Welche Angst alles organisiert, was du tust.",
   "framework": "Enneagramm der neun Typen",
   "sourceNote": "Das Neun-Typen-Modell ist öffentlich. Die Zwangswahl-Fragen des RHETI sind urheberrechtlich geschützt und werden hier nicht verwendet — dies sind eigene Likert-Fragen, also sind die neun Werte unabhängig und das Ergebnis nennt, wie nah die beiden obersten beieinanderliegen.",
+  "lineage": "Das Enneagramm der Persönlichkeit mit seinen neun Typen geht auf Ichazo und Naranjo im zwanzigsten Jahrhundert zurück. Die Zwangswahl-Fragen des RHETI gehören Riso und Hudson und werden nicht verwendet.",
 
   "view.typeLabel": "{number} · {name}",
   "view.eyebrowConfident": "Wahrscheinlichster Typ",

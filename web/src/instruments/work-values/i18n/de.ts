@@ -6,6 +6,7 @@ export default {
   "tagline": "Was eine Stelle liefern muss, bevor ihr Inhalt überhaupt zählt.",
   "framework": "Die sechs Arbeitswerte der Theorie der Arbeitsanpassung",
   "sourceNote": "Die sechs Werte stammen von Dawis und Lofquist, faktorenanalytisch aus den zwanzig Bedürfnissen des Minnesota Importance Questionnaire verdichtet und unter diesen Namen vom US-Arbeitsministerium für den O*NET Work Importance Locator übernommen — ein föderales Werk unter CC BY 4.0. Die Taxonomie ist mit Quellenangabe frei nutzbar; der Minnesota-Fragebogen ist es nicht, und keines seiner Items steht hier. Diese sechsunddreißig Sätze sind unsere, also gehört die Sechs-Faktoren-Struktur den Minnesota-Daten und nicht dieser Sammlung. Sie wurde nie an einer Stichprobe erhoben und hat keine Normen.",
+  "lineage": "Die sechs Arbeitswerte stammen aus der Theorie der Arbeitsanpassung von Dawis und Lofquist und wurden vom US-Arbeitsministerium für O*NET übernommen, das sie unter CC BY 4.0 veröffentlicht. Die Items des Minnesota Importance Questionnaire werden nicht verwendet.",
 
   "value.achievement.label": "Leistung",
   "value.achievement.blurb": "Das nutzen, was du kannst, und sehen, dass etwas fertig geworden ist.",

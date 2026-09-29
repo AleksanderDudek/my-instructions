@@ -6,6 +6,7 @@ export default {
   "tagline": "Cuánto empujas por tu propio resultado y cuánto peso le das al de la otra persona.",
   "framework": "Modelo de doble interés",
   "sourceNote": "El modelo de doble interés es teoría pública: los cinco modos conocidos son regiones de un plano formado por el interés en tu propio resultado y el interés en el de la otra persona. El instrumento de Thomas y Kilmann que lo operacionaliza tiene licencia comercial y no se reproduce aquí. Estas son preguntas propias, y el modo se deriva de los dos intereses en vez de preguntarse directamente.",
+  "lineage": "El modelo de doble interés —el interés en tu propio resultado, sopesado frente al interés en el de la otra persona— viene de Blake y Mouton y de Pruitt y Rubin. El instrumento Thomas-Kilmann construido sobre él tiene licencia comercial y no se usa.",
 
   "dim.assertiveness.label": "Asertividad",
   "dim.assertiveness.blurb": "Cuánto empujas por el resultado que de verdad quieres.",

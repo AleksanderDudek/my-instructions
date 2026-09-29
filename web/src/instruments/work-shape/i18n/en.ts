@@ -6,6 +6,7 @@ export default {
   "tagline": "Not which field, but what the doing is made of — long or short, framed or unframed, made or negotiated.",
   "framework": "Four contrasts about the work itself",
   "sourceNote": "There is no published instrument behind this. Holland's interest types sort work by subject matter and the O*NET activity taxonomy sorts tasks by what is done; neither asks whether the doing is long or short, framed or unframed, made or negotiated. Those questions are asked here because they are the ones that decide whether somebody lasts in work that looks correct on paper. Eight scales are asserted, not discovered: nobody has factor-analysed this bank, nobody has retested it, and there is no evidence that matching your shape to your work makes you better at it.",
+  "lineage": "There is no published instrument behind this. The contrasts are ordinary distinctions about work — long or short, framed or unframed, made or negotiated — chosen because interest types cannot see them.",
 
   "shape.depth.label": "Depth",
   "shape.depth.blurb": "One thing, held for a long time. The good part starts after the first hour.",

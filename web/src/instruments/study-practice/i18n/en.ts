@@ -6,6 +6,7 @@ export default {
   "tagline": "Which learning techniques you actually use, against the ones with the best evidence behind them.",
   "framework": "Technique use, not learning style",
   "sourceNote": "This is deliberately not a learning-styles test. The visual / auditory / reading / kinaesthetic model asks you to accept that instruction matched to your style improves learning, and the major reviews — Pashler, McDaniel, Rohrer and Bjork; Coffield and colleagues — found no adequate evidence for that, while several of the questionnaires failed basic reliability checks. What is left is what you do rather than what you are. The six techniques below are named from Dunlosky, Rawson, Marsh, Nathan and Willingham's 2013 review, which rated distributed practice and retrieval practice as high utility and rereading, highlighting and summarising as low, with interleaving added from Rohrer and Pashler's work. The techniques are theirs; the questions are ours, and nothing here is scored.",
+  "lineage": "The six techniques, and how well each works, come from the review by Dunlosky and colleagues (2013), with Rohrer and Pashler on interleaving. The techniques are plain behaviours, so the questions simply ask how often you use each.",
 
   "often.never": "Never",
   "often.rarely": "Rarely",

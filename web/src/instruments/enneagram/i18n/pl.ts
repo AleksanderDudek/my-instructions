@@ -14,6 +14,7 @@ export default {
   "tagline": "Dziewięć motywów. Który lęk organizuje wszystko, co robisz.",
   "framework": "Dziewięciotypowy Enneagram",
   "sourceNote": "Model dziewięciu typów jest publiczny. Pytania wyboru wymuszonego z RHETI są objęte prawem autorskim i nie są tu użyte — to autorskie pozycje Likerta, więc dziewięć wyników jest niezależnych, a wynik pokazuje, jak blisko siebie są dwa czołowe typy.",
+  "lineage": "Dziewięciotypowy Enneagram osobowości sformułowali w XX wieku Ichazo i Naranjo. Prawa do pytań wyboru wymuszonego z RHETI mają Riso i Hudson; te pytania nie są tu użyte.",
 
   "view.typeLabel": "{number} · {name}",
   "view.eyebrowConfident": "Najbardziej prawdopodobny typ",

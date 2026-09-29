@@ -6,6 +6,7 @@ export default {
   "tagline": "Osiem rzeczy, na których współpracownik może zadziałać jutro — i żadna z nich nie twierdzi niczego o twojej osobowości.",
   "framework": "Preferencje, nie pomiar",
   "sourceNote": "Za tym narzędziem nie stoi żadne zwalidowane narzędzie i nie musi: to, ile uprzedzenia chcesz przed zmianą planu, nie jest konstruktem psychologicznym, tylko faktem o tym, jak chcesz być traktowany. Nic tu nie jest punktowane, pasmowane ani porównywane z populacją. Zadaje osiem pytań i oddaje odpowiedzi w uporządkowanej formie.",
+  "lineage": "Nie stoi za tym żadne narzędzie i żadne nie jest potrzebne. To, ile uprzedzenia chcesz przed zmianą planu, jest faktem o tym, jak lubisz, żeby cię traktowano, a nie cechą do zmierzenia.",
 
   "form.note": "Odpowiadaj tak, jak naprawdę pracujesz, a nie tak, jak uważasz, że powinieneś. Nikt tego nie zobaczy, dopóki nie zdecydujesz, a odpowiedź na pokaz to zmarnowane pytanie.",
   "form.pickOne": "Wybierz co najmniej jedno.",

@@ -10,6 +10,7 @@ export default {
   "tagline": "Do kogo cię ciągnie, z kim byłeś i jak to nazywasz — zadane jako trzy osobne pytania, bo takie są.",
   "framework": "Pociąg, zachowanie i tożsamość na niezależnych osiach",
   "sourceNote": "Trzy rzeczy, na których to stoi. Pociąg, zachowanie i tożsamość to osobne wymiary opisujące nakładające się, ale różne grupy ludzi — w badaniu Laumanna z 1994 roku spośród kobiet zgłaszających jakąkolwiek seksualność wobec tej samej płci 88% zgłosiło pociąg, 41% zachowanie, a 16% tożsamość lesbijską lub gejowską — więc każde poważne badanie pyta o nie osobno i tak samo robi to narzędzie. Pytania o natężenie używają niezależnych osi, za Stormsem (1980), a nie jednej linii od hetero do homo: pojedyncza linia nie potrafi przedstawić pociągu do nikogo, bo umieszcza go w tym samym miejscu co pociąg do wszystkich. I nic tutaj niczego o tobie nie rozstrzyga. Instytut Kinseya stwierdza, że oficjalny test skali Kinseya nie istnieje; AVEN stwierdza, że żaden test nie może ustalić, czy ktoś jest aseksualny; Narodowe Akademie w 2022 roku uznały, że żadna miara pociągu nie została zwalidowana do przypisywania tożsamości. To układa to, co powiedziałeś. Słowa są twoje.",
+  "lineage": "Pociąg, zachowanie i tożsamość są tu osobnymi pytaniami, tak jak rozdzielają je duże badania populacyjne — na przykład NSFG, Natsal i brytyjski spis powszechny — a za Stormsem (1980) każde natężenie jest osobną osią. Nie użyto opisów ze skali Kinseya ani siatki Kleina.",
 
   "level.none": "Wcale",
   "level.little": "Trochę",

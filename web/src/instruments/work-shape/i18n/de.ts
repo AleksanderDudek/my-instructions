@@ -6,6 +6,7 @@ export default {
   "tagline": "Nicht welches Fach, sondern woraus das Tun besteht — lang oder kurz, gefasst oder ungefasst, hergestellt oder verhandelt.",
   "framework": "Vier Gegensatzpaare über die Arbeit selbst",
   "sourceNote": "Dahinter steht kein veröffentlichtes Verfahren. Hollands Interessentypen sortieren Arbeit nach dem Gegenstand, die O*NET-Tätigkeitstaxonomie sortiert Aufgaben nach dem, was getan wird; keine fragt, ob das Tun lang oder kurz, gefasst oder ungefasst, hergestellt oder verhandelt ist. Diese Fragen stehen hier, weil sie entscheiden, ob jemand in einer auf dem Papier passenden Stelle bleibt. Acht Skalen werden hier behauptet, nicht entdeckt: Niemand hat diese Sammlung faktorisiert, niemand hat sie wiederholt, und es gibt keinen Beleg, dass eine passende Form dich besser macht.",
+  "lineage": "Dahinter steht kein veröffentlichtes Instrument. Die Gegensatzpaare sind gewöhnliche Unterscheidungen, die Arbeit betreffen — lang oder kurz, gefasst oder ungefasst, hergestellt oder verhandelt —, und sie wurden gewählt, weil Interessentypen sie nicht sehen können.",
 
   "shape.depth.label": "Tiefe",
   "shape.depth.blurb": "Eine Sache, lange gehalten. Der gute Teil beginnt nach der ersten Stunde.",

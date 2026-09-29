@@ -15,6 +15,7 @@ export default {
   "tagline": "Kanał, którym uczucie musi przyjść, żeby w ogóle do ciebie dotarło.",
   "framework": "Pięciokategoryjny model Chapmana",
   "sourceNote": "Pięć kategorii pochodzi od Gary'ego Chapmana. Pytania są nasze i punktowane niezależnie w skali 1–100, a nie przeciwko sobie — więc wszystkie pięć może być wysokich albo żadne.",
+  "lineage": "Pięć języków miłości to koncepcja Gary'ego Chapmana (1992) i jest ona publiczna. Jego własny quiz z 30 pytaniami jest chroniony prawem autorskim i wymusza wybór między językami, więc nie jest tu użyty.",
 
   "lang.words.inline": "słowa uznania",
   "lang.time.inline": "wspólny czas",

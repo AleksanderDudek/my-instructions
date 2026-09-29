@@ -6,6 +6,7 @@ export default {
   "tagline": "Fünf Dinge, die ein Paar angeblich geklärt hat — und ob ihr zwei wirklich darüber gesprochen habt.",
   "framework": "Eine Agenda, kein Kompatibilitätstest",
   "sourceNote": "Das erzeugt absichtlich keinen Kompatibilitätswert, und dafür gibt es einen Grund jenseits des Geschmacks. Ähnlichkeit zwischen zwei Menschen sagt Anziehung beim ersten Kennenlernen vorher und hört auf vorherzusagen, sobald eine Beziehung besteht; ein Prozentwert, gebildet durch Abziehen eines Fragebogens vom anderen, misst etwas, das laut Literatur nicht vorhersagt, was dir wichtig ist; und zwei Menschen zu einer Zahl zu mitteln zerstört die einzige Information, die ein Instrument für zwei hat. Was bleibt, ist ohnehin mehr wert: ob ein Gespräch stattgefunden hat, ist eine Tatsache über ein Ereignis und keine Vermutung über einen Kopf. Selbst die bescheidene Annahme dahinter — dass Reden vor der Ehe hilft — sollte man locker halten: Die beiden größten randomisierten Studien zur Paarbildung, Building Strong Families und Supporting Healthy Marriage, fanden Effekte auf die Beziehungsqualität zwischen null und trivial und gar keine darauf, ob Paare zusammenblieben.",
+  "lineage": "Die Themenbereiche sind die, die jedes voreheliche Inventar abdeckt, und der Ansatz folgt der Forschung von Stanley, Rhoades und Markman dazu, sich für verbindliche Schritte bewusst zu entscheiden, statt in sie hineinzurutschen. Nichts ist aus PREPARE/ENRICH, FOCCUS, RELATE oder SYMBIS übernommen.",
 
   "status.never": "Kam nie auf",
   "status.passing": "Nebenbei erwähnt",

@@ -6,6 +6,7 @@ export default {
   "tagline": "Wann dein Kopf wirklich läuft — und wie weit das von dem entfernt ist, wann deine Woche es will.",
   "framework": "Schlafmitte an freien Tagen, korrigiert um Schlafschuld",
   "sourceNote": "Die Methode stammt von Roenneberg: Der Chronotyp wird aus der Schlafmitte an freien Tagen gelesen und nicht aus einer Meinung über Morgen, korrigiert um den Schlaf, der an diesen Tagen nachgeholt wird. Der Munich ChronoType Questionnaire selbst wird hier nicht wiedergegeben — dies sind unsere eigenen sechs Felder, die die veröffentlichte Rechnung speisen. Schlafzeit ist eine echte physiologische Größe, aber das hier sind vier Zahlen, die du eingetippt hast, und keine Schlafstudie.",
+  "lineage": "Der Chronotyp wird so berechnet wie im Munich ChronoType Questionnaire (Roenneberg und Kollegen): als Schlafmitte an freien Tagen, korrigiert um Schlafschuld. Die Methode ist veröffentlicht; die Items des Fragebogens selbst werden nicht verwendet.",
 
   "form.workBed": "Schlafenszeit in der Nacht vor einem Arbeitstag",
   "form.workWake": "Aufwachzeit an einem Arbeitstag",

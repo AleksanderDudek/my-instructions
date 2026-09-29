@@ -14,6 +14,7 @@ export default {
   "tagline": "El canal por el que tiene que llegar el afecto para que lo registres.",
   "framework": "Modelo de cinco categorías de Chapman",
   "sourceNote": "Las cinco categorías son de Gary Chapman. Las preguntas son nuestras y se puntúan de forma independiente de 1 a 100, no unas contra otras, así que las cinco pueden salir altas, o ninguna.",
+  "lineage": "Los cinco lenguajes del amor son de Gary Chapman (1992) y son públicos. Su propio cuestionario de 30 ítems tiene derechos de autor y obliga a elegir entre lenguajes, así que no se usa.",
 
   "lang.words.inline": "palabras de afirmación",
   "lang.time.inline": "tiempo de calidad",

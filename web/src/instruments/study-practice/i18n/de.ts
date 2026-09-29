@@ -6,6 +6,7 @@ export default {
   "tagline": "Welche Lerntechniken du wirklich benutzt — gemessen an denen mit den besten Belegen.",
   "framework": "Benutzte Techniken, kein Lerntyp",
   "sourceNote": "Das ist absichtlich kein Lerntypen-Test. Das Modell visuell / auditiv / lesend / kinästhetisch verlangt die Annahme, dass auf den Typ zugeschnittener Unterricht das Lernen verbessert, und die großen Übersichtsarbeiten — Pashler, McDaniel, Rohrer und Bjork sowie Coffield und Kollegen — fanden dafür keine ausreichenden Belege, wobei mehrere dieser Fragebögen schon grundlegende Reliabilitätsprüfungen nicht bestanden. Übrig bleibt, was du tust, nicht was du bist. Die sechs Techniken unten stammen aus der Übersicht von Dunlosky, Rawson, Marsh, Nathan und Willingham (2013), die verteiltes Üben und Abrufen als hoch nützlich und Wiederlesen, Markieren und Zusammenfassen als wenig nützlich einstufte; das Verschachteln kommt aus den Arbeiten von Rohrer und Pashler. Die Techniken sind ihre; die Fragen sind unsere, und hier wird nichts ausgewertet.",
+  "lineage": "Die sechs Techniken — und wie gut jede von ihnen wirkt — stammen aus der Übersicht von Dunlosky und Kollegen (2013); zum Verschachteln kommen Rohrer und Pashler hinzu. Die Techniken sind schlichte Verhaltensweisen, also wird einfach gefragt, wie oft du jede davon anwendest.",
 
   "often.never": "Nie",
   "often.rarely": "Selten",

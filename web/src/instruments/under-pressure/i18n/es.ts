@@ -15,6 +15,7 @@ export default {
   "tagline": "Cómo aguantas cuando un plan se rompe, un trabajo se eterniza o alguien te lleva la contraria.",
   "framework": "Personalidad resistente y las cuatro C",
   "sourceNote": "Preguntas propias, la mitad de ellas invertidas, sobre el constructo público de personalidad resistente (Kobasa, 1979) y sobre las cuatro C de la fortaleza mental que nacieron de él (Clough, Earle y Sewell, 2002). No se usa ninguna pregunta del MTQ48. Las escalas de dominio público del IPIP de autoeficacia, vulnerabilidad, asertividad y laboriosidad podrían sustituirse como datos si prefieres una redacción con fiabilidad publicada.",
+  "lineage": "Kobasa (1979) describió la personalidad resistente como compromiso, control y reto; Clough, Earle y Sewell (2002) añadieron la confianza para formar las cuatro C. Los estudios independientes no han confirmado limpiamente la división en cuatro, y los ítems del MTQ48 no se usan.",
 
   "trait.control.label": "Control",
   "trait.control.inline": "control",

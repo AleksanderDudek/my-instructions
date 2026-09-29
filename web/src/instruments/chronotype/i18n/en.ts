@@ -6,6 +6,7 @@ export default {
   "tagline": "When your brain is actually on, and how far that is from when your week wants it on.",
   "framework": "Mid-sleep on free days, corrected for sleep debt",
   "sourceNote": "The method is Roenneberg's: chronotype is read from the mid-point of sleep on free days rather than from an opinion about mornings, corrected for the sleep being repaid on those days. The Munich ChronoType Questionnaire itself is not reproduced — these are our own six fields feeding the published calculation. Sleep timing is a real physiological variable, but this is four numbers you typed, not a sleep study.",
+  "lineage": "Chronotype is calculated the way the Munich ChronoType Questionnaire (Roenneberg and colleagues) does it: the midpoint of sleep on free days, corrected for sleep debt. The method is published; the questionnaire's own items are not used.",
 
   "form.workBed": "Bedtime the night before a working day",
   "form.workWake": "Wake time on a working day",

@@ -6,6 +6,7 @@ export default {
   "tagline": "Nicht wie du dich einschätzt, sondern wofür du eine Gelegenheit vorweisen kannst.",
   "framework": "Behauptungen mit angehängtem Beleg",
   "sourceNote": "Dahinter steht kein Verfahren, und das mit Absicht. Selbst eingeschätztes Können korreliert bei etwa r = .29 mit gemessener Leistung, was einen Regler mit «darin bin ich gut» zum Unzuverlässigsten macht, was eine solche Seite drucken könnte. Die Einschätzung wird deshalb durch einen Fall ersetzt: Nenne die Gelegenheit, sag, was du getan hast, und lass das Muster über drei Fälle die Arbeit tun, die eine Einschätzung nicht leisten kann. Hier wird nichts bewertet und nichts geprüft — es sind deine Behauptungen, sortiert danach, ob du ihnen etwas beigelegt hast.",
+  "lineage": "Hinter diesem hier steht kein Konstrukt, und das mit Absicht. Selbst eingeschätztes Können hängt nur schwach mit gemessener Leistung zusammen (etwa r = .29; Zell und Krizan, 2014), deshalb wird statt nach einer Einschätzung nach Gelegenheiten gefragt, die du vorweisen kannst.",
 
   "shape.depth.label": "Lange Konzentration",
   "shape.variety.label": "Vieles gleichzeitig",

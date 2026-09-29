@@ -10,6 +10,7 @@ export default {
   "tagline": "Which channel affection has to arrive on before it registers.",
   "framework": "Chapman's five-category model",
   "sourceNote": "The five categories are Gary Chapman's. The items are ours and are scored independently on 1\u2013100, not forced against each other \u2014 so all five can be high, or none.",
+  "lineage": "The five love languages are Gary Chapman's (1992) and are public. His own 30-item quiz is copyrighted and forces choices between languages, so it is not used.",
 
   "lang.words.inline": "words of affirmation",
   "lang.time.inline": "quality time",

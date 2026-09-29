@@ -6,6 +6,7 @@ export default {
   "tagline": "No cuánto te puntúas, sino de qué puedes aportar una ocasión concreta.",
   "framework": "Afirmaciones con recibo adjunto",
   "sourceNote": "No hay ningún instrumento detrás de esto, y a propósito. La capacidad autoevaluada correlaciona en torno a r = .29 con el rendimiento medido, lo que convierte un deslizador que diga «se me da bien esto» en lo menos fiable que una página así podría imprimir. Así que la puntuación se sustituye por un caso: nombra la ocasión, di qué hiciste y deja que el patrón entre tres haga el trabajo que una puntuación no puede. Aquí nada se puntúa y nada se verifica: son tus afirmaciones, ordenadas según si les adjuntaste algo.",
+  "lineage": "Detrás de esto no hay ningún constructo, a propósito. La capacidad autoevaluada se corresponde solo débilmente con el rendimiento medido (en torno a r = .29; Zell y Krizan, 2014), así que en lugar de una puntuación pide ocasiones que puedas señalar.",
 
   "shape.depth.label": "Concentración larga",
   "shape.variety.label": "Muchas cosas a la vez",

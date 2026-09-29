@@ -10,6 +10,7 @@ export default {
   "tagline": "Who you are drawn to, who you have been with, and what you call it — asked as three separate questions, because they are.",
   "framework": "Attraction, behaviour and identity, on independent axes",
   "sourceNote": "Three things this is built on. Attraction, behaviour and identity are separate dimensions that describe overlapping but different groups of people — in Laumann's 1994 survey, of women reporting any same-gender sexuality, 88% reported attraction, 41% behaviour and 16% a lesbian or gay identity — so every serious survey asks them apart and so does this. The intensity questions use independent axes, following Storms (1980), rather than one line from straight to gay: a single line cannot represent being drawn to nobody, because it puts that in the same place as being drawn to everybody. And nothing here decides anything about you. The Kinsey Institute states that no official Kinsey scale test exists; AVEN states that no test can determine whether a person is asexual; the National Academies concluded in 2022 that no attraction measure has been validated for assigning an identity. This arranges what you said. The words are yours.",
+  "lineage": "Attraction, behaviour and identity are asked as separate questions, the way large population surveys such as the NSFG, Natsal and the UK census keep them, with Storms (1980) for treating each intensity as its own axis. The Kinsey scale descriptions and the Klein grid are not used.",
 
   "level.none": "Not at all",
   "level.little": "A little",

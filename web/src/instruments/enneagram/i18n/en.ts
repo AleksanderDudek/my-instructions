@@ -6,6 +6,7 @@ export default {
   "tagline": "Nine motives. Which fear organises everything you do.",
   "framework": "Nine-type Enneagram",
   "sourceNote": "The nine-type model is public. The RHETI's forced-choice items are copyrighted and are not used here \u2014 these are original Likert items, so the nine scores are independent and the result reports how close the top two are.",
+  "lineage": "The nine-type Enneagram of personality comes from Ichazo and Naranjo in the twentieth century. The RHETI's forced-choice items belong to Riso and Hudson and are not used.",
 
   "view.typeLabel": "{number} \u00b7 {name}",
   "view.eyebrowConfident": "Most likely type",

@@ -14,6 +14,7 @@ export default {
   "tagline": "Data urodzenia, zredukowana. Zodiak wschodni i zachodni, liczba przeznaczenia, piramida i kwadrat dziewięciu.",
   "framework": "Numerologia pitagorejska, zodiak chiński i zachodni",
   "sourceNote": "Systemy tradycyjne, policzone dokładnie tak, jak przewiduje tradycja — łącznie z granicą chińskiego Nowego Roku, którą większość programów myli. Żadna część tego nie ma potwierdzenia empirycznego. Jest tu dla słownika, nie dla przepowiedni.",
+  "lineage": "Numerologia pitagorejska i oba zodiaki to systemy tradycyjne, liczone tak, jak przewidują tradycje. Żadna ich część nie ma potwierdzenia empirycznego i wynik o tym mówi.",
 
   "element.Fire": "Ogień",
   "element.Earth": "Ziemia",

@@ -10,6 +10,7 @@ export default {
   "tagline": "Lo que te cuesta la cercanía y lo que te hace la distancia.",
   "framework": "Modelo bidimensional del apego (ansiedad × evitación)",
   "sourceNote": "El modelo bidimensional del apego adulto es la parte pública y es contra lo que se escribieron estas preguntas propias; el ECR-R en sí es de Fraley, Waller y Brennan y no se reproduce aquí. Las dos dimensiones se puntúan por separado de 1 a 100, y los cuatro nombres de estilo son cuadrantes de ese plano, no categorías a las que una persona pertenece.",
+  "lineage": "El apego adulto se lee en dos dimensiones, ansiedad y evitación, siguiendo a Brennan, Clark y Shaver (1998) y a Fraley, Waller y Brennan (2000). Esa estructura es pública; los ítems del propio ECR-R son de sus autores y aquí no se usan.",
 
   "dim.anxiety.label": "Ansiedad",
   "dim.anxiety.blurb": "Cuánto te ocupa la posibilidad de que te dejen.",

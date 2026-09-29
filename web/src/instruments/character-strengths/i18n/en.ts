@@ -6,6 +6,7 @@ export default {
   "tagline": "Which of twenty-four strengths of character you reach for first, and which least.",
   "framework": "Character strengths and virtues (24 strengths)",
   "sourceNote": "Original items on the public classification of twenty-four character strengths under six virtues (Peterson and Seligman, 2004), three a strength, one of them reverse-keyed. No commercial inventory's items are used. Public-domain IPIP scales for the same strengths exist and could be substituted as data if you want English wording with published reliability.",
+  "lineage": "The twenty-four strengths under six virtues come from Peterson and Seligman's classification (2004). The strength names are ordinary words; no commercial inventory's questions are used.",
 
   "virtue.wisdom": "wisdom",
   "virtue.courage": "courage",

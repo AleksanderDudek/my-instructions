@@ -6,6 +6,7 @@ export default {
   "tagline": "Qué técnicas de estudio usas de verdad, frente a las que tienen mejores pruebas detrás.",
   "framework": "Técnicas usadas, no estilo de aprendizaje",
   "sourceNote": "Esto no es un test de estilos de aprendizaje, y no lo es a propósito. El modelo visual / auditivo / lector / kinestésico te pide aceptar que enseñar según tu estilo mejora el aprendizaje, y las grandes revisiones —Pashler, McDaniel, Rohrer y Bjork; Coffield y colaboradores— no encontraron pruebas suficientes de eso, además de que varios de esos cuestionarios no superaron comprobaciones básicas de fiabilidad. Lo que queda es lo que haces, no lo que eres. Las seis técnicas de abajo salen de la revisión de Dunlosky, Rawson, Marsh, Nathan y Willingham de 2013, que calificó la práctica distribuida y la evocación como de alta utilidad y la relectura, el subrayado y el resumen como de baja, con la intercalación añadida del trabajo de Rohrer y Pashler. Las técnicas son suyas; las preguntas son nuestras, y aquí no se puntúa nada.",
+  "lineage": "Las seis técnicas, y lo bien que funciona cada una, vienen de la revisión de Dunlosky y colaboradores (2013), con Rohrer y Pashler para la intercalación. Las técnicas son conductas simples, así que las preguntas solo piden con qué frecuencia usas cada una.",
 
   "often.never": "Nunca",
   "often.rarely": "Rara vez",

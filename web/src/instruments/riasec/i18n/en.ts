@@ -6,6 +6,7 @@ export default {
   "tagline": "Six kinds of work that give energy rather than take it, and the shape they make together.",
   "framework": "Holland's RIASEC hexagon",
   "sourceNote": "Holland's six interest types and the hexagon they sit on are public, and public-domain item pools exist — the Liao, Armstrong and Rounds markers, and the US Department of Labor's Interest Profiler. These items are written fresh against the same six definitions, and they ask about activities rather than job titles: a job title carries a salary, a status and a stereotype along with the work, and people answer about those instead.",
+  "lineage": "John Holland's six interest types and their hexagon date from 1959 onwards and are public. Public-domain item pools exist; the items here are still written fresh.",
 
   "type.realistic.label": "Realistic",
   "type.realistic.blurb": "Working with things — machines, materials, the physical world. Preferring the problem you can put your hands on.",

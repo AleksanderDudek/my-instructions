@@ -6,6 +6,7 @@ export default {
   "tagline": "Nie w jakiej dziedzinie, tylko z czego zrobione jest samo robienie — długie czy krótkie, ujęte czy nieujęte, wytwarzane czy negocjowane.",
   "framework": "Cztery przeciwstawienia dotyczące samej pracy",
   "sourceNote": "Nie stoi za tym żadne opublikowane narzędzie. Typy zainteresowań Hollanda sortują pracę po tematyce, a taksonomia czynności O*NET po tym, co się robi; żadna nie pyta, czy robienie jest długie czy krótkie, ujęte czy nieujęte, wytwarzane czy negocjowane. Te pytania padają tutaj, bo to one decydują, czy ktoś wytrzyma w pracy, która na papierze wygląda właściwie. Osiem skal jest tu założonych, a nie odkrytych: nikt nie poddał tej puli analizie czynnikowej, nikt jej nie powtórzył i nie ma dowodu, że dopasowanie kształtu do pracy czyni cię w niej lepszym.",
+  "lineage": "Nie stoi za tym żadne opublikowane narzędzie. Przeciwstawienia to zwykłe rozróżnienia dotyczące pracy — długa czy krótka, ujęta w ramy czy bez ram, wytwarzana czy negocjowana — wybrane dlatego, że typy zainteresowań ich nie widzą.",
 
   "shape.depth.label": "Głębia",
   "shape.depth.blurb": "Jedna rzecz, trzymana długo. Dobra część zaczyna się po pierwszej godzinie.",

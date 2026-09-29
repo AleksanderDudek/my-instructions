@@ -9,6 +9,7 @@ export default {
   "tagline": "Seis factores, incluido el que los cinco grandes no ven.",
   "framework": "Modelo de seis factores (Ashton y Lee)",
   "sourceNote": "La estructura de seis factores es de Ashton y Lee y es pública; las preguntas del propio HEXACO-PI-R son suyas y no se reproducen aquí. Estas son preguntas propias escritas a partir de las definiciones publicadas de los factores, puntuadas de forma independiente de 1 a 100.",
+  "lineage": "El modelo HEXACO, de Ashton y Lee en la década de 2000, añade a los cinco factores de los cinco grandes un sexto, Honestidad–Humildad. Los ítems del propio HEXACO-PI-R no se usan.",
 
   "factor.honesty.label": "Honestidad–Humildad",
   "factor.honesty.inline": "honestidad–humildad",

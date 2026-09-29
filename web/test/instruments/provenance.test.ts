@@ -2,8 +2,8 @@ import { describe, expect, test } from "vitest";
 import { readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { registry } from "@/instruments";
-import { validateProvenance } from "@/core/provenance";
-import { TAGS, loadShell } from "@/core/locales";
+import { validateProvenance, ITEM_ORIGINS, EVIDENCE } from "@/core/provenance";
+import { TAGS, loadShell, loadInstrument } from "@/core/locales";
 import type { Locale } from "@/core/types";
 
 /**
@@ -80,5 +80,39 @@ describe("the contract itself", () => {
         evidence: { reliability: "borrowed", factorStructure: "borrowed", criterion: "none" },
       }),
     ).not.toThrow();
+  });
+});
+
+/**
+ * The page never prints a provenance field raw.
+ *
+ * It once did: a Polish reader met "Two-dimensional adult attachment",
+ * "original" and "none" in English, because the values were free text and the
+ * renderer could not know what to translate. Now every value the contract
+ * allows is a key, and every key has a word in every language — and the
+ * framework's record is a sentence each instrument writes, not a field.
+ */
+
+describe("the provenance section speaks the reader's language", () => {
+  test.each(TAGS)("%s has a word for every origin and every evidence level", async (locale) => {
+    const shell = await loadShell(locale as Locale);
+    const keys = [
+      ...ITEM_ORIGINS.map((o) => `provenance.origin.${o}`),
+      ...EVIDENCE.map((e) => `provenance.evidence.${e}`),
+      ...["reliability", "factorStructure", "criterion"].map((f) => `provenance.${f}`),
+      "provenance.framework",
+      "provenance.ours",
+      "provenance.inventory",
+      "provenance.readAs",
+      "provenance.why",
+    ];
+    expect(keys.filter((k) => !shell[k]), `${locale} is missing`).toEqual([]);
+  });
+
+  test.each(registry.all().map((m) => m.spec.id))("%s states its lineage and names its framework", async (id) => {
+    const spec = registry.get(id)!.spec;
+    const en = await loadInstrument(spec, "en");
+    expect(en[`${id}.lineage`]?.length ?? 0).toBeGreaterThan(40);
+    expect(en[`${id}.framework`]?.length ?? 0).toBeGreaterThan(0);
   });
 });

@@ -6,6 +6,7 @@ export default {
   "tagline": "Lo que un trabajo tiene que darte antes de que su contenido empiece a importar.",
   "framework": "Los seis valores laborales de la teoría del ajuste al trabajo",
   "sourceNote": "Los seis valores son de Dawis y Lofquist, reducidos por análisis factorial desde las veinte necesidades del Minnesota Importance Questionnaire, y adoptados con estos nombres por el Departamento de Trabajo de EE. UU. para el O*NET Work Importance Locator, una obra federal publicada bajo CC BY 4.0. La taxonomía es libre con atribución; el cuestionario de Minnesota no lo es, y aquí no hay ninguno de sus ítems. Estas treinta y seis frases son nuestras, así que la estructura de seis factores pertenece a los datos de Minnesota y no a este banco, que nunca se ha administrado a una muestra y no tiene baremos.",
+  "lineage": "Los seis valores laborales vienen de la teoría del ajuste al trabajo de Dawis y Lofquist, y el Departamento de Trabajo de EE. UU. los adoptó para O*NET, que los publica bajo CC BY 4.0. Los ítems del Minnesota Importance Questionnaire no se usan.",
 
   "value.achievement.label": "Logro",
   "value.achievement.blurb": "Usar aquello en lo que eres bueno y poder ver que algo quedó terminado.",

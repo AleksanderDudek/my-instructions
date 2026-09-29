@@ -10,6 +10,7 @@ export default {
   "tagline": "Ile kosztuje cię bliskość i co robi z tobą dystans.",
   "framework": "Dwuwymiarowy model przywiązania (lęk × unikanie)",
   "sourceNote": "Dwuwymiarowy model przywiązania dorosłych jest częścią publiczną i to wobec niego napisano te autorskie pozycje; samo ECR-R należy do Fraleya, Wallera i Brennan i nie jest tu powielane. Oba wymiary punktowane są osobno w skali 1–100, a cztery znane nazwy stylów to ćwiartki tej płaszczyzny, a nie kategorie, do których człowiek należy.",
+  "lineage": "Przywiązanie dorosłych jest tu opisywane w dwóch wymiarach — lęku i unikania — zgodnie z pracami Brennan, Clark i Shavera (1998) oraz Fraleya, Wallera i Brennan (2000). Ta struktura jest publiczna; pozycje samego ECR-R należą do ich autorów i nie są tu użyte.",
 
   "dim.anxiety.label": "Lęk",
   "dim.anxiety.blurb": "Jak bardzo zajmuje cię możliwość bycia porzuconym.",

@@ -10,6 +10,7 @@ export default {
   "tagline": "Was Nähe dich kostet und was Distanz mit dir macht.",
   "framework": "Zweidimensionale Bindung (Angst × Vermeidung)",
   "sourceNote": "Das zweidimensionale Modell der Erwachsenenbindung ist der öffentliche Teil, und gegen ihn sind diese eigenen Fragen geschrieben; das ECR-R selbst stammt von Fraley, Waller und Brennan und wird hier nicht wiedergegeben. Beide Dimensionen werden für sich von 1 bis 100 ausgewertet, und die vier bekannten Stilnamen sind Quadranten dieser Ebene, keine Kategorien, zu denen ein Mensch gehört.",
+  "lineage": "Erwachsenenbindung wird hier auf zwei Dimensionen gelesen, Angst und Vermeidung, nach Brennan, Clark und Shaver (1998) sowie Fraley, Waller und Brennan (2000). Diese Struktur ist öffentlich; die Items des ECR-R selbst gehören ihren Autorinnen und Autoren und werden hier nicht verwendet.",
 
   "dim.anxiety.label": "Angst",
   "dim.anxiety.blurb": "Wie sehr dich die Möglichkeit beschäftigt, verlassen zu werden.",

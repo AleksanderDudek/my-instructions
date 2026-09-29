@@ -6,6 +6,7 @@ export default {
   "tagline": "Not what you rate yourself at — what you can produce an occasion for.",
   "framework": "Claims with receipts attached",
   "sourceNote": "There is no instrument behind this and there deliberately is not. Self-rated ability correlates around r = .29 with measured performance, which makes a slider saying «I am good at this» the least reliable thing a page like this could print. So the rating is replaced by an instance: name the occasion, say what you did, and let the pattern across three of them do the work a rating cannot. Nothing here is scored, and none of it is verified — these are your claims, sorted by whether you attached anything to them.",
+  "lineage": "There is no construct behind this one, on purpose. Self-rated ability tracks measured performance only weakly (about r = .29; Zell and Krizan, 2014), so instead of a rating it asks for occasions you can point to.",
 
   "shape.depth.label": "Long focus",
   "shape.variety.label": "Many things at once",

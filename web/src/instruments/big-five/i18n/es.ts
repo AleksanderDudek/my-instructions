@@ -11,6 +11,7 @@ export default {
   "tagline": "Las cinco dimensiones que sobrevivieron a un siglo de análisis factorial.",
   "framework": "Modelo de cinco factores (OCEAN)",
   "sourceNote": "Preguntas propias sobre la estructura pública de cinco factores, la mitad de ellas invertidas. Los marcadores de dominio público del IPIP pueden sustituirse como datos puros si prefieres la redacción validada.",
+  "lineage": "El modelo de cinco factores nació de los análisis de Tupes y Christal (1961) y lo desarrollaron Costa y McCrae; su estructura se ha replicado en muchos idiomas. No se usan los ítems del NEO-PI-R.",
 
   "factor.openness.inline": "apertura a la experiencia",
   "factor.conscientiousness.inline": "responsabilidad",

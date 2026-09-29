@@ -6,6 +6,7 @@ export default {
   "tagline": "Których technik uczenia się naprawdę używasz — wobec tych, za którymi stoją najlepsze dowody.",
   "framework": "Używane techniki, a nie styl uczenia się",
   "sourceNote": "To celowo nie jest test stylów uczenia się. Model wzrokowiec / słuchowiec / czytający / kinestetyk każe ci przyjąć, że nauczanie dopasowane do twojego stylu poprawia uczenie się, a duże przeglądy — Pashler, McDaniel, Rohrer i Bjork oraz Coffield ze współpracownikami — nie znalazły na to wystarczających dowodów, przy czym kilka z tych kwestionariuszy nie przeszło podstawowych sprawdzeń rzetelności. Zostaje to, co robisz, a nie to, kim jesteś. Sześć poniższych technik pochodzi z przeglądu Dunlosky'ego, Rawson, Marsh, Nathana i Willinghama z 2013 roku, który ocenił praktykę rozłożoną w czasie i przywoływanie z pamięci jako wysoce użyteczne, a ponowne czytanie, zakreślanie i streszczanie jako mało użyteczne; przeplatanie dochodzi z prac Rohrera i Pashlera. Techniki są ich; pytania są nasze, a nic tutaj nie jest punktowane.",
+  "lineage": "Sześć technik i to, jak dobrze każda z nich działa, pochodzi z przeglądu Dunlosky'ego i współpracowników (2013), a w kwestii przeplatania — z prac Rohrera i Pashlera. Techniki są zwykłymi zachowaniami, więc pytania dotyczą po prostu tego, jak często stosujesz każdą z nich.",
 
   "often.never": "Nigdy",
   "often.rarely": "Rzadko",

@@ -6,6 +6,7 @@ export default {
   "tagline": "Acht Dinge, auf die eine Kollegin morgen reagieren kann — und keines behauptet etwas über deine Persönlichkeit.",
   "framework": "Vorlieben, keine Messung",
   "sourceNote": "Hinter diesem hier steht kein validiertes Instrument, und das muss es auch nicht: Wie viel Vorlauf du willst, bevor sich ein Plan ändert, ist kein psychologisches Konstrukt, sondern eine Tatsache darüber, wie du behandelt werden möchtest. Nichts wird ausgewertet, in Bänder sortiert oder mit einer Population verglichen. Es stellt acht Fragen und gibt die Antworten geordnet zurück.",
+  "lineage": "Dahinter steht kein Instrument, und es braucht auch keines. Wie viel Vorlauf du willst, bevor sich ein Plan ändert, ist eine Tatsache darüber, wie du behandelt werden möchtest, kein Merkmal, das zu messen wäre.",
 
   "form.note": "Antworte danach, wie du wirklich arbeitest, nicht wie du meinst, dass du solltest. Niemand sieht das, bevor du es entscheidest, und eine schmeichelhafte Antwort ist eine verschenkte Frage.",
   "form.pickOne": "Wähle mindestens eins.",

@@ -9,6 +9,7 @@ export default {
   "tagline": "Ocho maneras de captar el mundo y de decidir sobre él, en el orden en que de verdad las usas.",
   "framework": "Tipos psicológicos de Jung (1921)",
   "sourceNote": "«Tipos psicológicos» de Jung es de dominio público; el instrumento de cuatro letras construido sobre él es una marca registrada con preguntas protegidas y aquí no se reproduce nada de eso. Estas son preguntas propias sobre las ocho funciones, cada una puntuada por su cuenta de 1 a 100 y no contra su opuesta, así que el código de arriba se deriva de tu pila en vez de preguntarse directamente. Toma el código como una abreviatura. La pila es la afirmación.",
+  "lineage": "Jung expuso los tipos psicológicos en 1921, y su texto es de dominio público. El código de cuatro letras de aquí se deriva de la pila de funciones en vez de preguntarse; no se usan los ítems del MBTI, amparados por su marca registrada.",
 
   "temperament.steward.label": "El Administrador",
   "temperament.steward.blurb": "Concreto y asentado. Mantiene la cosa en marcha, recuerda cómo se acordó y trata un compromiso como algo que sostiene peso.",

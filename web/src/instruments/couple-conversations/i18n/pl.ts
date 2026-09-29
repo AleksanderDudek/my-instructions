@@ -9,6 +9,7 @@ export default {
   "tagline": "Pięć rzeczy, które para podobno ma ustalone — i to, czy naprawdę o nich rozmawialiście.",
   "framework": "Agenda, a nie test dopasowania",
   "sourceNote": "To celowo nie daje żadnego wyniku dopasowania, i jest ku temu powód głębszy niż gust. Podobieństwo dwojga ludzi przewiduje przyciąganie przy pierwszym spotkaniu i przestaje przewidywać, gdy związek już istnieje; procent zbudowany przez odjęcie jednego kwestionariusza od drugiego mierzy coś, co według literatury nie przewiduje tego, na czym ci zależy; a uśrednienie dwojga ludzi do jednej liczby niszczy jedyną informację, jaką ma narzędzie dla dwóch osób. To, co zostaje, jest i tak warte więcej: czy rozmowa się odbyła, to fakt o zdarzeniu, a nie domysł o cudzej głowie. Nawet skromne twierdzenie, które za tym stoi — że rozmowa przed ślubem pomaga — trzeba trzymać lekko: dwa największe badania z randomizacją nad edukacją okołomałżeńską, Building Strong Families i Supporting Healthy Marriage, znalazły efekty na jakość związku od zerowych do znikomych i żadnych na to, czy pary zostawały razem.",
+  "lineage": "Obszary tematyczne to te, które obejmuje każdy inwentarz przedmałżeński, a podejście opiera się na badaniach Stanleya, Rhoades i Markmana nad tym, by decydować się na zobowiązania, zamiast się w nie ześlizgiwać. Nic nie zostało zaczerpnięte z PREPARE/ENRICH, FOCCUS, RELATE ani SYMBIS.",
 
   "status.never": "Nigdy nie padło",
   "status.passing": "Wspomniane mimochodem",

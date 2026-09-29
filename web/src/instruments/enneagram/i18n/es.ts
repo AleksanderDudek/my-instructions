@@ -14,6 +14,7 @@ export default {
   "tagline": "Nueve motivos. Qué miedo organiza todo lo que haces.",
   "framework": "Eneagrama de nueve tipos",
   "sourceNote": "El modelo de nueve tipos es público. Las preguntas de elección forzada del RHETI tienen derechos de autor y no se usan aquí: estas son preguntas Likert propias, así que las nueve puntuaciones son independientes y el resultado indica lo cerca que están las dos primeras.",
+  "lineage": "El Eneagrama de la personalidad, con sus nueve tipos, viene de Ichazo y Naranjo, en el siglo XX. Los ítems de elección forzada del RHETI son de Riso y Hudson y no se usan.",
 
   "view.typeLabel": "{number} · {name}",
   "view.eyebrowConfident": "Tipo más probable",

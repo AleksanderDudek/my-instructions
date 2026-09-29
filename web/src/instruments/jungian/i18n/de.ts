@@ -9,6 +9,7 @@ export default {
   "tagline": "Acht Arten, die Welt aufzunehmen und über sie zu entscheiden — in der Reihenfolge, in der du sie tatsächlich benutzt.",
   "framework": "Jungs Psychologische Typen (1921)",
   "sourceNote": "Jungs „Psychologische Typen“ ist gemeinfrei; das darauf aufgebaute Vier-Buchstaben-Instrument ist eine Marke mit geschützten Fragen, und nichts davon wird hier wiedergegeben. Dies sind eigene Fragen zu den acht Funktionen, jede für sich von 1 bis 100 ausgewertet statt gegen ihr Gegenstück — der Code oben wird also aus deinem Stapel abgeleitet und nicht direkt erfragt. Nimm den Code als Kurzform. Die Aussage ist der Stapel.",
+  "lineage": "Jung hat die psychologischen Typen 1921 dargelegt, und sein Text ist gemeinfrei. Der Vier-Buchstaben-Code wird hier aus dem Funktionsstapel abgeleitet, statt erfragt zu werden; die markenrechtlich geschützten Items des MBTI werden nicht verwendet.",
 
   "temperament.steward.label": "Der Verwalter",
   "temperament.steward.blurb": "Konkret und gesetzt. Hält die Sache am Laufen, weiß noch, wie es vereinbart war, und behandelt eine Zusage als tragend.",

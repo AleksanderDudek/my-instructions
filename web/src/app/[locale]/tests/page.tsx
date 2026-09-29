@@ -58,15 +58,20 @@ export default async function CataloguePage({ params }: { params: Promise<{ loca
           and every instrument staying reachable is the rule the catalogue is
           built on.
         */}
-        <nav aria-label={t("catalog.heading")} className="flex flex-wrap gap-2">
+        {/* One swipeable row on a phone rather than two wrapped ones: the
+            index should cost a line of the screen, not a fifth of it. */}
+        <nav
+          aria-label={t("catalog.heading")}
+          className="-mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+        >
           {groups.map((group) => (
             <a
               key={group.family}
               href={`#group-${group.family}`}
-              className="tap rounded-full border border-rule px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-muted transition-colors hover:border-brass hover:text-ink"
+              className="tap shrink-0 snap-start whitespace-nowrap rounded-full border border-rule px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-muted transition-colors hover:border-brass hover:text-ink active:border-brass"
             >
               {t(group.labelKey)}
-              <span className="num ml-2 text-faint">{group.items.length}</span>
+              <span className="num ml-2 text-brass">{group.items.length}</span>
             </a>
           ))}
         </nav>

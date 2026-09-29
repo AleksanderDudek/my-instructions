@@ -121,7 +121,7 @@ The frameworks are public; the item wording is ours.
 | Chapman's 30-item love-languages quiz | Copyright, Northfield Publishing | Original 40-item Likert bank against the same five categories |
 | RHETI v2.5 (144 forced-choice items) | Copyright, The Enneagram Institute — the public repos state their items were OCR'd from the source PDF | Original 45-item Likert bank against the public nine-type model |
 | "Multifactor Enneagram" (AugmentedPersonality) | No license or attribution stated | Not used |
-| openpsychometrics.org (OEPS) | Open, educational use | Referenced as prior art |
+| openpsychometrics.org (OEPS) | CC BY-NC-SA 4.0 on its OEJTS/OJTS items (non-commercial, share-alike) | Referenced as prior art; no items used |
 | IPIP item pool | Public domain | Referenced; substitutable as pure data — see below |
 
 Item banks are plain data. Swapping the Big Five bank for the public-domain

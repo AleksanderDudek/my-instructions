@@ -133,8 +133,30 @@
     background: var(--color-ground);
     color: var(--color-ink);
     /* The banner is sticky and opaque. Without this, every in-page anchor —
-       the skip link included — scrolls its target underneath it. */
-    scroll-padding-top: 4.5rem;
+       the skip link included — scrolls its target underneath it. The inset
+       is the notch, which the banner grows by in an installed app. */
+    scroll-padding-top: calc(4.5rem + env(safe-area-inset-top));
+  }
+
+  /*
+   * Touch.
+   *
+   * `manipulation` drops double-tap-to-zoom on controls, so a tap is a tap the
+   * moment the finger lifts — pinch zoom on the page is untouched. The grey
+   * flash WebKit paints on tap goes too, because every control here has its
+   * own pressed state (`active:`), in the glass's colours rather than a grey
+   * that belongs to no theme.
+   */
+  a,
+  button,
+  summary,
+  label,
+  [role="button"],
+  [role="radio"],
+  [role="checkbox"],
+  [role="tab"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {

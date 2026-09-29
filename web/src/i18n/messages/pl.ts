@@ -428,4 +428,13 @@ export default {
   "coffee.thanksKicker": "Dziękuję",
   "coffee.thanksTitle": "Ta smakuje najlepiej",
   "coffee.thanksLine": "Serio. Dzięki, że jesteś częścią tej strony.",
+
+  /* ── the installed app ─────────────────────────────────────────── */
+  "app.shortName": "Instrukcja",
+  "profile.installSection": "Na telefonie",
+  "profile.installNote": "zainstaluj jak aplikację; otwarte już strony działają bez internetu",
+  "profile.installCta": "Zainstaluj aplikację",
+  "profile.installIos": "W Safari stuknij Udostępnij, a potem „Do ekranu początkowego”.",
+  "profile.installManual": "Otwórz menu przeglądarki i wybierz „Zainstaluj aplikację” albo „Dodaj do ekranu głównego”.",
+  "profile.installDone": "Zainstalowana. Wszystko, co odpowiesz, nadal zostaje na tym urządzeniu.",
 };

@@ -174,8 +174,13 @@ Psychometrics: 32 bipolar semantic-differential items, eight per dichotomy,
 summed 8–40 and cut at 24/25. Its confidence and consistency layer is a good
 idea and we already do something like it in the Enneagram's margin.
 
-The repo itself carries **no licence**, so its code is not reusable; OEJTS
-underneath it is public domain.
+The repo itself carries **no licence**, so its code is not reusable. OEJTS
+underneath it is **not** public domain, as this note used to say: Open
+Psychometrics publishes it under CC BY-NC-SA 4.0 — attribution,
+non-commercial, share-alike — which rules it out for anything behind the
+paid tier `core/entitlements.ts` anticipates. (Corrected 2026-09-29; the
+`jungian` instrument lists OEJTS as avoided and reproduces none of it, so no
+shipped content was affected.)
 
 Two reasons not to copy the approach, both of which the codebase has already
 committed to elsewhere:

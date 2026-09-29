@@ -428,4 +428,13 @@ export default {
   "coffee.thanksKicker": "Danke",
   "coffee.thanksTitle": "Der schmeckt am besten",
   "coffee.thanksLine": "Wirklich. Danke, dass du Teil dieser Seite bist.",
+
+  /* ── the installed app ─────────────────────────────────────────── */
+  "app.shortName": "Anleitung",
+  "profile.installSection": "Auf dem Handy",
+  "profile.installNote": "wie eine App installieren; schon geöffnete Seiten funktionieren offline",
+  "profile.installCta": "App installieren",
+  "profile.installIos": "Tippe in Safari auf Teilen und dann auf „Zum Home-Bildschirm“.",
+  "profile.installManual": "Öffne das Browser-Menü und wähle „App installieren“ oder „Zum Startbildschirm hinzufügen“.",
+  "profile.installDone": "Installiert. Alles, was du beantwortest, bleibt weiterhin auf diesem Gerät.",
 };

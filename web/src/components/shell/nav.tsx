@@ -6,9 +6,11 @@ import { DropdownMenu } from "radix-ui";
 import type { Locale } from "@/core/types";
 import { cn } from "@/lib/cn";
 import { Roundel, Uriel, type IconName } from "@/components/brand/art";
+import { isFocusFlow, parentOf } from "./routes";
 
 export type NavLabels = {
   title: string;
+  back: string;
   home: string;
   tests: string;
   instructions: string;
@@ -67,7 +69,11 @@ export function Nav({
   labels: NavLabels;
   locales: { tag: string; endonym: string }[];
 }) {
-  const pathname = usePathname();
+  // Static export serves `/en/tests/`; compare without the slash either way.
+  const pathname = usePathname().replace(/(.)\/+$/, "$1");
+  const up = parentOf(pathname);
+  const focus = isFocusFlow(pathname);
+  const upLabel = up ? { tests: labels.tests, back: labels.back, home: labels.home }[up.label] : "";
   const items: { key: Key; href: string; label: string; exact?: boolean }[] = [
     { key: "home", href: `/${locale}`, label: labels.home, exact: true },
     // Before the catalogue, because it is the answer to the question somebody
@@ -91,8 +97,31 @@ export function Nav({
 
   return (
     <>
-      <header className="flex items-center justify-between gap-3 border-b border-rule py-4 sm:py-6">
-        <Link href={`/${locale}`} className="flex min-w-0 items-center gap-2.5 font-display text-lg font-semibold text-ink">
+      {/*
+        The app bar. On a phone, a page beneath one of the five destinations
+        trades the wordmark for "up": a 44px target in the thumb's corner of
+        the bar, where every mobile platform puts it. From `sm` the wordmark
+        stays and the page's own link back does the job, as it always has.
+      */}
+      <header className="flex min-h-14 items-center justify-between gap-3 border-b border-rule py-2 sm:py-6">
+        {up ? (
+          <Link
+            href={up.href}
+            className="tap -ml-2 flex min-w-0 items-center gap-1.5 rounded-sm px-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink active:text-brass-hi sm:hidden"
+          >
+            <span aria-hidden className="text-xl leading-none text-brass">
+              ‹
+            </span>
+            <span className="truncate">{upLabel}</span>
+          </Link>
+        ) : null}
+        <Link
+          href={`/${locale}`}
+          className={cn(
+            "min-w-0 items-center gap-2.5 font-display text-lg font-semibold text-ink",
+            up ? "hidden sm:flex" : "flex",
+          )}
+        >
           <Uriel mood="avatar" width={32} className="size-8" />
           <span className="truncate">{labels.title}</span>
         </Link>
@@ -165,38 +194,54 @@ export function Nav({
         being partly under it. The page reserves room for this in the layout's
         `pb-*`, so nothing is ever hidden behind it.
       */}
-      <nav
-        aria-label={labels.home}
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-ground/95 backdrop-blur-sm sm:hidden"
-        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-      >
-        <ul className="mx-auto flex max-w-lg items-stretch">
-          {items.map((item) => {
-            const on = isOn(item.href, item.exact);
-            return (
-              <li key={item.href} className="flex-1">
-                <Link
-                  href={item.href}
-                  aria-current={on ? "page" : undefined}
-                  className={cn(
-                    "flex min-h-[3.5rem] flex-col items-center justify-center gap-1 px-1 py-2 transition-colors",
-                    on ? "text-brass-hi" : "text-muted",
-                  )}
-                >
-                  {item.key === "home" ? (
-                    <Uriel mood="avatar" width={28} className="size-7" />
-                  ) : (
-                    <Roundel name={ROUNDEL[item.key]} size={28} className="size-7" />
-                  )}
-                  <span className="w-full truncate text-center font-mono text-[0.55rem] uppercase tracking-[0.1em]">
-                    {item.label}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      {/*
+        Absent while a test is being taken: see `isFocusFlow`. The runner
+        pins its own Back / Next bar to the bottom edge in its place.
+      */}
+      {focus ? null : (
+        <nav
+          aria-label={labels.home}
+          className="fixed inset-x-0 bottom-0 z-40 select-none border-t border-rule bg-ground/95 backdrop-blur-sm sm:hidden"
+          style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        >
+          <ul className="mx-auto flex max-w-lg items-stretch">
+            {items.map((item) => {
+              const on = isOn(item.href, item.exact);
+              return (
+                <li key={item.href} className="flex-1">
+                  {/* The active tab carries an indicator behind its roundel — the
+                      wine pill of the desktop row, cut to fit — so the state
+                      reads from shape and colour at once, not a label tint. */}
+                  <Link
+                    href={item.href}
+                    aria-current={on ? "page" : undefined}
+                    className={cn(
+                      "flex min-h-14 flex-col items-center justify-center gap-1 px-1 pb-1.5 pt-2 transition-colors",
+                      on ? "text-brass-hi" : "text-muted active:text-ink",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "grid h-8 w-14 place-items-center rounded-full transition-colors",
+                        on ? "pill-on" : "",
+                      )}
+                    >
+                      {item.key === "home" ? (
+                        <Uriel mood="avatar" width={26} className="size-[26px]" />
+                      ) : (
+                        <Roundel name={ROUNDEL[item.key]} size={26} className="size-[26px]" />
+                      )}
+                    </span>
+                    <span className="w-full truncate text-center font-mono text-[0.55rem] uppercase tracking-[0.1em]">
+                      {item.label}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      )}
     </>
   );
 }

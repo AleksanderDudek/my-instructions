@@ -426,4 +426,13 @@ export default {
   "coffee.thanksKicker": "Gracias",
   "coffee.thanksTitle": "Este sabe mejor que ninguno",
   "coffee.thanksLine": "De verdad. Gracias por ser parte de esta página.",
+
+  /* ── the installed app ─────────────────────────────────────────── */
+  "app.shortName": "Instrucciones",
+  "profile.installSection": "En tu teléfono",
+  "profile.installNote": "instálala como una app; las páginas que ya abriste funcionan sin conexión",
+  "profile.installCta": "Instalar la app",
+  "profile.installIos": "En Safari, toca Compartir y luego «Añadir a pantalla de inicio».",
+  "profile.installManual": "Abre el menú del navegador y elige «Instalar aplicación» o «Añadir a pantalla de inicio».",
+  "profile.installDone": "Instalada. Todo lo que respondas sigue quedándose en este dispositivo.",
 };

@@ -172,7 +172,7 @@ export function Reflect({
                     </RadioGroup.Item>
                   ))}
                 </RadioGroup.Root>
-                <div aria-hidden className="mt-2 flex justify-between gap-6 text-sm text-faint">
+                <div aria-hidden className="mt-2 flex justify-between gap-6 text-sm text-muted">
                   <span>{copy.weightLow}</span>
                   <span className="text-right">{copy.weightHigh}</span>
                 </div>

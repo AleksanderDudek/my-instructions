@@ -436,4 +436,13 @@ export default {
   "coffee.thanksKicker": "Thank you",
   "coffee.thanksTitle": "This one tastes best",
   "coffee.thanksLine": "Really. Thanks for being part of this page.",
+
+  /* ── the installed app ─────────────────────────────────────────── */
+  "app.shortName": "Instructions",
+  "profile.installSection": "On your phone",
+  "profile.installNote": "install it like an app; pages you have opened work offline",
+  "profile.installCta": "Install the app",
+  "profile.installIos": "In Safari, tap Share, then “Add to Home Screen”.",
+  "profile.installManual": "Open your browser’s menu and choose “Install app” or “Add to Home screen”.",
+  "profile.installDone": "Installed. Everything you answer still stays on this device.",
 };

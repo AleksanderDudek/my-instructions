@@ -77,7 +77,7 @@ export default async function InstrumentPage({ params }: { params: Promise<{ loc
       />
 
       <header className="flex flex-col gap-5 py-14">
-        <Link href={`/${locale}/tests`} className="label-caps hover:text-ink">
+        <Link href={`/${locale}/tests`} className="label-caps hidden self-start hover:text-ink sm:inline">
           {t("common.allTests")}
         </Link>
         <div className="flex items-start gap-5">

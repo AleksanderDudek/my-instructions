@@ -338,7 +338,7 @@ export function Compatibility({ mine, t }: { mine: NumerologyResult; t: T }) {
                             <div className="mb-2 flex items-baseline justify-between gap-4">
                               <span className="text-[0.95rem] text-ink/80">{part.t}</span>
                               <span className="num text-sm text-muted">
-                                {part.v} <span className="text-faint">/ {part.max}</span>
+                                {part.v} <span className="text-muted">/ {part.max}</span>
                               </span>
                             </div>
                             <span className="block h-[3px] w-full bg-rule" aria-hidden>

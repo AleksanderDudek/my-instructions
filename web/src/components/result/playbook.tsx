@@ -222,7 +222,7 @@ function Column({
         {heading}
       </h3>
 
-      {!suggestions.length && !own.length ? <p className="mb-4 text-sm text-faint">{copy.empty}</p> : null}
+      {!suggestions.length && !own.length ? <p className="mb-4 text-sm text-muted">{copy.empty}</p> : null}
 
       <ul className="mb-4 grid gap-2">
         {suggestions.map((s) => {

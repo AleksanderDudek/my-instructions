@@ -55,6 +55,16 @@ export default {
     note: "None, and none is needed: nothing is inferred here, so there is nothing to validate. Reliability, factor structure and criterion validity are properties of a measurement given to a population, and this instrument does not measure — the answers are the result. Three things about the domain are worth knowing, and none of them is a property of these items. Stated intentions about children predict achieved family size poorly, with people more likely to miss their number than hit it (Quesnel-Vallée and Morgan 2003). Infertility is not an edge case: WHO's 2023 review put lifetime prevalence at roughly one adult in six, which is why the block on what happens if conceiving does not work is in the bank rather than in a footnote. And grandparental childcare, which the childcare block may name as the arrangement the week rests on, ranges from about 24% to about 60% of grandparents across European countries in SHARE data (European Journal of Ageing, 2023), so there is no safe default to assume for the reader.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://www.cdc.gov/nchs/nsfg/nsfg-questionnaires.htm (NCHS page, last reviewed 11 December 2024; questionnaires for every cycle 1973–2022-2023). The bank's old URL nsfg_questionnaires.htm now returns 404.
+    { authors: "National Center for Health Statistics", year: 2024, title: "National Survey of Family Growth: Questionnaires, Datasets, and Related Documentation", source: "Centers for Disease Control and Prevention", url: "https://www.cdc.gov/nchs/nsfg/nsfg-questionnaires.htm", kind: "foundational" },
+    // checked: https://www.ggp-i.org/wp-content/uploads/2021/04/GGS-Questionnaire-3_0_7.pdf — the document's own 'please cite as' block (44 named authors, year 2020; title page dated The Hague, 31 March 2021); contains the fertility-intention items (FER15, FER16a)
+    { authors: "Gauthier, A. H., Liefbroer, A., Ajzen, I., et al.", year: 2020, title: "Generations and Gender Survey Baseline Questionnaire 3.0.7", source: "Netherlands Interdisciplinary Demographic Institute [distributor]", url: "https://www.ggp-i.org/wp-content/uploads/2021/04/GGS-Questionnaire-3_0_7.pdf", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1023/B:POPU.0000021074.33415.c1; abstract at https://scholars.duke.edu/publication/648489 ('more likely to err in predicting number of additional births ... than to hit their target number')
+    { authors: "Quesnel-Vallée, A., & Morgan, S. P.", year: 2003, title: "Missing the Target? Correspondence of Fertility Intentions and Behavior in the U.S.", source: "Population Research and Policy Review, 22(5–6), 497–525", url: "https://doi.org/10.1023/B:POPU.0000021074.33415.c1", kind: "critique" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

@@ -26,6 +26,16 @@ export default {
     note: "Reliability and validity are properties of a specific item set given to a specific population, not of a construct's name. This bank has never been administered to a sample and has no norms.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: Library of Congress record LCCN 93182018 (The five love languages, Gary Chapman, Chicago: Northfield Pub., c1992, ISBN 1881273156); subtitle from Open Library edition record for the same ISBN https://openlibrary.org/isbn/1881273156 (LoC MARC source) and the Crossref-deposited reference in Egbert & Polk 2006 (doi 10.1080/17464090500535822)
+    { authors: "Chapman, G.", year: 1992, title: "The five love languages: How to express heartfelt commitment to your mate", source: "Chicago: Northfield Publishing", url: "https://lccn.loc.gov/93182018", kind: "popular" },
+    // checked: https://api.crossref.org/works/10.1111/pere.12182 (abstract: 67 couples; 'limited evidence that love language alignment promotes satisfaction')
+    { authors: "Bunt, S., & Hazelwood, Z. J.", year: 2017, title: "Walking the walk, talking the talk: Love languages, self-regulation, and relationship satisfaction", source: "Personal Relationships, 24(2), 280–290", url: "https://doi.org/10.1111/pere.12182", kind: "critique" },
+    // checked: https://api.crossref.org/works/10.1177/09637214231217663 (abstract: the evidence 'does not provide strong empirical support for the book's three central assumptions')
+    { authors: "Impett, E. A., Park, H. G., & Muise, A.", year: 2024, title: "Popular psychology through a scientific lens: Evaluating love languages from a relationship science perspective", source: "Current Directions in Psychological Science, 33(2), 87–92", url: "https://doi.org/10.1177/09637214231217663", kind: "critique" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

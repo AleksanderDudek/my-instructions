@@ -26,6 +26,12 @@ export default {
     note: "Nothing here is measured, so there is nothing to validate. The answers are the result.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://api.crossref.org/works/10.1016/j.paid.2005.11.017 ; abstract read from the authors' PDF at https://helmuthnyborg.dk/wp-content/uploads/2016/07/Publ_2006_Date-of-birth.pdf
+    { authors: "Hartmann, P., Reuter, M., & Nyborg, H.", year: 2006, title: "The relationship between date of birth and individual differences in personality and general intelligence: A large-scale study", source: "Personality and Individual Differences, 40(7), 1349–1362", url: "https://doi.org/10.1016/j.paid.2005.11.017", kind: "critique" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

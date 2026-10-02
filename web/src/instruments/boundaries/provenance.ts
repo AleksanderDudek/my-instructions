@@ -39,6 +39,16 @@ export default {
     note: "None — reliability, factor structure and criterion validity are all absent, and none is needed, because nothing here is inferred. The instrument records a threshold, a current practice, a weight and a reason, all four of which the person answering already knows. There is also, honestly, nothing to borrow: searching for outcome evidence that writing boundaries down in advance changes anything returns therapist blog posts and no trial. The boundary scales that do exist measure something else and are copyrighted besides, so a reliability figure quoted on this page would be a figure about a different instrument measuring a different thing. The same restraint applies to the item notes: this bank makes no claim about what most people answer, because it has never counted.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://api.crossref.org/works/10.4159/9780674041127 (publisher Harvard University Press, issued 1974)
+    { authors: "Minuchin, S.", year: 1974, title: "Families and Family Therapy", source: "Harvard University Press", url: "https://doi.org/10.4159/9780674041127", kind: "foundational" },
+    // checked: https://www.gov.uk/government/publications/controlling-or-coercive-behaviour-statutory-guidance-framework (Home Office; first published 5 April 2023, updated 27 July 2023; accessible version states it is issued under s.77 for offences under s.76)
+    { authors: "Home Office", year: 2023, title: "Controlling or coercive behaviour: statutory guidance framework", source: "GOV.UK (statutory guidance issued under section 77 of the Serious Crime Act 2015)", url: "https://www.gov.uk/government/publications/controlling-or-coercive-behaviour-statutory-guidance-framework", kind: "foundational" },
+    // checked: https://www.cps.gov.uk/prosecution-guidance/controlling-or-coercive-behaviour-intimate-or-family-relationship (CPS; published 24 April 2023, updated 7 February 2025; covers s.76 Serious Crime Act 2015)
+    { authors: "Crown Prosecution Service", year: 2023, title: "Controlling or Coercive Behaviour in an Intimate or Family Relationship", source: "CPS legal guidance", url: "https://www.cps.gov.uk/prosecution-guidance/controlling-or-coercive-behaviour-intimate-or-family-relationship", kind: "foundational" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

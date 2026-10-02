@@ -35,6 +35,16 @@ export default {
     note: "None, and none is needed: reliability, factor structure and criterion validity are properties of a specific item set administered to a specific sample, and this bank has never been administered to any sample. Two adjacent literatures are named rather than borrowed from. No independent peer-reviewed evidence of criterion validity for commercial four-colour instruments could be found; what exists is vendor-published, and a figure of the form «over 90% of respondents rate the statements as accurate» measures how agreeable a description is rather than whether it is true, which is the Barnum effect reported as validity. A British Psychological Society PTC registration is a compliance review against test-review guidelines, not a finding of criterion validity. Separately, the meshing hypothesis — that matching delivery to a stated preference improves outcomes — was tested properly in the learning-styles literature (Pashler, McDaniel, Rohrer and Bjork, 2008) and was not supported. This instrument therefore claims no benefit whatsoever from being obeyed. It claims only that the request was made.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: Library of Congress catalogue: LCCN sg 26000017 (1921 Zürich, Rascher) and LCCN 23009093 (1923 London/New York translation, H. G. Baynes, tr.), queried via http://lx2.loc.gov:210/lcdb SRU
+    { authors: "Jung, C. G.", year: 1921, title: "Psychologische Typen", source: "Rascher & Cie., Zürich. English translation by H. G. Baynes: Psychological types, Kegan Paul, Trench, Trubner & Co. (London) and Harcourt, Brace & Co. (New York), 1923", url: "https://lccn.loc.gov/sg26000017", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1037/13390-000 (APA PsycBooks); Library of Congress LCCN 28027972
+    { authors: "Marston, W. M.", year: 1928, title: "Emotions of normal people", source: "Kegan Paul, Trench, Trubner & Co. (London); Harcourt, Brace and Company (New York)", url: "https://doi.org/10.1037/13390-000", kind: "foundational" },
+    // checked: Library of Congress catalogue, LCCN 80070389 (ISBN 0801968984), queried via http://lx2.loc.gov:210/lcdb SRU
+    { authors: "Merrill, D. W., & Reid, R. H.", year: 1981, title: "Personal styles and effective performance: Make your style work for you", source: "Chilton Book Company, Radnor, PA", url: "https://lccn.loc.gov/80070389", kind: "foundational" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

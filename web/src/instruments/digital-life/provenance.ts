@@ -90,6 +90,16 @@ export default {
     note: "None, and none is needed. This instrument measures nothing: it records a position you state, the weight you put on it, and the reason you give. Reliability, test–retest stability, factor structure and criterion validity are properties of a measurement, and there is no measurement here to have them — so claiming any of them would be inventing a credential for something that does not require one. The research named in the source note decided which twelve questions were worth asking. It says nothing about what your answers mean, and this instrument does not either.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://api.crossref.org/works/10.1016/j.chb.2015.07.058
+    { authors: "Roberts, J. A., & David, M. E.", year: 2016, title: "My life has become a major distraction from my cell phone: Partner phubbing and relationship satisfaction among romantic partners", source: "Computers in Human Behavior, 54, 134–141", url: "https://doi.org/10.1016/j.chb.2015.07.058", kind: "foundational" },
+    // checked: PubMed PMID 40432797 (https://pubmed.ncbi.nlm.nih.gov/40432797/); full text PMC12106345 Table 4: relationship satisfaction K = 30, N = 9,040, r = −0.219, matching the sourceNote
+    { authors: "Ni, N., Ahrari, S., Zaremohzzabieh, Z., Zarean, M., & Roslan, S.", year: 2025, title: "A meta-analytic study of partner phubbing and its antecedents and consequences", source: "Frontiers in Psychology, 16, 1561159", url: "https://doi.org/10.3389/fpsyg.2025.1561159", kind: "review" },
+    // checked: https://api.crossref.org/works/10.1016/j.chb.2023.107860; DOI resolves to PII S074756322300211X (the bank's ScienceDirect URL); abstract confirmed at https://shura.shu.ac.uk/32065/
+    { authors: "Carnelley, K. B., Vowels, L. M., Stanton, S. C. E., Millings, A., & Hart, C. M.", year: 2023, title: "Perceived partner phubbing predicts lower relationship quality but partners' enacted phubbing does not", source: "Computers in Human Behavior, 147, 107860", url: "https://doi.org/10.1016/j.chb.2023.107860", kind: "critique" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

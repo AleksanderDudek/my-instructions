@@ -21,6 +21,30 @@ export type ItemOrigin = (typeof ITEM_ORIGINS)[number];
 export const EVIDENCE = ["none", "borrowed", "collected"] as const;
 export type Evidence = (typeof EVIDENCE)[number];
 
+export const REFERENCE_KINDS = ["foundational", "review", "critique", "popular"] as const;
+export type ReferenceKind = (typeof REFERENCE_KINDS)[number];
+
+/**
+ * One entry of an instrument's further reading, shown on its page as written:
+ * a citation is not translated, so `lang` marks the title's language for
+ * screen readers. Every entry was checked against a DOI, PubMed or the
+ * publisher's own record before it went in — a reading list is the one place
+ * a fabricated citation would do the most damage to the claim the page makes.
+ *
+ * `critique` is a first-class kind on purpose. For frameworks whose honest
+ * record includes the people who dismantled them, the list carries them too.
+ */
+export type Reference = {
+  authors: string;
+  year: number;
+  title: string;
+  source?: string;
+  url?: string;
+  kind: ReferenceKind;
+  /** BCP 47 tag of the title's language; "en" when absent. */
+  lang?: string;
+};
+
 export type ProvenanceRecord = {
   construct: { name: string; origin?: string; public: boolean; note?: string };
   /** `licence` is required when `origin` is "licensed", and names it (e.g. "CC BY 4.0"). */
@@ -30,6 +54,8 @@ export type ProvenanceRecord = {
   reproduces: string[];
   /** Named instruments deliberately not used, and whose items are not present. */
   avoided?: string[];
+  /** Further reading, verified. Absent or empty where nothing published stands behind the design. */
+  references?: Reference[];
 };
 
 const has = <T extends string>(list: readonly T[], value: unknown): value is T => list.includes(value as T);
@@ -63,6 +89,17 @@ export function validateProvenance(p: unknown, where = "instrument"): Provenance
   // non-empty one is an instrument this project has decided not to ship.
   if (!Array.isArray(r.reproduces)) throw new TypeError(`${where}: provenance.reproduces must be an array`);
   if (r.reproduces.length) throw new TypeError(`${where}: reproduces copyrighted material — ${r.reproduces.join(", ")}`);
+
+  if (r.references !== undefined) {
+    if (!Array.isArray(r.references)) throw new TypeError(`${where}: provenance.references must be an array`);
+    r.references.forEach((ref, n) => {
+      const at = `${where}: reference ${n + 1}`;
+      if (!ref?.authors || !ref.title) throw new TypeError(`${at} needs authors and a title`);
+      if (!Number.isInteger(ref.year) || ref.year < 1500 || ref.year > 2100) throw new TypeError(`${at} needs a plausible year`);
+      if (!has(REFERENCE_KINDS, ref.kind)) throw new TypeError(`${at}: kind must be one of ${REFERENCE_KINDS.join(", ")}`);
+      if (ref.url !== undefined && !/^https:\/\//.test(ref.url)) throw new TypeError(`${at}: url must be https`);
+    });
+  }
 
   return r as ProvenanceRecord;
 }

@@ -35,6 +35,18 @@ export default {
     note: "None, and none is required. Reliability and validity are properties of a specific item set given to a specific sample, and they describe how well a measurement estimates something hidden. Nothing here is hidden and nothing is estimated: the reader states a position, states its weight from one to ten, and states what it rests on. There is no true score for an answer to be closer to or further from. This bank has never been administered to a sample, has no norms, and produces no score — no devoutness figure, no orthodoxy figure, and no number that could be read as either. The honest entry is «none», not a coefficient borrowed from an instrument whose items are not these.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://api.crossref.org/works/10.1080/003440862057s407
+    { authors: "Glock, C. Y.", year: 1962, title: "On the study of religious commitment", source: "Religious Education, 57(sup4), 98–110", url: "https://doi.org/10.1080/003440862057S407", kind: "foundational" },
+    // checked: Library of Congress catalogue, LCCN 94001738 (ISBN 0631184430 / 0631184449), queried via http://lx2.loc.gov:210/lcdb SRU; WorldCat OCLC 29844783 (https://search.worldcat.org/title/29844783)
+    { authors: "Davie, G.", year: 1994, title: "Religion in Britain since 1945: Believing without belonging", source: "Blackwell, Oxford (Making Contemporary Britain series)", url: "https://lccn.loc.gov/94001738", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.3390/rel3030710
+    { authors: "Huber, S., & Huber, O. W.", year: 2012, title: "The Centrality of Religiosity Scale (CRS)", source: "Religions, 3(3), 710–724", url: "https://doi.org/10.3390/rel3030710", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1177/0038038505048998
+    { authors: "Voas, D., & Crockett, A.", year: 2005, title: "Religion in Britain: Neither believing nor belonging", source: "Sociology, 39(1), 11–28", url: "https://doi.org/10.1177/0038038505048998", kind: "critique" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

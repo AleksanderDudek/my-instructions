@@ -51,6 +51,18 @@ export default {
    * only thing taken from them is a list of five topic headings from a blog
    * post.
    */
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://www.gottman.com/blog/the-5-most-important-talks-to-have-before-marriage/ (byline The Gottman Institute; article:published_time 2025-08-09, modified 2026-07-13; the five headings match the provenance verbatim)
+    { authors: "The Gottman Institute", year: 2025, title: "The 5 Most Important Talks to Have Before Marriage", source: "The Gottman Institute blog", url: "https://www.gottman.com/blog/the-5-most-important-talks-to-have-before-marriage/", kind: "popular" },
+    // checked: https://api.crossref.org/works/10.1111/j.1741-3729.2010.00598.x (record + abstract: no effect on relationship quality once unpublished studies are included; communication effects hold, larger on observational measures)
+    { authors: "Fawcett, E. B., Hawkins, A. J., Blanchard, V. L., & Carroll, J. S.", year: 2010, title: "Do Premarital Education Programs Really Work? A Meta-analytic Study", source: "Family Relations, 59(3), 232–239", url: "https://doi.org/10.1111/j.1741-3729.2010.00598.x", kind: "review" },
+    // checked: https://api.crossref.org/works/10.1111/jomf.12094 (record + abstract: 3-year follow-up of >4,000 couples; did not improve the couple relationship; no effect on family stability); trial also confirmed at https://acf.gov/opre/report/building-strong-families-project-long-term-effects-building-strong-families
+    { authors: "Wood, R. G., Moore, Q., Clarkwest, A., & Killewald, A.", year: 2014, title: "The Long-Term Effects of Building Strong Families: A Program for Unmarried Parents", source: "Journal of Marriage and Family, 76(2), 446–463", url: "https://doi.org/10.1111/jomf.12094", kind: "critique" },
+    // checked: https://acf.gov/opre/report/supporting-healthy-marriage-evaluation-family-strengthening-program-low-income-0 (title, published 4 Apr 2014, finding: did not increase likelihood couples stayed together, small positive effects on relationship quality); authors and date from https://www.mdrc.org/work/publications/family-strengthening-program-low-income-families
+    { authors: "Lundquist, E., Hsueh, J., Lowenstein, A., Faucetta, K., Gubits, D., Michalopoulos, C., & Knox, V.", year: 2014, title: "A Family-Strengthening Program for Low-Income Families: Final Impacts from the Supporting Healthy Marriage Evaluation", source: "Office of Planning, Research and Evaluation, Administration for Children and Families, U.S. Department of Health and Human Services (MDRC)", url: "https://acf.gov/opre/report/supporting-healthy-marriage-evaluation-family-strengthening-program-low-income-0", kind: "critique" },
+  ],
+
   reproduces: [],
 
   /** Named products deliberately not used, and whose items are not present. */

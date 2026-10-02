@@ -1,7 +1,9 @@
 /**
  * Jungian functions — original item bank, Likert.
  *
- * Jung's *Psychological Types* (1921) is public domain; the four-letter
+ * Jung's *Psychological Types* (1921) is out of copyright in the US but not in
+ * the EU until the end of 2031 (life plus seventy; he died in 1961), so only its
+ * ideas are used; the four-letter
  * instrument built on top of it is a trademark with copyrighted items, and
  * none of it is reproduced here.
  *

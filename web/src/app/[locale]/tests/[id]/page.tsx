@@ -156,6 +156,47 @@ export default async function InstrumentPage({ params }: { params: Promise<{ loc
           </Card>
         </div>
 
+        {provenance.references?.length ? (
+          <>
+            <h3 className="label-caps mt-8">{t("provenance.reading")}</h3>
+            <ul className="mt-3 flex flex-col">
+              {provenance.references.map((ref) => (
+                <li
+                  key={`${ref.authors}-${ref.year}-${ref.title}`}
+                  className="flex flex-col gap-1 border-t border-rule py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                >
+                  {/* A citation is quoted as written, never translated; `lang`
+                      tells a screen reader which voice to read it in. */}
+                  <span className="max-w-[68ch] text-[0.95rem] leading-relaxed text-ink/90">
+                    {ref.authors} ({ref.year}).{" "}
+                    {ref.url ? (
+                      <a
+                        href={ref.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        lang={ref.lang ?? "en"}
+                        className="text-brass underline underline-offset-4 hover:text-brass-hi"
+                      >
+                        {ref.title}
+                        <span className="sr-only"> ({t("provenance.opensNewTab")})</span>
+                      </a>
+                    ) : (
+                      <cite lang={ref.lang ?? "en"} className="not-italic">
+                        {ref.title}
+                      </cite>
+                    )}
+                    {/[.?!]$/.test(ref.title) ? "" : "."}
+                    {ref.source ? <span className="text-muted"> {ref.source}</span> : null}
+                  </span>
+                  <span className="label-caps shrink-0">
+                    {t(`provenance.kind.${ref.kind}`)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+
         <p className="mt-6 max-w-[62ch] leading-relaxed text-ink/90">{t("provenance.readAs")}</p>
         <details className="group mt-2 max-w-[62ch]">
           <summary className="tap flex cursor-pointer list-none items-center gap-2 text-[0.95rem] text-brass hover:text-brass-hi [&::-webkit-details-marker]:hidden">

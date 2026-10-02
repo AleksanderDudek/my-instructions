@@ -22,8 +22,8 @@ export default {
   "title": "Jungian Functions",
   "tagline": "Eight ways of taking things in and deciding about them, in the order you actually use them.",
   "framework": "Jung's psychological types (1921)",
-  "sourceNote": "Jung's Psychological Types is public domain; the four-letter instrument built on it is a trademark with copyrighted items and none of it is reproduced here. These are original items on the eight functions, each scored on its own 1–100 rather than forced against its opposite — so the code at the top is derived from your stack, not asked for directly. Treat the code as shorthand. The stack is the claim.",
-  "lineage": "Jung set out the psychological types in 1921, and his text is in the public domain. The four-letter code here is derived from the function stack rather than asked for; the MBTI's trademarked items are not used.",
+  "sourceNote": "Jung's ideas in Psychological Types (1921) are used, not his text; the four-letter instrument built on it is a trademark with copyrighted items and none of it is reproduced here. These are original items on the eight functions, each scored on its own 1–100 rather than forced against its opposite — so the code at the top is derived from your stack, not asked for directly. Treat the code as shorthand. The stack is the claim.",
+  "lineage": "Jung set out the psychological types in 1921; his ideas are used here, not his text. The four-letter code here is derived from the function stack rather than asked for; the MBTI's trademarked items are not used.",
 
   "fn.ne.label": "Outward Intuition",
   "fn.ne.blurb": "Sees what a thing could become and how many things it connects to. Generates options faster than it closes them.",

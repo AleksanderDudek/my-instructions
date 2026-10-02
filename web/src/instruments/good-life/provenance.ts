@@ -50,6 +50,16 @@ export default {
     note: "None, and none is required. Nothing here is measured, so there is nothing to validate — the answers are the result. Reliability, factor structure and criterion validity are properties of a specific item set administered to a specific sample; this bank has never been administered to one, has no norms, and produces no number about anybody. A stated position cannot be wrong about the person stating it, which is the whole of the epistemic claim being made. One finding is cited in the sourceNote and it is cited for the *direction* of a question rather than as a fact about the reader: regrets of inaction are reported to outlast regrets of action over a lifetime (Gilovich and Medvec, 1994), which has been replicated since with weaker effects and not in every study — Yeung and Feldman, 2022, N=988, found support in three of their studies and none in a fourth. That is why `regret-most` asks what you would regret not doing, and why the copy hedges rather than asserts.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://api.crossref.org/works/10.1037/0022-3514.57.6.1069
+    { authors: "Ryff, C. D.", year: 1989, title: "Happiness is everything, or is it? Explorations on the meaning of psychological well-being", source: "Journal of Personality and Social Psychology, 57(6), 1069–1081", url: "https://doi.org/10.1037/0022-3514.57.6.1069", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1037/0003-066x.55.1.68
+    { authors: "Ryan, R. M., & Deci, E. L.", year: 2000, title: "Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being", source: "American Psychologist, 55(1), 68–78", url: "https://doi.org/10.1037/0003-066X.55.1.68", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1037/0022-3514.67.3.357
+    { authors: "Gilovich, T., & Medvec, V. H.", year: 1994, title: "The temporal pattern to the experience of regret", source: "Journal of Personality and Social Psychology, 67(3), 357–365", url: "https://doi.org/10.1037/0022-3514.67.3.357", kind: "foundational" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

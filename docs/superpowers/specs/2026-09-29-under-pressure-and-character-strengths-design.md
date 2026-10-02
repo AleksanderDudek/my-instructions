@@ -50,7 +50,7 @@ evidence block that says "none" — the same honesty as the rest of the app.
 **Construct.** Hardiness (Kobasa 1979: commitment, control, challenge) and the
 4C model of mental toughness that added confidence (Clough, Earle & Sewell
 2002). The four-way split is contested: independent confirmatory studies
-(Gucciardi, Hanton & Mallett 2012; Vaughan et al. 2017; Kawabata et al. 2021)
+(Gucciardi, Hanton & Mallett 2012; Vaughan et al. 2018; Kawabata et al. 2021)
 do not reproduce it cleanly. The result says so.
 
 **Scales.** Four, eight items each, four forward and four reverse — 32 items

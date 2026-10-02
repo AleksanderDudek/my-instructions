@@ -195,7 +195,9 @@ committed to elsewhere:
    `love-languages/items.js` about Chapman's quiz and `enneagram/items.js`
    about the RHETI.
 2. **The four-letter instrument is a trademark** with copyrighted items.
-   Jung's *Psychological Types* (1921) is public domain; what was built on top
+   Jung's *Psychological Types* (1921) is out of copyright in the US, though in
+   the EU it stays protected until the end of 2031 (he died in 1961), so the
+   ideas are free to use and the text is not quoted; what was built on top
    of it is not.
 
 **Built instead:** `src/instruments/jungian/` measures the eight cognitive

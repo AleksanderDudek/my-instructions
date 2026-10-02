@@ -8,8 +8,8 @@ export default {
   "title": "Intereses",
   "tagline": "Seis clases de trabajo que dan energía en vez de quitarla, y la forma que hacen juntas.",
   "framework": "Hexágono RIASEC de Holland",
-  "sourceNote": "Los seis tipos de interés de Holland y el hexágono en el que se sitúan son públicos, y existen bancos de ítems de dominio público: los marcadores de Liao, Armstrong y Rounds, y el Interest Profiler del Departamento de Trabajo de EE. UU. Estas preguntas se han escrito de nuevo contra esas mismas seis definiciones, y preguntan por actividades y no por nombres de puestos: un nombre de puesto arrastra un sueldo, un estatus y un estereotipo junto con el trabajo, y la gente acaba respondiendo a eso.",
-  "lineage": "Los seis tipos de interés de John Holland y su hexágono datan de 1959 en adelante y son públicos. Existen bancos de ítems de dominio público; aun así, los ítems de aquí se han escrito desde cero.",
+  "sourceNote": "Los seis tipos de interés de Holland y el hexágono en el que se sitúan son públicos, y existen bancos de ítems de libre acceso: los marcadores de Liao, Armstrong y Rounds, y el Interest Profiler del Departamento de Trabajo de EE. UU. Estas preguntas se han escrito de nuevo contra esas mismas seis definiciones, y preguntan por actividades y no por nombres de puestos: un nombre de puesto arrastra un sueldo, un estatus y un estereotipo junto con el trabajo, y la gente acaba respondiendo a eso.",
+  "lineage": "Los seis tipos de interés de John Holland y su hexágono datan de 1959 en adelante y son públicos. Existen bancos de ítems de libre acceso; aun así, los ítems de aquí se han escrito desde cero.",
 
   "type.realistic.label": "Realista",
   "type.realistic.blurb": "Trabajar con cosas: máquinas, materiales, el mundo físico. Preferir el problema que puedes tocar con las manos.",

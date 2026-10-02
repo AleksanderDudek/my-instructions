@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { registry } from "@/instruments";
-import { validateProvenance, ITEM_ORIGINS, EVIDENCE } from "@/core/provenance";
+import { validateProvenance, ITEM_ORIGINS, EVIDENCE, REFERENCE_KINDS } from "@/core/provenance";
 import { TAGS, loadShell, loadInstrument } from "@/core/locales";
 import type { Locale } from "@/core/types";
 
@@ -68,6 +68,9 @@ describe("the contract itself", () => {
     ["reproduced copyrighted material", { ...good, reproduces: ["MMPI-2 items"] }],
     ["a missing reproduces list", { ...good, reproduces: undefined }],
     ["a construct with no name", { ...good, construct: { public: true } }],
+    ["a reference of an unknown kind", { ...good, references: [{ authors: "A, B.", year: 2000, title: "T", kind: "praise" }] }],
+    ["a reference over plain http", { ...good, references: [{ authors: "A, B.", year: 2000, title: "T", kind: "review", url: "http://x" }] }],
+    ["a reference with no year", { ...good, references: [{ authors: "A, B.", title: "T", kind: "review" }] }],
   ])("refuses %s", (_label, record) => {
     expect(() => validateProvenance(record)).toThrow(TypeError);
   });
@@ -105,6 +108,9 @@ describe("the provenance section speaks the reader's language", () => {
       "provenance.inventory",
       "provenance.readAs",
       "provenance.why",
+      "provenance.reading",
+      "provenance.opensNewTab",
+      ...REFERENCE_KINDS.map((k) => `provenance.kind.${k}`),
     ];
     expect(keys.filter((k) => !shell[k]), `${locale} is missing`).toEqual([]);
   });

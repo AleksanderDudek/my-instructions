@@ -8,8 +8,8 @@ export default {
   "title": "Interessen",
   "tagline": "Sechs Arten von Arbeit, die Energie geben statt nehmen — und die Form, die sie zusammen bilden.",
   "framework": "Hollands RIASEC-Sechseck",
-  "sourceNote": "Hollands sechs Interessentypen und das Sechseck, auf dem sie liegen, sind öffentlich, und es gibt gemeinfreie Itempools — die Marker von Liao, Armstrong und Rounds sowie den Interest Profiler des US-Arbeitsministeriums. Diese Fragen sind gegen dieselben sechs Definitionen neu geschrieben und fragen nach Tätigkeiten statt nach Berufsbezeichnungen: Eine Berufsbezeichnung bringt Gehalt, Status und Klischee mit, und die Leute antworten dann darauf.",
-  "lineage": "John Hollands sechs Interessentypen und ihr Sechseck stammen aus der Zeit ab 1959 und sind öffentlich. Es gibt gemeinfreie Itempools; die Items hier sind trotzdem neu geschrieben.",
+  "sourceNote": "Hollands sechs Interessentypen und das Sechseck, auf dem sie liegen, sind öffentlich, und es gibt frei zugängliche Itempools — die Marker von Liao, Armstrong und Rounds sowie den Interest Profiler des US-Arbeitsministeriums. Diese Fragen sind gegen dieselben sechs Definitionen neu geschrieben und fragen nach Tätigkeiten statt nach Berufsbezeichnungen: Eine Berufsbezeichnung bringt Gehalt, Status und Klischee mit, und die Leute antworten dann darauf.",
+  "lineage": "John Hollands sechs Interessentypen und ihr Sechseck stammen aus der Zeit ab 1959 und sind öffentlich. Es gibt frei zugängliche Itempools; die Items hier sind trotzdem neu geschrieben.",
 
   "type.realistic.label": "Praktisch",
   "type.realistic.blurb": "Arbeit mit Dingen — Maschinen, Material, der körperlichen Welt. Die Vorliebe für das Problem, das man anfassen kann.",

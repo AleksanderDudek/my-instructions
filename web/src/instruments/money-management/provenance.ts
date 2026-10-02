@@ -44,6 +44,16 @@ export default {
     note: "None, and none is needed. Reliability, factor structure and criterion validity are properties of a scored item set administered to a sample; nothing here is scored, summed, banded or normed, and there is no latent thing behind these thirteen questions for a coefficient to be about. Every answer is a position the person states about arrangements they already know, so the only accuracy question is whether they answered honestly — which no psychometric number can tell you. Where outside evidence is relevant it is cited in the source note as somebody else's finding, with its limits stated, and never as support for this bank.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: https://api.crossref.org/works/10.1017/S0047279400001367
+    { authors: "Pahl, J.", year: 1980, title: "Patterns of Money Management within Marriage", source: "Journal of Social Policy, 9(3), 313–335", url: "https://doi.org/10.1017/S0047279400001367", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1111/j.1467-954X.1983.tb00389.x
+    { authors: "Pahl, J.", year: 1983, title: "The Allocation of Money and the Structuring of Inequality within Marriage", source: "The Sociological Review, 31(2), 237–262", url: "https://doi.org/10.1111/j.1467-954X.1983.tb00389.x", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1007/978-1-349-20268-3 (book, Macmillan Education UK, 1989, ISBN 9780333387689)
+    { authors: "Pahl, J.", year: 1989, title: "Money and Marriage", source: "Macmillan", url: "https://doi.org/10.1007/978-1-349-20268-3", kind: "foundational" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

@@ -26,6 +26,14 @@ export default {
     note: "The six-factor structure is a property of the Minnesota data, not of these thirty-six sentences. This bank has never been administered to a sample, has no norms, and its factor structure has never been checked.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: Library of Congress catalogue, LCCN 83023381 (ISBN 0816613168), queried via http://lx2.loc.gov:210/lcdb SRU; also Open Library OL3180751M
+    { authors: "Dawis, R. V., & Lofquist, L. H.", year: 1984, title: "A psychological theory of work adjustment: An individual-differences model and its applications", source: "University of Minnesota Press, Minneapolis", url: "https://lccn.loc.gov/83023381", kind: "foundational" },
+    // checked: https://www.onetcenter.org/reports/DevWIL.html and the report's title page, https://www.onetcenter.org/dl_files/DevWIL.pdf
+    { authors: "McCloy, R., Waugh, G., Medsker, G., Wall, J., Rivkin, D., & Lewis, P.", year: 1999, title: "Development of the O*NET paper-and-pencil Work Importance Locator", source: "National Center for O*NET Development, Raleigh, NC", url: "https://www.onetcenter.org/reports/DevWIL.html", kind: "foundational" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

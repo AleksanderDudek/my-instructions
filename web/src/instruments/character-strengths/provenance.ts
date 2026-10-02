@@ -25,6 +25,14 @@ export default {
     note: "Three items a strength has never been given to a sample. At that length a scale can order someone's strengths; it cannot measure any one of them.",
   },
 
+  /** Further reading. Each entry was checked against the record named above it. */
+  references: [
+    // checked: Library of Congress record LCCN 2003024320 (Christopher Peterson & Martin E.P. Seligman; American Psychological Association / Oxford University Press, 2004; ISBN 0195167015)
+    { authors: "Peterson, C., & Seligman, M. E. P.", year: 2004, title: "Character strengths and virtues: A handbook and classification", source: "Washington, DC: American Psychological Association; New York: Oxford University Press", url: "https://lccn.loc.gov/2003024320", kind: "foundational" },
+    // checked: https://api.crossref.org/works/10.1080/17439760.2014.994222; abstract via OpenAlex ('factor analyses ... usually suggest 4–5 factors that do not correspond well to traditional lists of virtues'; proposes a three-virtue structure across 1,070,549 cases)
+    { authors: "McGrath, R. E.", year: 2015, title: "Integrating psychological and cultural perspectives on virtue: The hierarchical structure of character strengths", source: "The Journal of Positive Psychology, 10(5), 407–424", url: "https://doi.org/10.1080/17439760.2014.994222", kind: "critique" },
+  ],
+
   /** Copyrighted material reproduced here. Required to be empty. */
   reproduces: [],
 

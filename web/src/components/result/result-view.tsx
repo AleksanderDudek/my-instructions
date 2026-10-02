@@ -274,7 +274,9 @@ export function ResultView({
           reliability would be an apology for a claim it never made — what it
           owes the reader instead is that none of this was scored. */}
       {spec.family === "questionnaire" ? (
-        <p className="mt-4 max-w-[62ch] text-sm leading-relaxed text-muted">{i18n.t("app.noValidation")}</p>
+        <p className="mt-4 max-w-[62ch] text-sm leading-relaxed text-muted">
+          {i18n.t("app.noValidation")} {i18n.t("provenance.readAs")}
+        </p>
       ) : null}
       {spec.family === "inventory" ? (
         <p className="mt-4 max-w-[62ch] text-sm leading-relaxed text-muted">{i18n.t("result.inventoryNote")}</p>

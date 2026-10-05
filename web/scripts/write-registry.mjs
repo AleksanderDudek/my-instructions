@@ -19,6 +19,9 @@ const ORDER = [
   // How the traits above hold up under strain, read on their own scales; after
   // the two broad models it borrows vocabulary from, before the type systems.
   "under-pressure",
+  // The interpersonal circle: the first measure here built to be read two
+  // people at a time, so it sits with the trait models it shares axes with.
+  "interpersonal",
   "jungian", "riasec",
   // The career trio, after riasec and before the preference profilers, because
   // that is the order they answer in: which subject holds you (riasec), what

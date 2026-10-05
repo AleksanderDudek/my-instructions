@@ -25,6 +25,8 @@ export const SCALES = {
   agree5: { min: 1, max: 5, short: ["SD", "D", "—", "A", "SA"] },
   agree7: { min: 1, max: 7, short: ["1", "2", "3", "4", "5", "6", "7"] },
   true5: { min: 1, max: 5, short: ["1", "2", "3", "4", "5"] },
+  /** IPIP's administration format: how accurately a statement describes you. */
+  accurate5: { min: 1, max: 5, short: ["1", "2", "3", "4", "5"] },
 } as const;
 
 export type ScaleName = keyof typeof SCALES;
@@ -55,8 +57,20 @@ export const flip = (value: number, { min, max }: Scale) => max + min - value;
  */
 export function normalize(sum: number, lo: number, hi: number): number {
   if (hi === lo) return 50;
+  // The exact middle of the range is 50, not 51: `Math.round` carries 50.5
+  // up, and a reader who answered "neither" to everything was then "high"
+  // on every scale that tests `>= 50`. The middle is the one sum that has to
+  // land where the bands say it does.
+  if (sum - lo === (hi - lo) / 2) return 50;
   return Math.round(1 + ((sum - lo) / (hi - lo)) * 99);
 }
+
+/**
+ * Which side of the middle a score sits on. Exactly 50 is neither, and is
+ * reported as "low" only because every View has two blurbs, not three; the
+ * `marked` thresholds keep a 50 off the instruction sheet either way.
+ */
+export const sideOf = (score: number): "high" | "low" => (score > 50 ? "high" : "low");
 
 export type ScoredItem = { id: string; scale: string; reverse?: boolean };
 export type LikertScores = {

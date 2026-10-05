@@ -9,6 +9,9 @@ import { loadInstrumentModule } from "@/instruments/lazy";
 import type { InstrumentModule } from "@/core/registry";
 import type { Locale } from "@/core/types";
 import { Plate, PlateHead } from "@/components/ui/primitives";
+import { buttonClass } from "@/components/ui/button-styles";
+import { useStore } from "@/components/shell/store-provider";
+import type { Run } from "@/core/types";
 
 /**
  * Someone else's report, rebuilt from the link.
@@ -18,8 +21,13 @@ import { Plate, PlateHead } from "@/components/ui/primitives";
  * reading its sender did not have — and why it stays correct when an
  * instrument's wording is improved, because only the numbers travelled.
  *
- * Nothing here reaches the store. A received report is not the reader's own
- * data and must never be filed as if it were.
+ * Nothing here is written to the store. A received report is not the reader's
+ * own data and must never be filed as if it were. The store is only READ: for
+ * every instrument in the report that the reader has also taken, their own
+ * run is scored beside the sender's and the instrument's `Compare` draws the
+ * two together. That is the one place the app's purpose — understanding
+ * someone by comparing results — becomes a page, and it needs no link format
+ * of its own: the report link the sender already made is the comparison link.
  */
 /** The address bar, as an external store. Strings, so the snapshot is stable. */
 const subscribeToHash = (onChange: () => void) => {
@@ -89,9 +97,12 @@ export function Report({
   }, [fromQuery, token]);
   const i18n = useMemo(() => createI18n({ locale, messages, fallbackMessages }), [locale, messages, fallbackMessages]);
   const { t } = i18n;
+  const store = useStore();
 
   const [state, setState] = useState<
-    { ok: true; report: DecodedReport; instruments: Map<string, InstrumentModule> } | { ok: false; error: string } | null
+    | { ok: true; report: DecodedReport; instruments: Map<string, InstrumentModule>; own: Map<string, Run>; ownName: string }
+    | { ok: false; error: string }
+    | null
   >(null);
 
   useEffect(() => {
@@ -112,7 +123,16 @@ export function Report({
       if (!live) return;
       try {
         const report = decodeReport(token, { get: (id: string) => loaded.get(id) ?? null }, t, Date.now());
-        setState({ ok: true, report, instruments: loaded });
+        // The reader's side of each comparison: their own stored run of every
+        // instrument the sender shared, where one exists.
+        const own = new Map<string, Run>();
+        for (const run of report.runs) {
+          const mine = await store.run(run.instrumentId);
+          if (mine) own.set(run.instrumentId, mine);
+        }
+        const profile = await store.profile();
+        if (!live) return;
+        setState({ ok: true, report, instruments: loaded, own, ownName: profile.displayName });
       } catch (err) {
         setState({ ok: false, error: err instanceof Error ? err.message : String(err) });
       }
@@ -120,7 +140,7 @@ export function Report({
     return () => {
       live = false;
     };
-  }, [token, ids, t]);
+  }, [token, ids, t, store]);
 
   if (!state) {
     return (
@@ -142,8 +162,10 @@ export function Report({
     );
   }
 
-  const { report, instruments } = state;
+  const { report, instruments, own, ownName } = state;
   const name = report.profile.displayName;
+  const you = ownName || t("compare.you");
+  const them = name || t("compare.them");
 
   return (
     <article>
@@ -162,15 +184,52 @@ export function Report({
         report.runs.map((run) => {
           const instrument = instruments.get(run.instrumentId);
           if (!instrument) return null;
-          const { spec, View } = instrument;
+          const { spec, View, Compare } = instrument;
           const scoped = i18n.scope(spec.id);
           // Re-scored here from the answers that travelled, never trusted from
           // the link — a result in a token would be a number nobody could check.
           const result = spec.score(run.answers);
+          const mine = own.get(run.instrumentId);
+          // The reader's run is re-scored too, so both sides meet the current
+          // items; a run from an older version of the bank cannot, and says so.
+          const current = mine && mine.instrumentVersion === spec.version;
           return (
             <Plate key={run.instrumentId}>
               <PlateHead title={scoped.t("title")} note={scoped.t("framework")} />
               <View result={result} t={scoped.t} />
+              {Compare ? (
+                <section className="mt-8 border-t border-rule pt-6" data-compare={run.instrumentId}>
+                  {current ? (
+                    <>
+                      <PlateHead
+                        title={t("compare.bothHeading", { a: you, b: them })}
+                        note={t("compare.bothLead", { test: scoped.t("title") })}
+                      />
+                      <Compare a={spec.score(mine.answers)} b={result} nameA={you} nameB={them} t={scoped.t} />
+                    </>
+                  ) : mine ? (
+                    <>
+                      <h3 className="text-lg">{t("compare.takeFirstTitle")}</h3>
+                      <p className="mt-2 max-w-[62ch] leading-relaxed text-muted">
+                        {t("result.stale", { had: mine.instrumentVersion, now: spec.version })}
+                      </p>
+                      <Link href={`/${locale}/tests/${spec.id}/take`} className={buttonClass({ variant: "primary", className: "mt-4" })}>
+                        {t("compare.takeFirstAction", { test: scoped.t("title") })}
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className="text-lg">{t("compare.takeFirstTitle")}</h3>
+                      <p className="mt-2 max-w-[62ch] leading-relaxed text-muted">
+                        {t("compare.takeFirstBody", { test: scoped.t("title") })}
+                      </p>
+                      <Link href={`/${locale}/tests/${spec.id}/take`} className={buttonClass({ variant: "primary", className: "mt-4" })}>
+                        {t("compare.takeFirstAction", { test: scoped.t("title") })}
+                      </Link>
+                    </>
+                  )}
+                </section>
+              ) : null}
             </Plate>
           );
         })

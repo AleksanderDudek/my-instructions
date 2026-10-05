@@ -1,6 +1,6 @@
 import { scaleFor, scoreLikert, rank, straightlining } from "@/core/scoring";
 import type { Answers, Channel, InstructionCard, InstrumentSpec, T } from "@/core/types";
-import { ITEMS, ORDER, type StrengthKey } from "./items";
+import { CORE_ITEMS, CORE_ORDER, ITEMS, ORDER, type CoreKey, type StrengthKey } from "./items";
 
 /**
  * Twenty-four strengths, read as an order rather than as twenty-four scores.
@@ -11,18 +11,18 @@ import { ITEMS, ORDER, type StrengthKey } from "./items";
  *
  * Two honesty guards, both carried in the result so the View can say them:
  *
- *   - `flat`: three items a scale quantise a score into steps of about eight,
- *     so a profile whose highest and lowest sit two steps apart has no order
- *     worth reporting, and ranking it would invent one.
+ *   - `flat`: four items a scale quantise a score into steps of about six,
+ *     so a profile whose highest and lowest sit under three steps apart has
+ *     no order worth reporting, and ranking it would invent one.
  *   - `tiedAtCut` / `tiedAtFloor`: when the fifth and sixth are tied, which
  *     of them made the five is the classification's order, not the reader's;
  *     the same at the bottom three. The View names it instead of hiding it.
  */
 
-const scale = scaleFor("true5", (key) => key);
+const scale = scaleFor("accurate5", (key) => key);
 const SIGNATURE = 5;
 const LEAST = 3;
-const FLAT_SPREAD = 17; // about two steps of a three-item scale
+const FLAT_SPREAD = 17; // under three steps of a four-item scale
 
 export type StrengthsResult = {
   scores: Record<string, number>;
@@ -32,6 +32,8 @@ export type StrengthsResult = {
   least: StrengthKey[];
   tiedAtCut: boolean;
   tiedAtFloor: boolean;
+  /** Positivity, dependability, mastery: eighteen of the same answers, read as three global strengths. */
+  core: Record<CoreKey, number>;
   flat: boolean;
   suspect: boolean;
   answered: number;
@@ -47,8 +49,10 @@ export function score(answers: Answers): StrengthsResult {
     score: r.score,
   }));
   const values = ordered.map((r) => r.score);
+  const coreScores = scoreLikert(CORE_ITEMS, answers, scale).scores;
   return {
     scores,
+    core: Object.fromEntries(CORE_ORDER.map((k) => [k, coreScores[k]])) as Record<CoreKey, number>,
     ranked: ordered,
     signature: ordered.slice(0, SIGNATURE).map((r) => r.key),
     least: ordered.slice(-LEAST).reverse().map((r) => r.key),
@@ -101,7 +105,8 @@ export function instructions(result: StrengthsResult, t: T): InstructionCard[] {
 
 export const spec: InstrumentSpec<StrengthsResult> = {
   id: "character-strengths",
-  version: 1,
+  // 2: the app's own three items a strength were replaced by the IPIP-VIA-R's four.
+  version: 2,
   family: "questionnaire",
   glyph: "✧",
   minutes: 10,
@@ -116,9 +121,9 @@ export const spec: InstrumentSpec<StrengthsResult> = {
   form: (t) => ({
     kind: "items",
     items: ITEMS.map((item) => ({ ...item, prompt: t(`item.${item.id}`) })),
-    scale: scaleFor("true5", t),
+    scale: scaleFor("accurate5", t),
     shuffle: true,
-    pageSize: 6,
+    pageSize: 8,
   }),
   score,
   instructions,

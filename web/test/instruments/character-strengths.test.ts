@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { score, instructions, spec } from "@/instruments/character-strengths/spec";
-import { ITEMS, ORDER } from "@/instruments/character-strengths/items";
+import { CORE_ITEMS, CORE_ORDER, ITEMS, ORDER } from "@/instruments/character-strengths/items";
 import { reflectablesOf } from "@/core/reflect";
 import { identity } from "@/core/registry";
 import type { Answers } from "@/core/types";
@@ -69,8 +69,23 @@ describe("character-strengths", () => {
     expect(reflectablesOf(spec, score(answering(() => 3)), t).map((row) => row.key)).toEqual(["_whole"]);
   });
 
-  test("covers all twenty-four, three items each", () => {
+  test("covers all twenty-four, four items each, two of them reverse-keyed", () => {
     expect(ORDER).toHaveLength(24);
-    expect(ITEMS).toHaveLength(72);
+    expect(ITEMS).toHaveLength(96);
+    for (const key of ORDER) {
+      const mine = ITEMS.filter((i) => i.scale === key);
+      expect(mine, key).toHaveLength(4);
+      expect(mine.filter((i) => i.reverse), key).toHaveLength(2);
+    }
+  });
+
+  test("the three core strengths are read from eighteen of the same answers", () => {
+    expect(CORE_ITEMS).toHaveLength(18);
+    const ids = new Set(ITEMS.map((i) => i.id));
+    for (const item of CORE_ITEMS) expect(ids.has(item.id), item.id).toBe(true);
+    for (const key of CORE_ORDER) expect(CORE_ITEMS.filter((i) => i.scale === key)).toHaveLength(6);
+    // A consistent reader scores the ends on the core scales too.
+    const high = score(answering(() => 5));
+    expect(Object.values(high.core).every((v) => v === 100)).toBe(true);
   });
 });

@@ -24,10 +24,17 @@ const JOINERS: Record<string, string[]> = {
   de: [", aber ", "; "],
 };
 
+/**
+ * Only the app's own items are gated. An instrument whose items are
+ * borrowed from a published, validated source reproduces them as published:
+ * shortening a validated item makes it a different, unvalidated item, which
+ * is the one thing borrowing exists to avoid. Their provenance says so.
+ */
 async function promptsFor(locale: Locale) {
   const rows: { id: string; text: string }[] = [];
   const shell = await loadShell(locale);
-  for (const { spec } of registry.all()) {
+  for (const { spec, provenance } of registry.all()) {
+    if (provenance.items.origin !== "original") continue;
     const own = await loadInstrument(spec, locale);
     const messages = { ...shell, ...own };
     const keyed = spec.form((key) => key, locale);

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { momentAfter } from "@/core/moments";
+import { spaced } from "@/core/order";
 import type { Answers, Form, InstrumentSpec, ItemsForm, Locale, T } from "@/core/types";
 import { loadInstrumentModule } from "@/instruments/lazy";
 import { ItemControl, FieldControl, type ItemValue } from "@/components/form/item-controls";
@@ -321,7 +322,13 @@ export function Runner({
        * the screen — the one thing the group paging exists to prevent.
        */
       const stored = draft?.order?.length ? draft.order.filter((x) => byId.has(x)) : null;
-      let order = form.shuffle ? (stored ?? shuffled(ids, seed)) : ids;
+      // Shuffled, then spaced so two items of one scale never sit back to
+      // back; a stored draft order is kept exactly as the reader saw it.
+      const scaleOf = (id: string) => {
+        const item = byId.get(id);
+        return item?.kind === "likert" ? item.scale : undefined;
+      };
+      let order = form.shuffle ? (stored ?? spaced(shuffled(ids, seed), scaleOf)) : ids;
       // An item added in a later version joins the end rather than reshuffling
       // a draft somebody is halfway through. A no-op for the declared order
       // above, which already contains every id there is.

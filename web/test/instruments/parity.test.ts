@@ -85,6 +85,21 @@ const VANILLA_IDS = readdirSync("../src/instruments", { withFileTypes: true })
  */
 const PORTED_FROM_VANILLA = 16;
 
+/**
+ * Ports that have since moved on, on purpose.
+ *
+ * The comparison below proves the rewrite reproduced the vanilla bank. Once
+ * an instrument deliberately replaces its bank, the vanilla copy is no longer
+ * what ships and agreeing with it would be the bug. The entry here is the
+ * deliberate edit this file asks for: it names what changed and when, the
+ * instrument stays registered (the "has been ported" test still holds), and
+ * its declarations and scores are compared to nothing in the reference.
+ */
+const SUPERSEDED: Record<string, string> = {
+  "big-five":
+    "v2 (2026-10-05): the app's forty original items were replaced by the public-domain IPIP 50-item Big-Five Factor Markers, on IPIP's 5-point accuracy scale. The vanilla bank is the original forty and is kept as the record of them.",
+};
+
 // Thrown at collection rather than asserted in a test, because an empty read
 // is the case where the whole file is meaningless: zero cases, nothing
 // compared, and every remaining test passing. A path that stops resolving
@@ -95,6 +110,14 @@ if (VANILLA_IDS.length === 0) {
 
 test("the vanilla catalogue was found at all", () => {
   expect(VANILLA_IDS.length).toBeGreaterThanOrEqual(PORTED_FROM_VANILLA);
+});
+
+test("a superseded port is still registered, and says why it moved on", () => {
+  for (const [id, why] of Object.entries(SUPERSEDED)) {
+    expect(registry.has(id), `${id} is superseded but no longer registered`).toBe(true);
+    expect(why.length).toBeGreaterThan(40);
+    expect(VANILLA_IDS, `${id} is listed as superseded but has no vanilla folder`).toContain(id);
+  }
 });
 
 test("every instrument that was in production has been ported", () => {
@@ -143,7 +166,7 @@ function answersFrom(form: Form, seed: number): Answers {
   return out;
 }
 
-describe.each(VANILLA_IDS)("%s", (id) => {
+describe.each(VANILLA_IDS.filter((id) => !(id in SUPERSEDED)))("%s", (id) => {
   test("scores identically to the app in production", async () => {
     const vanilla = (await import(`../../../src/instruments/${id}/index.js`)).default as VanillaSpec;
     const port = registry.get(id)!.spec;

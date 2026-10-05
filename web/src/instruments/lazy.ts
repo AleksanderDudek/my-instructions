@@ -27,6 +27,7 @@ const LOADERS: Record<string, Loader> = {
   "big-five": () => import("./big-five") as Promise<{ default: InstrumentModule }>,
   "hexaco": () => import("./hexaco") as Promise<{ default: InstrumentModule }>,
   "under-pressure": () => import("./under-pressure") as Promise<{ default: InstrumentModule }>,
+  "interpersonal": () => import("./interpersonal") as Promise<{ default: InstrumentModule }>,
   "jungian": () => import("./jungian") as Promise<{ default: InstrumentModule }>,
   "riasec": () => import("./riasec") as Promise<{ default: InstrumentModule }>,
   "work-shape": () => import("./work-shape") as Promise<{ default: InstrumentModule }>,

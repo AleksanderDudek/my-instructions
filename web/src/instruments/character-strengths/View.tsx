@@ -1,6 +1,6 @@
 import { Bars, Verdict, Facts, Note } from "@/components/result/scorecard";
 import type { T } from "@/core/types";
-import { VIRTUES, type StrengthKey, type VirtueKey } from "./items";
+import { CORE_ORDER, VIRTUES, type StrengthKey, type VirtueKey } from "./items";
 import type { StrengthsResult } from "./spec";
 
 const virtueOf = (key: StrengthKey) =>
@@ -38,6 +38,10 @@ export function View({ result, t }: { result: StrengthsResult; t: T }) {
           </Note>
         </>
       )}
+
+      <h4 className="label-caps mt-8">{t("view.coreHeading")}</h4>
+      <Facts pairs={CORE_ORDER.map((key): [string, string] => [t(`core.${key}.label`), t("view.coreValue", { score: result.core[key], blurb: t(`core.${key}.blurb`) })])} />
+      <Note>{t("view.coreNote")}</Note>
 
       <h4 className="label-caps mt-8">{t("view.allHeading")}</h4>
       <Bars rows={result.ranked.map((r) => ({ key: r.key, label: label(r.key), score: r.score }))} />

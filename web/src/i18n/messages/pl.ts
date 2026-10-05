@@ -89,6 +89,11 @@ export default {
   "scale.true5.2": "Czasem o mnie",
   "scale.true5.3": "Często o mnie",
   "scale.true5.4": "Dokładnie o mnie",
+  "scale.accurate5.0": "Całkowicie nietrafnie mnie opisuje",
+  "scale.accurate5.1": "Raczej nietrafnie mnie opisuje",
+  "scale.accurate5.2": "Trochę trafnie, a trochę nietrafnie",
+  "scale.accurate5.3": "Raczej trafnie mnie opisuje",
+  "scale.accurate5.4": "Całkowicie trafnie mnie opisuje",
 
   "vis.private": "prywatne",
   "vis.friends": "znajomi",

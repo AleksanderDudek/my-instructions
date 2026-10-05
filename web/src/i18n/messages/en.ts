@@ -89,6 +89,11 @@ export default {
   "scale.true5.2": "Sometimes me",
   "scale.true5.3": "Often me",
   "scale.true5.4": "That is exactly me",
+  "scale.accurate5.0": "Very inaccurate",
+  "scale.accurate5.1": "Moderately inaccurate",
+  "scale.accurate5.2": "Neither accurate nor inaccurate",
+  "scale.accurate5.3": "Moderately accurate",
+  "scale.accurate5.4": "Very accurate",
 
   "vis.private": "private",
   "vis.friends": "friends",

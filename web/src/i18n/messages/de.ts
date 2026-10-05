@@ -89,6 +89,11 @@ export default {
   "scale.true5.2": "Manchmal ich",
   "scale.true5.3": "Oft ich",
   "scale.true5.4": "Genau ich",
+  "scale.accurate5.0": "Trifft gar nicht zu",
+  "scale.accurate5.1": "Trifft eher nicht zu",
+  "scale.accurate5.2": "Teils, teils",
+  "scale.accurate5.3": "Trifft eher zu",
+  "scale.accurate5.4": "Trifft völlig zu",
 
   "vis.private": "privat",
   "vis.friends": "Freunde",

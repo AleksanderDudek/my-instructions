@@ -46,6 +46,9 @@ const flip = (value, { min, max }) => max + min - value;
  */
 function normalize(sum, lo, hi) {
   if (hi === lo) return 50;
+  // The exact middle of the range is 50, not 51 (Math.round carries 50.5 up).
+  // Mirrored in web/src/core/scoring.ts; the parity test holds the two equal.
+  if (sum - lo === (hi - lo) / 2) return 50;
   return Math.round(1 + ((sum - lo) / (hi - lo)) * 99);
 }
 

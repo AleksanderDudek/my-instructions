@@ -87,6 +87,11 @@ export default {
   "scale.true5.2": "A veces va conmigo",
   "scale.true5.3": "A menudo va conmigo",
   "scale.true5.4": "Soy exactamente así",
+  "scale.accurate5.0": "Muy inexacto",
+  "scale.accurate5.1": "Bastante inexacto",
+  "scale.accurate5.2": "Ni exacto ni inexacto",
+  "scale.accurate5.3": "Bastante exacto",
+  "scale.accurate5.4": "Muy exacto",
 
   "vis.private": "privado",
   "vis.friends": "amistades",

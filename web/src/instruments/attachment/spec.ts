@@ -22,8 +22,10 @@ export type AttachmentStyle = "secure" | "preoccupied" | "dismissing" | "fearful
 
 /** Quadrant names, in the order [low anxiety, high anxiety] × [low, high avoidance]. */
 function styleOf(anxiety: number, avoidance: number): AttachmentStyle {
-  const anxious = anxiety >= MIDPOINT;
-  const distant = avoidance >= MIDPOINT;
+  // Strictly above: a reader who answered "neither" to everything sits at
+  // the midpoint on both and is not anxious, not distant, and not fearful.
+  const anxious = anxiety > MIDPOINT;
+  const distant = avoidance > MIDPOINT;
   if (!anxious && !distant) return "secure";
   if (anxious && !distant) return "preoccupied";
   if (!anxious && distant) return "dismissing";

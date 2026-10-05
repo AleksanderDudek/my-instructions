@@ -1,4 +1,4 @@
-import { scaleFor, scoreLikert, band, deviation, straightlining } from "@/core/scoring";
+import { scaleFor, scoreLikert, band, deviation, straightlining, sideOf } from "@/core/scoring";
 import type { Answers, Channel, InstrumentSpec, InstructionCard, T } from "@/core/types";
 import { ORDER, ITEMS, type FactorKey } from "./items";
 
@@ -42,7 +42,7 @@ export function score(answers: Answers): HexacoResult {
   const { scores, answered, total } = scoreLikert(ITEMS, answers, scale);
   const profile: Factor[] = ORDER.map((key) => {
     const s = scores[key];
-    return { key, score: s, side: s >= 50 ? "high" : "low", bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
+    return { key, score: s, side: sideOf(s), bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
   });
   return {
     scores,

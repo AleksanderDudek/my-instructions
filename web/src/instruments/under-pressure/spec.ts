@@ -1,4 +1,4 @@
-import { scaleFor, scoreLikert, band, deviation, elevation, straightlining } from "@/core/scoring";
+import { scaleFor, scoreLikert, band, deviation, elevation, straightlining, sideOf } from "@/core/scoring";
 import type { Answers, Channel, InstructionCard, InstrumentSpec, T } from "@/core/types";
 import { ITEMS, ORDER, type TraitKey } from "./items";
 
@@ -45,7 +45,7 @@ export function score(answers: Answers): UnderPressureResult {
   const { scores, answered, total } = scoreLikert(ITEMS, answers, scale);
   const profile: Trait[] = ORDER.map((key) => {
     const s = scores[key];
-    return { key, score: s, side: s >= 50 ? "high" : "low", bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
+    return { key, score: s, side: sideOf(s), bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
   });
   const overall = elevation(scores);
   return {

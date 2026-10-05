@@ -22,7 +22,7 @@ function score(answers) {
   const { scores, answered, total } = scoreLikert(ITEMS, answers, scale);
   const profile = ORDER.map((key) => {
     const s = scores[key];
-    return { key, score: s, side: s >= 50 ? "high" : "low", bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
+    return { key, score: s, side: s > 50 ? "high" : "low", bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
   });
   return {
     scores, profile,

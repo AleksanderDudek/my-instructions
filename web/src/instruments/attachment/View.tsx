@@ -28,14 +28,14 @@ export function View({ result, t }: { result: AttachmentResult; t: T }) {
             t("dim.anxiety.label"),
             t("view.dimValue", {
               score: result.anxiety,
-              blurb: t(`dim.anxiety.${result.anxiety >= MIDPOINT ? "high" : "low"}`),
+              blurb: t(`dim.anxiety.${result.anxiety > MIDPOINT ? "high" : "low"}`),
             }),
           ],
           [
             t("dim.avoidance.label"),
             t("view.dimValue", {
               score: result.avoidance,
-              blurb: t(`dim.avoidance.${result.avoidance >= MIDPOINT ? "high" : "low"}`),
+              blurb: t(`dim.avoidance.${result.avoidance > MIDPOINT ? "high" : "low"}`),
             }),
           ],
           [t("view.fact.position"), t("view.positionValue", { strength: result.strength })],

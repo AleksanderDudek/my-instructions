@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { registry } from "@/instruments";
-import { validateProvenance, ITEM_ORIGINS, EVIDENCE, REFERENCE_KINDS } from "@/core/provenance";
+import { validateProvenance, ITEM_ORIGINS, EVIDENCE, EVIDENCE_LOCALES, REFERENCE_KINDS } from "@/core/provenance";
 import { TAGS, loadShell, loadInstrument } from "@/core/locales";
 import type { Locale } from "@/core/types";
 
@@ -31,20 +31,43 @@ test("every registered instrument is a folder on disk, and the reverse", () => {
 });
 
 /**
- * `app.noValidation` tells every reader, in four languages, that each
- * questionnaire here writes its own items. That is true exactly as long as
- * every `items.origin` is "original". The day one instrument borrows — IPIP
- * items for character strengths, the Sadomasochism Checklist for the intimacy
- * map, both considered in reports/Six test sources and licences.md — this
- * fails, and the fix is not to relax it: it is to give that instrument its own
- * wording of the disclaimer in all four locales, and then narrow this test.
+ * `app.noValidation` tells every reader, in four languages, that unless a test
+ * says otherwise on its own page, each questionnaire here writes its own
+ * items. An instrument that borrows items — public-domain IPIP scales, say —
+ * is the "otherwise": it must carry its own `disclaimer`, saying where the
+ * items came from and which languages the published evidence covers, and the
+ * page shows that instead of the shared text. An original instrument must
+ * not carry one, so the shared sentence stays the single source for them.
  */
-test("the shared disclaimer is still true of every instrument", async () => {
-  const borrowed = registry.all().filter((m) => m.provenance.items.origin !== "original").map((m) => m.spec.id);
-  expect(borrowed, "these borrow items, so app.noValidation is false for them").toEqual([]);
+test("every instrument that borrows items says so in its own words, and no other does", async () => {
   for (const locale of TAGS) {
     const shell = await loadShell(locale as Locale);
     expect(shell["app.noValidation"]?.length, `${locale} has no disclaimer`).toBeGreaterThan(0);
+  }
+  for (const m of registry.all()) {
+    const en = await loadInstrument(m.spec, "en");
+    const own = typeof en[`${m.spec.id}.disclaimer`] === "string" && en[`${m.spec.id}.disclaimer`].length > 80;
+    const borrowed = m.provenance.items.origin !== "original";
+    expect({ id: m.spec.id, borrowed, ownDisclaimer: own }).toEqual({ id: m.spec.id, borrowed, ownDisclaimer: borrowed });
+  }
+});
+
+/**
+ * Borrowed evidence names its languages, and the claim has to be coherent
+ * with the items: evidence collected in Polish for a scale whose Polish items
+ * are the app's own translation would be a lie, so an instrument may not
+ * claim evidence in a locale unless its provenance says the items in that
+ * locale come from the source too (`items.source` is expected to say which
+ * translations are adopted; this test holds the structural half).
+ */
+test("borrowed evidence is confined to the languages it was collected in", () => {
+  for (const m of registry.all()) {
+    const e = m.provenance.evidence;
+    const claims = e.reliability !== "none" || e.factorStructure !== "none" || e.criterion !== "none";
+    if (!claims) continue;
+    expect(m.provenance.items.origin, `${m.spec.id} claims evidence for original items`).not.toBe("original");
+    expect(e.appliesTo?.length, `${m.spec.id} claims evidence in no language`).toBeGreaterThan(0);
+    expect(e.appliesTo, `${m.spec.id}: evidence has to start in the source language`).toContain("en");
   }
 });
 
@@ -71,6 +94,9 @@ describe("the contract itself", () => {
     ["a reference of an unknown kind", { ...good, references: [{ authors: "A, B.", year: 2000, title: "T", kind: "praise" }] }],
     ["a reference over plain http", { ...good, references: [{ authors: "A, B.", year: 2000, title: "T", kind: "review", url: "http://x" }] }],
     ["a reference with no year", { ...good, references: [{ authors: "A, B.", title: "T", kind: "review" }] }],
+    ["borrowed evidence with no languages", { ...good, items: { origin: "public-domain", source: "IPIP" }, evidence: { reliability: "borrowed", factorStructure: "none", criterion: "none" } }],
+    ["borrowed evidence in an unknown language", { ...good, items: { origin: "public-domain", source: "IPIP" }, evidence: { reliability: "borrowed", factorStructure: "none", criterion: "none", appliesTo: ["fr"] } }],
+    ["languages named with no evidence", { ...good, evidence: { ...good.evidence, appliesTo: ["en"] } }],
   ])("refuses %s", (_label, record) => {
     expect(() => validateProvenance(record)).toThrow(TypeError);
   });
@@ -80,9 +106,10 @@ describe("the contract itself", () => {
       validateProvenance({
         ...good,
         items: { origin: "licensed", licence: "CC BY 4.0", source: "Weierstall and Giebel 2017" },
-        evidence: { reliability: "borrowed", factorStructure: "borrowed", criterion: "none" },
+        evidence: { reliability: "borrowed", factorStructure: "borrowed", criterion: "none", appliesTo: ["en", "pl"] },
       }),
     ).not.toThrow();
+    expect(EVIDENCE_LOCALES).toEqual(["en", "pl", "es", "de"]);
   });
 });
 
@@ -110,6 +137,8 @@ describe("the provenance section speaks the reader's language", () => {
       "provenance.why",
       "provenance.reading",
       "provenance.opensNewTab",
+      "provenance.ownWords",
+      "provenance.evidence.borrowedElsewhere",
       ...REFERENCE_KINDS.map((k) => `provenance.kind.${k}`),
     ];
     expect(keys.filter((k) => !shell[k]), `${locale} is missing`).toEqual([]);

@@ -1,4 +1,4 @@
-import { scaleFor, scoreLikert, band, deviation, straightlining } from "@/core/scoring";
+import { scaleFor, scoreLikert, band, deviation, sideOf, straightlining } from "@/core/scoring";
 import type { Answers, Channel, InstructionCard, InstrumentSpec, T } from "@/core/types";
 import { ITEMS, ORDER, type FactorKey } from "./items";
 
@@ -10,7 +10,7 @@ import { ITEMS, ORDER, type FactorKey } from "./items";
  * enough from the middle to be worth telling someone about.
  */
 
-const scale = scaleFor("agree5", (key) => key);
+const scale = scaleFor("accurate5", (key) => key);
 const MARKED = 22; // distance from 50 at which a factor stops being unremarkable
 
 export type Side = "high" | "low";
@@ -37,7 +37,7 @@ export function score(answers: Answers): BigFiveResult {
   const { scores, answered, total } = scoreLikert(ITEMS, answers, scale);
   const profile: Factor[] = ORDER.map((key) => {
     const s = scores[key];
-    return { key, score: s, side: s >= 50 ? "high" : "low", bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
+    return { key, score: s, side: sideOf(s), bandKey: band(s), marked: Math.abs(s - 50) >= MARKED };
   });
   return {
     scores,
@@ -117,7 +117,8 @@ export function compare(a: BigFiveResult, b: BigFiveResult): BigFiveComparison {
 
 export const spec: InstrumentSpec<BigFiveResult> = {
   id: "big-five",
-  version: 1,
+  // 2: the IPIP 50-item markers replaced the app's own forty items.
+  version: 2,
   family: "questionnaire",
   glyph: "✦",
   minutes: 6,
@@ -132,7 +133,7 @@ export const spec: InstrumentSpec<BigFiveResult> = {
   form: (t) => ({
     kind: "items",
     items: ITEMS.map((item) => ({ ...item, prompt: t(`item.${item.id}`) })),
-    scale: scaleFor("agree5", t),
+    scale: scaleFor("accurate5", t),
     shuffle: true,
     pageSize: 5,
   }),

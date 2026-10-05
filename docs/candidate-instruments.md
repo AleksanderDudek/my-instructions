@@ -290,6 +290,26 @@ instrument already present, and it would drag facet-level scoring into
 `core/scoring.js` that nothing else needs), Grit, SD3, and any standalone
 temperament test.
 
+### Adopted from IPIP, 2026-10-05
+
+The Tier 1 promise above was kept, with the honesty the app demands: borrowed
+items carry their own disclaimer and name the languages their evidence was
+collected in. Research: `reports/Validated instruments for the app.md`;
+design: `docs/superpowers/specs/2026-10-05-validated-instruments-design.md`.
+
+| Instrument | Bank | Evidence by language |
+|---|---|---|
+| `big-five` v2 | IPIP 50-item markers (PL: IPIP-BFM-50, CC BY; DE/ES: IPIP-hosted translations) | en, pl published; de, es unvalidated |
+| `interpersonal` (new) | IPIP-IPC, 32 items, 8 octants (PL: UKSW, CC BY) | en published; pl unvalidated; es, de app translations |
+| `character-strengths` v2 | IPIP-VIA-R, 96 items (DE: the authors' CC BY adaptation) | en, de published; pl, es app translations |
+
+Still open routes, not taken: IPIP-HEXACO (English only; the Polish adaptation
+is a conference paper with no public text) for `hexaco`; ORVIS (public
+domain, EN/DE evidence, 92 items of a different construct) for interests;
+TwIVI for values (free for any purpose, but 64–142-character portrait items
+and no PL/ES/DE). Everything research-only — BFI-2, ECR-R, the SDT need
+scales, SWLS/Flourishing/PERMA — stays out.
+
 ## If only one gets built
 
 **IPIP-HEXACO-60**, then **attachment**, then **chronotype**.

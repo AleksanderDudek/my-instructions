@@ -21,8 +21,8 @@ const MIDPOINT = 50;
 
 /** Quadrant names, in the order [low anxiety, high anxiety] × [low, high avoidance]. */
 function styleOf(anxiety, avoidance) {
-  const anxious = anxiety >= MIDPOINT;
-  const distant = avoidance >= MIDPOINT;
+  const anxious = anxiety > MIDPOINT;
+  const distant = avoidance > MIDPOINT;
   if (!anxious && !distant) return "secure";
   if (anxious && !distant) return "preoccupied";
   if (!anxious && distant) return "dismissing";
@@ -65,8 +65,8 @@ function view(result, { t }) {
     })}
     ${barsHTML(rows(result, t))}
     ${factsHTML([
-      [t("dim.anxiety.label"), t("view.dimValue", { score: result.anxiety, blurb: t(`dim.anxiety.${result.anxiety >= MIDPOINT ? "high" : "low"}`) })],
-      [t("dim.avoidance.label"), t("view.dimValue", { score: result.avoidance, blurb: t(`dim.avoidance.${result.avoidance >= MIDPOINT ? "high" : "low"}`) })],
+      [t("dim.anxiety.label"), t("view.dimValue", { score: result.anxiety, blurb: t(`dim.anxiety.${result.anxiety > MIDPOINT ? "high" : "low"}`) })],
+      [t("dim.avoidance.label"), t("view.dimValue", { score: result.avoidance, blurb: t(`dim.avoidance.${result.avoidance > MIDPOINT ? "high" : "low"}`) })],
       [t("view.fact.position"), t("view.positionValue", { strength: result.strength })],
       [t("view.fact.underStress"), t(`style.${result.style}.stress`)],
     ])}

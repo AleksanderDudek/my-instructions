@@ -19,6 +19,7 @@ import enneagram from "./enneagram";
 import bigFive from "./big-five";
 import hexaco from "./hexaco";
 import underPressure from "./under-pressure";
+import interpersonal from "./interpersonal";
 import jungian from "./jungian";
 import riasec from "./riasec";
 import workShape from "./work-shape";
@@ -50,6 +51,7 @@ const MODULES = [
   bigFive,
   hexaco,
   underPressure,
+  interpersonal,
   jungian,
   riasec,
   workShape,

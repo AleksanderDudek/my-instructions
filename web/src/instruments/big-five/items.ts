@@ -1,16 +1,17 @@
 /**
- * Big Five — original item bank, Likert.
+ * Big Five — the IPIP 50-item Big-Five Factor Markers (Goldberg), public domain.
  *
- * The five-factor model is the one instrument here with real research behind
- * it, and its canonical item pools (IPIP) are genuinely public domain. These
- * items are nonetheless written fresh, in the same voice as the rest of the
- * app, and the scoring engine takes items as data — so dropping in the IPIP
- * fifty-item markers later is a change to this file and nothing else.
+ * Fifty items, ten per factor, keyed as IPIP publishes them at
+ * https://ipip.ori.org/newBigFive5broadKey.htm. One translation of the key:
+ * IPIP's fourth factor is Emotional Stability, and this app reports its
+ * mirror, reactivity, so every item of that factor carries the opposite key
+ * here and nothing else changes. IPIP's fifth factor is Intellect/Imagination,
+ * the lexical cousin of openness; the app keeps its name and says so.
  *
- * Eight items per factor, four forward and four reverse. The even split
- * matters more here than anywhere else in the app: the factors are meant to be
- * orthogonal, and an all-forward scale quietly correlates every factor with
- * agreeableness.
+ * The keying is IPIP's and is not balanced (Emotional Stability is 2+/8−),
+ * which the published alphas were measured on; rebalancing would be a
+ * different instrument. Ids are IPIP's item numbers, so the Polish, German
+ * and Spanish tables line up by number with the source files.
  */
 
 export type FactorKey = "openness" | "conscientiousness" | "extraversion" | "agreeableness" | "reactivity";
@@ -26,55 +27,59 @@ const GLYPHS: Record<FactorKey, string> = {
 
 const ORDER: FactorKey[] = ["openness", "conscientiousness", "extraversion", "agreeableness", "reactivity"];
 
-/** kind/scale are constant across this bank, so the rows stay readable. */
-const row = (id: string, scale: FactorKey, reverse = false) =>
-  ({ id, kind: "likert" as const, scaleName: "true5", scale, reverse });
+const row = (n: number, scale: FactorKey, reverse = false) => ({ id: `i${n}`, kind: "likert" as const, scale, reverse });
 
 const ITEMS = [
-  row("o1", "openness"),
-  row("o2", "openness"),
-  row("o3", "openness"),
-  row("o4", "openness"),
-  row("o5", "openness", true),
-  row("o6", "openness", true),
-  row("o7", "openness", true),
-  row("o8", "openness", true),
-
-  row("c1", "conscientiousness"),
-  row("c2", "conscientiousness"),
-  row("c3", "conscientiousness"),
-  row("c4", "conscientiousness"),
-  row("c5", "conscientiousness", true),
-  row("c6", "conscientiousness", true),
-  row("c7", "conscientiousness", true),
-  row("c8", "conscientiousness", true),
-
-  row("e1", "extraversion"),
-  row("e2", "extraversion"),
-  row("e3", "extraversion"),
-  row("e4", "extraversion"),
-  row("e5", "extraversion", true),
-  row("e6", "extraversion", true),
-  row("e7", "extraversion", true),
-  row("e8", "extraversion", true),
-
-  row("a1", "agreeableness"),
-  row("a2", "agreeableness"),
-  row("a3", "agreeableness"),
-  row("a4", "agreeableness"),
-  row("a5", "agreeableness", true),
-  row("a6", "agreeableness", true),
-  row("a7", "agreeableness", true),
-  row("a8", "agreeableness", true),
-
-  row("n1", "reactivity"),
-  row("n2", "reactivity"),
-  row("n3", "reactivity"),
-  row("n4", "reactivity"),
-  row("n5", "reactivity", true),
-  row("n6", "reactivity", true),
-  row("n7", "reactivity", true),
-  row("n8", "reactivity", true),
+  row(1, "extraversion"),
+  row(2, "agreeableness", true),
+  row(3, "conscientiousness"),
+  row(4, "reactivity"),
+  row(5, "openness"),
+  row(6, "extraversion", true),
+  row(7, "agreeableness"),
+  row(8, "conscientiousness", true),
+  row(9, "reactivity", true),
+  row(10, "openness", true),
+  row(11, "extraversion"),
+  row(12, "agreeableness", true),
+  row(13, "conscientiousness"),
+  row(14, "reactivity"),
+  row(15, "openness"),
+  row(16, "extraversion", true),
+  row(17, "agreeableness"),
+  row(18, "conscientiousness", true),
+  row(19, "reactivity", true),
+  row(20, "openness", true),
+  row(21, "extraversion"),
+  row(22, "agreeableness", true),
+  row(23, "conscientiousness"),
+  row(24, "reactivity"),
+  row(25, "openness"),
+  row(26, "extraversion", true),
+  row(27, "agreeableness"),
+  row(28, "conscientiousness", true),
+  row(29, "reactivity"),
+  row(30, "openness", true),
+  row(31, "extraversion"),
+  row(32, "agreeableness", true),
+  row(33, "conscientiousness"),
+  row(34, "reactivity"),
+  row(35, "openness"),
+  row(36, "extraversion", true),
+  row(37, "agreeableness"),
+  row(38, "conscientiousness", true),
+  row(39, "reactivity"),
+  row(40, "openness"),
+  row(41, "extraversion"),
+  row(42, "agreeableness"),
+  row(43, "conscientiousness"),
+  row(44, "reactivity"),
+  row(45, "openness"),
+  row(46, "extraversion", true),
+  row(47, "agreeableness"),
+  row(48, "conscientiousness"),
+  row(49, "reactivity"),
+  row(50, "openness"),
 ];
 
 export { GLYPHS, ORDER, ITEMS };

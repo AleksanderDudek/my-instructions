@@ -54,6 +54,21 @@ export default async function InstrumentPage({ params }: { params: Promise<{ loc
   const form = spec.form(it, locale as Locale);
   const count = form.kind === "items" ? form.items.length : form.fields.length;
 
+  /**
+   * What the evidence row says in THIS language. Borrowed evidence belongs to
+   * the languages it was collected in; a reader of the app's own translation
+   * is told it was published for the original and not for what they are
+   * reading. Honest per language, which is the only place honesty is useful.
+   */
+  const evidenceWord = (field: "reliability" | "factorStructure" | "criterion") => {
+    const level = provenance.evidence[field];
+    if (level === "none") return "none";
+    return provenance.evidence.appliesTo?.includes(locale as Locale) ? level : "borrowedElsewhere";
+  };
+  // An instrument with borrowed items writes its own disclaimer; the shared
+  // one says "written for this app", which would be false of it.
+  const ownDisclaimer = scoped.defines("disclaimer");
+
   return (
     <>
       <script
@@ -146,9 +161,7 @@ export default async function InstrumentPage({ params }: { params: Promise<{ loc
                 {(["reliability", "factorStructure", "criterion"] as const).map((k) => (
                   <div key={k} className="flex items-baseline justify-between gap-4 border-t border-rule py-2">
                     <dt className="label-caps">{t(`provenance.${k}`)}</dt>
-                    <dd className="text-right text-[0.95rem] text-ink/90">
-                      {t(`provenance.evidence.${provenance.evidence[k]}`)}
-                    </dd>
+                    <dd className="text-right text-[0.95rem] text-ink/90">{t(`provenance.evidence.${evidenceWord(k)}`)}</dd>
                   </div>
                 ))}
               </dl>
@@ -203,9 +216,9 @@ export default async function InstrumentPage({ params }: { params: Promise<{ loc
             <span aria-hidden className="inline-block text-lg leading-none group-open:rotate-90">
               ›
             </span>
-            <span className="underline underline-offset-4">{t("provenance.why")}</span>
+            <span className="underline underline-offset-4">{t(ownDisclaimer ? "provenance.ownWords" : "provenance.why")}</span>
           </summary>
-          <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{t("app.noValidation")}</p>
+          <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{ownDisclaimer ? it("disclaimer") : t("app.noValidation")}</p>
         </details>
       </Plate>
     </>

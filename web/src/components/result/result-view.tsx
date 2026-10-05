@@ -275,7 +275,7 @@ export function ResultView({
           owes the reader instead is that none of this was scored. */}
       {spec.family === "questionnaire" ? (
         <p className="mt-4 max-w-[62ch] text-sm leading-relaxed text-muted">
-          {i18n.t("app.noValidation")} {i18n.t("provenance.readAs")}
+          {scoped.defines("disclaimer") ? scoped.t("disclaimer") : i18n.t("app.noValidation")} {i18n.t("provenance.readAs")}
         </p>
       ) : null}
       {spec.family === "inventory" ? (

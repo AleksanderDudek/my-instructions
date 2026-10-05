@@ -21,6 +21,9 @@ export type ItemOrigin = (typeof ITEM_ORIGINS)[number];
 export const EVIDENCE = ["none", "borrowed", "collected"] as const;
 export type Evidence = (typeof EVIDENCE)[number];
 
+export const EVIDENCE_LOCALES = ["en", "pl", "es", "de"] as const;
+export type EvidenceLocale = (typeof EVIDENCE_LOCALES)[number];
+
 export const REFERENCE_KINDS = ["foundational", "review", "critique", "popular"] as const;
 export type ReferenceKind = (typeof REFERENCE_KINDS)[number];
 
@@ -49,7 +52,20 @@ export type ProvenanceRecord = {
   construct: { name: string; origin?: string; public: boolean; note?: string };
   /** `licence` is required when `origin` is "licensed", and names it (e.g. "CC BY 4.0"). */
   items: { origin: ItemOrigin; writtenFor?: string; licence?: string; source?: string };
-  evidence: { reliability: Evidence; factorStructure: Evidence; criterion: Evidence; note?: string };
+  /**
+   * Evidence is a property of an item set in one language given to one sample.
+   * Borrowed evidence therefore names the languages it was collected in
+   * (`appliesTo`): an IPIP scale with a validated Polish adaptation has
+   * evidence in en and pl, and the app's own Spanish and German translations
+   * of it have none. Required whenever any field is not "none".
+   */
+  evidence: {
+    reliability: Evidence;
+    factorStructure: Evidence;
+    criterion: Evidence;
+    appliesTo?: EvidenceLocale[];
+    note?: string;
+  };
   /** Copyrighted material reproduced. Required to exist and to be empty. */
   reproduces: string[];
   /** Named instruments deliberately not used, and whose items are not present. */
@@ -83,6 +99,16 @@ export function validateProvenance(p: unknown, where = "instrument"): Provenance
     if (!has(EVIDENCE, r.evidence?.[field])) {
       throw new TypeError(`${where}: provenance.evidence.${field} must be one of ${EVIDENCE.join(", ")}`);
     }
+  }
+
+  const claimsEvidence = (["reliability", "factorStructure", "criterion"] as const).some((f) => r.evidence![f] !== "none");
+  if (claimsEvidence) {
+    const langs = r.evidence!.appliesTo;
+    if (!Array.isArray(langs) || !langs.length || !langs.every((l) => has(EVIDENCE_LOCALES, l))) {
+      throw new TypeError(`${where}: evidence that is not "none" must name the locales it applies to (evidence.appliesTo)`);
+    }
+  } else if (r.evidence!.appliesTo?.length) {
+    throw new TypeError(`${where}: evidence.appliesTo names locales but every evidence field is "none"`);
   }
 
   // Required to exist and required to be empty: an instrument that needs a
